@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://6okr5a4v1h73"]
+
+[ext_resource type="Shader" uid="uid://71yen4xcwcoc" path="res://Art/Shaders/S_Glitchy_01.gdshader" id="1_74kwm"]
+[ext_resource type="Texture2D" uid="uid://b6d36acwp1qeq" path="res://Art/Textures/T_Globe_01.png" id="2_6pvhv"]
+[ext_resource type="Texture2D" uid="uid://cx4p8ntpofjv2" path="res://Art/Textures/T_Distort_01.png" id="2_w1lcw"]
+[ext_resource type="Texture2D" uid="uid://d18w7gb16xpfx" path="res://Art/Textures/T_GlitchNoise_01.png" id="3_2ydb6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_74kwm")
+shader_parameter/baseTexture = ExtResource("2_6pvhv")
+shader_parameter/roundingScale = 5.18
+shader_parameter/distortTexture = ExtResource("2_w1lcw")
+shader_parameter/distortTextureScale = 0.455
+shader_parameter/distortAngle = 0.0
+shader_parameter/distortAngleSpecificity = 4.03
+shader_parameter/distortBias = -0.21699998655750002
+shader_parameter/distortAmount = 4.9350000000000005
+shader_parameter/glitchAlphaTexture = ExtResource("3_2ydb6")
+shader_parameter/glitchAlphaScale = 3.38
+shader_parameter/alphaThreshold = 0.0
+shader_parameter/alphaMinimum = 0.2630000124925
+shader_parameter/fresnelMultiply = 1.185
+shader_parameter/fresnelPower = 1.185

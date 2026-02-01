@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dsastmeha4vbk"]
+
+[ext_resource type="Texture2D" uid="uid://b6d36acwp1qeq" path="res://Art/Textures/T_Globe_01.png" id="1_bpude"]
+[ext_resource type="Shader" uid="uid://2rtwm5mi14iu" path="res://Art/Shaders/S_Unshaded_01.gdshader" id="1_l74wm"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l74wm")
+shader_parameter/baseTexture = ExtResource("1_bpude")

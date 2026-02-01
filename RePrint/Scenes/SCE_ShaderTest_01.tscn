@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://heitagbqbty"]
+
+[ext_resource type="Material" uid="uid://6okr5a4v1h73" path="res://Art/Materials/M_Glitchy_01.tres" id="1_pvo76"]
+[ext_resource type="Material" uid="uid://dsastmeha4vbk" path="res://Art/Materials/M_Globe_01.tres" id="2_sjwxu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pvo76"]
+
+[node name="Node3D" type="Node3D" unique_id=550194659]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2090902116]
+transform = Transform3D(3.5272965, 0, 0, 0, 6.6911097, 0, 0, 0, 3.5272968, 0, 0, 0)
+material_override = ExtResource("1_pvo76")
+mesh = SubResource("SphereMesh_pvo76")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=2101156345]
+transform = Transform3D(3.5272965, 0, 0, 0, 6.6911097, 0, 0, 0, 3.5272968, 0, 0, -5.485682)
+material_override = ExtResource("2_sjwxu")
+mesh = SubResource("SphereMesh_pvo76")
