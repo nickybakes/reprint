@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,9 @@ public class AppManager : MonoBehaviour
     public static AppManager app;
 
     private SceneIndex currentScene = SceneIndex.AppInit;
+
+    private Action currentCallback;
+
     private SceneIndex previousScene = SceneIndex.AppInit;
 
     #region Startup   
@@ -33,11 +37,8 @@ public class AppManager : MonoBehaviour
         else
         {
             app = this;
+            DontDestroyOnLoad(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
-        // appSettings = new AppSettings(10);
-        // tokens = new List<IPlayerToken>();
-        // playerInputManager = GetComponent<PlayerInputManager>();
     }
 
     private void Start()
@@ -59,8 +60,9 @@ public class AppManager : MonoBehaviour
     /// Switches to a scene asyncronously
     /// </summary>
     /// <param name="s">The scene you want to load</param>
-    public void SwitchToScene(SceneIndex s)
+    public void SwitchToScene(SceneIndex s, Action callback = null)
     {
+        currentCallback = callback;
         SceneManager.sceneLoaded += WhenSceneDoneLoading;
         StartCoroutine(StartLoadProcess(s));
 
@@ -85,6 +87,11 @@ public class AppManager : MonoBehaviour
     private void WhenSceneDoneLoading(Scene scene, LoadSceneMode mode)
     {
         // UnloadScene(previousScene);
+        if (currentCallback != null)
+        {
+            currentCallback.Invoke();
+        }
+        currentCallback = null;
         SceneManager.sceneLoaded -= WhenSceneDoneLoading;
     }
 

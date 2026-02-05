@@ -12,7 +12,7 @@ public class ForceAppInit : MonoBehaviour
     {
         if (AppManager.app == null)
         {
-            SceneManager.LoadScene((int)SceneIndex.AppInit);
+            SceneManager.LoadScene((int)SceneIndex.AppInit, LoadSceneMode.Single);
             return;
         }
     }
