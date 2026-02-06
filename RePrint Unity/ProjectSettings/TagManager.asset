@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Battle Scene Setup
+  - Battle UI Manager
   layers:
   - Default
   - TransparentFX

@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
   characterPrefab: {fileID: 1851570300534500535, guid: 5a825883af342b742aca773e87d291bc, type: 3}
+  battleUIManagerPrefrab: {fileID: 8873405201151058987, guid: 40c825d6a25078c4ba721177de4ae9db, type: 3}

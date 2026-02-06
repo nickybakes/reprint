@@ -5,9 +5,24 @@ public class CharacterVisual : MonoBehaviour
 
     private GameObject model;
 
+    private MeshRenderer meshRenderer;
+
+    public Vector3 MeshCenter
+    {
+        get
+        {
+            return meshRenderer.bounds.center;
+        }
+    }
+
     public void SetupCharacterVisual(CharacterVisualData data)
     {
         model = Instantiate(data.model, transform);
+        meshRenderer = model.GetComponent<MeshRenderer>();
+        if (meshRenderer == null)
+        {
+            meshRenderer = model.GetComponentInChildren<MeshRenderer>();
+        }
     }
 
 

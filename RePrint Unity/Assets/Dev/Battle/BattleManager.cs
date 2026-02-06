@@ -10,6 +10,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private Character characterPrefab;
 
+    [SerializeField]
+    private BattleUIManager battleUIManagerPrefrab;
+
     /// <summary>
     /// The character objects that are active in this battle and which side they are on.
     /// </summary>
@@ -35,10 +38,15 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private BattleSceneSetup battleSceneSetup;
 
+    /// <summary>
+    /// The manager for the UI of the battle.
+    /// </summary>
+    private BattleUIManager battleUIManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        BattleManager.battle = this;
+        battle = this;
 
         SetupBattle();
     }
@@ -47,6 +55,8 @@ public class BattleManager : MonoBehaviour
     {
         // Get reference to battle scene setup data.
         battleSceneSetup = GameObject.FindWithTag("Battle Scene Setup").GetComponent<BattleSceneSetup>();
+
+        battleUIManager = Instantiate(battleUIManagerPrefrab).GetComponent<BattleUIManager>();
 
         battleData = GameManager.game.GetBattleData();
 
@@ -59,11 +69,11 @@ public class BattleManager : MonoBehaviour
 
         // Instantiate the game objects for player and enemies. Also send them their specific data so they can set up themselves.
 
-        SpawnCharacter(0, battleData.playerCharacterData);
+        SpawnCharacter(0, battleData.playerCharacterData, true);
 
         foreach (CharacterData data in battleData.enemyCharacterDatas)
         {
-            SpawnCharacter(1, data);
+            SpawnCharacter(1, data, false);
         }
 
 
@@ -79,12 +89,13 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void SpawnCharacter(int team, CharacterData data)
+    private void SpawnCharacter(int team, CharacterData data, bool isPlayerControlled)
     {
         GameObject characterGameObject = Instantiate(characterPrefab.gameObject);
         Character characterClassReference = characterGameObject.GetComponent<Character>();
-        characterClassReference.SetupCharacter(data);
+        characterClassReference.SetupCharacter(data, isPlayerControlled);
         teams[team].Add(characterClassReference);
+        battleUIManager.SpawnCharacterHUDPanel(characterClassReference);
     }
 
     // Update is called once per frame

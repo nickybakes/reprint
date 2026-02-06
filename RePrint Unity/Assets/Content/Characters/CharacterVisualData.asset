@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6c8e13c7a94174d9938083abfc472b, type: 3}
   m_Name: CharacterVisualData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualData
-  model: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: d06ba4ef52ec6c842a2e09ee10b9eaac, type: 3}

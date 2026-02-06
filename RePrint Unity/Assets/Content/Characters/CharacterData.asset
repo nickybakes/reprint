@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f38f68393fbd444b953787d4dfbb61, type: 3}
   m_Name: CharacterData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  model: {fileID: 919132149155446097, guid: d06ba4ef52ec6c842a2e09ee10b9eaac, type: 3}
+  visualData: {fileID: 11400000, guid: aa635bef903fa484286369d9968225f8, type: 2}
+  healthMax: 20

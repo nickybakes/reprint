@@ -1,27 +1,52 @@
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
 
-    private int health;
-    private int healthMax;
-
-    private int chain;
-    private int chainMax;
-
-    private int actionPoints;
-    private int actionPointsMax;
+    private CharacterStats stats;
 
     private CharacterVisual visual;
+
+    private bool isPlayerControlled;
+
+    public bool IsPlayerControlled
+    {
+        get
+        {
+            return isPlayerControlled;
+        }
+    }
+
+    public CharacterStats Stats
+    {
+        get
+        {
+            return stats;
+        }
+    }
+
+    public CharacterVisual Visual
+    {
+        get
+        {
+            return visual;
+        }
+    }
 
     void Awake()
     {
         visual = GetComponent<CharacterVisual>();
     }
 
-    public void SetupCharacter(CharacterData data)
+    public void SetupCharacter(CharacterData data, bool _isPlayerControlled)
     {
         visual.SetupCharacterVisual(data.visualData);
+        isPlayerControlled = _isPlayerControlled;
+
+        stats.healthMax = data.healthMax;
+
+        stats.health = UnityEngine.Random.Range(2, 20);
     }
 
     public void SetSpawnTransform(Vector3 position, float direction)
@@ -40,4 +65,17 @@ public class Character : MonoBehaviour
     {
 
     }
+}
+
+
+public struct CharacterStats
+{
+    public int health;
+    public int healthMax;
+
+    public int chain;
+    public int chainMax;
+
+    public int actionPoints;
+    public int actionPointsMax;
 }
