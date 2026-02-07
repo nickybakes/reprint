@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: CharacterVisualData
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisualData
   model: {fileID: 919132149155446097, guid: d06ba4ef52ec6c842a2e09ee10b9eaac, type: 3}
+  meshCenterOffset: {x: 0.33, y: 0, z: 0}

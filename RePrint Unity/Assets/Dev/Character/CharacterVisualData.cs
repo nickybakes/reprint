@@ -4,4 +4,6 @@ using UnityEngine;
 public class CharacterVisualData : ScriptableObject
 {
     public GameObject model;
+
+    public Vector3 meshCenterOffset;
 }

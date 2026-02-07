@@ -16,18 +16,25 @@ public class CharacterHUDPanel : MonoBehaviour
 
     private Canvas canvas;
 
+    private RectTransform canvasRect;
+
+    private RectTransform rect;
+
+    private Vector3 screenPosition;
+
     public void SetUpHUDPanel(Character character, Canvas _canvas)
     {
         characterReference = character;
         canvas = _canvas;
+        canvasRect = canvas.GetComponent<RectTransform>();
+        rect = GetComponent<RectTransform>();
         UpdateStats(characterReference.Stats, true);
         UpdatePosition();
     }
 
     public void UpdatePosition()
     {
-        Vector3 position = Camera.main.WorldToScreenPoint(characterReference.Visual.MeshCenter);
-        transform.position = position;
+        rect.anchoredPosition = BattleUIManager.manager.WorldToCanvasPoint(characterReference.Visual.MeshCenter);
     }
 
     public void UpdateStats(CharacterStats newStats, bool noAnimations = false)

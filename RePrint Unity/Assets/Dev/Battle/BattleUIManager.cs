@@ -4,6 +4,8 @@ using UnityEngine;
 public class BattleUIManager : MonoBehaviour
 {
 
+    public static BattleUIManager manager;
+
     private Canvas canvas;
 
     private RectTransform canvasRect;
@@ -23,8 +25,12 @@ public class BattleUIManager : MonoBehaviour
 
     void Awake()
     {
+        manager = this;
+
         canvas = GetComponent<Canvas>();
         canvasRect = GetComponent<RectTransform>();
+        canvas.worldCamera = Camera.main;
+        canvas.planeDistance = 1;
 
         enemyHUDPanels = new List<CharacterHUDPanel>();
     }
@@ -45,6 +51,16 @@ public class BattleUIManager : MonoBehaviour
         {
             enemyHUDPanels.Add(panel);
         }
+    }
+
+    public Vector3 WorldToCanvasPoint(Vector3 position)
+    {
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(position);
+        screenPosition.x *= canvasRect.rect.width / (float)Camera.main.pixelWidth;
+        screenPosition.y *= canvasRect.rect.height / (float)Camera.main.pixelHeight;
+        screenPosition.x = screenPosition.x - canvasRect.sizeDelta.x / 2f;
+        screenPosition.y = screenPosition.y - canvasRect.sizeDelta.y / 2f;
+        return screenPosition;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

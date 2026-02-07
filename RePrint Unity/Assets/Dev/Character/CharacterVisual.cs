@@ -7,11 +7,13 @@ public class CharacterVisual : MonoBehaviour
 
     private MeshRenderer meshRenderer;
 
+    private GameObject meshCenterOffsetObject;
+
     public Vector3 MeshCenter
     {
         get
         {
-            return meshRenderer.bounds.center;
+            return meshRenderer.bounds.center + meshCenterOffsetObject.transform.localPosition;
         }
     }
 
@@ -23,6 +25,10 @@ public class CharacterVisual : MonoBehaviour
         {
             meshRenderer = model.GetComponentInChildren<MeshRenderer>();
         }
+
+        meshCenterOffsetObject = new GameObject("Mesh Center Offset");
+        meshCenterOffsetObject.transform.parent = model.transform;
+        meshCenterOffsetObject.transform.localPosition = data.meshCenterOffset;
     }
 
 
