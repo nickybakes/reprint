@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -7,6 +8,8 @@ public class Character : MonoBehaviour
     private CharacterStats stats;
 
     private CharacterVisual visual;
+
+    private List<CharacterActionData> characterActions;
 
     private bool isPlayerControlled;
 
@@ -34,6 +37,14 @@ public class Character : MonoBehaviour
         }
     }
 
+    public List<CharacterActionData> CharacterActions
+    {
+        get
+        {
+            return characterActions;
+        }
+    }
+
     void Awake()
     {
         visual = GetComponent<CharacterVisual>();
@@ -47,6 +58,8 @@ public class Character : MonoBehaviour
         stats.healthMax = data.healthMax;
 
         stats.health = UnityEngine.Random.Range(2, 20);
+
+        characterActions = new List<CharacterActionData>(data.actionDatas);
     }
 
     public void SetSpawnTransform(Vector3 position, float direction)

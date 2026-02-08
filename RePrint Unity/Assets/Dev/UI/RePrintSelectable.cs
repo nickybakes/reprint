@@ -13,7 +13,6 @@ public class RePrintSelectable :
     private bool m_EnableCalled = false;
 
     private bool m_GroupsAllowInteraction = true;
-    protected int m_CurrentIndex = -1;
 
     [Tooltip("Can the Selectable be interacted with?")]
     [SerializeField]
@@ -25,8 +24,10 @@ public class RePrintSelectable :
     [SerializeField] private RePrintSelectable leftSelection;
     [SerializeField] private RePrintSelectable rightSelection;
 
-    [SerializeField] private UnityEvent<int> selectEvent;
-    [SerializeField] private UnityEvent<int> deselectEvent;
+    [SerializeField] protected UnityEvent<int> selectEvent;
+    [SerializeField] protected UnityEvent<int> deselectEvent;
+
+    protected int index;
 
 
     protected Animator animator;
@@ -121,6 +122,7 @@ public class RePrintSelectable :
         if (!hasSelection)
         {
             animator.SetTrigger("Select");
+            selectEvent.Invoke(index);
             hasSelection = true;
         }
     }
@@ -130,6 +132,7 @@ public class RePrintSelectable :
         if (hasSelection)
         {
             animator.SetTrigger("Deselect");
+            deselectEvent.Invoke(index);
             hasSelection = false;
         }
     }

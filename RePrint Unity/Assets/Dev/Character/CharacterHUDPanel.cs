@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class CharacterHUDPanel : MonoBehaviour
 {
+    [SerializeField] private StatDisplay healthDisplay;
 
-    [SerializeField]
-    private StatDisplay healthDisplay;
+    [SerializeField] private CharacterActionMenu actionMenu;
 
     private Character characterReference;
 
@@ -28,6 +28,12 @@ public class CharacterHUDPanel : MonoBehaviour
         canvas = _canvas;
         canvasRect = canvas.GetComponent<RectTransform>();
         rect = GetComponent<RectTransform>();
+
+        if (character.IsPlayerControlled)
+        {
+            actionMenu.SetupActionMenu(character);
+        }
+
         UpdateStats(characterReference.Stats, true);
         UpdatePosition();
     }

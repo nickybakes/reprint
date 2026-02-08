@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class RePrintButton : RePrintSelectable, IPointerDownHandler, IPointerUpHandler, ISubmitHandler
 {
-    [SerializeField] private UnityEvent submitEvent;
+    [SerializeField] protected UnityEvent submitEvent;
 
     [SerializeField] private float cooldownTime = .1f;
 
@@ -55,6 +55,7 @@ public class RePrintButton : RePrintSelectable, IPointerDownHandler, IPointerUpH
             else
             {
                 animator.SetTrigger("Select");
+                selectEvent.Invoke(index);
             }
             hasSelection = true;
         }
