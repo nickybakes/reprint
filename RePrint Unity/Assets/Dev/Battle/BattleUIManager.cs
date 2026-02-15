@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class BattleUIManager : MonoBehaviour
+public class BattleUIManager : MonoBehaviour, IPointerClickHandler
 {
 
     public static BattleUIManager manager;
@@ -10,14 +12,13 @@ public class BattleUIManager : MonoBehaviour
 
     private RectTransform canvasRect;
 
-    [SerializeField]
-    private RectTransform gamePanel;
+    [SerializeField] private RectTransform gamePanel;
 
-    [SerializeField]
-    private CharacterHUDPanel playerHUDPanelPrefab;
+    [SerializeField] private CharacterHUDPanel playerHUDPanelPrefab;
 
-    [SerializeField]
-    private CharacterHUDPanel enemyHUDPanelPrefab;
+    [SerializeField] private CharacterHUDPanel enemyHUDPanelPrefab;
+
+    [SerializeField] private CharacterActionSequencePanel actionSequencePanel;
 
     private CharacterHUDPanel playerHUDPanel;
 
@@ -63,6 +64,57 @@ public class BattleUIManager : MonoBehaviour
         return screenPosition;
     }
 
+    public void OpenPlayerActionMenu()
+    {
+        playerHUDPanel.OpenActionMenu();
+    }
+
+    public void ClosePlayerActionMenu()
+    {
+        playerHUDPanel.CloseActionMenu();
+    }
+
+    /// <summary>
+    /// Refreshed the action menu AND the sequence panel
+    /// </summary>
+    public void RefreshPlayerActionMenu()
+    {
+        playerHUDPanel.RefreshActionMenu();
+        actionSequencePanel.RefreshActionSequence();
+    }
+
+    public void OpenActionSequencePanel()
+    {
+        actionSequencePanel.RefreshActionSequence();
+        actionSequencePanel.gameObject.SetActive(true);
+    }
+
+    public void CloseActionSequencePanel()
+    {
+        actionSequencePanel.gameObject.SetActive(false);
+    }
+
+    public void EnableEnemySelection()
+    {
+        foreach (CharacterHUDPanel enemyHUD in enemyHUDPanels)
+        {
+            enemyHUD.EnableSelection();
+        }
+    }
+
+    public void DisableEnemySelection()
+    {
+        foreach (CharacterHUDPanel enemyHUD in enemyHUDPanels)
+        {
+            enemyHUD.DisableSelection();
+        }
+    }
+
+    public void SubmitPlayerActionSequence()
+    {
+
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -73,5 +125,13 @@ public class BattleUIManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            BattleManager.battle.BackInput();
+        }
     }
 }

@@ -57,3 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d4dc64d54b4804a8a4606d07a726a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterVisual
+  unselectedOutlineMaterial: {fileID: 2100000, guid: 0badbceeaff17f24fabbcc1cad5d7d70, type: 2}
+  selectedOutlineMaterial: {fileID: 2100000, guid: e4a2884cd26aa8f4c860bde66ca64a5d, type: 2}

@@ -23,6 +23,9 @@ public class CharacterActionMenu : MonoBehaviour
 
     private int currentSelectedButtonIndex;
 
+    private int currentActiveButtonIndex = -1;
+    private int currentActiveOverclock = -1;
+
     private float[] buttonOffsets;
 
 
@@ -32,6 +35,55 @@ public class CharacterActionMenu : MonoBehaviour
         {
             currentSelectedButtonIndex = value;
             buttons[currentSelectedButtonIndex].transform.SetAsLastSibling();
+        }
+    }
+
+    public void SubmitCharacterActionButton(int index)
+    {
+        BattleManager.battle.PlayerCreateActionSequenceBattleState.SubmitAction(index);
+    }
+
+    public void RefreshButtonStates()
+    {
+        List<SelectedAction> sequence = BattleManager.battle.PlayerCreateActionSequenceBattleState.SelectedActionSequence;
+        if (sequence.Count == 0)
+        {
+            currentActiveButtonIndex = -1;
+            currentActiveOverclock = -1;
+            BattleManager.battle.ui.DisableEnemySelection();
+        }
+        else
+        {
+            SelectedAction action = sequence[sequence.Count - 1];
+            currentActiveButtonIndex = action.actionIndex;
+            currentActiveOverclock = action.overclock;
+
+            if (action.enemyIndex != -1)
+            {
+                currentActiveButtonIndex = -1;
+                currentActiveOverclock = -1;
+                BattleManager.battle.ui.DisableEnemySelection();
+            }
+            else
+            {
+                BattleManager.battle.ui.EnableEnemySelection();
+            }
+        }
+
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            CharacterActionButton button = buttons[i];
+
+            if (i == currentActiveButtonIndex)
+            {
+                button.RefreshButtonState(true, currentActiveOverclock);
+            }
+            else
+            {
+                button.RefreshButtonState(false, -1);
+            }
+
         }
     }
 
@@ -52,6 +104,19 @@ public class CharacterActionMenu : MonoBehaviour
         buttonOffsets = new float[buttons.Count];
 
         UpdateButtonPositions();
+    }
+
+    public void OpenMenu()
+    {
+        // We can add a proper animation for this later
+        gameObject.SetActive(true);
+        RefreshButtonStates();
+    }
+
+    public void CloseMenu()
+    {
+        // We can add a proper animation for this later
+        gameObject.SetActive(false);
     }
 
     public void UpdateButtonPositions()

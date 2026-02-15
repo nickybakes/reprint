@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: CharacterActionData_03
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
-  actionName: Action 03
+  name: Action 03
   description: Action 03 description
   damage: 1
   actionPointCost: 0

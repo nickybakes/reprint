@@ -6,6 +6,8 @@ public class CharacterHUDPanel : MonoBehaviour
 
     [SerializeField] private CharacterActionMenu actionMenu;
 
+    [SerializeField] private RePrintButton characterSelectButton;
+
     private Character characterReference;
 
     /// <summary>
@@ -33,6 +35,10 @@ public class CharacterHUDPanel : MonoBehaviour
         {
             actionMenu.SetupActionMenu(character);
         }
+        else
+        {
+            DisableSelection();
+        }
 
         UpdateStats(characterReference.Stats, true);
         UpdatePosition();
@@ -48,6 +54,48 @@ public class CharacterHUDPanel : MonoBehaviour
         healthDisplay.UpdateStatDisplay(newStats.health, newStats.healthMax);
 
         displayedStats = newStats;
+    }
+
+    public void EnableSelection()
+    {
+        characterSelectButton.gameObject.SetActive(true);
+        characterReference.Visual.ShowSelectable();
+    }
+
+    public void DisableSelection()
+    {
+        characterSelectButton.gameObject.SetActive(false);
+        characterReference.Visual.HideSelectable();
+    }
+
+    public void Submit()
+    {
+        BattleManager.battle.PlayerCreateActionSequenceBattleState.SubmitEnemySelection(characterReference.Index);
+    }
+
+    public void Select()
+    {
+        characterReference.Visual.ShowSelected();
+    }
+
+    public void Deselect()
+    {
+        characterReference.Visual.ShowUnselected();
+    }
+
+    public void OpenActionMenu()
+    {
+        actionMenu.OpenMenu();
+    }
+
+    public void CloseActionMenu()
+    {
+        actionMenu.CloseMenu();
+    }
+
+    public void RefreshActionMenu()
+    {
+        actionMenu.RefreshButtonStates();
     }
 
 

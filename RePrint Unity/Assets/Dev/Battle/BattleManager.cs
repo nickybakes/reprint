@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BattleStateIndex
+{
+    Intro = 0,
+
+    PlayerCreateActionSequence = 1
+}
+
 public class BattleManager : MonoBehaviour
 {
 
@@ -43,12 +50,60 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private BattleUIManager battleUIManager;
 
+    private BattleStateIntro introBattleState = new BattleStateIntro();
+
+    private BattleStatePlayerCreateActionSequence playerCreateActionSequenceBattleState = new BattleStatePlayerCreateActionSequence();
+
+    private BattleState[] battleStates;
+
+    private BattleStateIndex currentBattleStateIndex;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         battle = this;
 
+        battleStates = new BattleState[] { introBattleState, playerCreateActionSequenceBattleState };
+
         SetupBattle();
+    }
+
+    public BattleUIManager ui
+    {
+        get
+        {
+            return battleUIManager;
+        }
+    }
+
+    public BattleStatePlayerCreateActionSequence PlayerCreateActionSequenceBattleState
+    {
+        get
+        {
+            return playerCreateActionSequenceBattleState;
+        }
+    }
+
+    public BattleState CurrentBattleState
+    {
+        get
+        {
+            return battleStates[(int)currentBattleStateIndex];
+        }
+    }
+
+    public Character PlayerCharacter
+    {
+        get
+        {
+            return teams[0][0];
+        }
+    }
+
+    public BattleState GetBattleState(BattleStateIndex index)
+    {
+        return battleStates[(int)index];
     }
 
     public void SetupBattle()
@@ -69,13 +124,12 @@ public class BattleManager : MonoBehaviour
 
         // Instantiate the game objects for player and enemies. Also send them their specific data so they can set up themselves.
 
-        SpawnCharacter(0, battleData.playerCharacterData, true);
+        SpawnCharacter(0, battleData.playerCharacterData, true, 0);
 
-        foreach (CharacterData data in battleData.enemyCharacterDatas)
+        for (int i = 0; i < battleData.enemyCharacterDatas.Length; i++)
         {
-            SpawnCharacter(1, data, false);
+            SpawnCharacter(1, battleData.enemyCharacterDatas[i], false, i);
         }
-
 
         // Set spawn position and rotation of player and enemies
 
@@ -87,20 +141,39 @@ public class BattleManager : MonoBehaviour
         {
             teams[1][i].SetSpawnTransform(enemySpawnPoints[i], battleSceneSetup.EnemyDirection);
         }
+
+        CurrentBattleState.StartState();
     }
 
-    private void SpawnCharacter(int team, CharacterData data, bool isPlayerControlled)
+    private void SpawnCharacter(int team, CharacterData data, bool isPlayerControlled, int index)
     {
         GameObject characterGameObject = Instantiate(characterPrefab.gameObject);
         Character characterClassReference = characterGameObject.GetComponent<Character>();
-        characterClassReference.SetupCharacter(data, isPlayerControlled);
+        characterClassReference.SetupCharacter(data, isPlayerControlled, index);
         teams[team].Add(characterClassReference);
         battleUIManager.SpawnCharacterHUDPanel(characterClassReference);
+    }
+
+    public void SwitchBattleState(BattleStateIndex index)
+    {
+        CurrentBattleState.EndState();
+
+        currentBattleStateIndex = index;
+
+        CurrentBattleState.StartState();
+    }
+
+    public void BackInput()
+    {
+        if (currentBattleStateIndex == BattleStateIndex.PlayerCreateActionSequence)
+        {
+            playerCreateActionSequenceBattleState.Back();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        CurrentBattleState.Update(Time.deltaTime);
     }
 }

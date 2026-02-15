@@ -19,8 +19,8 @@ public class RePrintButton : RePrintSelectable, IPointerDownHandler, IPointerUpH
 
         timeSinceSubmit = 0;
 
-        animator.SetTrigger("Press");
-        animator.SetTrigger("Release");
+        SetAnimationTrigger("Press");
+        SetAnimationTrigger("Release");
 
         pressed = false;
 
@@ -29,14 +29,14 @@ public class RePrintButton : RePrintSelectable, IPointerDownHandler, IPointerUpH
 
     public virtual void Press()
     {
-        animator.ResetTrigger("Release");
-        animator.SetTrigger("Press");
+        ResetAnimationTrigger("Release");
+        SetAnimationTrigger("Press");
         pressed = true;
     }
 
     public virtual void Release()
     {
-        animator.SetTrigger("Release");
+        SetAnimationTrigger("Release");
         pressed = false;
         if (isPointerInside)
         {
@@ -50,11 +50,11 @@ public class RePrintButton : RePrintSelectable, IPointerDownHandler, IPointerUpH
         {
             if (pressed)
             {
-                animator.SetTrigger("Press");
+                SetAnimationTrigger("Press");
             }
             else
             {
-                animator.SetTrigger("Select");
+                SetAnimationTrigger("Select");
                 selectEvent.Invoke(index);
             }
             hasSelection = true;

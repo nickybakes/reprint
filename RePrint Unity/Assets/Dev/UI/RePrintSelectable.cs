@@ -56,6 +56,22 @@ public class RePrintSelectable :
         animator = GetComponent<Animator>();
     }
 
+    public void SetAnimationTrigger(string trigger)
+    {
+        if (animator.enabled && animator.runtimeAnimatorController != null)
+        {
+            animator.SetTrigger(trigger);
+        }
+    }
+
+    public void ResetAnimationTrigger(string trigger)
+    {
+        if (animator.enabled && animator.runtimeAnimatorController != null)
+        {
+            animator.ResetTrigger(trigger);
+        }
+    }
+
     /// <summary>
     /// Is the object interactable.
     /// </summary>
@@ -94,14 +110,6 @@ public class RePrintSelectable :
         m_EnableCalled = false;
     }
 
-    void OnApplicationFocus(bool hasFocus)
-    {
-        if (!hasFocus)
-        {
-            InstantClearState();
-        }
-    }
-
     /// <summary>
     /// Clear any internal state from the Selectable (used when disabling).
     /// </summary>
@@ -114,14 +122,14 @@ public class RePrintSelectable :
 
     public virtual void OnReset()
     {
-        animator.SetTrigger("Reset");
+        SetAnimationTrigger("Reset");
     }
 
     public virtual void OnSelected()
     {
         if (!hasSelection)
         {
-            animator.SetTrigger("Select");
+            SetAnimationTrigger("Select");
             selectEvent.Invoke(index);
             hasSelection = true;
         }
@@ -131,7 +139,7 @@ public class RePrintSelectable :
     {
         if (hasSelection)
         {
-            animator.SetTrigger("Deselect");
+            SetAnimationTrigger("Deselect");
             deselectEvent.Invoke(index);
             hasSelection = false;
         }

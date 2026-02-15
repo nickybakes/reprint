@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
 
     private List<CharacterActionData> characterActions;
 
+    private int index;
+
     private bool isPlayerControlled;
 
     public bool IsPlayerControlled
@@ -45,13 +47,22 @@ public class Character : MonoBehaviour
         }
     }
 
+    public int Index
+    {
+        get
+        {
+            return index;
+        }
+    }
+
     void Awake()
     {
         visual = GetComponent<CharacterVisual>();
     }
 
-    public void SetupCharacter(CharacterData data, bool _isPlayerControlled)
+    public void SetupCharacter(CharacterData data, bool _isPlayerControlled, int _index)
     {
+        index = _index;
         visual.SetupCharacterVisual(data.visualData);
         isPlayerControlled = _isPlayerControlled;
 
@@ -66,6 +77,11 @@ public class Character : MonoBehaviour
     {
         transform.position = position;
         transform.Rotate(Vector3.up * direction);
+    }
+
+    public CharacterActionData GetAction(int index)
+    {
+        return characterActions[index];
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -3,7 +3,11 @@ using UnityEngine;
 public class CharacterVisual : MonoBehaviour
 {
 
+    [SerializeField] private Material unselectedOutlineMaterial;
+    [SerializeField] private Material selectedOutlineMaterial;
+
     private GameObject model;
+    private MeshRenderer selectionOutlineMeshRenderer;
 
     private MeshRenderer meshRenderer;
 
@@ -25,10 +29,40 @@ public class CharacterVisual : MonoBehaviour
         {
             meshRenderer = model.GetComponentInChildren<MeshRenderer>();
         }
-
         meshCenterOffsetObject = new GameObject("Mesh Center Offset");
         meshCenterOffsetObject.transform.parent = model.transform;
         meshCenterOffsetObject.transform.localPosition = data.meshCenterOffset;
+
+        GameObject selectionOutlineObject = Instantiate(data.model, transform);
+        selectionOutlineMeshRenderer = selectionOutlineObject.GetComponent<MeshRenderer>();
+        if (selectionOutlineMeshRenderer == null)
+        {
+            selectionOutlineMeshRenderer = selectionOutlineObject.GetComponentInChildren<MeshRenderer>();
+        }
+
+        selectionOutlineMeshRenderer.material = unselectedOutlineMaterial;
+        selectionOutlineMeshRenderer.gameObject.SetActive(false);
+    }
+
+    public void ShowSelectable()
+    {
+        ShowUnselected();
+        selectionOutlineMeshRenderer.gameObject.SetActive(true);
+    }
+
+    public void HideSelectable()
+    {
+        selectionOutlineMeshRenderer.gameObject.SetActive(false);
+    }
+
+    public void ShowUnselected()
+    {
+        selectionOutlineMeshRenderer.material = unselectedOutlineMaterial;
+    }
+
+    public void ShowSelected()
+    {
+        selectionOutlineMeshRenderer.material = selectedOutlineMaterial;
     }
 
 
