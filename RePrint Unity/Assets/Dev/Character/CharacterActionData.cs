@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CharacterActionData", menuName = "Scriptable Objects/CharacterActionData")]
@@ -8,7 +10,11 @@ public class CharacterActionData : ScriptableObject
     [TextArea]
     public string description;
 
-    public int damage;
+    public int baseActionPointCost;
 
-    public int actionPointCost;
+    public ActionEffectList actionEffectsOverclock0;
+    public ActionEffectList actionEffectsOverclock1;
+    public ActionEffectList actionEffectsOverclock2;
+    public ActionEffectList actionEffectsOverclock3;
+    public ActionEffectList actionEffectsOverclock4;
 }

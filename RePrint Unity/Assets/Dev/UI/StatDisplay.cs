@@ -12,7 +12,10 @@ public class StatDisplay : MonoBehaviour
 
     public void UpdateStatDisplay(float numerator, float denominator)
     {
-        meter.UpdateFill(numerator / denominator);
+        if (meter)
+        {
+            meter.UpdateFill(numerator / denominator);
+        }
         fractionText.text = numerator.ToString() + '/' + denominator.ToString();
     }
 }

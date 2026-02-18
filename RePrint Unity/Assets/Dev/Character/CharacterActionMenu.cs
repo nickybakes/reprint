@@ -9,10 +9,16 @@ public class CharacterActionMenu : MonoBehaviour
     [SerializeField]
     private SplineContainer splineContainer;
 
+    [SerializeField]
+    private Transform buttonsParent;
+
+    [SerializeField] private Transform actionStatsDisplay;
+
     [SerializeField] private CharacterActionButton buttonPrefab;
 
     [SerializeField][Range(0.0f, 1.0f)] float unselectedButtonSizeNormalized;
     [SerializeField][Range(0.0f, 1.0f)] float selectedButtonSizeNormalized;
+    [SerializeField] Vector2 actionStatsOffset;
 
     [SerializeField] float rotationTop;
     [SerializeField] float rotationBottom;
@@ -27,6 +33,8 @@ public class CharacterActionMenu : MonoBehaviour
     private int currentActiveOverclock = -1;
 
     private float[] buttonOffsets;
+
+    private RectTransform actionStatsRect;
 
 
     public int CurrentSelectedButtonIndex
@@ -89,16 +97,23 @@ public class CharacterActionMenu : MonoBehaviour
 
     public void SetupActionMenu(Character character)
     {
+        actionStatsRect = actionStatsDisplay.GetComponent<RectTransform>();
+
         splineLength = splineContainer.Spline.GetLength();
 
         buttons = new List<CharacterActionButton>(character.CharacterActions.Count);
 
         for (int i = 0; i < character.CharacterActions.Count; i++)
         {
-            CharacterActionButton button = Instantiate(buttonPrefab, transform).GetComponent<CharacterActionButton>();
+            CharacterActionButton button = Instantiate(buttonPrefab, buttonsParent).GetComponent<CharacterActionButton>();
             button.name = "Action Button " + i;
             button.SetupActionButton(character.CharacterActions[i], i, this);
             buttons.Add(button);
+
+            if (i == 0)
+            {
+                actionStatsRect.SetParent(button.actionStatsParent);
+            }
         }
 
         buttonOffsets = new float[buttons.Count];
@@ -153,6 +168,8 @@ public class CharacterActionMenu : MonoBehaviour
             current.GetRect().anchoredPosition = position;
             current.GetRect().localRotation = Quaternion.AngleAxis(Mathf.Lerp(rotationTop, rotationBottom, point), Vector3.forward);
         }
+
+        actionStatsRect.anchoredPosition = actionStatsOffset;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

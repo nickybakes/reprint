@@ -12,7 +12,126 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: CharacterActionData_01
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
-  name: Action 01
-  description: Action 01 description
-  damage: 1
-  actionPointCost: 0
+  name: Quick Slash
+  description: Balanced damage and chain gain Starter Action.
+  baseActionPointCost: 1
+  actionEffectsOverclock0:
+    actionEffects:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 4
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 1
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock1:
+    actionEffects:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 8
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 2
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock2:
+    actionEffects:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 12
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 3
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock3:
+    actionEffects:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 16
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 4
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock4:
+    actionEffects:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 25
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 6
+        maxValue: 0
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0

@@ -1,8 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class CharacterHUDPanel : MonoBehaviour
 {
     [SerializeField] private StatDisplay healthDisplay;
+
+    [SerializeField] private StatDisplay actionPointsDisplay;
+
+    [SerializeField] private TextMeshProUGUI chainText;
 
     [SerializeField] private CharacterActionMenu actionMenu;
 
@@ -51,7 +56,20 @@ public class CharacterHUDPanel : MonoBehaviour
 
     public void UpdateStats(CharacterStats newStats, bool noAnimations = false)
     {
-        healthDisplay.UpdateStatDisplay(newStats.health, newStats.healthMax);
+        if (healthDisplay)
+        {
+            healthDisplay.UpdateStatDisplay(newStats.health, newStats.healthMax);
+        }
+
+        if (chainText)
+        {
+            chainText.text = newStats.chain.ToString();
+        }
+
+        if (actionPointsDisplay)
+        {
+            actionPointsDisplay.UpdateStatDisplay(newStats.actionPoints, newStats.actionPointsMax);
+        }
 
         displayedStats = newStats;
     }
@@ -97,7 +115,6 @@ public class CharacterHUDPanel : MonoBehaviour
     {
         actionMenu.RefreshButtonStates();
     }
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

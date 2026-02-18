@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
-  m_Name: CharacterActionData_03
+  m_Name: CharacterActionData_04
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
-  name: Rift Cut
-  description: Single-hit Finisher that scales with Chain.
-  baseActionPointCost: 2
+  name: Quick Slash
+  description: Balanced damage and chain gain Starter Action.
+  baseActionPointCost: 1
   actionEffectsOverclock0:
     actionEffects:
     - type: 0
@@ -23,59 +23,70 @@ MonoBehaviour:
         baseValue: 4
         maxValue: 0
       chainModifier:
-        type: 3
+        type: 4
+        invertEquation: 0
+        clamp: 0
+        minClamp: 2
+        maxClamp: 8
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 4
+        maxValue: 0
+      chainModifier:
+        type: 0
         invertEquation: 0
         clamp: 0
         minClamp: 0
         maxClamp: 0
   actionEffectsOverclock1:
-    actionEffects:
-    - type: 0
-      valueInput:
-        type: 0
-        baseValue: 5
-        maxValue: 0
-      chainModifier:
-        type: 3
-        invertEquation: 0
-        clamp: 0
-        minClamp: 0
-        maxClamp: 0
+    actionEffects: []
   actionEffectsOverclock2:
     actionEffects:
     - type: 0
       valueInput:
         type: 0
-        baseValue: 7
+        baseValue: 12
         maxValue: 0
       chainModifier:
-        type: 3
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 3
+        maxValue: 0
+      chainModifier:
+        type: 0
         invertEquation: 0
         clamp: 0
         minClamp: 0
         maxClamp: 0
   actionEffectsOverclock3:
-    actionEffects:
-    - type: 0
-      valueInput:
-        type: 0
-        baseValue: 10
-        maxValue: 0
-      chainModifier:
-        type: 3
-        invertEquation: 0
-        clamp: 0
-        minClamp: 0
-        maxClamp: 0
+    actionEffects: []
   actionEffectsOverclock4:
     actionEffects:
     - type: 0
       valueInput:
         type: 0
-        baseValue: 13
+        baseValue: 25
         maxValue: 0
       chainModifier:
-        type: 3
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 6
+        maxValue: 0
+      chainModifier:
+        type: 0
         invertEquation: 0
         clamp: 0
         minClamp: 0

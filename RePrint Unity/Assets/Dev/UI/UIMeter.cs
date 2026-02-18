@@ -15,7 +15,8 @@ public class UIMeter : MonoBehaviour
 
     public void UpdateFill(float percentage)
     {
-        image.fillAmount = Mathf.Clamp(percentage, 0, 1);
+        if (image)
+            image.fillAmount = Mathf.Clamp(percentage, 0, 1);
     }
 
 

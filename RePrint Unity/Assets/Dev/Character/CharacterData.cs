@@ -7,5 +7,7 @@ public class CharacterData : ScriptableObject
 
     public int healthMax = 20;
 
+    public int actionPointsMax = 3;
+
     public CharacterActionData[] actionDatas;
 }

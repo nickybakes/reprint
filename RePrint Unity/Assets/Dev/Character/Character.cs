@@ -67,6 +67,7 @@ public class Character : MonoBehaviour
         isPlayerControlled = _isPlayerControlled;
 
         stats.healthMax = data.healthMax;
+        stats.actionPointsMax = data.actionPointsMax;
 
         stats.health = UnityEngine.Random.Range(2, 20);
 

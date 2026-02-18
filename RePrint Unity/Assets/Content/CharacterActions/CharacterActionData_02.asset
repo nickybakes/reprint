@@ -12,7 +12,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: CharacterActionData_02
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
-  name: Action 02
-  description: Action 02 description
-  damage: 1
-  actionPointCost: 0
+  name: Dodge
+  description: Gain Dodge to reduce incoming damage.
+  baseActionPointCost: 1
+  actionEffectsOverclock0:
+    actionEffects:
+    - type: 1
+      valueInput:
+        type: 1
+        baseValue: 3
+        maxValue: 5
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock1:
+    actionEffects:
+    - type: 1
+      valueInput:
+        type: 1
+        baseValue: 5
+        maxValue: 8
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock2:
+    actionEffects:
+    - type: 1
+      valueInput:
+        type: 1
+        baseValue: 8
+        maxValue: 11
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock3:
+    actionEffects:
+    - type: 1
+      valueInput:
+        type: 1
+        baseValue: 13
+        maxValue: 17
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0
+  actionEffectsOverclock4:
+    actionEffects:
+    - type: 1
+      valueInput:
+        type: 1
+        baseValue: 22
+        maxValue: 25
+      chainModifier:
+        type: 0
+        invertEquation: 0
+        clamp: 0
+        minClamp: 0
+        maxClamp: 0

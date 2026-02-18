@@ -13,6 +13,7 @@ public class CharacterActionButton : RePrintButton
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI rarityText;
+    public Transform actionStatsParent;
 
     [Range(0.0f, 1.0f)] public float sizeTransition;
 
