@@ -1,0 +1,85 @@
+spawn characters with character data as input
+battle scene setup
+enemy spawn points for any number of enemies in game
+
+
+hud prefab for the player
+when player is spawned in, it does the world to camera coord to place the hud prefab
+
+StatMeter
+show number/numberMax
+show a meter/bar element
+show an icon
+show extra text
+maybe hover tooltip?
+
+
+character HUD panel
+
+player HUD panel
+
+reset
+select
+deselect
+disable
+enable
+
+press
+release
+
+
+make button prefab
+make button animations
+figure out position function
+
+player turn sequence display
+
+battle state
+intro
+playercreateactionsequence
+playerdoactionsequence
+enemycreateanddoactionsequence
+endresults
+
+start state
+- open the action menu
+end state
+- close the action menu
+
+
+actionPointCost
+
+list of trigger effects
+
+5 lists: one for each overclock
+
+action effects can be
+do damage
+gain dodge
+earn chain
+apply status effect
+cooldown action
+
+action effect has:
+value input
+chain modifier
+target
+
+chain modifier:
+none, add, multiply, subtract, divide chain
+Invert equation bool
+clamp? min, max
+
+value input:
+single
+range (min and max)
+
+target:
+selected target
+all enemies
+
+could create automatic string creation for showing the math in the description
+
+R(3,5)*chain
+
+
