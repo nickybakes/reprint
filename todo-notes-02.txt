@@ -1,0 +1,53 @@
+Manager (Backend)
+Controller (Middle)
+View (Frontend)
+
+MB - Monobehavior
+SC - Serializable Class
+SO - ScriptableObject
+
+Backend ScriptableObject - Data
+Frontend ScriptableObject - Profile
+Midend ScriptableObject - Info
+Serializable Class - SC
+
+ActionEffectSC
+
+
+enum - Type
+
+BattleManager
+BattleController
+BattleView
+
+Dev folders:
+Backend
+Editor
+Frontend
+Midend
+
+GameStateChange (Midend)
+-----
+BattleStateChange
+CharacterAddStatusEffect
+CharacterTakeDamage
+PlayerChangeAction
+- Have a function for affecting the visuals
+
+
+
+BattleView (Frontend)
+-----
+References to spawned CharacterVisuals
+
+
+
+CharacterVisual
+-----
+Has reference to UI elements
+
+
+TODO:
+- Dont spawn in BattleManager
+- Instead, do a FindType or whatever it is
+- BattleController takes in player input for ActionSubmit, CharacterSubmit, BackInput

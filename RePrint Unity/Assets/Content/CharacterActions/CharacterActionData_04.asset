@@ -45,9 +45,9 @@ MonoBehaviour:
     actionEffects:
     - type: 0
       valueInput:
-        type: 0
+        type: 1
         baseValue: 12
-        maxValue: 0
+        maxValue: 7
       chainModifier:
         type: 0
         invertEquation: 0
