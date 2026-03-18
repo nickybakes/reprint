@@ -5,9 +5,11 @@ public class CharacterData : ScriptableObject
 {
     public CharacterVisualData visualData;
 
-    public int healthMax = 20;
-
-    public int actionPointsMax = 3;
+    public ValueInput maxHealth;
 
     public CharacterActionData[] actionDatas;
+
+    [Header("Player Specific")]
+    public ValueInput actionPointsMax;
+
 }

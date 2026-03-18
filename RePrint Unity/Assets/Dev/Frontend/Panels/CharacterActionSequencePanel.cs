@@ -30,11 +30,11 @@ public class CharacterActionSequencePanel : MonoBehaviour
         // }
     }
 
-    public void AddAction(SelectedAction action)
-    {
-        CharacterActionSequenceItem item = Instantiate(listItemPrefab, listParent).GetComponent<CharacterActionSequenceItem>();
-        item.Setup(action);
-    }
+    // public void AddAction(SelectedAction action)
+    // {
+    //     CharacterActionSequenceItem item = Instantiate(listItemPrefab, listParent).GetComponent<CharacterActionSequenceItem>();
+    //     item.Setup(action);
+    // }
 
     public void ClearActions()
     {

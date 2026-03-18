@@ -15,6 +15,36 @@ MonoBehaviour:
   name: Quick Slash
   description: Balanced damage and chain gain Starter Action.
   baseActionPointCost: 1
+  actionRulesOverclock0:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  actionRulesOverclock1:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  actionRulesOverclock2:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  actionRulesOverclock3:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  actionRulesOverclock4:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
   actionEffectsOverclock0:
     actionEffects:
     - type: 0

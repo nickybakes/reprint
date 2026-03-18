@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public void BattleSceneLoaded()
     {
         battleManager = FindAnyObjectByType<BattleManager>();
+        battleManager.SetupBattle(battleData);
     }
 
     public BattleData GetBattleData()

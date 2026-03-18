@@ -9,7 +9,7 @@ SO - ScriptableObject
 Backend ScriptableObject - Data
 Frontend ScriptableObject - Profile
 Midend ScriptableObject - Info
-Serializable Class - SC
+Non-ScriptableObject Data - Details
 
 ActionEffectSC
 
@@ -51,3 +51,25 @@ TODO:
 - Dont spawn in BattleManager
 - Instead, do a FindType or whatever it is
 - BattleController takes in player input for ActionSubmit, CharacterSubmit, BackInput
+
+GameManager should create the player's character. The BattleManager should create a duplicate of it, then when the battle is done it applies the new character's stats to the overall player's character
+BattleManager loads the battle data (have the game manager give it that)
+
+Character is like a Card
+
+Team is like a Hand
+
+TeamFigure has a spline for placing CharacterFigures just like the HandDisplay
+Could also have optional specific points for placing characters.
+
+Display is UI
+Figure is 3D object
+
+BattleStateChange has ParseChange(BattleView view)
+
+BattleViewTimings Profile
+BattleStateChangeType enum
+type is automatically set in each class
+profile has a GetChangeTiming(BattleChangeType type)
+
+Same as HandAnalysis we need like a StatCalculation class with static functions i think

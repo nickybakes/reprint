@@ -45,45 +45,45 @@ public class CharacterHUDPanel : MonoBehaviour
             DisableSelection();
         }
 
-        UpdateStats(characterReference.Stats, true);
+        // UpdateStats(characterReference.Stats, true);
         UpdatePosition();
     }
 
     public void UpdatePosition()
     {
-        rect.anchoredPosition = BattleUIManager.manager.WorldToCanvasPoint(characterReference.Visual.MeshCenter);
+        // rect.anchoredPosition = BattleUIManager.manager.WorldToCanvasPoint(characterReference.Visual.MeshCenter);
     }
 
     public void UpdateStats(CharacterStats newStats, bool noAnimations = false)
     {
-        if (healthDisplay)
-        {
-            healthDisplay.UpdateStatDisplay(newStats.health, newStats.healthMax);
-        }
+        // if (healthDisplay)
+        // {
+        //     healthDisplay.UpdateStatDisplay(newStats.health, newStats.healthMax);
+        // }
 
-        if (chainText)
-        {
-            chainText.text = newStats.chain.ToString();
-        }
+        // if (chainText)
+        // {
+        //     chainText.text = newStats.chain.ToString();
+        // }
 
-        if (actionPointsDisplay)
-        {
-            actionPointsDisplay.UpdateStatDisplay(newStats.actionPoints, newStats.actionPointsMax);
-        }
+        // if (actionPointsDisplay)
+        // {
+        //     actionPointsDisplay.UpdateStatDisplay(newStats.actionPoints, newStats.actionPointsMax);
+        // }
 
-        displayedStats = newStats;
+        // displayedStats = newStats;
     }
 
     public void EnableSelection()
     {
         characterSelectButton.gameObject.SetActive(true);
-        characterReference.Visual.ShowSelectable();
+        // characterReference.Visual.ShowSelectable();
     }
 
     public void DisableSelection()
     {
         characterSelectButton.gameObject.SetActive(false);
-        characterReference.Visual.HideSelectable();
+        // characterReference.Visual.HideSelectable();
     }
 
     public void Submit()
@@ -93,12 +93,12 @@ public class CharacterHUDPanel : MonoBehaviour
 
     public void Select()
     {
-        characterReference.Visual.ShowSelected();
+        // characterReference.Visual.ShowSelected();
     }
 
     public void Deselect()
     {
-        characterReference.Visual.ShowUnselected();
+        // characterReference.Visual.ShowUnselected();
     }
 
     public void OpenActionMenu()

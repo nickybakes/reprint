@@ -12,6 +12,14 @@ public class CharacterActionData : ScriptableObject
 
     public int baseActionPointCost;
 
+    [Header("Action Rules")]
+    public ActionRules actionRulesOverclock0;
+    public ActionRules actionRulesOverclock1;
+    public ActionRules actionRulesOverclock2;
+    public ActionRules actionRulesOverclock3;
+    public ActionRules actionRulesOverclock4;
+
+    [Header("Action Effect Lists")]
     public ActionEffectList actionEffectsOverclock0;
     public ActionEffectList actionEffectsOverclock1;
     public ActionEffectList actionEffectsOverclock2;

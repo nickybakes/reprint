@@ -34,14 +34,14 @@ public class CharacterActionButton : BetterButton
         rect = GetComponent<RectTransform>();
     }
 
-    public void SetupActionButton(CharacterActionData data, int _index, CharacterActionMenu _menu)
+    public void SetupActionButton(CharacterAction action, int _index, CharacterActionMenu _menu)
     {
         index = _index;
         menu = _menu;
 
-        nameText.text = data.name;
+        // nameText.text = action.name;
 
-        descriptionText.text = data.description;
+        // descriptionText.text = action.description;
     }
 
     public void RefreshButtonState(bool activated, int overclock)

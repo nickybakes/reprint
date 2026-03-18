@@ -14,7 +14,9 @@ public class ValueInputDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
 
-        SerializedProperty typeProperty = AddProperty("type", "Value Type");
+        AddLabel(property.displayName);
+
+        SerializedProperty typeProperty = AddProperty("type");
         ValueType valueType = (ValueType)typeProperty.enumValueIndex;
 
         if (valueType == ValueType.Single)

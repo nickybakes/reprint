@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character
 {
 
-    private CharacterStats stats;
+    public CharacterStats stats;
 
-    private CharacterVisual visual;
+    public List<CharacterAction> Actions { get; private set; }
 
-    private List<CharacterActionData> characterActions;
+    public string Name { get; private set; }
 
     private int index;
 
@@ -23,30 +21,6 @@ public class Character : MonoBehaviour
         }
     }
 
-    public CharacterStats Stats
-    {
-        get
-        {
-            return stats;
-        }
-    }
-
-    public CharacterVisual Visual
-    {
-        get
-        {
-            return visual;
-        }
-    }
-
-    public List<CharacterActionData> CharacterActions
-    {
-        get
-        {
-            return characterActions;
-        }
-    }
-
     public int Index
     {
         get
@@ -55,57 +29,44 @@ public class Character : MonoBehaviour
         }
     }
 
-    void Awake()
+    public Character(CharacterData data)
     {
-        visual = GetComponent<CharacterVisual>();
+        Name = data.name;
+
+        stats = new CharacterStats();
+
+        stats.HealthMax = data.maxHealth.GetValue();
+        stats.Health = stats.HealthMax;
+
+        stats.ActionPointsMax = data.actionPointsMax.GetValue();
+        stats.ActionPoints = stats.ActionPointsMax;
+
+        stats.Chain = 0;
+
+        Actions = new List<CharacterAction>(data.actionDatas.Length);
+        foreach (CharacterActionData actionData in data.actionDatas)
+        {
+            Actions.Add(new CharacterAction(actionData));
+        }
     }
 
-    public void SetupCharacter(CharacterData data, bool _isPlayerControlled, int _index)
-    {
-        index = _index;
-        visual.SetupCharacterVisual(data.visualData);
-        isPlayerControlled = _isPlayerControlled;
+    // public void SetupCharacter(CharacterData data, bool _isPlayerControlled, int _index)
+    // {
+    //     index = _index;
+    //     visual.SetupCharacterVisual(data.visualData);
+    //     isPlayerControlled = _isPlayerControlled;
 
-        stats.healthMax = data.healthMax;
-        stats.actionPointsMax = data.actionPointsMax;
+    //     stats.healthMax = data.healthMax;
+    //     stats.actionPointsMax = data.actionPointsMax;
 
-        stats.health = UnityEngine.Random.Range(2, 20);
+    //     stats.health = UnityEngine.Random.Range(2, 20);
 
-        characterActions = new List<CharacterActionData>(data.actionDatas);
-    }
+    //     characterActions = new List<CharacterActionData>(data.actionDatas);
+    // }
 
-    public void SetSpawnTransform(Vector3 position, float direction)
-    {
-        transform.position = position;
-        transform.Rotate(Vector3.up * direction);
-    }
-
-    public CharacterActionData GetAction(int index)
-    {
-        return characterActions[index];
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-}
-
-
-public struct CharacterStats
-{
-    public int health;
-    public int healthMax;
-
-    public int chain;
-    public int chainMax;
-
-    public int actionPoints;
-    public int actionPointsMax;
+    // public void SetSpawnTransform(Vector3 position, float direction)
+    // {
+    //     transform.position = position;
+    //     transform.Rotate(Vector3.up * direction);
+    // }
 }

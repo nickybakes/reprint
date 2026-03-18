@@ -10,36 +10,35 @@ public enum BattleStateIndex
     PlayerCreateActionSequence = 1
 }
 
+public enum TeamIndex
+{
+    Player,
+    Enemy,
+}
+
 public class BattleManager : MonoBehaviour
 {
-
-    public static BattleManager battle;
-
     /// <summary>
     /// Sends out the current list of game changes in this event.
     /// </summary>
     [SerializeField] private UnityEvent<List<BattleStateChange>> submitChangesEvent;
 
-    [SerializeField]
-    private Character characterPrefab;
-
-    [SerializeField]
-    private BattleUIManager battleUIManagerPrefrab;
+    [SerializeField] private BattleUIManager battleUIManagerPrefrab;
 
     /// <summary>
-    /// The character objects that are active in this battle and which side they are on.
+    /// List of changes to the battle that have been calculated but not shown to the player yet.
     /// </summary>
-    private List<List<Character>> teams;
+    private List<BattleStateChange> pendingBattleChanges;
+
+    private Character playerCharacter;
+    private Team enemyTeam;
+
+    private List<Team> teams;
 
     /// <summary>
     /// The number of the current turn the battle is in. Increments once all teams have done an action and loops back to the first team.
     /// </summary>
     private int currentBattleTurnIndex;
-
-    /// <summary>
-    /// The team that is currently chosing/doing their actions for this turn in battle.
-    /// </summary>
-    private int currentTeamInTurn;
 
     /// <summary>
     /// The data for what characters are in this battle scenario
@@ -52,110 +51,103 @@ public class BattleManager : MonoBehaviour
     private BattleSceneSetup battleSceneSetup;
 
     /// <summary>
-    /// The manager for the UI of the battle.
+    /// Invokes the Submit Changes Event and starts a new list of changes.
     /// </summary>
-    private BattleUIManager battleUIManager;
-
-    private BattleState[] battleStates;
-
-    private BattleStateIndex currentBattleStateIndex;
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void SubmitChanges()
     {
-        battle = this;
-
-        // battleStates = new BattleState[] { introBattleState, playerCreateActionSequenceBattleState };
-
-        // SetupBattle();
+        submitChangesEvent.Invoke(pendingBattleChanges);
+        pendingBattleChanges = new List<BattleStateChange>();
     }
 
-    public BattleUIManager ui
+    public void SetupBattle(BattleData data)
     {
-        get
+        teams = new List<Team>(2);
+
+        playerCharacter = new Character(data.playerCharacterData);
+        teams.Add(new Team(playerCharacter));
+
+        enemyTeam = new Team();
+        teams.Add(enemyTeam);
+
+        foreach (CharacterData enemyData in data.enemyCharacterDatas)
         {
-            return battleUIManager;
+            enemyTeam.AddMember(new Character(enemyData));
         }
-    }
 
-    public BattleState CurrentBattleState
-    {
-        get
+        pendingBattleChanges = new List<BattleStateChange>
         {
-            return battleStates[(int)currentBattleStateIndex];
-        }
-    }
-
-    public Character PlayerCharacter
-    {
-        get
-        {
-            return teams[0][0];
-        }
-    }
-
-    public BattleState GetBattleState(BattleStateIndex index)
-    {
-        return battleStates[(int)index];
-    }
-
-    public void SetupBattle()
-    {
-        // Get reference to battle scene setup data.
-        battleSceneSetup = GameObject.FindWithTag("Battle Scene Setup").GetComponent<BattleSceneSetup>();
-
-        battleUIManager = Instantiate(battleUIManagerPrefrab).GetComponent<BattleUIManager>();
-
-        battleData = GameManager.game.GetBattleData();
-
-        teams = new List<List<Character>>
-        {
-            new List<Character>(),
-            new List<Character>()
+            new BattleInitialized(playerCharacter, enemyTeam)
         };
-
-
-        // Instantiate the game objects for player and enemies. Also send them their specific data so they can set up themselves.
-
-        SpawnCharacter(0, battleData.playerCharacterData, true, 0);
-
-        for (int i = 0; i < battleData.enemyCharacterDatas.Length; i++)
-        {
-            SpawnCharacter(1, battleData.enemyCharacterDatas[i], false, i);
-        }
-
-        // Set spawn position and rotation of player and enemies
-
-        teams[0][0].SetSpawnTransform(battleSceneSetup.PlayerSpawnPoint, battleSceneSetup.PlayerDirection);
-
-        List<Vector3> enemySpawnPoints = battleSceneSetup.GetEnemySpawnPoints(teams[1].Count);
-
-        for (int i = 0; i < teams[1].Count; i++)
-        {
-            teams[1][i].SetSpawnTransform(enemySpawnPoints[i], battleSceneSetup.EnemyDirection);
-        }
-
-        CurrentBattleState.StartState();
+        SubmitChanges();
     }
 
-    private void SpawnCharacter(int team, CharacterData data, bool isPlayerControlled, int index)
+
+    public virtual void PlayerSubmitAction(CharacterAction action)
     {
-        GameObject characterGameObject = Instantiate(characterPrefab.gameObject);
-        Character characterClassReference = characterGameObject.GetComponent<Character>();
-        characterClassReference.SetupCharacter(data, isPlayerControlled, index);
-        teams[team].Add(characterClassReference);
-        battleUIManager.SpawnCharacterHUDPanel(characterClassReference);
+        Debug.Log("Player submit action " + action.Name);
     }
 
-    public void SwitchBattleState(BattleStateIndex index)
+    public virtual void PlayerSubmitTarget(Character target)
     {
-        CurrentBattleState.EndState();
-
-        currentBattleStateIndex = index;
-
-        CurrentBattleState.StartState();
+        Debug.Log("Player submit target " + target.Name);
     }
+
+    // public void SetupBattle()
+    // {
+    //     // Get reference to battle scene setup data.
+    //     battleSceneSetup = GameObject.FindWithTag("Battle Scene Setup").GetComponent<BattleSceneSetup>();
+
+    //     battleUIManager = Instantiate(battleUIManagerPrefrab).GetComponent<BattleUIManager>();
+
+    //     battleData = GameManager.game.GetBattleData();
+
+    //     teams = new List<List<Character>>
+    //     {
+    //         new List<Character>(),
+    //         new List<Character>()
+    //     };
+
+
+    //     // Instantiate the game objects for player and enemies. Also send them their specific data so they can set up themselves.
+
+    //     SpawnCharacter(0, battleData.playerCharacterData, true, 0);
+
+    //     for (int i = 0; i < battleData.enemyCharacterDatas.Length; i++)
+    //     {
+    //         SpawnCharacter(1, battleData.enemyCharacterDatas[i], false, i);
+    //     }
+
+    //     // Set spawn position and rotation of player and enemies
+
+    //     teams[0][0].SetSpawnTransform(battleSceneSetup.PlayerSpawnPoint, battleSceneSetup.PlayerDirection);
+
+    //     List<Vector3> enemySpawnPoints = battleSceneSetup.GetEnemySpawnPoints(teams[1].Count);
+
+    //     for (int i = 0; i < teams[1].Count; i++)
+    //     {
+    //         teams[1][i].SetSpawnTransform(enemySpawnPoints[i], battleSceneSetup.EnemyDirection);
+    //     }
+
+    //     CurrentBattleState.StartState();
+    // }
+
+    // private void SpawnCharacter(int team, CharacterData data, bool isPlayerControlled, int index)
+    // {
+    //     GameObject characterGameObject = Instantiate(characterPrefab.gameObject);
+    //     Character characterClassReference = characterGameObject.GetComponent<Character>();
+    //     characterClassReference.SetupCharacter(data, isPlayerControlled, index);
+    //     teams[team].Add(characterClassReference);
+    //     battleUIManager.SpawnCharacterHUDPanel(characterClassReference);
+    // }
+
+    // public void SwitchBattleState(BattleStateIndex index)
+    // {
+    //     CurrentBattleState.EndState();
+
+    //     currentBattleStateIndex = index;
+
+    //     CurrentBattleState.StartState();
+    // }
 
     public void BackInput()
     {

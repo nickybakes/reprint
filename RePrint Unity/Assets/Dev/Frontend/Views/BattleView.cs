@@ -9,6 +9,11 @@ public class BattleView : MonoBehaviour
     [SerializeField] private BattleManager battleManager;
 
     /// <summary>
+    /// Reference to the Battle Controller in the scene.
+    /// </summary>
+    [SerializeField] private BattleController battleController;
+
+    /// <summary>
     /// Reference to a full screen raycast target to block player interactions.
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
@@ -46,7 +51,7 @@ public class BattleView : MonoBehaviour
     {
         battleStateChangesQueue = new List<BattleStateChange>();
         parsingGameChanges = true;
-        // DisablePlayerInteractions();
+        DisablePlayerInteractions();
     }
 
     /// <summary>
@@ -99,25 +104,12 @@ public class BattleView : MonoBehaviour
             currentChangeTime += Time.deltaTime;
             while (currentChangeTime >= timeForCurrentChange && currentChangeIndex < battleStateChangesQueue.Count && parsingGameChanges)
             {
-                ParseGameStateChange(battleStateChangesQueue[currentChangeIndex]);
-                currentChangeTime = 0;
-                timeForCurrentChange = 0;
+                battleStateChangesQueue[currentChangeIndex].ParseChange(this, battleController);
 
-                // switch (changesThisTurn[currentChangeIndex].ChangeTime)
-                // {
-                //     case GameStateChangeTime.Instant:
-                //         timeForCurrentChange = 0;
-                //         break;
-                //     case GameStateChangeTime.Short:
-                //         timeForCurrentChange = timeBetweenShortGameChangeAction;
-                //         break;
-                //     case GameStateChangeTime.Medium:
-                //         timeForCurrentChange = timeBetweenMediumGameChangeAction;
-                //         break;
-                //     case GameStateChangeTime.Long:
-                //         timeForCurrentChange = timeBetweenLongGameChangeAction;
-                //         break;
-                // }
+                currentChangeTime = 0;
+
+                // TODO: Implement a profile for timings for specific game things
+                timeForCurrentChange = 0;
 
                 currentChangeIndex++;
                 if (currentChangeIndex >= battleStateChangesQueue.Count)
@@ -126,14 +118,5 @@ public class BattleView : MonoBehaviour
                 }
             }
         }
-    }
-
-
-    /// <summary>
-    /// Controls the objects displayed on screen depending on the data from a game state change.
-    /// </summary>
-    /// <param name="change">The game state change to parse.</param>
-    private void ParseGameStateChange(GameStateChange change)
-    {
     }
 }
