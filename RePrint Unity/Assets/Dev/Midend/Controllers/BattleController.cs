@@ -15,16 +15,14 @@ public class BattleController : MonoBehaviour, IPointerClickHandler
     [SerializeField] private BattleView battleView;
 
 
-    [SerializeField] private List<CharacterActionDisplay> actionDisplays;
-    [SerializeField] private List<CharacterTargetDisplay> targetDisplays;
+    [SerializeField] private List<AbilityDisplay> abilityDisplays;
+    [SerializeField] private List<TargetDisplay> targetDisplays;
 
-    // [SerializeField] private ActionButton actionButtons;
-
-    public void AddActionDisplays(List<CharacterAction> actions)
+    public void AddAbilityDisplays(List<Ability> abilities)
     {
-        for (int i = 0; i < actions.Count && i < actionDisplays.Count; i++)
+        for (int i = 0; i < abilities.Count && i < abilityDisplays.Count; i++)
         {
-            actionDisplays[i].DisplayAction(actions[i], this);
+            abilityDisplays[i].DisplayAbility(abilities[i], this);
         }
     }
 
@@ -37,12 +35,12 @@ public class BattleController : MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void ActionSubmit(CharacterAction action)
+    public void SubmitAbility(Ability ability)
     {
-        battleManager.PlayerSubmitAction(action);
+        battleManager.PlayerSubmitAbility(ability);
     }
 
-    public void TargetSubmit(Character target)
+    public void SubmitTarget(Character target)
     {
         battleManager.PlayerSubmitTarget(target);
     }

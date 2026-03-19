@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class ActionEffectList
+public class AbilityEffectList
 {
-    public List<ActionEffect> actionEffects;
+    public List<AbilityEffect> abilityEffects;
 }

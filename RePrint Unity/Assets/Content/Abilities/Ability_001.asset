@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
+  m_Name: Ability_001
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
+  name: Quick Slash
+  description: Balanced damage and chain gain Starter Action.
+  baseAPCost: 0
+  abilityRulesOverclock0:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  abilityRulesOverclock1:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  abilityRulesOverclock2:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  abilityRulesOverclock3:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  abilityRulesOverclock4:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  abilityEffectsOverclock0:
+    abilityEffects:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 6
+        maxValue: 0
+      modifiers:
+        modifiers:
+        - mathType: 0
+          incomingValue: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 1
+        maxValue: 0
+      modifiers:
+        modifiers: []
+  abilityEffectsOverclock1:
+    abilityEffects: []
+  abilityEffectsOverclock2:
+    abilityEffects: []
+  abilityEffectsOverclock3:
+    abilityEffects: []
+  abilityEffectsOverclock4:
+    abilityEffects: []

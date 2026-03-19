@@ -20,7 +20,7 @@ public class BetterListDrawer : BetterPropertyDrawer
         base.OnGUI(position, property, label);
     }
 
-    public void AddList(string listPropertyName, string addNewString)
+    public void AddList(string listPropertyName, string addNewString, float normalizedAddNewButtonWidth = 0)
     {
         listFoldout = AddHeaderFoldout(property.displayName, listFoldout);
         EditorGUI.indentLevel++;
@@ -74,14 +74,23 @@ public class BetterListDrawer : BetterPropertyDrawer
                     AddQuarterBlankLine();
             }
 
-            AddHalfBlankLine();
+            AddQuarterBlankLine();
 
-            EditorGUI.DrawRect(new Rect(10, childrenHeight - 4, position.width * 1.25f, EditorGUIUtility.singleLineHeight * 1.5f + 2), new Color(0, 0, 0, .15f));
+            // EditorGUI.DrawRect(new Rect(10, childrenHeight - 4, position.width * 1.25f, EditorGUIUtility.singleLineHeight * 1.5f + 2), new Color(0, 0, 0, .15f));
+
+            if (normalizedAddNewButtonWidth != 0)
+            {
+                normalizedWidthOverride = normalizedAddNewButtonWidth;
+                normalizedXPositionOverride = .5f - normalizedAddNewButtonWidth * .5f;
+            }
 
             if (Button(addNewString))
             {
                 listProperty.InsertArrayElementAtIndex(listProperty.arraySize);
             }
+
+            normalizedWidthOverride = -1;
+            normalizedXPositionOverride = -1;
 
             AddQuarterBlankLine();
         }

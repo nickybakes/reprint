@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
-public class ActionRules
+public class AbilityRules
 {
     public bool targetAllEnemies;
     public ValueInput numberOfHits;

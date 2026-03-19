@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum BattleStateIndex
-{
-    Intro = 0,
-
-    PlayerCreateActionSequence = 1
-}
-
 public enum TeamIndex
 {
     Player,
@@ -36,7 +29,7 @@ public class BattleManager : MonoBehaviour
     private List<Team> teams;
 
     /// <summary>
-    /// The number of the current turn the battle is in. Increments once all teams have done an action and loops back to the first team.
+    /// The number of the current turn the battle is in. Increments once all teams have done an ability and loops back to the first team.
     /// </summary>
     private int currentBattleTurnIndex;
 
@@ -82,9 +75,9 @@ public class BattleManager : MonoBehaviour
     }
 
 
-    public virtual void PlayerSubmitAction(CharacterAction action)
+    public virtual void PlayerSubmitAbility(Ability ability)
     {
-        Debug.Log("Player submit action " + action.Name);
+        Debug.Log("Player submit ability " + ability.Name);
     }
 
     public virtual void PlayerSubmitTarget(Character target)
@@ -151,9 +144,9 @@ public class BattleManager : MonoBehaviour
 
     public void BackInput()
     {
-        // if (currentBattleStateIndex == BattleStateIndex.PlayerCreateActionSequence)
+        // if (currentBattleStateIndex == BattleStateIndex.PlayerCreateAbilitySequence)
         // {
-        //     playerCreateActionSequenceBattleState.Back();
+        //     playerCreateAbilitySequenceBattleState.Back();
         // }
     }
 }

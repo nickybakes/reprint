@@ -4,25 +4,24 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using Unity.VisualScripting;
 
-[CustomPropertyDrawer(typeof(ActionRules))]
-public class ActionRulesDrawer : BetterPropertyDrawer
+[CustomPropertyDrawer(typeof(AbilityEffect))]
+public class AbilityEffectDrawer : BetterPropertyDrawer
 {
-
-    bool foldout;
-
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         base.OnGUI(position, property, label);
 
         EditorGUI.BeginProperty(position, label, property);
+        AddQuarterBlankLine();
 
-        foldout = AddFoldout(property.displayName, foldout);
+        AddProperty("type", "Ability Effect Type");
 
-        if (foldout)
-        {
-            AddProperty("targetAllEnemies");
-            AddProperty("numberOfHits");
-        }
+        AddQuarterBlankLine();
+        AddProperty("valueInput");
+        AddQuarterBlankLine();
+
+        AddProperty("modifiers");
+        AddQuarterBlankLine();
 
         EditorGUI.EndProperty();
     }

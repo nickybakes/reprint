@@ -3,11 +3,11 @@ using UnityEngine;
 /// <summary>
 /// A basic in-game UI component that has reference to its Rect Transform
 /// </summary>
-public class CharacterTargetDisplay : TravelingDisplay
+public class AbilityDisplay : TravelingDisplay
 {
     private BattleController controller;
 
-    private Character target;
+    private Ability ability;
 
     /// <summary>
     /// Setup basic travel data.
@@ -18,17 +18,17 @@ public class CharacterTargetDisplay : TravelingDisplay
         SetupTravelingTransformData();
     }
 
-    public void DisplayTarget(Character _target, BattleController _controller)
+    public void DisplayAbility(Ability _ability, BattleController _controller)
     {
-        target = _target;
+        ability = _ability;
         controller = _controller;
     }
 
     /// <summary>
     /// Function to call when the player submits (clicks) this card.
     /// </summary>
-    public void SubmitTarget()
+    public void SubmitAbility()
     {
-        controller.TargetSubmit(target);
+        controller.SubmitAbility(ability);
     }
 }

@@ -101,13 +101,13 @@ public class CharacterActionMenu : MonoBehaviour
 
         splineLength = splineContainer.Spline.GetLength();
 
-        buttons = new List<CharacterActionButton>(character.Actions.Count);
+        buttons = new List<CharacterActionButton>(character.Abilities.Count);
 
-        for (int i = 0; i < character.Actions.Count; i++)
+        for (int i = 0; i < character.Abilities.Count; i++)
         {
             CharacterActionButton button = Instantiate(buttonPrefab, buttonsParent).GetComponent<CharacterActionButton>();
             button.name = "Action Button " + i;
-            button.SetupActionButton(character.Actions[i], i, this);
+            button.SetupActionButton(character.Abilities[i], i, this);
             buttons.Add(button);
 
             if (i == 0)

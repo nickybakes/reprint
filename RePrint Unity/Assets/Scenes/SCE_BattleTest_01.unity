@@ -825,15 +825,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4252246090721800760, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_text
-      value: Action 1
+      value: Ability 1
       objectReference: {fileID: 0}
     - target: {fileID: 4252246090721800760, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_fontSize
-      value: 94.95
+      value: 98.75
       objectReference: {fileID: 0}
     - target: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_Name
-      value: Action Button 1
+      value: Ability Button 1
       objectReference: {fileID: 0}
     - target: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_IsActive
@@ -857,11 +857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SubmitAction
+      value: SubmitAbility
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterActionDisplay, Assembly-CSharp
+      value: AbilityDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleController
   battleManager: {fileID: 8876460293919416377}
   battleView: {fileID: 1874190059}
-  actionDisplays:
+  abilityDisplays:
   - {fileID: 1077826448}
   - {fileID: 1736438360}
   - {fileID: 1953747699}
@@ -1732,15 +1732,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4252246090721800760, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_text
-      value: Action 2
+      value: Ability 2
       objectReference: {fileID: 0}
     - target: {fileID: 4252246090721800760, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_fontSize
-      value: 94.95
+      value: 98.75
       objectReference: {fileID: 0}
     - target: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_Name
-      value: Action Button 2
+      value: Ability Button 2
       objectReference: {fileID: 0}
     - target: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_IsActive
@@ -1764,11 +1764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SubmitAction
+      value: SubmitAbility
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterActionDisplay, Assembly-CSharp
+      value: AbilityDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2144,17 +2144,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4252246090721800760, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_text
-      value: 'Action 3
-
-'
+      value: Ability 3
       objectReference: {fileID: 0}
     - target: {fileID: 4252246090721800760, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_fontSize
-      value: 94.95
+      value: 98.75
       objectReference: {fileID: 0}
     - target: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_Name
-      value: Action Button 3
+      value: Ability Button 3
       objectReference: {fileID: 0}
     - target: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: m_IsActive
@@ -2178,11 +2176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SubmitAction
+      value: SubmitAbility
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CharacterActionDisplay, Assembly-CSharp
+      value: AbilityDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

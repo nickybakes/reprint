@@ -16,17 +16,21 @@ public class ValueInputDrawer : BetterPropertyDrawer
 
         AddLabel(property.displayName);
 
-        SerializedProperty typeProperty = AddProperty("type");
+        SerializedProperty typeProperty = property.FindPropertyRelative("type");
         ValueType valueType = (ValueType)typeProperty.enumValueIndex;
 
         if (valueType == ValueType.Single)
         {
-            AddProperty("baseValue", "Value");
+            StartSameLine(2);
+            typeProperty.enumValueIndex = (int)(ValueType)AddDropDownSelection((ValueType)typeProperty.enumValueIndex);
+            AddIntProperty("baseValue");
         }
         else if (valueType == ValueType.Range)
         {
-            AddProperty("baseValue", "Min Value");
-            AddProperty("maxValue", "Max Value");
+            StartSameLine(3);
+            typeProperty.enumValueIndex = (int)(ValueType)AddDropDownSelection((ValueType)typeProperty.enumValueIndex);
+            AddIntProperty("baseValue");
+            AddIntProperty("maxValue");
         }
 
         EditorGUI.EndProperty();

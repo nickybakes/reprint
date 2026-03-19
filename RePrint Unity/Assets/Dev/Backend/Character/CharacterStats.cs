@@ -7,6 +7,6 @@ public class CharacterStats
 
     public int Chain { get; set; }
 
-    public int ActionPoints { get; set; }
-    public int ActionPointsMax { get; set; }
+    public int AbilityPoints { get; set; }
+    public int AbilityPointsMax { get; set; }
 }

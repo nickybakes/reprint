@@ -3,18 +3,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
-public class ActionEffect
+public class AbilityEffect
 {
-    public ActionEffectType type;
+    public AbilityEffectType type;
     public ValueInput valueInput;
-    public ChainModifier chainModifier;
+    public AbilityEffectModifierList modifiers;
 }
 
-public enum ActionEffectType
+public enum AbilityEffectType
 {
     DoDamage,
     GainDodge,
     GainChain,
     ApplyStatusEffect,
-    CooldownAction
+    CooldownAbility
 }

@@ -155,6 +155,13 @@ public class BetterPropertyDrawer : PropertyDrawer
         return EditorGUI.IntField(position, value);
     }
 
+    protected int AddIntProperty(string propertyName)
+    {
+        SerializedProperty prop = property.FindPropertyRelative(propertyName);
+        prop.intValue = AddIntField(prop.intValue);
+        return prop.intValue;
+    }
+
     /// <summary>
     /// Add a checkbox toggle to the inspector.
     /// </summary>
@@ -165,6 +172,13 @@ public class BetterPropertyDrawer : PropertyDrawer
         Rect position = Position();
         NextLine();
         return EditorGUI.Toggle(position, value);
+    }
+
+    protected System.Enum AddDropDownSelection(System.Enum selected)
+    {
+        Rect position = Position();
+        NextLine();
+        return EditorGUI.EnumPopup(position, selected);
     }
 
     /// <summary>

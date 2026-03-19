@@ -34,7 +34,7 @@ public class CharacterActionButton : BetterButton
         rect = GetComponent<RectTransform>();
     }
 
-    public void SetupActionButton(CharacterAction action, int _index, CharacterActionMenu _menu)
+    public void SetupActionButton(Ability action, int _index, CharacterActionMenu _menu)
     {
         index = _index;
         menu = _menu;
