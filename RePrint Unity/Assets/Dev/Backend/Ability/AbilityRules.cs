@@ -5,6 +5,6 @@ using UnityEngine;
 [Serializable]
 public class AbilityRules
 {
-    public bool targetAllEnemies;
-    public ValueInput numberOfHits;
+    [SerializeField] private bool targetAllEnemies;
+    [SerializeField] private ValueInput numberOfHits;
 }

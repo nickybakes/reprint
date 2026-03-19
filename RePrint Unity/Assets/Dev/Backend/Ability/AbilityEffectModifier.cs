@@ -5,20 +5,61 @@ using UnityEngine;
 [Serializable]
 public class AbilityEffectModifier
 {
-    public MathType mathType;
-    public ModifierIncomingValue incomingValue;
+    [SerializeField] private MathType mathType;
+    [SerializeField] private ModifierIncomingValue incomingValue;
 
     /// <summary>
     /// When false, the equation has the Incoming Value come after the Value in the equation.
-    /// For example, in Subtract, it would be Value - Incoming. If you check this, then it would be Incoming - Value
+    /// For example, in Subtract, it would be Value - Incoming. If you toggle this on, then it would be Incoming - Value
     /// </summary>
-    public bool invertEquation;
+    [SerializeField] private bool invertEquation;
 
-    public bool clamp;
+    [SerializeField] private bool clamp;
 
-    public int minClamp;
+    [SerializeField] private int minClamp;
 
-    public int maxClamp;
+    [SerializeField] private int maxClamp;
+
+    public ModifierIncomingValue IncomingValue { get => incomingValue; }
+
+
+
+    public int CalculateSolution(int _value, int _incomingValue)
+    {
+        int a = _value;
+        int b = _incomingValue;
+
+        if (invertEquation)
+        {
+            a = _incomingValue;
+            b = _value;
+        }
+
+        int finalValue = 0;
+
+        switch (mathType)
+        {
+            case MathType.Add:
+                finalValue = a + b;
+                break;
+            case MathType.Subtract:
+                finalValue = a - b;
+                break;
+            case MathType.Multiply:
+                finalValue = a * b;
+                break;
+            case MathType.Divide:
+                finalValue = a / b;
+                break;
+        }
+
+        if (clamp)
+        {
+            return Math.Clamp(finalValue, minClamp, maxClamp);
+        }
+
+        return finalValue;
+    }
 }
 
 public enum ModifierIncomingValue

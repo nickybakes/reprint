@@ -5,11 +5,11 @@ using Random = UnityEngine.Random;
 [Serializable]
 public class ValueInput
 {
-    public ValueType type;
+    [SerializeField] private ValueType type;
 
-    public int baseValue;
+    [SerializeField] private int baseValue;
 
-    public int maxValue;
+    [SerializeField] private int maxValue;
 
     public int GetValue()
     {

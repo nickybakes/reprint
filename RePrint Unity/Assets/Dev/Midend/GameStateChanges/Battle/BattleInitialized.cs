@@ -23,7 +23,6 @@ public class BattleInitialized : BattleStateChange
         // Tell the View to spawn in the character visuals/UI elements
         controller.AddAbilityDisplays(playerCharacter.Abilities);
         controller.AddTargetDisplays(enemyTeam);
-        Debug.Log("Battle Initialized. Player turn start!");
-        battleView.EnablePlayerInteractions();
+        Debug.Log("Battle Initialized.");
     }
 }

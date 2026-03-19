@@ -1,13 +1,20 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
 public class AbilityEffect
 {
-    public AbilityEffectType type;
-    public ValueInput valueInput;
-    public AbilityEffectModifierList modifiers;
+    [SerializeField] private AbilityEffectType type;
+    [SerializeField] private ValueInput valueInput;
+    [SerializeField] private AbilityEffectModifierList modifiers;
+
+    public AbilityEffectType Type { get => type; }
+
+    public ValueInput ValueInput { get => valueInput; }
+    public List<AbilityEffectModifier> Modifiers { get => modifiers.Modifiers; }
+
 }
 
 public enum AbilityEffectType

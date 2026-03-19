@@ -54,4 +54,15 @@ public class Team
     {
         return members.Remove(character);
     }
+
+    public int GetNumberOfAliveMembers()
+    {
+        int num = 0;
+        foreach (Character member in members)
+        {
+            if (member.IsAlive)
+                num++;
+        }
+        return members.Count;
+    }
 }

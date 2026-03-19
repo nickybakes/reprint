@@ -5,5 +5,7 @@ using UnityEngine;
 [Serializable]
 public class AbilityEffectList
 {
-    public List<AbilityEffect> abilityEffects;
+    [SerializeField] private List<AbilityEffect> abilityEffects;
+
+    public List<AbilityEffect> AbilityEffects { get => abilityEffects; }
 }

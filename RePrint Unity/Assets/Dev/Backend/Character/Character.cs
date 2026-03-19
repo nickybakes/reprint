@@ -3,7 +3,9 @@ using System.Collections.Generic;
 public class Character
 {
 
-    public CharacterStats stats;
+    public CharacterStats Stats { get; private set; }
+
+    public IncomingValues IncomingValues { get; private set; }
 
     public List<Ability> Abilities { get; private set; }
 
@@ -29,24 +31,39 @@ public class Character
         }
     }
 
+    public bool IsAlive
+    {
+        get
+        {
+            return Stats.Health > 0;
+        }
+    }
+
     public Character(CharacterData data)
     {
         Name = data.name;
+        IncomingValues = new IncomingValues();
 
-        stats = new CharacterStats();
+        Stats = new CharacterStats();
 
-        stats.HealthMax = data.maxHealth.GetValue();
-        stats.Health = stats.HealthMax;
+        Stats.HealthMax = data.maxHealth.GetValue();
+        Stats.Health = Stats.HealthMax;
 
-        stats.AbilityPointsMax = data.abilityPointsMax.GetValue();
-        stats.AbilityPoints = stats.AbilityPointsMax;
+        Stats.AbilityPointsMax = data.abilityPointsMax.GetValue();
+        Stats.AbilityPoints = Stats.AbilityPointsMax;
 
-        stats.Chain = 0;
+        Stats.Chain = 0;
 
         Abilities = new List<Ability>(data.abilities.Length);
         foreach (AbilityData abilityData in data.abilities)
         {
             Abilities.Add(new Ability(abilityData));
         }
+    }
+
+    public void RefreshIncomingValues(int numberOfEnemies)
+    {
+        IncomingValues.SetCalculatedChain(this);
+        IncomingValues.SetNumberOfEnemies(numberOfEnemies);
     }
 }

@@ -24,9 +24,8 @@ public class BattleManager : MonoBehaviour
     private List<BattleStateChange> pendingBattleChanges;
 
     private Character playerCharacter;
-    private Team enemyTeam;
 
-    private List<Team> teams;
+    private Team enemyTeam;
 
     /// <summary>
     /// The number of the current turn the battle is in. Increments once all teams have done an ability and loops back to the first team.
@@ -54,13 +53,10 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(BattleData data)
     {
-        teams = new List<Team>(2);
 
         playerCharacter = new Character(data.playerCharacterData);
-        teams.Add(new Team(playerCharacter));
 
         enemyTeam = new Team();
-        teams.Add(enemyTeam);
 
         foreach (CharacterData enemyData in data.enemyCharacterDatas)
         {
@@ -72,8 +68,31 @@ public class BattleManager : MonoBehaviour
             new BattleInitialized(playerCharacter, enemyTeam)
         };
         SubmitChanges();
+
+        StartPlayerTurn();
     }
 
+    public virtual void ConfirmPlayerAbilitySequence()
+    {
+
+    }
+
+    public virtual void StartPlayerTurn()
+    {
+        pendingBattleChanges.Add(new PlayerTurnStart());
+        SubmitChanges();
+    }
+
+    public void RefreshAllCharacterIncomingValues()
+    {
+        int numberOfEnemies = enemyTeam.GetNumberOfAliveMembers();
+        playerCharacter.RefreshIncomingValues(numberOfEnemies);
+
+        foreach (Character enemy in enemyTeam.Members)
+        {
+            enemy.RefreshIncomingValues(numberOfEnemies);
+        }
+    }
 
     public virtual void PlayerSubmitAbility(Ability ability)
     {

@@ -5,24 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/Ability Data")]
 public class AbilityData : ScriptableObject
 {
-    public new string name;
+    [field: SerializeField] public string Name { get; private set; }
 
-    [TextArea]
-    public string description;
+    [field: SerializeField, TextArea] public string Description { get; private set; }
 
-    public int baseAPCost;
+    [field: SerializeField] public int BaseAPCost { get; private set; }
 
-    [Header("Ability Rules")]
-    public AbilityRules abilityRulesOverclock0;
-    public AbilityRules abilityRulesOverclock1;
-    public AbilityRules abilityRulesOverclock2;
-    public AbilityRules abilityRulesOverclock3;
-    public AbilityRules abilityRulesOverclock4;
+    [field: SerializeField, Header("Ability Rules")] public AbilityRules AbilityRulesOverclock0 { get; private set; }
+    [field: SerializeField] public AbilityRules AbilityRulesOverclock1 { get; private set; }
+    [field: SerializeField] public AbilityRules AbilityRulesOverclock2 { get; private set; }
+    [field: SerializeField] public AbilityRules AbilityRulesOverclock3 { get; private set; }
+    [field: SerializeField] public AbilityRules AbilityRulesOverclock4 { get; private set; }
 
-    [Header("Ability Effect Lists")]
-    public AbilityEffectList abilityEffectsOverclock0;
-    public AbilityEffectList abilityEffectsOverclock1;
-    public AbilityEffectList abilityEffectsOverclock2;
-    public AbilityEffectList abilityEffectsOverclock3;
-    public AbilityEffectList abilityEffectsOverclock4;
+    [field: SerializeField, Header("Ability Effect Lists")] public AbilityEffectList AbilityEffectsOverclock0 { get; private set; }
+    [field: SerializeField] public AbilityEffectList AbilityEffectsOverclock1 { get; private set; }
+    [field: SerializeField] public AbilityEffectList AbilityEffectsOverclock2 { get; private set; }
+    [field: SerializeField] public AbilityEffectList AbilityEffectsOverclock3 { get; private set; }
+    [field: SerializeField] public AbilityEffectList AbilityEffectsOverclock4 { get; private set; }
 }
