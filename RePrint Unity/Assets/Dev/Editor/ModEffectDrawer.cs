@@ -11,7 +11,9 @@ public class ModEffectDrawer : BetterPropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
 
         AddProperty("chainGainAmount");
-        AddProperty("modifiers");
+
+        AddQuarterBlankLine();
+        AddProperty("extraArithmetics");
 
         EditorGUI.EndProperty();
     }

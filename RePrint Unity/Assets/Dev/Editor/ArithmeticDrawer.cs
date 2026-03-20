@@ -2,8 +2,8 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomPropertyDrawer(typeof(AbilityEffectModifier))]
-public class AbilityEffectModifierDrawer : BetterPropertyDrawer
+[CustomPropertyDrawer(typeof(Arithmetic))]
+public class ArithmeticDrawer : BetterPropertyDrawer
 {
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -12,11 +12,11 @@ public class AbilityEffectModifierDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
         SerializedProperty mathTypeProperty = property.FindPropertyRelative("mathType");
-        SerializedProperty incomingValueProperty = property.FindPropertyRelative("incomingValue");
+        SerializedProperty incomingValueProperty = property.FindPropertyRelative("inGameValueType");
 
         StartSameLine(2);
         mathTypeProperty.enumValueIndex = (int)(MathType)AddDropDownSelection((MathType)mathTypeProperty.enumValueIndex);
-        incomingValueProperty.enumValueIndex = (int)(ModifierIncomingValue)AddDropDownSelection((ModifierIncomingValue)incomingValueProperty.enumValueIndex);
+        incomingValueProperty.enumValueIndex = (int)(InGameValueType)AddDropDownSelection((InGameValueType)incomingValueProperty.enumValueIndex);
 
         StartSameLine(2);
         AddProperty("invertEquation");

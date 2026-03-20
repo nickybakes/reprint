@@ -17,9 +17,9 @@ public class StatCalculation
             {
                 int baseAmount = effect.ValueInput.GetValue();
 
-                foreach (AbilityEffectModifier modifier in effect.Modifiers)
+                foreach (Arithmetic modifier in effect.ExtraArithmetics)
                 {
-                    baseAmount = modifier.CalculateSolution(baseAmount, activator.IncomingValues.GetIncomingValue(modifier.IncomingValue));
+                    baseAmount = modifier.CalculateSolution(baseAmount, activator.IncomingValues.GetIncomingValue(modifier.InGameValueType));
                 }
 
                 totalAmount += baseAmount;

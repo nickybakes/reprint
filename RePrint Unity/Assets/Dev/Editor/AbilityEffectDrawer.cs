@@ -17,7 +17,7 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
         AddProperty("valueInput");
         AddQuarterBlankLine();
 
-        AddProperty("modifiers");
+        AddProperty("extraArithmetics");
         AddQuarterBlankLine();
 
         EditorGUI.EndProperty();

@@ -5,5 +5,5 @@ using UnityEngine;
 public class ModEffect
 {
     [SerializeField] private ValueInput chainGainAmount;
-    [SerializeField] private BetterEditorList<AbilityEffectModifier> modifiers;
+    [SerializeField] private BetterEditorList<Arithmetic> extraArithmetics;
 }

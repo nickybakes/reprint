@@ -15,4 +15,14 @@ public class AbilitySelection
         ability = _ability;
         target = null;
     }
+
+    public void Overclock()
+    {
+        overclock = Math.Min(overclock + 1, Ability.MAX_OVERCLOCK);
+    }
+
+    public void Underclock()
+    {
+        overclock = Math.Max(overclock - 1, 0);
+    }
 }

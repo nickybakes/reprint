@@ -5,7 +5,7 @@ public class Character
 
     public CharacterStats Stats { get; private set; }
 
-    public IncomingValues IncomingValues { get; private set; }
+    public InGameValues IncomingValues { get; private set; }
 
     public List<Ability> Abilities { get; private set; }
 
@@ -42,7 +42,7 @@ public class Character
     public Character(CharacterData data)
     {
         Name = data.name;
-        IncomingValues = new IncomingValues();
+        IncomingValues = new InGameValues();
 
         Stats = new CharacterStats();
 

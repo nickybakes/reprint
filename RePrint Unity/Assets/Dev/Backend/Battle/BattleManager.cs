@@ -42,6 +42,8 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private BattleSceneSetup battleSceneSetup;
 
+    private AbilitySequence playerAbilitySequence;
+
     /// <summary>
     /// Invokes the Submit Changes Event and starts a new list of changes.
     /// </summary>
@@ -79,6 +81,7 @@ public class BattleManager : MonoBehaviour
 
     public virtual void StartPlayerTurn()
     {
+        playerAbilitySequence = new AbilitySequence();
         pendingBattleChanges.Add(new PlayerTurnStart());
         SubmitChanges();
     }
@@ -102,6 +105,19 @@ public class BattleManager : MonoBehaviour
     public virtual void PlayerSubmitTarget(Character target)
     {
         Debug.Log("Player submit target " + target.Name);
+    }
+
+    public virtual void PlayerSubmitConfirmAbilitySequence()
+    {
+
+    }
+
+    public virtual void PlayerSubmitBack()
+    {
+        if (playerAbilitySequence != null)
+        {
+            playerAbilitySequence.StepBackInSequenceBuilding();
+        }
     }
 
     // public void SetupBattle()

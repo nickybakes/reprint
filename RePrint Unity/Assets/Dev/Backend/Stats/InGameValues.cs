@@ -1,4 +1,13 @@
-public class IncomingValues
+
+
+public enum InGameValueType
+{
+    Chain,
+    NumberOfEnemies
+}
+
+
+public class InGameValues
 {
     private int chain;
 
@@ -15,14 +24,14 @@ public class IncomingValues
         numberOfEnemies = _numberOfEnemies;
     }
 
-    public int GetIncomingValue(ModifierIncomingValue type)
+    public int GetIncomingValue(InGameValueType type)
     {
         switch (type)
         {
-            case ModifierIncomingValue.Chain:
+            case InGameValueType.Chain:
                 return chain;
 
-            case ModifierIncomingValue.NumberOfEnemies:
+            case InGameValueType.NumberOfEnemies:
                 return numberOfEnemies;
         }
 

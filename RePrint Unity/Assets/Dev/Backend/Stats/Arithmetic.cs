@@ -3,10 +3,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
-public class AbilityEffectModifier
+public class Arithmetic
 {
     [SerializeField] private MathType mathType;
-    [SerializeField] private ModifierIncomingValue incomingValue;
+    [SerializeField] private InGameValueType inGameValueType;
 
     /// <summary>
     /// When false, the equation has the Incoming Value come after the Value in the equation.
@@ -20,7 +20,7 @@ public class AbilityEffectModifier
 
     [SerializeField] private int maxClamp;
 
-    public ModifierIncomingValue IncomingValue { get => incomingValue; }
+    public InGameValueType InGameValueType { get => inGameValueType; }
 
 
 
@@ -60,12 +60,6 @@ public class AbilityEffectModifier
 
         return finalValue;
     }
-}
-
-public enum ModifierIncomingValue
-{
-    Chain,
-    NumberOfEnemies
 }
 
 public enum MathType
