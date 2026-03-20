@@ -12,66 +12,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: Ability_001
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
-  name: Quick Slash
-  description: Balanced damage and chain gain Starter Action.
-  baseAPCost: 0
-  abilityRulesOverclock0:
+  <Name>k__BackingField: Quick Slash
+  <Description>k__BackingField: 
+  <BaseAPCost>k__BackingField: 0
+  <AbilityRulesOverclock0>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 1
+      baseValue: 0
       maxValue: 0
-  abilityRulesOverclock1:
+  <AbilityRulesOverclock1>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 1
+      baseValue: 0
       maxValue: 0
-  abilityRulesOverclock2:
+  <AbilityRulesOverclock2>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 1
+      baseValue: 0
       maxValue: 0
-  abilityRulesOverclock3:
+  <AbilityRulesOverclock3>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 1
+      baseValue: 0
       maxValue: 0
-  abilityRulesOverclock4:
+  <AbilityRulesOverclock4>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 1
+      baseValue: 0
       maxValue: 0
-  abilityEffectsOverclock0:
-    abilityEffects:
+  <AbilityEffectsOverclock0>k__BackingField:
+    list:
     - type: 0
       valueInput:
         type: 0
-        baseValue: 6
+        baseValue: 0
         maxValue: 0
       modifiers:
-        modifiers:
-        - mathType: 0
-          incomingValue: 0
-          invertEquation: 0
-          clamp: 0
-          minClamp: 0
-          maxClamp: 0
-    - type: 2
+        list: []
+    - type: 0
       valueInput:
         type: 0
-        baseValue: 1
+        baseValue: 0
         maxValue: 0
       modifiers:
-        modifiers: []
-  abilityEffectsOverclock1:
-    abilityEffects: []
-  abilityEffectsOverclock2:
-    abilityEffects: []
-  abilityEffectsOverclock3:
-    abilityEffects: []
-  abilityEffectsOverclock4:
-    abilityEffects: []
+        list: []
+  <AbilityEffectsOverclock1>k__BackingField:
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 0
+        maxValue: 0
+      modifiers:
+        list: []
+  <AbilityEffectsOverclock2>k__BackingField:
+    list: []
+  <AbilityEffectsOverclock3>k__BackingField:
+    list: []
+  <AbilityEffectsOverclock4>k__BackingField:
+    list: []

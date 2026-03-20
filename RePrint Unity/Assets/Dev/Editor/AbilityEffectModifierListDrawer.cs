@@ -1,12 +1,7 @@
 using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using UnityEngine;
-using System.Collections.Generic;
-using System;
-using UnityEditor.Rendering;
 
-[CustomPropertyDrawer(typeof(AbilityEffectModifierList))]
+[CustomPropertyDrawer(typeof(BetterEditorList<AbilityEffectModifier>))]
 public class AbilityEffectModifierListDrawer : BetterListDrawer
 {
 
@@ -14,7 +9,7 @@ public class AbilityEffectModifierListDrawer : BetterListDrawer
     {
         base.OnGUI(position, property, label);
         EditorGUI.BeginProperty(position, label, property);
-        AddList("modifiers", "Add Modifier", .5f);
+        AddList("list", "Add Modifier", .5f);
         EditorGUI.EndProperty();
     }
 

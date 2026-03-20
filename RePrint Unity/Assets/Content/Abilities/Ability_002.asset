@@ -12,59 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: Ability_002
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
-  name: Dodge
-  description: Gain Dodge to reduce incoming damage.
-  baseAPCost: 0
-  abilityRulesOverclock0:
-    targetAllEnemies: 0
-    numberOfHits:
-      type: 1
-      baseValue: 0
-      maxValue: 0
-  abilityRulesOverclock1:
+  <Name>k__BackingField: Dodge
+  <Description>k__BackingField: 
+  <BaseAPCost>k__BackingField: 0
+  <AbilityRulesOverclock0>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
-  abilityRulesOverclock2:
+  <AbilityRulesOverclock1>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
-  abilityRulesOverclock3:
+  <AbilityRulesOverclock2>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
-  abilityRulesOverclock4:
+  <AbilityRulesOverclock3>k__BackingField:
     targetAllEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
-  abilityEffectsOverclock0:
-    abilityEffects:
-    - type: 0
-      valueInput:
-        type: 1
-        baseValue: 3
-        maxValue: 5
-      modifiers:
-        modifiers:
-        - mathType: 0
-          incomingValue: 0
-          invertEquation: 1
-          clamp: 1
-          minClamp: 0
-          maxClamp: 3
-  abilityEffectsOverclock1:
-    abilityEffects: []
-  abilityEffectsOverclock2:
-    abilityEffects: []
-  abilityEffectsOverclock3:
-    abilityEffects: []
-  abilityEffectsOverclock4:
-    abilityEffects: []
+  <AbilityRulesOverclock4>k__BackingField:
+    targetAllEnemies: 0
+    numberOfHits:
+      type: 0
+      baseValue: 0
+      maxValue: 0
+  <AbilityEffectsOverclock0>k__BackingField:
+    list: []
+  <AbilityEffectsOverclock1>k__BackingField:
+    list: []
+  <AbilityEffectsOverclock2>k__BackingField:
+    list: []
+  <AbilityEffectsOverclock3>k__BackingField:
+    list: []
+  <AbilityEffectsOverclock4>k__BackingField:
+    list: []

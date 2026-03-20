@@ -1,8 +1,5 @@
 using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using UnityEngine;
-using Unity.VisualScripting;
 
 [CustomPropertyDrawer(typeof(AbilityRules))]
 public class AbilityRulesDrawer : BetterPropertyDrawer

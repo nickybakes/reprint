@@ -1,0 +1,38 @@
+//StartWaveWithChain
+//GainChainWhenOverclocking
+//ForceOverclockInTurn
+//DamageMultiplierOnFirstTurn
+//DamageMultiplierOnFinisherAbilities
+DamageRandomOtherEnemies
+//DamageMultiplierRandom
+//GainExtraChainWithAbilitiesThatGainChain
+//DamageMultiplierOnStarterAbilities
+
+OnStartWave [Header]
+GainChainOnStartWave
+
+OnCreatingActionSequence [Header]
+GainChainPerOverclock
+
+OnStartPlayerTurn [Header]
+ForceRandomAbilityOverclock
+bool[] possibleOverclockLevels
+
+OnUseAbility [Header]
+bool firstTurn
+bool starterAbility
+bool finisherAbility
+int minChainThreshold
+
+DamageMultiplierOnUseAbility
+ValueInputFloat multiplier
+
+GainChainOnUseAbility
+ValueInput chainGainAmount
+
+
+List of ModBehavior
+ModBehavior has a List of ModConditions, and List of ModEffects
+
+A ModCondition would be OnUseAbilityRule
+

@@ -8,7 +8,7 @@ public class Ability
 {
     public static int MAX_OVERCLOCK = 4;
 
-    public string Name { get { return baseData.name; } }
+    public string Name { get { return baseData.Name; } }
 
     private AbilityData baseData;
     private List<List<AbilityEffect>> abilityEffectsForEachOverclock;
@@ -21,11 +21,11 @@ public class Ability
         abilityEffectsForEachOverclock = new List<List<AbilityEffect>>(MAX_OVERCLOCK);
         abilityRulesForEachOverclock = new List<AbilityRules>(MAX_OVERCLOCK);
 
-        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock0.AbilityEffects);
-        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock1.AbilityEffects);
-        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock2.AbilityEffects);
-        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock3.AbilityEffects);
-        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock4.AbilityEffects);
+        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock0.List);
+        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock1.List);
+        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock2.List);
+        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock3.List);
+        abilityEffectsForEachOverclock.Add(baseData.AbilityEffectsOverclock4.List);
 
         abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock0);
         abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock1);

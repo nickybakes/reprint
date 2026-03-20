@@ -1,0 +1,102 @@
+ "chain_spark": {
+      "name": "Chain Spark",
+      "rarity": "common",
+      "description": "Start each wave with 1-3 Chain.",
+ 
+"clockwork": {
+      "name": "Clockwork",
+      "rarity": "common",
+      "description": "Gain 1 Chain whenever an action is Overclocked.",
+
+
+    "jitter_coil": {
+      "name": "Jitter Coil",
+      "rarity": "uncommon",
+      "description": "At the start of each turn, randomly Auto-Overclock one of your equipped actions. Charge actions cannot be Auto-Overclocked.",
+  
+
+    "ruthless_accelerator": 
+      "name": "Ruthless Accelerator",
+      "rarity": "common",
+      "description": "Deal ×1.5 Physical dmg the first turn of each wave.",
+ 
+
+    "circuit_break": {
+      "name": "Circuit Break",
+      "rarity": "common",
+      "description": "When you use a Finisher with 7 or more Chain, Finisher Actions deal ×1.25 Physical damage.",
+  
+
+    "kinetic_surge": {
+      "name": "Kinetic Surge",
+      "rarity": "common",
+      "description": "Each time you hit an enemy, deal 1–3 dmg to a random enemy.",
+
+  
+  "gambit_chip": {
+      "name": "Gambit Chip",
+      "rarity": "common",
+      "description": "Deal 1.00–×1.25 Physical damage.",
+
+   "chain_accelerator": {
+      "name": "Chain Accelerator",
+      "rarity": "uncommon",
+      "description": "Start each wave with 3-5 Chain.",
+  
+    "un_drive": {
+      "name": "UN-Drive",
+      "rarity": "uncommon",
+      "excludeClasses": ["tech_runner"],
+      "description": "Uncommon+ Actions that gain Chain gain an additional +2 Chain.",
+
+ "seventh_ascent": {
+      "name": "seventh_ascent",
+      "rarity": "uncommon",
+      "description": "If you have 7+ Chain, Starter Actions deal ×1.75 Physical damage.",
+
+    "twelfth_ascent": {
+      "name": "12th Ascent",
+      "rarity": "rare",
+      "description": "While you have 12+ Chain, Starter Actions deal ×2.25 Physical damage.",
+
+
+      "precision_break": {
+      "name": "Precision Break",
+      "rarity": "uncommon",
+      "description": "When you use a Finisher with 12 or more Chain, Finisher Actions deal ×1.5 Physical damage.",
+  
+ "flow_state": {
+      "name": "Flow State",
+      "rarity": "uncommon",
+      "excludeClasses": ["tech_runner"],
+      "description": "While you have Chain, gain 2–4 Dodge at the start of each turn.",
+
+
+    "rekill": {
+      "name": "ReKill",
+      "rarity": "rare",
+      "description": "When a Finisher consumes 7 or more Chain, return 50% of Chain consumed. Once per wave.",
+
+   "death_wish": {
+      "name": "Death Wish",
+      "icon": "skull",
+      "rarity": "mythic",
+      "description": "Deal ×1.05 Physical damage per point of total enemy intent damage.",
+
+
+    "pain_junky": 
+      "id": "pain_junky",
+      "rarity": "ethereal",
+      "description": "Deal ×1.05 Physical damage per point of HP missing.",
+
+
+    "lethal_function": {
+      "name": "Lethal Function",
+      "rarity": "ethereal",
+      "description": "Deal ×1.05 Physical damage per point of Status Damage accrued.",
+ 
+    "quantum_chip": {
+      "name": "Quantum Chip",
+      "rarity": "rare",
+      "description": "While you have 12+ Chain, gain 1 AP at turn start.",
+ 

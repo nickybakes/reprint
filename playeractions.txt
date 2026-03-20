@@ -1,0 +1,144 @@
+
+  "quick_slash": {
+    "name": "Quick Slash",
+    "ap": 1,
+    "type": "starter",
+    "category": "core_starter",
+    "cooldown": 0,
+    "briefDescription": "Balanced damage and chain gain Starter Action.",
+    "loadoutHint": "Standard Starter. Reliable and dependable.",
+    "description": {
+      "base": "6 dmg, +1 Chain",
+      "oc1": "8 dmg, +2 Chain",
+      "oc2": "12 dmg, +3 Chain",
+      "oc3": "16 dmg, +4 Chain",
+      "oc4": "25 dmg, +6 Chain"
+    },
+    "overclock": {
+      "0": { "damage": [6, 6], "chainGain": 1 },
+      "1": { "damage": [8, 8], "chainGain": 2 },
+      "2": { "damage": [12, 12], "chainGain": 3 },
+      "3": { "damage": [16, 16], "chainGain": 4 },
+      "4": { "damage": [25, 25], "chainGain": 6 }
+
+
+
+  "dodge": {
+    "name": "Dodge",
+    "ap": 1,
+    "type": "utility",
+    "category": "core_utility",
+    "cooldown": 0,
+    "briefDescription": "Gain Dodge to reduce incoming damage.",
+    "description": {
+      "base": "Gain 3-5 Dodge",
+      "oc1": "Gain 5-8 Dodge",
+      "oc2": "Gain 8-11 Dodge",
+      "oc3": "Gain 13-17 Dodge",
+      "oc4": "22-25 Dodge"
+    },
+    "overclock": {
+      "0": { "dodge": [3, 5] },
+      "1": { "dodge": [5, 8] },
+      "2": { "dodge": [8, 11] },
+      "3": { "dodge": [13, 17] },
+      "4": { "dodge": [22, 25] }
+    }
+}
+
+
+"rift_cut": {
+  "name": "Rift Cut",
+  "ap": 2,
+  "type": "finisher",
+  "category": "core_finisher",
+  "cooldown": 1,
+  "cooldownPerOverclock": 1,
+    "briefDescription": "Single-hit Finisher that scales with Chain.",
+    "description": {
+      "base": "4 dmg per Chain",
+      "oc1": "5 dmg per Chain",
+      "oc2": "7 dmg per Chain",
+      "oc3": "10 dmg per Chain",
+      "oc4": "13 dmg per Chain"
+    },
+    "overclock": {
+      "0": { "damagePerChain": 4 },
+      "1": { "damagePerChain": 5 },
+      "2": { "damagePerChain": 7 },
+      "3": { "damagePerChain": 10 },
+      "4": { "damagePerChain": 13 }
+    }
+  }
+
+
+ "flurry": {
+    "name": "Flurry",
+    "ap": 2,
+    "type": "finisher",
+    "category": "advanced_finisher",
+   "cooldown": 2,
+   "cooldownPerOverclock": 1,
+    "multiHit": true,
+    "briefDescription": "Multi-Hit Finisher that hits multiple times on a single enemy.",
+    "description": {
+      "base": "3-5 dmg per Chain",
+      "oc1": "5-7 dmg per Chain",
+      "oc2": "8-10 dmg per Chain",
+      "oc3": "11-12 dmg per Chain",
+      "oc4": "14 dmg per Chain"
+    },
+    "overclock": {
+      "0": { "damagePerChain": [3, 5] },
+      "1": { "damagePerChain": [5, 7] },
+      "2": { "damagePerChain": [8, 10] },
+      "3": { "damagePerChain": [11, 12] },
+      "4": { "damagePerChain": [14, 14] }
+    }
+
+
+
+  "kunai": {
+    "name": "Kunai",
+    "ap": 0,
+    "type": "starter",
+    "category": "charge_starter",
+    "charges": 2,
+    "damage": [10, 10],
+    "chainGain": 1,
+    "cooldown": 0,
+    "baseStats": "10 dmg, +1 Chain",
+    "briefDescription": "Starter Action that uses Charges instead of AP.",
+    "description": {
+      "base": "10 dmg, +1 Chain"
+    },
+    "overclock": {
+      "0": { "damage": [10, 10], "chainGain": 1 }
+    }
+
+
+
+
+  "heavy_slash": {
+    "name": "Heavy Slash",
+    "ap": 1,
+    "type": "starter",
+    "category": "advanced_starter",
+    "cooldown": 0,
+    "cooldownPerOverclock": 1,
+    "briefDescription": "High damage Starter with no chain gain.",
+    "description": {
+      "base": "8-12 dmg",
+      "oc1": "16-19 dmg",
+      "oc2": "24-30 dmg",
+      "oc3": "36-42 dmg",
+      "oc4": "54-60 dmg. If used as the final action of your turn, deal x1.5 dmg."
+    },
+    "overclock": {
+      "0": { "damage": [8, 12] },
+      "1": { "damage": [16, 19] },
+      "2": { "damage": [24, 30] },
+      "3": { "damage": [36, 42] },
+      "4": { "damage": [54, 60] }
+    }
+  },

@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>
-/// Property Drawer extension that keeps track of its position in the Inspector.
-/// </summary>
 public class BetterListDrawer : BetterPropertyDrawer
 {
 
-    int indexToRemoveAt;
+    private int indexToRemoveAt;
 
-    List<bool> foldouts;
+    private List<bool> foldouts;
 
-    bool listFoldout = true;
+    private bool listFoldout = true;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -22,10 +19,17 @@ public class BetterListDrawer : BetterPropertyDrawer
 
     public void AddList(string listPropertyName, string addNewString, float normalizedAddNewButtonWidth = 0)
     {
-        listFoldout = AddHeaderFoldout(property.displayName, listFoldout);
+        if (property.depth > 1)
+        {
+            AddBoldLabel(property.displayName);
+        }
+        else
+        {
+            listFoldout = AddHeaderFoldout(property.displayName, listFoldout);
+        }
         EditorGUI.indentLevel++;
 
-        if (listFoldout)
+        if (listFoldout || (property.depth > 1))
         {
             SerializedProperty listProperty = property.FindPropertyRelative(listPropertyName);
             if (foldouts == null)
@@ -52,6 +56,8 @@ public class BetterListDrawer : BetterPropertyDrawer
 
                 Rect foldoutPosition = Position();
 
+                foldoutPosition.x = foldoutPosition.x + 8 * property.depth;
+
                 EditorGUI.DrawRect(foldoutPosition, new Color(0, 0, 0, .15f));
 
                 foldoutPosition.x = foldoutPosition.width;
@@ -63,9 +69,16 @@ public class BetterListDrawer : BetterPropertyDrawer
                     return;
                 }
 
-                foldouts[i] = AddFoldout(name, foldouts[i]);
+                if (property.depth > 1)
+                {
+                    AddLabel(name);
+                }
+                else
+                {
+                    foldouts[i] = AddFoldout(name, foldouts[i]);
+                }
 
-                if (foldouts[i])
+                if (foldouts[i] || (property.depth > 1))
                 {
                     AddProperty("", null, listProperty.GetArrayElementAtIndex(i));
                 }
@@ -102,7 +115,7 @@ public class BetterListDrawer : BetterPropertyDrawer
         bottomLinePosition.height = 2;
         EditorGUI.DrawRect(bottomLinePosition, new Color(0, 0, 0, .25f));
 
-        Rect sideLinePosition = new Rect(10, EditorGUIUtility.singleLineHeight + 2, 2, childrenHeight - EditorGUIUtility.singleLineHeight);
+        Rect sideLinePosition = new Rect(position.x + 8 * (property.depth - 1), position.y + EditorGUIUtility.singleLineHeight + 2, 2, childrenHeight - EditorGUIUtility.singleLineHeight);
         EditorGUI.DrawRect(sideLinePosition, new Color(0, 0, 0, .25f));
 
         AddHalfBlankLine();

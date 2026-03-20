@@ -1,12 +1,7 @@
 using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 using UnityEngine;
-using System.Collections.Generic;
-using System;
-using UnityEditor.Rendering;
 
-[CustomPropertyDrawer(typeof(AbilityEffectList))]
+[CustomPropertyDrawer(typeof(BetterEditorList<AbilityEffect>))]
 public class AbilityEffectListDrawer : BetterListDrawer
 {
 
@@ -14,7 +9,7 @@ public class AbilityEffectListDrawer : BetterListDrawer
     {
         base.OnGUI(position, property, label);
         EditorGUI.BeginProperty(position, label, property);
-        AddList("abilityEffects", "Add Ability Effect");
+        AddList("list", "Add Ability Effect");
         EditorGUI.EndProperty();
     }
 

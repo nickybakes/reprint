@@ -130,6 +130,17 @@ public class BetterPropertyDrawer : PropertyDrawer
     }
 
     /// <summary>
+    /// Adds a bold Label element to the inspector.
+    /// </summary>
+    /// <param name="text">The text to show on the label.</param>
+    protected void AddBoldLabel(string text)
+    {
+        Rect position = Position();
+        NextLine();
+        EditorGUI.LabelField(position, text, EditorStyles.boldLabel);
+    }
+
+    /// <summary>
     /// Adds an integer slider to the inspector.
     /// </summary>
     /// <param name="value">The value to show on the slider.</param>
@@ -277,11 +288,12 @@ public class BetterPropertyDrawer : PropertyDrawer
     /// <returns>The position rect.</returns>
     protected Rect Position()
     {
+        float positionWidth = position.width - (property.depth * 2f);
         if (normalizedWidthOverride != -1 && normalizedXPositionOverride != -1)
         {
-            return new Rect(position.x + (position.width * normalizedXPositionOverride), position.y + childrenHeight, position.width * normalizedWidthOverride, EditorGUIUtility.singleLineHeight);
+            return new Rect(position.x + (positionWidth * normalizedXPositionOverride), position.y + childrenHeight, positionWidth * normalizedWidthOverride, EditorGUIUtility.singleLineHeight);
         }
-        float width = position.width / sameLineAmount;
-        return new Rect(position.x + (width * sameLineCurrentIndex), position.y + childrenHeight, width, EditorGUIUtility.singleLineHeight);
+        float width = positionWidth / sameLineAmount;
+        return new Rect(position.x + (width * sameLineCurrentIndex) + (property.depth * 2f), position.y + childrenHeight, width, EditorGUIUtility.singleLineHeight);
     }
 }
