@@ -109,7 +109,7 @@ public class FloatingDisplayGroup : Display
             {
                 newSpace = displaySpaces[i];
                 newSpaceIndexInArray = i;
-                displaySpaces[i].Setup(display, indexPosition);
+                displaySpaces[i].SetupDisplay(display, indexPosition);
                 break;
             }
         }

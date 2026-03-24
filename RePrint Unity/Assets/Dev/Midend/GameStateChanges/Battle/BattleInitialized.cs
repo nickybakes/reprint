@@ -22,6 +22,8 @@ public class BattleInitialized : BattleStateChange
     {
         // Tell the View to spawn in the character visuals/UI elements
         battleView.PlayerAbilityDisplayGroup.AddAbilities(playerCharacter.Abilities, controller);
+        battleView.PlayerFigureGroup.AddCharacter(playerCharacter, controller);
+        battleView.EnemyFigureGroup.AddCharacters(enemyTeam.Members, controller);
         controller.AddTargetDisplays(enemyTeam);
         Debug.Log("Battle Initialized.");
     }
