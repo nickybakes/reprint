@@ -17,6 +17,7 @@ public class PlayerTurnStart : BattleStateChange
     public override void ParseChange(BattleView battleView, BattleController controller)
     {
         Debug.Log("Player turn start!");
+        battleView.PlayerAbilityDisplayGroup.ResetSequenceState();
         battleView.EnablePlayerInteractions();
     }
 }

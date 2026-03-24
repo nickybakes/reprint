@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
-public class BattleController : MonoBehaviour, IPointerClickHandler
+public class BattleController : MonoBehaviour
 {
     /// <summary>
     /// Reference to the Battle Manager in the scene.
@@ -47,14 +48,11 @@ public class BattleController : MonoBehaviour, IPointerClickHandler
 
     public void BackInput()
     {
-
+        battleManager.PlayerSubmitBack();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnCancel()
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            BackInput();
-        }
+        BackInput();
     }
 }

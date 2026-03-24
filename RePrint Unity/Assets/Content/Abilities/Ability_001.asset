@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ability_001
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Quick Slash
-  <Description>k__BackingField: 
+  <Description>k__BackingField: 'Quick Slash description '
   <BaseAPCost>k__BackingField: 0
   <AbilityRulesOverclock0>k__BackingField:
     targetAllEnemies: 0
@@ -52,14 +52,14 @@ MonoBehaviour:
         type: 0
         baseValue: 0
         maxValue: 0
-      modifiers:
+      extraArithmetics:
         list: []
     - type: 0
       valueInput:
         type: 0
         baseValue: 0
         maxValue: 0
-      modifiers:
+      extraArithmetics:
         list: []
   <AbilityEffectsOverclock1>k__BackingField:
     list:
@@ -68,7 +68,7 @@ MonoBehaviour:
         type: 0
         baseValue: 0
         maxValue: 0
-      modifiers:
+      extraArithmetics:
         list: []
   <AbilityEffectsOverclock2>k__BackingField:
     list: []

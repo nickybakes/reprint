@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ability_003
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Rift Cut
-  <Description>k__BackingField: 
+  <Description>k__BackingField: rift cut descritpion
   <BaseAPCost>k__BackingField: 0
   <AbilityRulesOverclock0>k__BackingField:
     targetAllEnemies: 0

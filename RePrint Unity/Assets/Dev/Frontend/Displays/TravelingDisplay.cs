@@ -26,7 +26,6 @@ public class TravelingDisplay : Display
     /// </summary>
     [SerializeField] private float travelTimeLength = .2f;
 
-
     /// <summary>
     /// Current time, in seconds, that the display has been traveling.
     /// </summary>

@@ -114,9 +114,9 @@ Material:
     - _Direction: 69
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _Emission: 12.08
+    - _Emission: 6.7
     - _EnvironmentReflections: 1
-    - _Full_Multiply: 3.91
+    - _Full_Multiply: 3.22
     - _Glitch_Direction: 90
     - _Glitch_Scale: 1.92
     - _Glitch_Speed: 0.33
@@ -124,9 +124,9 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Min_Alpha: 0.455
+    - _Min_Alpha: 0.364
     - _Noise_1_Direction: 64
-    - _Noise_1_Multiply: 3.42
+    - _Noise_1_Multiply: 3.7
     - _Noise_1_Scale: 1.71
     - _Noise_1_Speed: 0.83
     - _Noise_2_Direction: 90

@@ -18,6 +18,8 @@ public class BattleView : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
 
+    [field: SerializeField] public AbilityDisplayGroup PlayerAbilityDisplayGroup { get; private set; }
+
     /// <summary>
     /// A queue of game changes that the view manager should run through and display.
     /// </summary>

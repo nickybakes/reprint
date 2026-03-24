@@ -21,7 +21,7 @@ public class BattleInitialized : BattleStateChange
     public override void ParseChange(BattleView battleView, BattleController controller)
     {
         // Tell the View to spawn in the character visuals/UI elements
-        controller.AddAbilityDisplays(playerCharacter.Abilities);
+        battleView.PlayerAbilityDisplayGroup.AddAbilities(playerCharacter.Abilities, controller);
         controller.AddTargetDisplays(enemyTeam);
         Debug.Log("Battle Initialized.");
     }

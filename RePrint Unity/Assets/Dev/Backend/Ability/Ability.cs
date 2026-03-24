@@ -9,6 +9,7 @@ public class Ability
     public static int MAX_OVERCLOCK = 4;
 
     public string Name { get { return baseData.Name; } }
+    public string Description { get { return baseData.Description; } }
 
     private AbilityData baseData;
     private List<List<AbilityEffect>> abilityEffectsForEachOverclock;

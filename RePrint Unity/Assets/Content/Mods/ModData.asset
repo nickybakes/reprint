@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: ModData
   m_EditorClassIdentifier: Assembly-CSharp::ModData
   <ModBehaviors>k__BackingField:
-    list: []
+    list:
+    - conditions:
+        list:
+        - minChainThreshold: 0
+        - minChainThreshold: 0
+      effects:
+        list:
+        - chainGainAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+          extraArithmetics:
+            list: []

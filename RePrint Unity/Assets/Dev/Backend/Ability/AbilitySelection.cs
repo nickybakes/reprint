@@ -4,25 +4,47 @@ using UnityEngine;
 
 public class AbilitySelection
 {
-    public Ability ability;
+    public Ability Ability { get; private set; }
 
-    public int overclock = 0;
+    public int Overclock { get; private set; }
 
-    public Character target;
+    public Character Target { get; private set; }
+
+    public bool TargetIsSet { get; private set; }
 
     public AbilitySelection(Ability _ability)
     {
-        ability = _ability;
-        target = null;
+        Ability = _ability;
+        Target = null;
+        TargetIsSet = false;
     }
 
-    public void Overclock()
+    public void SetAbility(Ability _ability)
     {
-        overclock = Math.Min(overclock + 1, Ability.MAX_OVERCLOCK);
+        Ability = _ability;
+        Overclock = 0;
+        TargetIsSet = false;
     }
 
-    public void Underclock()
+    public void SetTarget(Character _Target)
     {
-        overclock = Math.Max(overclock - 1, 0);
+        Target = _Target;
+        TargetIsSet = true;
+    }
+
+    public void UnsetTarget()
+    {
+        Target = null;
+        TargetIsSet = false;
+    }
+
+    public void IncreaseOverclock()
+    {
+        Overclock = Math.Min(Overclock + 1, Ability.MAX_OVERCLOCK);
+    }
+
+    public void DecreaseOverclock()
+    {
+        Overclock = Math.Max(Overclock - 1, 0);
     }
 }

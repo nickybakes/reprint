@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ability_002
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Dodge
-  <Description>k__BackingField: 
+  <Description>k__BackingField: dodge description
   <BaseAPCost>k__BackingField: 0
   <AbilityRulesOverclock0>k__BackingField:
     targetAllEnemies: 0

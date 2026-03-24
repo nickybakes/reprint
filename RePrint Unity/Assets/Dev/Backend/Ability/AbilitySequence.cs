@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AbilitySequence
 {
     public static int MAX_OVERCLOCK = 4;
 
     private List<AbilitySelection> sequence;
+
+    public List<AbilitySelection> Sequence { get => sequence; }
 
     public AbilitySequence()
     {
@@ -14,7 +17,7 @@ public class AbilitySequence
 
     public void AddOrOverclockAbility(Ability ability)
     {
-        if (sequence.Count == 0 || !TryOverclockLastAbility(ability))
+        if (sequence.Count == 0 || !TryOverclockOrChangeLastAbility(ability))
         {
             sequence.Add(new AbilitySelection(ability));
         }
@@ -26,7 +29,7 @@ public class AbilitySequence
             return;
 
         AbilitySelection lastAbility = GetLastSelection();
-        lastAbility.target = target;
+        lastAbility.SetTarget(target);
     }
 
     public bool StepBackInSequenceBuilding()
@@ -36,37 +39,44 @@ public class AbilitySequence
 
         AbilitySelection lastAbility = GetLastSelection();
 
-        if (lastAbility.target == null)
+        if (lastAbility.TargetIsSet)
         {
-            lastAbility.target = null;
+            lastAbility.UnsetTarget();
         }
-        else if (lastAbility.overclock == 0)
+        else if (lastAbility.Overclock == 0)
         {
             sequence.RemoveAt(sequence.Count - 1);
         }
         else
         {
-            lastAbility.Underclock();
+            lastAbility.DecreaseOverclock();
         }
 
         return true;
     }
 
-    private AbilitySelection GetLastSelection()
+    public AbilitySelection GetLastSelection()
     {
         return sequence[sequence.Count - 1];
     }
 
-    private bool TryOverclockLastAbility(Ability newAbility)
+    private bool TryOverclockOrChangeLastAbility(Ability newAbility)
     {
         if (sequence.Count == 0)
             return false;
 
         AbilitySelection lastSelection = GetLastSelection();
 
-        if (lastSelection.target == null && lastSelection.ability != newAbility)
+        if (!lastSelection.TargetIsSet)
         {
-            lastSelection.Overclock();
+            if (lastSelection.Ability == newAbility)
+            {
+                lastSelection.IncreaseOverclock();
+            }
+            else
+            {
+                lastSelection.SetAbility(newAbility);
+            }
             return true;
         }
 

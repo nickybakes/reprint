@@ -6,6 +6,7 @@ public enum BattleStateChangeType
     CharacterAttack,
     PlayerTurnStart,
     BattleInitialized,
+    PlayerChangeAbilitySequence,
 }
 
 public class BattleStateChange : GameStateChange

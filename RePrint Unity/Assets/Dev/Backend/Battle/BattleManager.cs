@@ -99,12 +99,18 @@ public class BattleManager : MonoBehaviour
 
     public virtual void PlayerSubmitAbility(Ability ability)
     {
+        playerAbilitySequence.AddOrOverclockAbility(ability);
         Debug.Log("Player submit ability " + ability.Name);
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence));
+        SubmitChanges();
     }
 
     public virtual void PlayerSubmitTarget(Character target)
     {
+        playerAbilitySequence.SetLastAbilityTarget(target);
         Debug.Log("Player submit target " + target.Name);
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence));
+        SubmitChanges();
     }
 
     public virtual void PlayerSubmitConfirmAbilitySequence()
@@ -117,6 +123,8 @@ public class BattleManager : MonoBehaviour
         if (playerAbilitySequence != null)
         {
             playerAbilitySequence.StepBackInSequenceBuilding();
+            pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence));
+            SubmitChanges();
         }
     }
 
