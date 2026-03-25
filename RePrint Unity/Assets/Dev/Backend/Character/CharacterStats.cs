@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class CharacterStats
+public record CharacterStats
 {
     public int Health { get; set; }
     public int HealthMax { get; set; }

@@ -15,11 +15,14 @@ public class AbilitySequence
         sequence = new List<AbilitySelection>();
     }
 
-    public void AddOrOverclockAbility(Ability ability)
+    public void AddOrOverclockAbility(Ability ability, int availableAP)
     {
-        if (sequence.Count == 0 || !TryOverclockOrChangeLastAbility(ability))
+        if (sequence.Count == 0 || !TryOverclockOrChangeLastAbility(ability, availableAP))
         {
-            sequence.Add(new AbilitySelection(ability));
+            if (availableAP >= ability.GetAbilityRules(0).APCost)
+            {
+                sequence.Add(new AbilitySelection(ability));
+            }
         }
     }
 
@@ -60,7 +63,7 @@ public class AbilitySequence
         return sequence[sequence.Count - 1];
     }
 
-    private bool TryOverclockOrChangeLastAbility(Ability newAbility)
+    private bool TryOverclockOrChangeLastAbility(Ability newAbility, int availableAP)
     {
         if (sequence.Count == 0)
             return false;
@@ -71,11 +74,23 @@ public class AbilitySequence
         {
             if (lastSelection.Ability == newAbility)
             {
-                lastSelection.IncreaseOverclock();
+                if (lastSelection.Overclock < Ability.MAX_OVERCLOCK)
+                {
+                    int nextAPCost = lastSelection.Ability.GetAbilityRules(lastSelection.Overclock + 1).APCost;
+                    int currAPCost = lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost;
+                    if (availableAP + currAPCost >= nextAPCost)
+                    {
+                        lastSelection.IncreaseOverclock();
+                    }
+                }
             }
             else
             {
-                lastSelection.SetAbility(newAbility);
+                int currAPCost = lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost;
+                if (availableAP + currAPCost >= newAbility.GetAbilityRules(0).APCost)
+                {
+                    lastSelection.SetAbility(newAbility);
+                }
             }
             return true;
         }

@@ -18,13 +18,15 @@ public class BattleInitialized : BattleStateChange
         enemyTeam = _enemyTeam;
     }
 
-    public override void ParseChange(BattleView battleView, BattleController controller)
+    public override void ParseChange(BattleView view, BattleController controller)
     {
         // Tell the View to spawn in the character visuals/UI elements
-        battleView.PlayerAbilityDisplayGroup.AddAbilities(playerCharacter.Abilities, controller);
-        battleView.PlayerFigureGroup.AddCharacter(playerCharacter, controller);
-        battleView.EnemyFigureGroup.AddCharacters(enemyTeam.Members, controller);
-        controller.AddTargetDisplays(enemyTeam);
+        view.PlayerAbilityDisplayGroup.AddAbilities(playerCharacter.Abilities, controller);
+        view.PlayerFigureGroup.AddCharacter(playerCharacter, controller);
+        view.EnemyFigureGroup.AddCharacters(enemyTeam.Members, controller);
+        view.BattleStatsPanel.AddPlayerStatsPanel(playerCharacter);
+        view.BattleStatsPanel.AddEnemyStatsPanels(enemyTeam);
+        view.BattleStatsPanel.DisableAllTargetSelection();
         Debug.Log("Battle Initialized.");
     }
 }

@@ -17,8 +17,9 @@ public class AbilityRulesDrawer : BetterPropertyDrawer
 
         if (foldout)
         {
-            AddProperty("targetAllEnemies");
+            AddProperty("apCost", "AP Cost");
             AddProperty("numberOfHits");
+            AddProperty("targetAllEnemies");
         }
 
         EditorGUI.EndProperty();

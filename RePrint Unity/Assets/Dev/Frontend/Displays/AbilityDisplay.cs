@@ -13,6 +13,7 @@ public class AbilityDisplay : FloatingDisplay
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI rarityText;
+    [SerializeField] private TextMeshProUGUI apCostText;
 
     [SerializeField] private string[] rarityStrings;
 
@@ -41,19 +42,47 @@ public class AbilityDisplay : FloatingDisplay
 
         nameText.text = ability.Name;
         descriptionText.text = ability.Description;
+        apCostText.text = ability.GetAbilityRules(0).APCost.ToString();
     }
 
 
-    public void RefreshSequenceState(bool expanded, int overclock)
+    public void RefreshSequenceState(bool expanded, int overclock, int availableAP, int currentTempCost)
     {
         animator.SetInteger("Overclock", overclock);
         if (overclock > -1)
+        {
             rarityText.text = rarityStrings[overclock];
+            apCostText.text = ability.GetAbilityRules(overclock).APCost.ToString();
+
+            button.Interactable = true;
+
+            // if (overclock < Ability.MAX_OVERCLOCK && ability.GetAbilityRules(overclock + 1).APCost > availableAP)
+            // {
+            //     button.Interactable = false;
+            // }
+            // else
+            // {
+            //     button.Interactable = true;
+            // }
+        }
+        else
+        {
+            apCostText.text = ability.GetAbilityRules(0).APCost.ToString();
+
+            if (ability.GetAbilityRules(0).APCost > availableAP + currentTempCost)
+            {
+                button.Interactable = false;
+            }
+            else
+            {
+                button.Interactable = true;
+            }
+        }
 
         if (currentOverclock != overclock)
         {
             currentOverclock = overclock;
-            PlaySubmitAnimation();
+            // PlaySubmitAnimation();
         }
 
         if (expanded)

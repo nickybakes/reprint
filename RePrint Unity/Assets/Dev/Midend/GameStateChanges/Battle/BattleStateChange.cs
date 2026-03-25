@@ -22,7 +22,7 @@ public class BattleStateChange : GameStateChange
 
     }
 
-    public virtual void ParseChange(BattleView battleView, BattleController controller)
+    public virtual void ParseChange(BattleView view, BattleController controller)
     {
 
     }

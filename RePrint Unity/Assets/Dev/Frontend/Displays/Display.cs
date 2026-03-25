@@ -5,11 +5,6 @@ using UnityEngine;
 /// </summary>
 public class Display : MonoBehaviour
 {
-    // /// <summary>
-    // /// Reference to the display's View.
-    // /// </summary>
-    // public View view;
-
     /// <summary>
     /// Reference to this object's Rect Transform.
     /// </summary>

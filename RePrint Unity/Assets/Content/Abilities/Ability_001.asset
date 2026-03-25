@@ -13,51 +13,56 @@ MonoBehaviour:
   m_Name: Ability_001
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Quick Slash
-  <Description>k__BackingField: 'Quick Slash description '
-  <BaseAPCost>k__BackingField: 0
+  <Description>k__BackingField: Balanced damage and chain gain Starter Action.
+  <Type>k__BackingField: 0
   <AbilityRulesOverclock0>k__BackingField:
+    apCost: 1
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock1>k__BackingField:
+    apCost: 2
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock2>k__BackingField:
+    apCost: 3
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock3>k__BackingField:
+    apCost: 4
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock4>k__BackingField:
+    apCost: 5
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityEffectsOverclock0>k__BackingField:
     list:
     - type: 0
       valueInput:
         type: 0
-        baseValue: 0
+        baseValue: 6
         maxValue: 0
       extraArithmetics:
         list: []
-    - type: 0
+    - type: 2
       valueInput:
         type: 0
-        baseValue: 0
+        baseValue: 1
         maxValue: 0
       extraArithmetics:
         list: []
@@ -66,13 +71,62 @@ MonoBehaviour:
     - type: 0
       valueInput:
         type: 0
-        baseValue: 0
+        baseValue: 8
+        maxValue: 0
+      extraArithmetics:
+        list: []
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 2
         maxValue: 0
       extraArithmetics:
         list: []
   <AbilityEffectsOverclock2>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 12
+        maxValue: 0
+      extraArithmetics:
+        list: []
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 3
+        maxValue: 0
+      extraArithmetics:
+        list: []
   <AbilityEffectsOverclock3>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 16
+        maxValue: 0
+      extraArithmetics:
+        list: []
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 4
+        maxValue: 0
+      extraArithmetics:
+        list: []
   <AbilityEffectsOverclock4>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 25
+        maxValue: 0
+      extraArithmetics:
+        list: []
+    - type: 2
+      valueInput:
+        type: 0
+        baseValue: 6
+        maxValue: 0
+      extraArithmetics:
+        list: []

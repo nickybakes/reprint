@@ -13,45 +13,115 @@ MonoBehaviour:
   m_Name: Ability_003
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Rift Cut
-  <Description>k__BackingField: rift cut descritpion
-  <BaseAPCost>k__BackingField: 0
+  <Description>k__BackingField: 'Single-hit Finisher that scales with Chain. '
+  <Type>k__BackingField: 1
   <AbilityRulesOverclock0>k__BackingField:
+    apCost: 2
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock1>k__BackingField:
+    apCost: 3
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock2>k__BackingField:
+    apCost: 4
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock3>k__BackingField:
+    apCost: 5
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityRulesOverclock4>k__BackingField:
+    apCost: 6
     targetAllEnemies: 0
     numberOfHits:
       type: 0
-      baseValue: 0
+      baseValue: 1
       maxValue: 0
   <AbilityEffectsOverclock0>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 4
+        maxValue: 0
+      extraArithmetics:
+        list:
+        - mathType: 2
+          inGameValueType: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0
   <AbilityEffectsOverclock1>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 5
+        maxValue: 0
+      extraArithmetics:
+        list:
+        - mathType: 2
+          inGameValueType: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0
   <AbilityEffectsOverclock2>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 7
+        maxValue: 0
+      extraArithmetics:
+        list:
+        - mathType: 2
+          inGameValueType: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0
   <AbilityEffectsOverclock3>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 10
+        maxValue: 0
+      extraArithmetics:
+        list:
+        - mathType: 2
+          inGameValueType: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0
   <AbilityEffectsOverclock4>k__BackingField:
-    list: []
+    list:
+    - type: 0
+      valueInput:
+        type: 0
+        baseValue: 13
+        maxValue: 0
+      extraArithmetics:
+        list:
+        - mathType: 2
+          inGameValueType: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0

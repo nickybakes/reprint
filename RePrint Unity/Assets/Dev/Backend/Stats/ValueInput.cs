@@ -11,6 +11,12 @@ public class ValueInput
 
     [SerializeField] private int maxValue;
 
+    public ValueInput(int _baseValue)
+    {
+        type = ValueType.Single;
+        baseValue = _baseValue;
+    }
+
     public int GetValue()
     {
         if (type == ValueType.Range)

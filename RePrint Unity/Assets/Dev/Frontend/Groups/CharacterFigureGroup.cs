@@ -31,4 +31,9 @@ public class CharacterFigureGroup : MonoBehaviour
     {
         AddCharacters(new List<Character>() { character }, _controller);
     }
+
+    public CharacterFigure GetFigure(Character character)
+    {
+        return characterToFigureReferences.GetValueOrDefault(character);
+    }
 }

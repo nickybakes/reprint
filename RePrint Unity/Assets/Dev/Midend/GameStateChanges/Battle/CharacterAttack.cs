@@ -14,7 +14,7 @@ public class CharacterAttack : BattleStateChange
 
     }
 
-    public override void ParseChange(BattleView battleView, BattleController controller)
+    public override void ParseChange(BattleView view, BattleController controller)
     {
 
     }

@@ -15,13 +15,13 @@ MonoBehaviour:
   visualData: {fileID: 11400000, guid: aa635bef903fa484286369d9968225f8, type: 2}
   maxHealth:
     type: 0
-    baseValue: 0
+    baseValue: 20
     maxValue: 0
   abilities:
   - {fileID: 11400000, guid: 08c2cd44da9627d48918084217f68821, type: 2}
-  - {fileID: 11400000, guid: 880fd455422f0c44a95466f0eac68aae, type: 2}
-  - {fileID: 11400000, guid: fb7d741067546254d956dc016bf1490b, type: 2}
+  - {fileID: 11400000, guid: d7b540d766d1292448097c2a9309f5c7, type: 2}
+  - {fileID: 11400000, guid: 1d0b67aff21ccf74291d0db01536fec9, type: 2}
   abilityPointsMax:
     type: 0
-    baseValue: 0
+    baseValue: 3
     maxValue: 0

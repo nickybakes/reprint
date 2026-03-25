@@ -18,6 +18,10 @@ public class BattleView : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
 
+    [field: SerializeField] public RectTransform CanvasRect { get; private set; }
+
+    [field: SerializeField] public BattleStatsPanel BattleStatsPanel { get; private set; }
+
     [field: SerializeField] public AbilityDisplayGroup PlayerAbilityDisplayGroup { get; private set; }
 
     [field: SerializeField] public CharacterFigureGroup PlayerFigureGroup { get; private set; }
@@ -124,5 +128,15 @@ public class BattleView : MonoBehaviour
                 }
             }
         }
+    }
+
+    public Vector3 WorldToCanvasPoint(Vector3 position)
+    {
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(position);
+        screenPosition.x *= CanvasRect.rect.width / (float)Camera.main.pixelWidth;
+        screenPosition.y *= CanvasRect.rect.height / (float)Camera.main.pixelHeight;
+        screenPosition.x = screenPosition.x - CanvasRect.sizeDelta.x / 2f;
+        screenPosition.y = screenPosition.y - CanvasRect.sizeDelta.y / 2f;
+        return screenPosition;
     }
 }

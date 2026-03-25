@@ -9,15 +9,19 @@ public class PlayerTurnStart : BattleStateChange
         get { return BattleStateChangeType.PlayerTurnStart; }
     }
 
-    public PlayerTurnStart()
-    {
+    private CharacterStats playerAbilitySequencingStats;
 
+    public PlayerTurnStart(CharacterStats _playerAbilitySequencingStats)
+    {
+        playerAbilitySequencingStats = _playerAbilitySequencingStats;
     }
 
-    public override void ParseChange(BattleView battleView, BattleController controller)
+    public override void ParseChange(BattleView view, BattleController controller)
     {
         Debug.Log("Player turn start!");
-        battleView.PlayerAbilityDisplayGroup.ResetSequenceState();
-        battleView.EnablePlayerInteractions();
+        view.PlayerAbilityDisplayGroup.ResetSequenceState(playerAbilitySequencingStats);
+        view.BattleStatsPanel.DisableAllTargetSelection();
+        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
+        view.EnablePlayerInteractions();
     }
 }

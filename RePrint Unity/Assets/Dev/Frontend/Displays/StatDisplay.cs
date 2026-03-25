@@ -4,15 +4,13 @@ using UnityEngine;
 public class StatDisplay : MonoBehaviour
 {
 
-    [SerializeField]
-    private UIMeter meter;
+    [SerializeField] private Meter meter;
 
-    [SerializeField]
-    private TextMeshProUGUI fractionText;
+    [SerializeField] private TextMeshProUGUI fractionText;
 
     public void UpdateStatDisplay(float numerator, float denominator)
     {
-        if (meter)
+        if (meter && denominator != 0)
         {
             meter.UpdateFill(numerator / denominator);
         }

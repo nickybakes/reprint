@@ -8,8 +8,7 @@ public class AbilityData : ScriptableObject
     [field: SerializeField] public string Name { get; private set; }
 
     [field: SerializeField, TextArea] public string Description { get; private set; }
-
-    [field: SerializeField] public int BaseAPCost { get; private set; }
+    [field: SerializeField] public AbilityType Type { get; private set; }
 
     [field: SerializeField, Header("Ability Rules")] public AbilityRules AbilityRulesOverclock0 { get; private set; }
     [field: SerializeField] public AbilityRules AbilityRulesOverclock1 { get; private set; }

@@ -82,7 +82,8 @@ public class BattleManager : MonoBehaviour
     public virtual void StartPlayerTurn()
     {
         playerAbilitySequence = new AbilitySequence();
-        pendingBattleChanges.Add(new PlayerTurnStart());
+        playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
+        pendingBattleChanges.Add(new PlayerTurnStart(playerCharacter.AbilitySequencingStats));
         SubmitChanges();
     }
 
@@ -99,18 +100,14 @@ public class BattleManager : MonoBehaviour
 
     public virtual void PlayerSubmitAbility(Ability ability)
     {
-        playerAbilitySequence.AddOrOverclockAbility(ability);
-        Debug.Log("Player submit ability " + ability.Name);
-        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence));
-        SubmitChanges();
+        playerAbilitySequence.AddOrOverclockAbility(ability, playerCharacter.AbilitySequencingStats.AbilityPoints);
+        SubmitPlayerChangeAbilitySequence();
     }
 
     public virtual void PlayerSubmitTarget(Character target)
     {
         playerAbilitySequence.SetLastAbilityTarget(target);
-        Debug.Log("Player submit target " + target.Name);
-        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence));
-        SubmitChanges();
+        SubmitPlayerChangeAbilitySequence();
     }
 
     public virtual void PlayerSubmitConfirmAbilitySequence()
@@ -123,9 +120,15 @@ public class BattleManager : MonoBehaviour
         if (playerAbilitySequence != null)
         {
             playerAbilitySequence.StepBackInSequenceBuilding();
-            pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence));
-            SubmitChanges();
+            SubmitPlayerChangeAbilitySequence();
         }
+    }
+
+    protected virtual void SubmitPlayerChangeAbilitySequence()
+    {
+        playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, playerCharacter.AbilitySequencingStats));
+        SubmitChanges();
     }
 
     // public void SetupBattle()

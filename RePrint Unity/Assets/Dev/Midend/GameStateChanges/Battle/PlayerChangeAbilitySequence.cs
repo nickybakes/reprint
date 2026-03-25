@@ -11,13 +11,26 @@ public class PlayerChangeAbilitySequence : BattleStateChange
 
     private AbilitySequence abilitySequence;
 
-    public PlayerChangeAbilitySequence(AbilitySequence _abilitySequence)
+    private CharacterStats playerAbilitySequencingStats;
+
+
+    public PlayerChangeAbilitySequence(AbilitySequence _abilitySequence, CharacterStats _playerAbilitySequencingStats)
     {
         abilitySequence = _abilitySequence;
+        playerAbilitySequencingStats = _playerAbilitySequencingStats;
     }
 
-    public override void ParseChange(BattleView battleView, BattleController controller)
+    public override void ParseChange(BattleView view, BattleController controller)
     {
-        battleView.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence);
+        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
+        if (abilitySequence.Sequence.Count > 0 && !abilitySequence.GetLastSelection().TargetIsSet)
+        {
+            view.BattleStatsPanel.EnableEnemySelection();
+        }
+        else
+        {
+            view.BattleStatsPanel.DisableAllTargetSelection();
+        }
+        view.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence, playerAbilitySequencingStats);
     }
 }

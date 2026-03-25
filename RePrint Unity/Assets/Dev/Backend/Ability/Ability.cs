@@ -10,6 +10,7 @@ public class Ability
 
     public string Name { get { return baseData.Name; } }
     public string Description { get { return baseData.Description; } }
+    public AbilityType Type { get { return baseData.Type; } }
 
     private AbilityData baseData;
     private List<List<AbilityEffect>> abilityEffectsForEachOverclock;
@@ -44,4 +45,12 @@ public class Ability
     {
         return abilityRulesForEachOverclock[overclock];
     }
+}
+
+public enum AbilityType
+{
+    Starter,
+    Finisher,
+    Utility,
+    Charger,
 }

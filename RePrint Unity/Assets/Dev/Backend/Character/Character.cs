@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 public class Character
 {
 
     public CharacterStats Stats { get; private set; }
+    public CharacterStats AbilitySequencingStats { get; private set; }
 
     public InGameValues IncomingValues { get; private set; }
 
@@ -58,6 +60,19 @@ public class Character
         foreach (AbilityData abilityData in data.abilities)
         {
             Abilities.Add(new Ability(abilityData));
+        }
+    }
+
+    public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
+    {
+        AbilitySequencingStats = new CharacterStats(Stats);
+        foreach (AbilitySelection abilitySelection in abilitySequence.Sequence)
+        {
+            AbilitySequencingStats.AbilityPoints -= abilitySelection.Ability.GetAbilityRules(abilitySelection.Overclock).APCost;
+            if (AbilitySequencingStats.AbilityPoints < 0)
+            {
+                AbilitySequencingStats.AbilityPoints = 0;
+            }
         }
     }
 

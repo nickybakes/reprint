@@ -11,8 +11,6 @@ public class AbilityDisplayGroup : MonoBehaviour
     /// </summary>
     [SerializeField] private Transform spawnParent;
 
-    // [SerializeField] private Transform actionStatsDisplay;
-
     [SerializeField] private AbilityDisplay abilityDisplayPrefab;
 
     private Dictionary<Ability, AbilityDisplay> abilityToDisplayReferences;
@@ -35,15 +33,15 @@ public class AbilityDisplayGroup : MonoBehaviour
         }
     }
 
-    public void ResetSequenceState()
+    public void ResetSequenceState(CharacterStats stats)
     {
         foreach (AbilityDisplay display in abilityToDisplayReferences.Values)
         {
-            display.RefreshSequenceState(false, -1);
+            display.RefreshSequenceState(false, -1, stats.AbilityPoints, 0);
         }
     }
 
-    public void RefreshSequenceState(AbilitySequence abilitySequence)
+    public void RefreshSequenceState(AbilitySequence abilitySequence, CharacterStats stats)
     {
         List<AbilitySelection> sequence = abilitySequence.Sequence;
 
@@ -59,18 +57,22 @@ public class AbilityDisplayGroup : MonoBehaviour
                 {
                     if (lastSelection.Ability == ability)
                     {
-                        display.RefreshSequenceState(true, lastSelection.Overclock);
+                        display.RefreshSequenceState(true, lastSelection.Overclock, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
                     }
                     else
                     {
-                        display.RefreshSequenceState(false, -1);
+                        display.RefreshSequenceState(false, -1, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
                     }
+                }
+                else
+                {
+                    display.RefreshSequenceState(false, -1, stats.AbilityPoints, 0);
                 }
             }
         }
         else
         {
-            ResetSequenceState();
+            ResetSequenceState(stats);
         }
     }
 }
