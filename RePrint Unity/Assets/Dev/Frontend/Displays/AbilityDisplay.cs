@@ -10,10 +10,10 @@ public class AbilityDisplay : FloatingDisplay
     [SerializeField] private BetterButton button;
 
 
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
-    [SerializeField] private TextMeshProUGUI rarityText;
-    [SerializeField] private TextMeshProUGUI apCostText;
+    [SerializeField] private TextDisplay nameText;
+    [SerializeField] private TextDisplay descriptionText;
+    [SerializeField] private TextDisplay rarityText;
+    [SerializeField] private TextDisplay apCostText;
 
     [SerializeField] private string[] rarityStrings;
 
@@ -40,9 +40,9 @@ public class AbilityDisplay : FloatingDisplay
         ability = _ability;
         controller = _controller;
 
-        nameText.text = ability.Name;
-        descriptionText.text = ability.Description;
-        apCostText.text = ability.GetAbilityRules(0).APCost.ToString();
+        nameText.SetTextNoBump(ability.Name);
+        descriptionText.SetTextNoBump(ability.Description);
+        apCostText.SetTextNoBump(ability.GetAbilityRules(0).APCost.ToString());
     }
 
 
@@ -51,8 +51,8 @@ public class AbilityDisplay : FloatingDisplay
         animator.SetInteger("Overclock", overclock);
         if (overclock > -1)
         {
-            rarityText.text = rarityStrings[overclock];
-            apCostText.text = ability.GetAbilityRules(overclock).APCost.ToString();
+            rarityText.SetText(rarityStrings[overclock]);
+            apCostText.SetText(ability.GetAbilityRules(overclock).APCost.ToString());
 
             button.Interactable = true;
 
@@ -67,7 +67,7 @@ public class AbilityDisplay : FloatingDisplay
         }
         else
         {
-            apCostText.text = ability.GetAbilityRules(0).APCost.ToString();
+            apCostText.SetText(ability.GetAbilityRules(0).APCost.ToString());
 
             if (ability.GetAbilityRules(0).APCost > availableAP + currentTempCost)
             {
@@ -144,6 +144,16 @@ public class AbilityDisplay : FloatingDisplay
     public void SubmitAbility()
     {
         controller.SubmitAbility(ability);
+    }
+
+    public void Hide()
+    {
+        animator.SetTrigger("Hide");
+    }
+
+    public void Show()
+    {
+        animator.SetTrigger("Show");
     }
 
     void Update()

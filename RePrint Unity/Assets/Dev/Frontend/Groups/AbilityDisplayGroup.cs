@@ -75,4 +75,20 @@ public class AbilityDisplayGroup : MonoBehaviour
             ResetSequenceState(stats);
         }
     }
+
+    public void Hide()
+    {
+        foreach (AbilityDisplay display in abilityToDisplayReferences.Values)
+        {
+            display.Hide();
+        }
+    }
+
+    public void Show()
+    {
+        foreach (AbilityDisplay display in abilityToDisplayReferences.Values)
+        {
+            display.Show();
+        }
+    }
 }

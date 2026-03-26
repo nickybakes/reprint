@@ -3,10 +3,11 @@ using UnityEngine;
 public enum BattleStateChangeType
 {
     Undefined = -1,
-    CharacterAttack,
+    PlayerDoAbility,
     PlayerTurnStart,
     BattleInitialized,
     PlayerChangeAbilitySequence,
+    PlayerTurnEnd,
 }
 
 public class BattleStateChange : GameStateChange

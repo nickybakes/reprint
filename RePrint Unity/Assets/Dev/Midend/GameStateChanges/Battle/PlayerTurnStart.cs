@@ -22,6 +22,9 @@ public class PlayerTurnStart : BattleStateChange
         view.PlayerAbilityDisplayGroup.ResetSequenceState(playerAbilitySequencingStats);
         view.BattleStatsPanel.DisableAllTargetSelection();
         view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
+        view.PlayerConfirmSequenceButton.Show();
+        view.PlayerAbilitySequenceGroup.Clear();
+        view.PlayerAbilityDisplayGroup.Show();
         view.EnablePlayerInteractions();
     }
 }

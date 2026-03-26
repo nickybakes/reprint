@@ -22,6 +22,7 @@ public class PlayerChangeAbilitySequence : BattleStateChange
 
     public override void ParseChange(BattleView view, BattleController controller)
     {
+        view.PlayerAbilitySequenceGroup.Refresh(abilitySequence);
         view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
         if (abilitySequence.Sequence.Count > 0 && !abilitySequence.GetLastSelection().TargetIsSet)
         {

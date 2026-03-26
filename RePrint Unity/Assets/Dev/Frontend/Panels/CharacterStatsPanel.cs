@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class CharacterStatsPanel : Panel
@@ -6,6 +7,7 @@ public class CharacterStatsPanel : Panel
     [SerializeField] protected StatDisplay healthDisplay;
 
     [SerializeField] protected StatDisplay abilityPointsDisplay;
+    [SerializeField] protected TextMeshProUGUI chainTextDisplay;
 
     /// <summary>
     /// The currently displayed states. When a character's stats get updated, we can reference these old stats to
@@ -28,6 +30,7 @@ public class CharacterStatsPanel : Panel
     {
         UpdateHealth(stats);
         UpdateAbilityPoints(stats);
+        UpdateChain(stats);
     }
 
     private void UpdateHealth(CharacterStats stats)
@@ -48,5 +51,14 @@ public class CharacterStatsPanel : Panel
         }
         displayedStats.AbilityPoints = stats.AbilityPoints;
         displayedStats.AbilityPointsMax = stats.AbilityPointsMax;
+    }
+
+    private void UpdateChain(CharacterStats stats)
+    {
+        if (chainTextDisplay)
+        {
+            chainTextDisplay.SetText(stats.Chain.ToString());
+        }
+        displayedStats.Chain = stats.Chain;
     }
 }

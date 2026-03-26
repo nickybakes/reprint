@@ -47,6 +47,7 @@ public class Character
         IncomingValues = new InGameValues();
 
         Stats = new CharacterStats();
+        AbilitySequencingStats = new CharacterStats();
 
         Stats.HealthMax = data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
@@ -63,9 +64,14 @@ public class Character
         }
     }
 
+    public void RefillAbilityPoints()
+    {
+        Stats.AbilityPoints = Stats.AbilityPointsMax;
+    }
+
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
     {
-        AbilitySequencingStats = new CharacterStats(Stats);
+        AbilitySequencingStats.CopyFrom(Stats);
         foreach (AbilitySelection abilitySelection in abilitySequence.Sequence)
         {
             AbilitySequencingStats.AbilityPoints -= abilitySelection.Ability.GetAbilityRules(abilitySelection.Overclock).APCost;
@@ -74,6 +80,11 @@ public class Character
                 AbilitySequencingStats.AbilityPoints = 0;
             }
         }
+    }
+
+    public void ApplyAbilitySequencingStats()
+    {
+        Stats.CopyFrom(AbilitySequencingStats);
     }
 
     public void RefreshIncomingValues(int numberOfEnemies)

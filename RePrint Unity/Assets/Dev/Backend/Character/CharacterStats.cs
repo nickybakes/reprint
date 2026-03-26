@@ -17,10 +17,15 @@ public record CharacterStats
 
     public CharacterStats(CharacterStats copySource)
     {
-        Health = copySource.Health;
-        HealthMax = copySource.HealthMax;
-        Chain = copySource.Chain;
-        AbilityPoints = copySource.AbilityPoints;
-        AbilityPointsMax = copySource.AbilityPointsMax;
+        CopyFrom(copySource);
+    }
+
+    public void CopyFrom(CharacterStats source)
+    {
+        Health = source.Health;
+        HealthMax = source.HealthMax;
+        Chain = source.Chain;
+        AbilityPoints = source.AbilityPoints;
+        AbilityPointsMax = source.AbilityPointsMax;
     }
 }

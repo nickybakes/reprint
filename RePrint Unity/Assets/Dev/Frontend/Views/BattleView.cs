@@ -27,6 +27,8 @@ public class BattleView : MonoBehaviour
     [field: SerializeField] public CharacterFigureGroup PlayerFigureGroup { get; private set; }
 
     [field: SerializeField] public CharacterFigureGroup EnemyFigureGroup { get; private set; }
+    [field: SerializeField] public BetterButton PlayerConfirmSequenceButton { get; private set; }
+    [field: SerializeField] public AbilitySequenceGroup PlayerAbilitySequenceGroup { get; private set; }
 
     /// <summary>
     /// A queue of game changes that the view manager should run through and display.

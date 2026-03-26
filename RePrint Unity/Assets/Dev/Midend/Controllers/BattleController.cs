@@ -25,6 +25,11 @@ public class BattleController : MonoBehaviour
         battleManager.PlayerSubmitTarget(target);
     }
 
+    public void ConfirmAbilitySequence()
+    {
+        battleManager.PlayerSubmitConfirmAbilitySequence();
+    }
+
     public void BackInput()
     {
         battleManager.PlayerSubmitBack();

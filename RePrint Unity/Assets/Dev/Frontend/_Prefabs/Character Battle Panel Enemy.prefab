@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattlePanel
   healthDisplay: {fileID: 5739728231041831310}
   abilityPointsDisplay: {fileID: 0}
+  chainTextDisplay: {fileID: 0}
   targetButton: {fileID: 2422015551692095317}
 --- !u!1 &4872243099768213885
 GameObject:
@@ -491,6 +492,42 @@ PrefabInstance:
     - target: {fileID: 6360141901769425666, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
       propertyPath: m_Name
       value: HP Display
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100.588
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 38.0131
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601394382673430934, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107150415969816039, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_text
+      value: 20/20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107150415969816039, guid: 94d41b4c457e4a54c86e08349820d5d1, type: 3}
+      propertyPath: m_fontSize
+      value: 34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

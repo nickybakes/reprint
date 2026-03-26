@@ -3,20 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum TeamIndex
-{
-    Player,
-    Enemy,
-}
-
 public class BattleManager : MonoBehaviour
 {
     /// <summary>
     /// Sends out the current list of game changes in this event.
     /// </summary>
     [SerializeField] private UnityEvent<List<BattleStateChange>> submitChangesEvent;
-
-    [SerializeField] private BattleUIManager battleUIManagerPrefrab;
 
     /// <summary>
     /// List of changes to the battle that have been calculated but not shown to the player yet.
@@ -82,6 +74,7 @@ public class BattleManager : MonoBehaviour
     public virtual void StartPlayerTurn()
     {
         playerAbilitySequence = new AbilitySequence();
+        playerCharacter.RefillAbilityPoints();
         playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
         pendingBattleChanges.Add(new PlayerTurnStart(playerCharacter.AbilitySequencingStats));
         SubmitChanges();
@@ -112,7 +105,12 @@ public class BattleManager : MonoBehaviour
 
     public virtual void PlayerSubmitConfirmAbilitySequence()
     {
+        playerCharacter.ApplyAbilitySequencingStats();
 
+
+
+        // Check if all enemies are eliminated. If not, next turn!
+        StartPlayerTurn();
     }
 
     public virtual void PlayerSubmitBack()

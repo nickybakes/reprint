@@ -1,12 +1,20 @@
 using TMPro;
 using UnityEngine;
 
-public class StatDisplay : MonoBehaviour
+public class StatDisplay : Display
 {
 
     [SerializeField] private Meter meter;
 
-    [SerializeField] private TextMeshProUGUI fractionText;
+    [SerializeField] private TextDisplay fractionText;
+
+    /// <summary>
+    /// Set up rect transform data.
+    /// </summary>
+    void Awake()
+    {
+        SetupRectTransform();
+    }
 
     public void UpdateStatDisplay(float numerator, float denominator)
     {
@@ -14,6 +22,6 @@ public class StatDisplay : MonoBehaviour
         {
             meter.UpdateFill(numerator / denominator);
         }
-        fractionText.text = numerator.ToString() + '/' + denominator.ToString();
+        fractionText.SetText(numerator.ToString() + '/' + denominator.ToString());
     }
 }
