@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class AbilityEffectListDrawer : BetterListDrawer
     {
         base.OnGUI(position, property, label);
         EditorGUI.BeginProperty(position, label, property);
-        AddList("list", "Add Ability Effect");
+        AddList("list", "Add Ability Effect", GetWidth(property), "listFoldout", "foldouts");
         EditorGUI.EndProperty();
     }
 

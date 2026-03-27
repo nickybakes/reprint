@@ -9,7 +9,7 @@ public class ArithmeticListDrawer : BetterListDrawer
     {
         base.OnGUI(position, property, label);
         EditorGUI.BeginProperty(position, label, property);
-        AddList("list", "Add Arithmetic", .5f);
+        AddList("list", "Add Arithmetic", .5f, "listFoldout", "foldouts");
         EditorGUI.EndProperty();
     }
 

@@ -18,9 +18,9 @@ public class BetterEditorListDrawer : BetterListDrawer
         if (objectTypeName.EndsWith("s"))
             objectTypeName = objectTypeName.TrimEnd('s');
 
-        float width = Math.Min(2f / property.depth, 1f);
+        float width = GetWidth(property);
 
-        AddList("list", "Add " + objectTypeName, width);
+        AddList("list", "Add " + objectTypeName, width, "listFoldout", "foldouts");
         EditorGUI.EndProperty();
     }
 

@@ -15,14 +15,36 @@ MonoBehaviour:
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
-        list:
-        - minChainThreshold: 0
-        - minChainThreshold: 0
+        list: []
+        listFoldout: 0
+        foldouts: 
       effects:
-        list:
-        - chainGainAmount:
-            type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list: []
+        list: []
+        listFoldout: 0
+        foldouts: 
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    listFoldout: 1
+    foldouts: 01010101
