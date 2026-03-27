@@ -9,7 +9,7 @@ public class BattleStatsPanel : Panel
     [SerializeField] private CharacterBattlePanel enemyBattlePanelPrefab;
 
     public CharacterBattlePanel PlayerStatPanel { get; private set; }
-    public List<CharacterBattlePanel> EnemyStatPanels { get; private set; }
+    public Dictionary<Character, CharacterBattlePanel> EnemyStatPanels { get; private set; }
 
     /// <summary>
     /// Set up rect transform data.
@@ -17,7 +17,7 @@ public class BattleStatsPanel : Panel
     void Awake()
     {
         SetupRectTransform();
-        EnemyStatPanels = new List<CharacterBattlePanel>();
+        EnemyStatPanels = new Dictionary<Character, CharacterBattlePanel>();
     }
 
     public void AddPlayerStatsPanel(Character character)
@@ -33,13 +33,24 @@ public class BattleStatsPanel : Panel
         {
             CharacterBattlePanel panel = Instantiate(enemyBattlePanelPrefab, transform);
             panel.SetupPanel(view.EnemyFigureGroup.GetFigure(enemy), enemy, view, controller);
-            EnemyStatPanels.Add(panel);
+            EnemyStatPanels.Add(enemy, panel);
+        }
+    }
+
+    public void UpdateAllEnemyStats(Dictionary<Character, CharacterStats> stats)
+    {
+        foreach (Character enemy in stats.Keys)
+        {
+            if (EnemyStatPanels.ContainsKey(enemy))
+            {
+                EnemyStatPanels[enemy].UpdateStats(stats[enemy]);
+            }
         }
     }
 
     public void EnableEnemySelection()
     {
-        foreach (CharacterBattlePanel panel in EnemyStatPanels)
+        foreach (CharacterBattlePanel panel in EnemyStatPanels.Values)
         {
             panel.EnableTargetSelection();
         }
@@ -53,7 +64,7 @@ public class BattleStatsPanel : Panel
     public void DisableAllTargetSelection()
     {
         PlayerStatPanel.DisableTargetSelection();
-        foreach (CharacterBattlePanel panel in EnemyStatPanels)
+        foreach (CharacterBattlePanel panel in EnemyStatPanels.Values)
         {
             panel.DisableTargetSelection();
         }

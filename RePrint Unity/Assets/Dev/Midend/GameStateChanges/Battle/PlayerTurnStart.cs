@@ -4,21 +4,20 @@ using UnityEngine;
 public class PlayerTurnStart : BattleStateChange
 {
 
-    public new BattleStateChangeType Type
-    {
-        get { return BattleStateChangeType.PlayerTurnStart; }
-    }
-
     private CharacterStats playerAbilitySequencingStats;
 
-    public PlayerTurnStart(CharacterStats _playerAbilitySequencingStats)
+    private int turnIndex;
+
+    public PlayerTurnStart(CharacterStats _playerAbilitySequencingStats, int _turnIndex)
     {
         playerAbilitySequencingStats = _playerAbilitySequencingStats;
+        turnIndex = _turnIndex;
     }
 
     public override void ParseChange(BattleView view, BattleController controller)
     {
         Debug.Log("Player turn start!");
+        view.TurnDisplay.SetText("Turn " + (turnIndex + 1));
         view.PlayerAbilityDisplayGroup.ResetSequenceState(playerAbilitySequencingStats);
         view.BattleStatsPanel.DisableAllTargetSelection();
         view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);

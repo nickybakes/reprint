@@ -4,11 +4,6 @@ using UnityEngine;
 public class PlayerChangeAbilitySequence : BattleStateChange
 {
 
-    public new BattleStateChangeType Type
-    {
-        get { return BattleStateChangeType.PlayerChangeAbilitySequence; }
-    }
-
     private AbilitySequence abilitySequence;
 
     private CharacterStats playerAbilitySequencingStats;
@@ -26,7 +21,16 @@ public class PlayerChangeAbilitySequence : BattleStateChange
         view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
         if (abilitySequence.Sequence.Count > 0 && !abilitySequence.GetLastSelection().TargetIsSet)
         {
-            view.BattleStatsPanel.EnableEnemySelection();
+            AbilitySelection selection = abilitySequence.GetLastSelection();
+            if (selection.Ability.GetAbilityRules(selection.Overclock).CanTargetEnemies)
+            {
+                view.BattleStatsPanel.EnableEnemySelection();
+            }
+
+            if (selection.Ability.GetAbilityRules(selection.Overclock).CanTargetPlayer)
+            {
+                view.BattleStatsPanel.EnablePlayerSelection();
+            }
         }
         else
         {

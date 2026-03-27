@@ -16,24 +16,36 @@ public class AbilityEffectListDrawer : BetterListDrawer
     public override string GetNameOfElement(SerializedProperty element, int index)
     {
         SerializedProperty typeProperty = element.FindPropertyRelative("type");
+        AbilityEffectType type = (AbilityEffectType)typeProperty.enumValueIndex;
         string[] displayNames = typeProperty.enumDisplayNames;
 
-        string name = (index + 1).ToString() + ": " + displayNames[typeProperty.enumValueIndex];
+        string name = (index + 1).ToString() + ": " + displayNames[(int)type];
 
-        SerializedProperty valueInputProp = element.FindPropertyRelative("valueInput");
-        SerializedProperty valueTypeProp = valueInputProp.FindPropertyRelative("type");
-        SerializedProperty valueBaseProp = valueInputProp.FindPropertyRelative("baseValue");
-        SerializedProperty valueMaxProp = valueInputProp.FindPropertyRelative("maxValue");
-        ValueType valueType = (ValueType)valueTypeProp.enumValueIndex;
-
-        string valueString = " (" + valueBaseProp.intValue.ToString();
-
-        if (valueType == ValueType.Range)
+        switch (type)
         {
-            valueString += " to " + valueMaxProp.intValue.ToString();
+            case AbilityEffectType.RemoveAllChain:
+                break;
+
+            default:
+                SerializedProperty valueInputProp = element.FindPropertyRelative("valueInput");
+                SerializedProperty valueTypeProp = valueInputProp.FindPropertyRelative("type");
+                SerializedProperty valueBaseProp = valueInputProp.FindPropertyRelative("baseValue");
+                SerializedProperty valueMaxProp = valueInputProp.FindPropertyRelative("maxValue");
+                ValueType valueType = (ValueType)valueTypeProp.enumValueIndex;
+
+                string valueString = " (" + valueBaseProp.intValue.ToString();
+
+                if (valueType == ValueType.Range)
+                {
+                    valueString += " to " + valueMaxProp.intValue.ToString();
+                }
+
+                name += valueString + ")";
+                break;
+
         }
 
-        name += valueString + ")";
+
 
         return name;
     }

@@ -23,5 +23,6 @@ public enum AbilityEffectType
     GainDodge,
     GainChain,
     ApplyStatusEffect,
-    CooldownAbility
+    CooldownAbility,
+    RemoveAllChain
 }

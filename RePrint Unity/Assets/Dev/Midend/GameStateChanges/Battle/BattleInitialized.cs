@@ -4,11 +4,6 @@ using UnityEngine;
 public class BattleInitialized : BattleStateChange
 {
 
-    public new BattleStateChangeType Type
-    {
-        get { return BattleStateChangeType.BattleInitialized; }
-    }
-
     private Character playerCharacter;
     private Team enemyTeam;
 

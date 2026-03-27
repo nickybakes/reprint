@@ -6,6 +6,7 @@ public record CharacterStats
     public int HealthMax { get; set; }
 
     public int Chain { get; set; }
+    public int Dodge { get; set; }
 
     public int AbilityPoints { get; set; }
     public int AbilityPointsMax { get; set; }
@@ -25,6 +26,7 @@ public record CharacterStats
         Health = source.Health;
         HealthMax = source.HealthMax;
         Chain = source.Chain;
+        Dodge = source.Dodge;
         AbilityPoints = source.AbilityPoints;
         AbilityPointsMax = source.AbilityPointsMax;
     }

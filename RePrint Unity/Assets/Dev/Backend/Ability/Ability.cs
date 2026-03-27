@@ -1,7 +1,15 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+
+public enum AbilityType
+{
+    Starter,
+    Finisher,
+    Utility,
+    Charger,
+}
 
 [Serializable]
 public class Ability
@@ -45,12 +53,4 @@ public class Ability
     {
         return abilityRulesForEachOverclock[overclock];
     }
-}
-
-public enum AbilityType
-{
-    Starter,
-    Finisher,
-    Utility,
-    Charger,
 }

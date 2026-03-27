@@ -16,6 +16,16 @@ public class Team
     /// </summary>
     public List<Character> Members { get => members; }
 
+    /// <summary>
+    /// The list of Characters in this Team in turn order.
+    /// </summary>
+    private List<Character> membersInTurnOrder;
+
+    /// <summary>
+    /// Public getter for the list of Characters in this Team in turn order.
+    /// </summary>
+    public List<Character> MembersInTurnOrder { get => membersInTurnOrder; }
+
     public Team()
     {
         members = new List<Character>();
@@ -64,5 +74,36 @@ public class Team
                 num++;
         }
         return members.Count;
+    }
+
+    public void ApplyPhysicalDamageToTeam(int damage)
+    {
+        foreach (Character member in members)
+        {
+            member.ApplyPhysicalDamage(damage);
+        }
+    }
+
+    public void CalculateTurnOrder(Dictionary<Character, int> priorities)
+    {
+        membersInTurnOrder = new List<Character>();
+        List<Character> remainingMembers = new List<Character>(members);
+
+        while (remainingMembers.Count > 0)
+        {
+            Character highestPriorityMember = remainingMembers[0];
+            int highestPriority = -1;
+            foreach (Character member in remainingMembers)
+            {
+                if (priorities.ContainsKey(member) && priorities[member] > highestPriority)
+                {
+                    highestPriority = priorities[member];
+                    highestPriorityMember = member;
+                }
+            }
+
+            membersInTurnOrder.Add(highestPriorityMember);
+            remainingMembers.Remove(highestPriorityMember);
+        }
     }
 }

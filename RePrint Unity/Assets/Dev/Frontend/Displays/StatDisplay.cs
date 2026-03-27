@@ -6,7 +6,13 @@ public class StatDisplay : Display
 
     [SerializeField] private Meter meter;
 
-    [SerializeField] private TextDisplay fractionText;
+    [SerializeField] private TextDisplay textDisplay;
+
+    [SerializeField] private DifferenceDisplayPool differenceDisplayPool;
+
+    private float currentValue;
+
+    private bool valueNotSet;
 
     /// <summary>
     /// Set up rect transform data.
@@ -16,12 +22,33 @@ public class StatDisplay : Display
         SetupRectTransform();
     }
 
-    public void UpdateStatDisplay(float numerator, float denominator)
+    public void DisplayValue(float value)
+    {
+        textDisplay.SetText(value.ToString());
+        DisplayDifference(value);
+    }
+
+    public void DisplayFraction(float numerator, float denominator)
     {
         if (meter && denominator != 0)
         {
             meter.UpdateFill(numerator / denominator);
         }
-        fractionText.SetText(numerator.ToString() + '/' + denominator.ToString());
+        textDisplay.SetText(numerator.ToString() + '/' + denominator.ToString());
+
+        DisplayDifference(numerator);
+    }
+
+    public void DisplayDifference(float value)
+    {
+        if (valueNotSet && currentValue != value)
+        {
+            if (differenceDisplayPool)
+            {
+                differenceDisplayPool.AddText((int)currentValue, (int)value);
+            }
+        }
+        currentValue = value;
+        valueNotSet = true;
     }
 }

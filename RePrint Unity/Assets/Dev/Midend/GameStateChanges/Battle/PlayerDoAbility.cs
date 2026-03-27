@@ -5,26 +5,19 @@ using UnityEngine;
 public class PlayerDoAbility : BattleStateChange
 {
 
-    public new BattleStateChangeType Type
-    {
-        get { return BattleStateChangeType.PlayerDoAbility; }
-    }
-
-    private CharacterStats playerStats;
-
-    private List<CharacterStats> enemyStats;
+    private AbilityResults results;
 
     private AbilitySelection abilitySelection;
 
-    public PlayerDoAbility(AbilitySelection _abilitySelection, CharacterStats _playerStats, List<CharacterStats> _enemyStats)
+    public PlayerDoAbility(AbilitySelection _abilitySelection, AbilityResults _results)
     {
         abilitySelection = _abilitySelection;
-        playerStats = _playerStats;
-        enemyStats = _enemyStats;
+        results = _results;
     }
 
     public override void ParseChange(BattleView view, BattleController controller)
     {
-
+        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(results.PlayerStatsAfter);
+        view.BattleStatsPanel.UpdateAllEnemyStats(results.EnemyStatsAfter);
     }
 }

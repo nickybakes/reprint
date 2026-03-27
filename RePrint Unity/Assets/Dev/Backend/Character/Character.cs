@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Character
 {
@@ -10,6 +11,8 @@ public class Character
     public InGameValues IncomingValues { get; private set; }
 
     public List<Ability> Abilities { get; private set; }
+
+    public Dictionary<Character, int> DodgePriorities { get; private set; }
 
     public string Name { get; private set; }
 
@@ -69,6 +72,12 @@ public class Character
         Stats.AbilityPoints = Stats.AbilityPointsMax;
     }
 
+    public void ResetDodge()
+    {
+        DodgePriorities = new Dictionary<Character, int>();
+        Stats.Dodge = 0;
+    }
+
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
     {
         AbilitySequencingStats.CopyFrom(Stats);
@@ -80,6 +89,43 @@ public class Character
                 AbilitySequencingStats.AbilityPoints = 0;
             }
         }
+    }
+
+    public void ApplyPhysicalDamage(int damage)
+    {
+        //TODO: Use any resistances on the victim to lessen the damage
+
+        // Use dodge first
+        int tempDamage = damage;
+        damage = Math.Max(0, damage - Stats.Dodge);
+        Stats.Dodge = Math.Max(0, Stats.Dodge - tempDamage);
+
+        if (damage > 0)
+        {
+            Stats.Health -= damage;
+            Stats.Chain = 0;
+        }
+    }
+
+    public void ApplyChain(int chain)
+    {
+        Stats.Chain += chain;
+    }
+
+    public void ApplyDodge(int dodge, Character target)
+    {
+        if (target != this)
+        {
+            if (DodgePriorities.ContainsKey(target))
+            {
+                DodgePriorities[target] += dodge;
+            }
+            else
+            {
+                DodgePriorities.Add(target, dodge);
+            }
+        }
+        Stats.Dodge += dodge;
     }
 
     public void ApplyAbilitySequencingStats()

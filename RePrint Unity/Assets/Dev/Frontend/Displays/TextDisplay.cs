@@ -24,7 +24,7 @@ public class TextDisplay : Display
     /// <summary>
     /// The original material of the text when awoken.
     /// </summary>
-    private Material normalMaterial;
+    protected Material normalMaterial;
 
     /// <summary>
     /// Sets up display rect and original text material.

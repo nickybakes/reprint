@@ -7,7 +7,8 @@ public class CharacterStatsPanel : Panel
     [SerializeField] protected StatDisplay healthDisplay;
 
     [SerializeField] protected StatDisplay abilityPointsDisplay;
-    [SerializeField] protected TextMeshProUGUI chainTextDisplay;
+    [SerializeField] protected StatDisplay chainDisplay;
+    [SerializeField] protected StatDisplay dodgeDisplay;
 
     /// <summary>
     /// The currently displayed states. When a character's stats get updated, we can reference these old stats to
@@ -31,13 +32,14 @@ public class CharacterStatsPanel : Panel
         UpdateHealth(stats);
         UpdateAbilityPoints(stats);
         UpdateChain(stats);
+        UpdateDodge(stats);
     }
 
     private void UpdateHealth(CharacterStats stats)
     {
         if (healthDisplay)
         {
-            healthDisplay.UpdateStatDisplay(stats.Health, stats.HealthMax);
+            healthDisplay.DisplayFraction(stats.Health, stats.HealthMax);
         }
         displayedStats.Health = stats.Health;
         displayedStats.HealthMax = stats.HealthMax;
@@ -47,7 +49,7 @@ public class CharacterStatsPanel : Panel
     {
         if (abilityPointsDisplay)
         {
-            abilityPointsDisplay.UpdateStatDisplay(stats.AbilityPoints, stats.AbilityPointsMax);
+            abilityPointsDisplay.DisplayFraction(stats.AbilityPoints, stats.AbilityPointsMax);
         }
         displayedStats.AbilityPoints = stats.AbilityPoints;
         displayedStats.AbilityPointsMax = stats.AbilityPointsMax;
@@ -55,10 +57,19 @@ public class CharacterStatsPanel : Panel
 
     private void UpdateChain(CharacterStats stats)
     {
-        if (chainTextDisplay)
+        if (chainDisplay)
         {
-            chainTextDisplay.SetText(stats.Chain.ToString());
+            chainDisplay.DisplayValue(stats.Chain);
         }
         displayedStats.Chain = stats.Chain;
+    }
+
+    private void UpdateDodge(CharacterStats stats)
+    {
+        if (dodgeDisplay)
+        {
+            dodgeDisplay.DisplayValue(stats.Dodge);
+        }
+        displayedStats.Dodge = stats.Dodge;
     }
 }

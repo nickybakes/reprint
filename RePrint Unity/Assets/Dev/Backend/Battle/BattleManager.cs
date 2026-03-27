@@ -22,7 +22,7 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// The number of the current turn the battle is in. Increments once all teams have done an ability and loops back to the first team.
     /// </summary>
-    private int currentBattleTurnIndex;
+    private int turnIndex = -1;
 
     /// <summary>
     /// The data for what characters are in this battle scenario
@@ -47,7 +47,7 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(BattleData data)
     {
-
+        turnIndex = -1;
         playerCharacter = new Character(data.playerCharacterData);
 
         enemyTeam = new Team();
@@ -66,17 +66,14 @@ public class BattleManager : MonoBehaviour
         StartPlayerTurn();
     }
 
-    public virtual void ConfirmPlayerAbilitySequence()
-    {
-
-    }
-
     public virtual void StartPlayerTurn()
     {
         playerAbilitySequence = new AbilitySequence();
+        turnIndex++;
         playerCharacter.RefillAbilityPoints();
+        playerCharacter.ResetDodge();
         playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
-        pendingBattleChanges.Add(new PlayerTurnStart(playerCharacter.AbilitySequencingStats));
+        pendingBattleChanges.Add(new PlayerTurnStart(playerCharacter.AbilitySequencingStats, turnIndex));
         SubmitChanges();
     }
 
@@ -105,13 +102,30 @@ public class BattleManager : MonoBehaviour
 
     public virtual void PlayerSubmitConfirmAbilitySequence()
     {
-        playerCharacter.ApplyAbilitySequencingStats();
-
-
+        pendingBattleChanges.Add(new PlayerTurnEnd());
+        DoPlayerAbilitySequence();
 
         // Check if all enemies are eliminated. If not, next turn!
+
         StartPlayerTurn();
     }
+
+    public virtual void DoPlayerAbilitySequence()
+    {
+        playerCharacter.ApplyAbilitySequencingStats();
+
+        foreach (AbilitySelection abilitySelection in playerAbilitySequence.Sequence)
+        {
+            RefreshAllCharacterIncomingValues();
+            AbilityResults result = StatCalculation.CalculatePlayerAbilityResult(abilitySelection, playerAbilitySequence, playerCharacter, enemyTeam);
+            pendingBattleChanges.Add(new PlayerDoAbility(abilitySelection, result));
+        }
+
+        enemyTeam.CalculateTurnOrder(playerCharacter.DodgePriorities);
+
+        SubmitChanges();
+    }
+
 
     public virtual void PlayerSubmitBack()
     {
@@ -127,70 +141,5 @@ public class BattleManager : MonoBehaviour
         playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
         pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, playerCharacter.AbilitySequencingStats));
         SubmitChanges();
-    }
-
-    // public void SetupBattle()
-    // {
-    //     // Get reference to battle scene setup data.
-    //     battleSceneSetup = GameObject.FindWithTag("Battle Scene Setup").GetComponent<BattleSceneSetup>();
-
-    //     battleUIManager = Instantiate(battleUIManagerPrefrab).GetComponent<BattleUIManager>();
-
-    //     battleData = GameManager.game.GetBattleData();
-
-    //     teams = new List<List<Character>>
-    //     {
-    //         new List<Character>(),
-    //         new List<Character>()
-    //     };
-
-
-    //     // Instantiate the game objects for player and enemies. Also send them their specific data so they can set up themselves.
-
-    //     SpawnCharacter(0, battleData.playerCharacterData, true, 0);
-
-    //     for (int i = 0; i < battleData.enemyCharacterDatas.Length; i++)
-    //     {
-    //         SpawnCharacter(1, battleData.enemyCharacterDatas[i], false, i);
-    //     }
-
-    //     // Set spawn position and rotation of player and enemies
-
-    //     teams[0][0].SetSpawnTransform(battleSceneSetup.PlayerSpawnPoint, battleSceneSetup.PlayerDirection);
-
-    //     List<Vector3> enemySpawnPoints = battleSceneSetup.GetEnemySpawnPoints(teams[1].Count);
-
-    //     for (int i = 0; i < teams[1].Count; i++)
-    //     {
-    //         teams[1][i].SetSpawnTransform(enemySpawnPoints[i], battleSceneSetup.EnemyDirection);
-    //     }
-
-    //     CurrentBattleState.StartState();
-    // }
-
-    // private void SpawnCharacter(int team, CharacterData data, bool isPlayerControlled, int index)
-    // {
-    //     GameObject characterGameObject = Instantiate(characterPrefab.gameObject);
-    //     Character characterClassReference = characterGameObject.GetComponent<Character>();
-    //     characterClassReference.SetupCharacter(data, isPlayerControlled, index);
-    //     teams[team].Add(characterClassReference);
-    //     battleUIManager.SpawnCharacterHUDPanel(characterClassReference);
-    // }
-
-    // public void SwitchBattleState(BattleStateIndex index)
-    // {
-    //     CurrentBattleState.EndState();
-
-    //     currentBattleStateIndex = index;
-
-    //     CurrentBattleState.StartState();
-    // }
-
-    public void BackInput()
-    {
-        // if (currentBattleStateIndex == BattleStateIndex.PlayerCreateAbilitySequence)
-        // {
-        //     playerCreateAbilitySequenceBattleState.Back();
-        // }
     }
 }

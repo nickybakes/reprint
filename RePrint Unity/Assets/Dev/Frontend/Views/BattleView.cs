@@ -18,6 +18,9 @@ public class BattleView : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
 
+    [SerializeField] private BattleTimingProfile battleTimingProfile;
+
+
     [field: SerializeField] public RectTransform CanvasRect { get; private set; }
 
     [field: SerializeField] public BattleStatsPanel BattleStatsPanel { get; private set; }
@@ -29,6 +32,9 @@ public class BattleView : MonoBehaviour
     [field: SerializeField] public CharacterFigureGroup EnemyFigureGroup { get; private set; }
     [field: SerializeField] public BetterButton PlayerConfirmSequenceButton { get; private set; }
     [field: SerializeField] public AbilitySequenceGroup PlayerAbilitySequenceGroup { get; private set; }
+
+    [field: SerializeField] public TextDisplay TurnDisplay { get; private set; }
+
 
     /// <summary>
     /// A queue of game changes that the view manager should run through and display.
@@ -120,8 +126,7 @@ public class BattleView : MonoBehaviour
 
                 currentChangeTime = 0;
 
-                // TODO: Implement a profile for timings for specific game things
-                timeForCurrentChange = 0;
+                timeForCurrentChange = battleTimingProfile.GetTime(battleStateChangesQueue[currentChangeIndex]);
 
                 currentChangeIndex++;
                 if (currentChangeIndex >= battleStateChangesQueue.Count)

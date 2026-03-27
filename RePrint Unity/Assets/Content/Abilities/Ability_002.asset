@@ -18,6 +18,8 @@ MonoBehaviour:
   <AbilityRulesOverclock0>k__BackingField:
     apCost: 1
     targetAllEnemies: 0
+    canTargetPlayer: 1
+    canTargetEnemies: 1
     numberOfHits:
       type: 0
       baseValue: 1
@@ -25,6 +27,8 @@ MonoBehaviour:
   <AbilityRulesOverclock1>k__BackingField:
     apCost: 2
     targetAllEnemies: 0
+    canTargetPlayer: 1
+    canTargetEnemies: 1
     numberOfHits:
       type: 0
       baseValue: 1
@@ -32,6 +36,8 @@ MonoBehaviour:
   <AbilityRulesOverclock2>k__BackingField:
     apCost: 3
     targetAllEnemies: 0
+    canTargetPlayer: 1
+    canTargetEnemies: 1
     numberOfHits:
       type: 0
       baseValue: 1
@@ -39,6 +45,8 @@ MonoBehaviour:
   <AbilityRulesOverclock3>k__BackingField:
     apCost: 4
     targetAllEnemies: 0
+    canTargetPlayer: 1
+    canTargetEnemies: 1
     numberOfHits:
       type: 0
       baseValue: 1
@@ -46,6 +54,8 @@ MonoBehaviour:
   <AbilityRulesOverclock4>k__BackingField:
     apCost: 5
     targetAllEnemies: 0
+    canTargetPlayer: 1
+    canTargetEnemies: 1
     numberOfHits:
       type: 0
       baseValue: 1
