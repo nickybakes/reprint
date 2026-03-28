@@ -41,6 +41,7 @@ public class BetterListDrawer : BetterPropertyDrawer
 
         Rect headerArraySizeLabelPosition = Position();
         headerArraySizeLabelPosition.x = headerArraySizeLabelPosition.width - 40;
+        EditorGUI.LabelField(headerArraySizeLabelPosition, "Size: " + listProperty.arraySize, EditorStyles.boldLabel);
 
         if (property.depth > 1 && listFoldoutProp == null)
         {
@@ -57,9 +58,6 @@ public class BetterListDrawer : BetterPropertyDrawer
                 listFoldout = AddHeaderFoldout(headerName, listFoldout);
             }
         }
-
-
-        EditorGUI.LabelField(headerArraySizeLabelPosition, "Size: " + listProperty.arraySize, EditorStyles.boldLabel);
 
         EditorGUI.indentLevel++;
 
@@ -110,7 +108,7 @@ public class BetterListDrawer : BetterPropertyDrawer
 
                 Rect foldoutPosition = Position();
 
-                foldoutPosition.x = foldoutPosition.x + 8 * property.depth;
+                foldoutPosition.x = position.x + 8 * (property.depth - 1) + 2;
 
                 EditorGUI.DrawRect(foldoutPosition, new Color(0, 0, 0, .15f));
 
@@ -206,13 +204,11 @@ public class BetterListDrawer : BetterPropertyDrawer
                     AddProperty("", null, listProperty.GetArrayElementAtIndex(i));
                 }
 
-                if (i < listProperty.arraySize - 1)
-                    AddQuarterBlankLine();
+                // if (i < listProperty.arraySize - 1)
+                //     AddQuarterBlankLine();
             }
 
             AddQuarterBlankLine();
-
-            // EditorGUI.DrawRect(new Rect(10, childrenHeight - 4, position.width * 1.25f, EditorGUIUtility.singleLineHeight * 1.5f + 2), new Color(0, 0, 0, .15f));
 
             if (normalizedAddNewButtonWidth != 0)
             {
@@ -233,12 +229,12 @@ public class BetterListDrawer : BetterPropertyDrawer
 
 
         Rect bottomLinePosition = Position();
-        bottomLinePosition.x = position.x + 8 * (property.depth - 1) + 2;
+        bottomLinePosition.x = position.x + 8 * (property.depth - 1);
         bottomLinePosition.width *= 1.25f;
         bottomLinePosition.height = 2;
         EditorGUI.DrawRect(bottomLinePosition, new Color(0, 0, 0, .25f));
 
-        Rect sideLinePosition = new Rect(position.x + 8 * (property.depth - 1), position.y + EditorGUIUtility.singleLineHeight + 2, 2, childrenHeight - EditorGUIUtility.singleLineHeight);
+        Rect sideLinePosition = new Rect(position.x + 8 * (property.depth - 1), position.y + EditorGUIUtility.singleLineHeight, 2, childrenHeight - EditorGUIUtility.singleLineHeight);
         EditorGUI.DrawRect(sideLinePosition, new Color(0, 0, 0, .25f));
 
         AddHalfBlankLine();

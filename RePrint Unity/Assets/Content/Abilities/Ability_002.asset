@@ -60,7 +60,7 @@ MonoBehaviour:
       type: 0
       baseValue: 1
       maxValue: 0
-  <AbilityBehaviorsOverclock0>k__BackingField:
+  <AbilityOverclock0Behaviors>k__BackingField:
     list:
     - conditions:
         list: []
@@ -80,140 +80,14 @@ MonoBehaviour:
         foldouts: 
     - conditions:
         list: []
-        listFoldout: 1
+        listFoldout: 0
         foldouts: 
       effects:
-        list:
-        - type: 0
-          valueInput:
-            type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list:
-            - mathType: 0
-              inGameValueType: 1
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            listFoldout: 1
-            foldouts: 010101
-        - type: 0
-          valueInput:
-            type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list:
-            - mathType: 0
-              inGameValueType: 1
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            listFoldout: 0
-            foldouts: 010101
-        listFoldout: 1
-        foldouts: 0101
-    - conditions:
-        list:
-        - minChainThreshold: 0
-        listFoldout: 1
-        foldouts: 00
-      effects:
-        list:
-        - type: 0
-          valueInput:
-            type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list:
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            listFoldout: 1
-            foldouts: 0100
-        - type: 0
-          valueInput:
-            type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list:
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            listFoldout: 1
-            foldouts: 0100
-        - type: 0
-          valueInput:
-            type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list:
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            - mathType: 0
-              inGameValueType: 0
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            listFoldout: 1
-            foldouts: 0100
-        listFoldout: 1
-        foldouts: 010101
+        list: []
+        listFoldout: 0
+        foldouts: 
     listFoldout: 1
-    foldouts: 01010100
+    foldouts: 000000
   <AbilityEffectsOverclock0>k__BackingField:
     list:
     - type: 1
@@ -229,10 +103,16 @@ MonoBehaviour:
           clamp: 0
           minClamp: 0
           maxClamp: 0
+        - mathType: 0
+          inGameValueType: 0
+          invertEquation: 0
+          clamp: 0
+          minClamp: 0
+          maxClamp: 0
         listFoldout: 0
-        foldouts: 00
-    listFoldout: 0
-    foldouts: 01
+        foldouts: 0101
+    listFoldout: 1
+    foldouts: 00
   <AbilityEffectsOverclock1>k__BackingField:
     list:
     - type: 1
