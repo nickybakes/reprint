@@ -36,3 +36,10 @@ ModBehavior has a List of ModConditions, and List of ModEffects
 
 A ModCondition would be OnUseAbilityRule
 
+
+
+ModConditions
+OnEvent (StartBattle, StartTurn, ChangeAbilitySequence, 
+
+
+AbilityConditions

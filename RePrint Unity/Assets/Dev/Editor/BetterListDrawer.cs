@@ -19,6 +19,7 @@ public class BetterListDrawer : BetterPropertyDrawer
 
     public void AddList(string listPropertyName, string addNewString, float normalizedAddNewButtonWidth = 0, string listFoldoutPropString = "", string foldoutsPropString = "")
     {
+        SerializedProperty listProperty = property.FindPropertyRelative(listPropertyName);
         SerializedProperty listFoldoutProp = null;
         if (listFoldoutPropString != "")
         {
@@ -36,26 +37,34 @@ public class BetterListDrawer : BetterPropertyDrawer
             currentListFoldout = true;
         }
 
+        string headerName = property.displayName;
+
+        Rect headerArraySizeLabelPosition = Position();
+        headerArraySizeLabelPosition.x = headerArraySizeLabelPosition.width - 40;
+
         if (property.depth > 1 && listFoldoutProp == null)
         {
-            AddBoldLabel(property.displayName);
+            AddBoldLabel(headerName);
         }
         else
         {
             if (listFoldoutProp != null)
             {
-                listFoldoutProp.boolValue = AddHeaderFoldout(property.displayName, listFoldoutProp.boolValue);
+                listFoldoutProp.boolValue = AddHeaderFoldout(headerName, listFoldoutProp.boolValue);
             }
             else
             {
-                listFoldout = AddHeaderFoldout(property.displayName, listFoldout);
+                listFoldout = AddHeaderFoldout(headerName, listFoldout);
             }
         }
+
+
+        EditorGUI.LabelField(headerArraySizeLabelPosition, "Size: " + listProperty.arraySize, EditorStyles.boldLabel);
+
         EditorGUI.indentLevel++;
 
         if (currentListFoldout)
         {
-            SerializedProperty listProperty = property.FindPropertyRelative(listPropertyName);
             SerializedProperty foldoutsProp = null;
             if (listFoldoutPropString != "")
             {
@@ -111,8 +120,63 @@ public class BetterListDrawer : BetterPropertyDrawer
                 if (GUI.Button(foldoutPosition, "X"))
                 {
                     listProperty.DeleteArrayElementAtIndex(i);
+                    if (foldoutsProp != null)
+                    {
+                        foldoutsProp.DeleteArrayElementAtIndex(i);
+                    }
+                    else
+                    {
+                        foldouts.RemoveAt(i);
+                    }
+                    childrenHeight = 10000;
                     return;
                 }
+
+                foldoutPosition.x -= 50;
+
+                EditorGUI.BeginDisabledGroup(i == listProperty.arraySize - 1);
+
+                if (GUI.Button(foldoutPosition, "↓"))
+                {
+                    listProperty.MoveArrayElement(i, i + 1);
+                    if (foldoutsProp != null)
+                    {
+                        foldoutsProp.MoveArrayElement(i, i + 1);
+                    }
+                    else
+                    {
+                        bool tempFoldout = foldouts[i + 1];
+                        foldouts[i + 1] = foldouts[i];
+                        foldouts[i] = tempFoldout;
+                    }
+                    childrenHeight = 10000;
+                    return;
+                }
+
+                EditorGUI.EndDisabledGroup();
+
+                foldoutPosition.x += 17;
+
+                EditorGUI.BeginDisabledGroup(i == 0);
+
+                if (GUI.Button(foldoutPosition, "↑"))
+                {
+                    listProperty.MoveArrayElement(i, i - 1);
+                    if (foldoutsProp != null)
+                    {
+                        foldoutsProp.MoveArrayElement(i, i - 1);
+                    }
+                    else
+                    {
+                        bool tempFoldout = foldouts[i - 1];
+                        foldouts[i - 1] = foldouts[i];
+                        foldouts[i] = tempFoldout;
+                    }
+                    childrenHeight = 10000;
+                    return;
+                }
+
+                EditorGUI.EndDisabledGroup();
 
                 if (property.depth > 1 && foldoutsProp == null)
                 {
@@ -169,7 +233,7 @@ public class BetterListDrawer : BetterPropertyDrawer
 
 
         Rect bottomLinePosition = Position();
-        bottomLinePosition.x = 10;
+        bottomLinePosition.x = position.x + 8 * (property.depth - 1) + 2;
         bottomLinePosition.width *= 1.25f;
         bottomLinePosition.height = 2;
         EditorGUI.DrawRect(bottomLinePosition, new Color(0, 0, 0, .25f));
