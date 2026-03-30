@@ -73,6 +73,7 @@ public class BattleManager : MonoBehaviour
         playerCharacter.RefillAbilityPoints();
         playerCharacter.ResetDodge();
         playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
+        RefreshAllCharacterIncomingValues();
         pendingBattleChanges.Add(new PlayerTurnStart(playerCharacter.AbilitySequencingStats, turnIndex));
         SubmitChanges();
     }
@@ -117,7 +118,7 @@ public class BattleManager : MonoBehaviour
         foreach (AbilitySelection abilitySelection in playerAbilitySequence.Sequence)
         {
             RefreshAllCharacterIncomingValues();
-            AbilityResults result = StatCalculation.CalculatePlayerAbilityResult(abilitySelection, playerAbilitySequence, playerCharacter, enemyTeam);
+            AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, playerAbilitySequence, playerCharacter, enemyTeam);
             pendingBattleChanges.Add(new PlayerDoAbility(abilitySelection, result));
         }
 
@@ -138,6 +139,7 @@ public class BattleManager : MonoBehaviour
 
     protected virtual void SubmitPlayerChangeAbilitySequence()
     {
+        RefreshAllCharacterIncomingValues();
         playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
         pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, playerCharacter.AbilitySequencingStats));
         SubmitChanges();

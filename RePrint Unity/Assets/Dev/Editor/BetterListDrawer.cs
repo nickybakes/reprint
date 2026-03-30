@@ -63,6 +63,14 @@ public class BetterListDrawer : BetterPropertyDrawer
 
         if (currentListFoldout)
         {
+            headerArraySizeLabelPosition.y += EditorGUIUtility.singleLineHeight;
+            headerArraySizeLabelPosition.x = position.x + 8 * (property.depth - 1);
+            headerArraySizeLabelPosition.width *= 1.25f;
+            headerArraySizeLabelPosition.height = 2;
+            EditorGUI.DrawRect(headerArraySizeLabelPosition, new Color(0, 0, 0, .25f));
+
+            childrenHeight += 2;
+
             SerializedProperty foldoutsProp = null;
             if (listFoldoutPropString != "")
             {
@@ -234,8 +242,11 @@ public class BetterListDrawer : BetterPropertyDrawer
         bottomLinePosition.height = 2;
         EditorGUI.DrawRect(bottomLinePosition, new Color(0, 0, 0, .25f));
 
-        Rect sideLinePosition = new Rect(position.x + 8 * (property.depth - 1), position.y + EditorGUIUtility.singleLineHeight, 2, childrenHeight - EditorGUIUtility.singleLineHeight);
-        EditorGUI.DrawRect(sideLinePosition, new Color(0, 0, 0, .25f));
+        if (currentListFoldout)
+        {
+            Rect sideLinePosition = new Rect(position.x + 8 * (property.depth - 1), position.y + EditorGUIUtility.singleLineHeight + 2, 2, childrenHeight - EditorGUIUtility.singleLineHeight - 2);
+            EditorGUI.DrawRect(sideLinePosition, new Color(0, 0, 0, .25f));
+        }
 
         AddHalfBlankLine();
 

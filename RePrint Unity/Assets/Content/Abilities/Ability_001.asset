@@ -60,48 +60,168 @@ MonoBehaviour:
       type: 0
       baseValue: 1
       maxValue: 0
-  <AbilityBehaviorsOverclock0>k__BackingField:
+  <AbilityOverclock0Behaviors>k__BackingField:
     list:
     - conditions:
-        list:
-        - minChainThreshold: 0
-        - minChainThreshold: 0
-        - minChainThreshold: 0
-        listFoldout: 1
-        foldouts: 010001
+        list: []
+        listFoldout: 0
+        foldouts: 
       effects:
         list:
         - type: 0
           valueInput:
             type: 0
-            baseValue: 0
+            baseValue: 6
             maxValue: 0
           extraArithmetics:
-            list: []
+            list:
+            - mathType: 0
+              inGameValueType: 0
+              invertEquation: 0
+              clamp: 0
+              minClamp: 0
+              maxClamp: 0
+            - mathType: 0
+              inGameValueType: 0
+              invertEquation: 0
+              clamp: 0
+              minClamp: 0
+              maxClamp: 0
             listFoldout: 0
-            foldouts: 
-        - type: 0
+            foldouts: 0000
+        - type: 2
           valueInput:
             type: 0
-            baseValue: 0
-            maxValue: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        - type: 0
-          valueInput:
-            type: 0
-            baseValue: 0
+            baseValue: 1
             maxValue: 0
           extraArithmetics:
             list: []
             listFoldout: 0
             foldouts: 
         listFoldout: 1
-        foldouts: 010101
+        foldouts: 0101
     listFoldout: 0
     foldouts: 01
+  <AbilityOverclock1Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 8
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 1
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 2
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 1
+        foldouts: 0101
+    listFoldout: 1
+    foldouts: 01
+  <AbilityOverclock2Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 12
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 3
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 0
+        foldouts: 
+    listFoldout: 0
+    foldouts: 01
+  <AbilityOverclock3Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 16
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 4
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 0
+        foldouts: 0101
+    listFoldout: 0
+    foldouts: 01
+  <AbilityOverclock4Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 25
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 6
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 0
+        foldouts: 0101
+    listFoldout: 0
+    foldouts: 00
   <AbilityEffectsOverclock0>k__BackingField:
     list:
     - type: 0
@@ -135,7 +255,7 @@ MonoBehaviour:
         listFoldout: 0
         foldouts: 
     listFoldout: 0
-    foldouts: 0000
+    foldouts: 0101
   <AbilityEffectsOverclock1>k__BackingField:
     list:
     - type: 0

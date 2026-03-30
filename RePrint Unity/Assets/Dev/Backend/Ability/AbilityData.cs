@@ -17,11 +17,8 @@ public class AbilityData : ScriptableObject
     [field: SerializeField] public AbilityRules AbilityRulesOverclock4 { get; private set; }
 
     [field: SerializeField, Header("Ability Behaviors")] public BetterEditorList<AbilityBehavior> AbilityOverclock0Behaviors { get; private set; }
-
-
-    [field: SerializeField, Header("Ability Effect Lists")] public BetterEditorList<AbilityEffect> AbilityEffectsOverclock0 { get; private set; }
-    [field: SerializeField] public BetterEditorList<AbilityEffect> AbilityEffectsOverclock1 { get; private set; }
-    [field: SerializeField] public BetterEditorList<AbilityEffect> AbilityEffectsOverclock2 { get; private set; }
-    [field: SerializeField] public BetterEditorList<AbilityEffect> AbilityEffectsOverclock3 { get; private set; }
-    [field: SerializeField] public BetterEditorList<AbilityEffect> AbilityEffectsOverclock4 { get; private set; }
+    [field: SerializeField] public BetterEditorList<AbilityBehavior> AbilityOverclock1Behaviors { get; private set; }
+    [field: SerializeField] public BetterEditorList<AbilityBehavior> AbilityOverclock2Behaviors { get; private set; }
+    [field: SerializeField] public BetterEditorList<AbilityBehavior> AbilityOverclock3Behaviors { get; private set; }
+    [field: SerializeField] public BetterEditorList<AbilityBehavior> AbilityOverclock4Behaviors { get; private set; }
 }

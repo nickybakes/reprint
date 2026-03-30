@@ -18,11 +18,11 @@ public class PlayerTurnStart : BattleStateChange
     {
         Debug.Log("Player turn start!");
         view.TurnDisplay.SetText("Turn " + (turnIndex + 1));
-        view.PlayerAbilityDisplayGroup.ResetSequenceState(playerAbilitySequencingStats);
         view.BattleStatsPanel.DisableAllTargetSelection();
         view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
         view.PlayerConfirmSequenceButton.Show();
         view.PlayerAbilitySequenceGroup.Clear();
+        view.PlayerAbilityDisplayGroup.ResetSequenceState(playerAbilitySequencingStats);
         view.PlayerAbilityDisplayGroup.Show();
         view.EnablePlayerInteractions();
     }

@@ -17,6 +17,8 @@ public class AbilityDisplay : FloatingDisplay
 
     [SerializeField] private string[] rarityStrings;
 
+    [SerializeField] private AbilityStatDisplayGroup abilityStatDisplayGroup;
+
     private BattleController controller;
 
     private Ability ability;
@@ -46,7 +48,7 @@ public class AbilityDisplay : FloatingDisplay
     }
 
 
-    public void RefreshSequenceState(bool expanded, int overclock, int availableAP, int currentTempCost)
+    public void RefreshSequenceState(bool expanded, int overclock, Character activator, int availableAP, int currentTempCost)
     {
         animator.SetInteger("Overclock", overclock);
         if (overclock > -1)
@@ -55,6 +57,9 @@ public class AbilityDisplay : FloatingDisplay
             apCostText.SetText(ability.GetAbilityRules(overclock).APCost.ToString());
 
             button.Interactable = true;
+
+            if (abilityStatDisplayGroup)
+                abilityStatDisplayGroup.Refresh(ability, overclock, activator);
 
             // if (overclock < Ability.MAX_OVERCLOCK && ability.GetAbilityRules(overclock + 1).APCost > availableAP)
             // {
@@ -68,6 +73,9 @@ public class AbilityDisplay : FloatingDisplay
         else
         {
             apCostText.SetText(ability.GetAbilityRules(0).APCost.ToString());
+
+            if (abilityStatDisplayGroup)
+                abilityStatDisplayGroup.Refresh(ability, 0, activator);
 
             if (ability.GetAbilityRules(0).APCost > availableAP + currentTempCost)
             {

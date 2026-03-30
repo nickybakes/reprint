@@ -16,7 +16,6 @@ public class CharacterBattlePanel : CharacterStatsPanel
     void Awake()
     {
         SetupRectTransform();
-        displayedStats = new CharacterStats();
     }
 
     public void SetupPanel(CharacterFigure _figure, Character _character, BattleView _view, BattleController _controller)
@@ -25,6 +24,7 @@ public class CharacterBattlePanel : CharacterStatsPanel
         view = _view;
         controller = _controller;
         character = _character;
+        displayedStats = new CharacterStats(character);
         UpdateStats(_character.Stats);
     }
 

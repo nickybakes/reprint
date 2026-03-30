@@ -26,6 +26,21 @@ public class ValueInput
 
         return baseValue;
     }
+
+    public int GetMinValue()
+    {
+        return baseValue;
+    }
+
+    public int GetMaxValue()
+    {
+        if (type == ValueType.Range)
+        {
+            return maxValue;
+        }
+
+        return baseValue;
+    }
 }
 
 public enum ValueType

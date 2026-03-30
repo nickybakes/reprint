@@ -14,44 +14,121 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Test Ability 4
   <Description>k__BackingField: test descrption
-  <BaseAPCost>k__BackingField: 0
+  <Type>k__BackingField: 0
   <AbilityRulesOverclock0>k__BackingField:
+    apCost: 0
     targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
   <AbilityRulesOverclock1>k__BackingField:
+    apCost: 0
     targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
   <AbilityRulesOverclock2>k__BackingField:
+    apCost: 0
     targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
   <AbilityRulesOverclock3>k__BackingField:
+    apCost: 0
     targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
   <AbilityRulesOverclock4>k__BackingField:
+    apCost: 0
     targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 0
     numberOfHits:
       type: 0
       baseValue: 0
       maxValue: 0
+  <AbilityOverclock0Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list: []
+        listFoldout: 0
+        foldouts: 
+    listFoldout: 1
+    foldouts: 01010101
+  <AbilityOverclock1Behaviors>k__BackingField:
+    list: []
+    listFoldout: 0
+    foldouts: 
+  <AbilityOverclock2Behaviors>k__BackingField:
+    list: []
+    listFoldout: 0
+    foldouts: 
+  <AbilityOverclock3Behaviors>k__BackingField:
+    list: []
+    listFoldout: 0
+    foldouts: 
+  <AbilityOverclock4Behaviors>k__BackingField:
+    list: []
+    listFoldout: 0
+    foldouts: 
   <AbilityEffectsOverclock0>k__BackingField:
     list: []
+    listFoldout: 0
+    foldouts: 
   <AbilityEffectsOverclock1>k__BackingField:
     list: []
+    listFoldout: 0
+    foldouts: 
   <AbilityEffectsOverclock2>k__BackingField:
     list: []
+    listFoldout: 0
+    foldouts: 
   <AbilityEffectsOverclock3>k__BackingField:
     list: []
+    listFoldout: 0
+    foldouts: 
   <AbilityEffectsOverclock4>k__BackingField:
     list: []
+    listFoldout: 0
+    foldouts: 

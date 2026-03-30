@@ -2,17 +2,36 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StatType
+{
+    PhysicalDamage,
+    Dodge,
+    Chain,
+}
+
 public class StatCalculation
 {
-    public static AbilityResults CalculatePlayerAbilityResult(AbilitySelection selection, AbilitySequence abilitySequence, Character player, Team enemyTeam)
+    public static AbilityResults GetPlayerAbilityResult(AbilitySelection selection, AbilitySequence abilitySequence, Character player, Team enemyTeam)
     {
         // TODO: Check the conditions of behaviors and compile the list of effects
-        List<AbilityEffect> effects = new List<AbilityEffect>();
-        effects.AddRange(selection.Ability.GetAbilityEffects(selection.Overclock));
+
+        List<AbilityBehavior> behaviors = new List<AbilityBehavior>(selection.Ability.GetAbilityBehaviors(selection.Overclock));
+
+        List<bool> passingBehaviors = new List<bool>();
+
+        foreach (AbilityBehavior behavior in behaviors)
+        {
+            if (BehaviorConditionsPass(behavior))
+            {
+                passingBehaviors.Add(true);
+            }
+        }
+
+        List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Overclock, passingBehaviors);
 
         AbilityRules rules = selection.Ability.GetAbilityRules(selection.Overclock);
 
-        int potentialDamage = CalculatePotentialDamage(player, effects);
+        int potentialDamage = GetPotentialPhysicalDamage(player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
         if (rules.TargetAllEnemies)
@@ -24,24 +43,33 @@ public class StatCalculation
             selection.Target.ApplyPhysicalDamage(potentialDamage);
         }
 
-        int potentialChainGain = CalculatePotentialChainGain(player, effects);
+        int potentialChainGain = GetPotentialChainGain(player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
         player.ApplyChain(potentialChainGain);
 
-        int potentialChainLoss = CalculatePotentialChainLoss(player, effects);
+        int potentialChainLoss = GetPotentialChainLoss(player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
         player.ApplyChain(-potentialChainLoss);
 
 
-        int potentialDodge = CalculatePotentialDodgeGain(player, effects);
+        int potentialDodge = GetPotentialDodgeGain(player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
         player.ApplyDodge(potentialDodge, selection.Target);
 
 
         return new AbilityResults(player, enemyTeam);
+    }
+
+    public static bool BehaviorConditionsPass(AbilityBehavior behavior)
+    {
+        for (int i = 0; i < behavior.Conditions.Count; i++)
+        {
+            // TODO: Add logic for checking conditions
+        }
+        return true;
     }
 
     public static List<AbilityEffect> FilterForEffectType(List<AbilityEffect> effects, AbilityEffectType type)
@@ -59,7 +87,7 @@ public class StatCalculation
         return filteredEffects;
     }
 
-    public static int CalculatePotentialEffectAmount(Character activator, List<AbilityEffect> effects)
+    public static int GetPotentialEffectAmount(Character activator, List<AbilityEffect> effects)
     {
         int totalAmount = 0;
 
@@ -67,9 +95,9 @@ public class StatCalculation
         {
             int baseAmount = effect.ValueInput.GetValue();
 
-            foreach (Arithmetic modifier in effect.ExtraArithmetics)
+            foreach (Arithmetic arithmetic in effect.ExtraArithmetics)
             {
-                baseAmount = modifier.CalculateSolution(baseAmount, activator.IncomingValues.GetIncomingValue(modifier.InGameValueType));
+                baseAmount = arithmetic.CalculateSolution(baseAmount, activator.IncomingValues.GetIncomingValue(arithmetic.InGameValueType));
             }
 
             totalAmount += baseAmount;
@@ -78,17 +106,69 @@ public class StatCalculation
         return totalAmount;
     }
 
-    public static int CalculatePotentialDamage(Character activator, List<AbilityEffect> effects)
+    public static int GetMinOrMaxStat(bool getMinimum, Character activator, List<AbilityEffect> effects, StatType type)
     {
-        return CalculatePotentialEffectAmount(activator, FilterForEffectType(effects, AbilityEffectType.DoDamage));
+        List<AbilityEffect> filteredEffects = new List<AbilityEffect>();
+        switch (type)
+        {
+            case StatType.PhysicalDamage:
+                filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.DoDamage));
+                break;
+            case StatType.Chain:
+                int totalAmount = GetMinOrMaxEffectAmount(getMinimum, activator, FilterForEffectType(effects, AbilityEffectType.GainChain));
+                if (FilterForEffectType(effects, AbilityEffectType.RemoveAllChain).Count > 0)
+                {
+                    totalAmount -= activator.Stats.Chain;
+                }
+                return totalAmount;
+            case StatType.Dodge:
+                filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.GainDodge));
+                break;
+        }
+
+        return GetMinOrMaxEffectAmount(getMinimum, activator, filteredEffects);
+
     }
 
-    public static int CalculatePotentialChainGain(Character activator, List<AbilityEffect> effects)
+    public static int GetMinOrMaxEffectAmount(bool getMinimum, Character activator, List<AbilityEffect> effects)
     {
-        return CalculatePotentialEffectAmount(activator, FilterForEffectType(effects, AbilityEffectType.GainChain));
+        int totalAmount = 0;
+
+        foreach (AbilityEffect effect in effects)
+        {
+            int amount = effect.ValueInput.GetMaxValue();
+
+            if (getMinimum)
+                amount = effect.ValueInput.GetMinValue();
+
+            foreach (Arithmetic arithmetic in effect.ExtraArithmetics)
+            {
+                amount = arithmetic.CalculateSolution(amount, activator.IncomingValues.GetIncomingValue(arithmetic.InGameValueType));
+            }
+
+            totalAmount += amount;
+        }
+
+        return totalAmount;
     }
 
-    public static int CalculatePotentialChainLoss(Character activator, List<AbilityEffect> effects)
+    public static int GetPotentialPhysicalDamage(Character activator, List<AbilityEffect> effects)
+    {
+        return GetPotentialEffectAmount(activator, FilterForEffectType(effects, AbilityEffectType.DoDamage));
+    }
+
+    public static int GetPotentialChainGain(Character activator, List<AbilityEffect> effects)
+    {
+        int total = GetPotentialEffectAmount(activator, FilterForEffectType(effects, AbilityEffectType.GainChain));
+        List<AbilityEffect> removeAllChainEffects = FilterForEffectType(effects, AbilityEffectType.RemoveAllChain);
+        if (removeAllChainEffects.Count > 0)
+        {
+            total = activator.Stats.Chain;
+        }
+        return total;
+    }
+
+    public static int GetPotentialChainLoss(Character activator, List<AbilityEffect> effects)
     {
         int total = 0;
         List<AbilityEffect> removeAllChainEffects = FilterForEffectType(effects, AbilityEffectType.RemoveAllChain);
@@ -100,9 +180,9 @@ public class StatCalculation
         return Math.Min(total, activator.Stats.Chain);
     }
 
-    public static int CalculatePotentialDodgeGain(Character activator, List<AbilityEffect> effects)
+    public static int GetPotentialDodgeGain(Character activator, List<AbilityEffect> effects)
     {
-        return CalculatePotentialEffectAmount(activator, FilterForEffectType(effects, AbilityEffectType.GainDodge));
+        return GetPotentialEffectAmount(activator, FilterForEffectType(effects, AbilityEffectType.GainDodge));
     }
 
 }

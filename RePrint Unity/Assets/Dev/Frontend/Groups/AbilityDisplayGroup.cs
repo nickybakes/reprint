@@ -37,7 +37,7 @@ public class AbilityDisplayGroup : MonoBehaviour
     {
         foreach (AbilityDisplay display in abilityToDisplayReferences.Values)
         {
-            display.RefreshSequenceState(false, -1, stats.AbilityPoints, 0);
+            display.RefreshSequenceState(false, -1, stats.Character, stats.AbilityPoints, 0);
         }
     }
 
@@ -57,16 +57,16 @@ public class AbilityDisplayGroup : MonoBehaviour
                 {
                     if (lastSelection.Ability == ability)
                     {
-                        display.RefreshSequenceState(true, lastSelection.Overclock, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
+                        display.RefreshSequenceState(true, lastSelection.Overclock, stats.Character, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
                     }
                     else
                     {
-                        display.RefreshSequenceState(false, -1, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
+                        display.RefreshSequenceState(false, -1, stats.Character, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
                     }
                 }
                 else
                 {
-                    display.RefreshSequenceState(false, -1, stats.AbilityPoints, 0);
+                    display.RefreshSequenceState(false, -1, stats.Character, stats.AbilityPoints, 0);
                 }
             }
         }

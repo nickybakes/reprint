@@ -49,8 +49,8 @@ public class Character
         Name = data.name;
         IncomingValues = new InGameValues();
 
-        Stats = new CharacterStats();
-        AbilitySequencingStats = new CharacterStats();
+        Stats = new CharacterStats(this);
+        AbilitySequencingStats = new CharacterStats(this);
 
         Stats.HealthMax = data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;

@@ -24,7 +24,6 @@ public class CharacterStatsPanel : Panel
     void Awake()
     {
         SetupRectTransform();
-        displayedStats = new CharacterStats();
     }
 
     public void UpdateStats(CharacterStats stats)

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 public record CharacterStats
 {
+    public Character Character { get; set; }
     public int Health { get; set; }
     public int HealthMax { get; set; }
 
@@ -11,9 +12,9 @@ public record CharacterStats
     public int AbilityPoints { get; set; }
     public int AbilityPointsMax { get; set; }
 
-    public CharacterStats()
+    public CharacterStats(Character character)
     {
-
+        Character = character;
     }
 
     public CharacterStats(CharacterStats copySource)
@@ -23,6 +24,7 @@ public record CharacterStats
 
     public void CopyFrom(CharacterStats source)
     {
+        Character = source.Character;
         Health = source.Health;
         HealthMax = source.HealthMax;
         Chain = source.Chain;
