@@ -11,69 +11,31 @@ public enum AbilityType
     Charger,
 }
 
-[Serializable]
-public class Ability
+public abstract class Ability
 {
     public static int MAX_OVERCLOCK = 4;
 
     public string Name { get { return baseData.Name; } }
     public string Description { get { return baseData.Description; } }
     public AbilityType Type { get { return baseData.Type; } }
+    protected PlayerAbilityData baseData;
 
-    private AbilityData baseData;
-    private List<List<AbilityBehavior>> abilityBehaviorsForEachOverclock;
-    private List<AbilityRules> abilityRulesForEachOverclock;
+    protected List<List<AbilityBehavior>> behaviorsTable;
 
-    public Ability(AbilityData data)
+    public abstract int GetAPCost(int overclock = 0);
+    public abstract int GetNumberOfHits(int overclock = 0);
+    public abstract bool TargetAllEnemies(int overclock = 0);
+    public abstract bool CanTargetPlayer(int overclock = 0);
+    public abstract bool CanTargetEnemies(int overclock = 0);
+
+    public List<AbilityBehavior> GetAbilityBehaviors(int overclock = 0)
     {
-        baseData = data;
-
-        abilityRulesForEachOverclock = new List<AbilityRules>(MAX_OVERCLOCK);
-
-        abilityBehaviorsForEachOverclock = new List<List<AbilityBehavior>>(MAX_OVERCLOCK)
-        {
-            baseData.AbilityOverclock0Behaviors.List,
-            baseData.AbilityOverclock1Behaviors.List,
-            baseData.AbilityOverclock2Behaviors.List,
-            baseData.AbilityOverclock3Behaviors.List,
-            baseData.AbilityOverclock4Behaviors.List
-        };
-
-        abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock0);
-        abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock1);
-        abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock2);
-        abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock3);
-        abilityRulesForEachOverclock.Add(baseData.AbilityRulesOverclock4);
+        return behaviorsTable[overclock];
     }
 
-    public AbilityRules GetAbilityRules(int overclock)
+    public AbilityStats GetAbilityStats(Character activator, int overclock = 0)
     {
-        return abilityRulesForEachOverclock[overclock];
-    }
-
-    public List<AbilityBehavior> GetAbilityBehaviors(int overclock)
-    {
-        return abilityBehaviorsForEachOverclock[overclock];
-    }
-
-    public List<AbilityEffect> GetAbilityEffects(int overclock, List<bool> passingBehaviors)
-    {
-        List<AbilityEffect> effects = new List<AbilityEffect>();
-        List<AbilityBehavior> behaviors = GetAbilityBehaviors(overclock);
-        for (int i = 0; i < passingBehaviors.Count; i++)
-        {
-            //TODO: Check if behavior breaks if passing. If so, break out of the loop.
-            if (passingBehaviors[i])
-            {
-                effects.AddRange(behaviors[i].Effects);
-            }
-        }
-        return effects;
-    }
-
-    public AbilityStats GetAbilityStats(int overclock, Character activator)
-    {
-        List<List<bool>> combinations = GetBehaviorCombinations(overclock);
+        List<List<bool>> combinations = GetBehaviorCombinations(GetAbilityBehaviors(overclock));
 
         AbilityStats stats = new AbilityStats
         {
@@ -88,7 +50,24 @@ public class Ability
         return stats;
     }
 
-    private int GetMinOrMaxStat(bool getMinimum, Character activator, int overclock, List<List<bool>> combinations, StatType type)
+    public List<AbilityEffect> GetAbilityEffects(List<AbilityBehavior> behaviors, List<bool> passingBehaviors)
+    {
+        List<AbilityEffect> effects = new List<AbilityEffect>();
+        for (int i = 0; i < passingBehaviors.Count; i++)
+        {
+            if (passingBehaviors[i])
+            {
+                effects.AddRange(behaviors[i].Effects);
+                if (behaviors[i].BreakOutIfConditionsAreTrue)
+                {
+                    return effects;
+                }
+            }
+        }
+        return effects;
+    }
+
+    protected int GetMinOrMaxStat(bool getMinimum, Character activator, int overclock, List<List<bool>> combinations, StatType type)
     {
         int bestValue = int.MinValue;
         if (getMinimum)
@@ -98,7 +77,7 @@ public class Ability
         {
             int currentValue = 0;
             List<bool> passingBehaviors = combinations[x];
-            List<AbilityEffect> effects = GetAbilityEffects(overclock, passingBehaviors);
+            List<AbilityEffect> effects = GetAbilityEffects(GetAbilityBehaviors(overclock), passingBehaviors);
 
             if (effects.Count > 0)
             {
@@ -122,9 +101,8 @@ public class Ability
         return bestValue;
     }
 
-    public List<List<bool>> GetBehaviorCombinations(int overclock)
+    public List<List<bool>> GetBehaviorCombinations(List<AbilityBehavior> behaviors)
     {
-        List<AbilityBehavior> behaviors = abilityBehaviorsForEachOverclock[overclock];
         int rows = behaviors.Count;
         int cols = (int)Math.Pow(2, rows);
         List<List<bool>> combinations = new List<List<bool>>(cols);

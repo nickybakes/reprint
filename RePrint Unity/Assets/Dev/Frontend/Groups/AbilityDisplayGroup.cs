@@ -18,7 +18,7 @@ public class AbilityDisplayGroup : MonoBehaviour
 
     private BattleController controller;
 
-    public void AddAbilities(List<Ability> _abilities, BattleController _controller)
+    public void AddAbilities(List<PlayerAbility> _abilities, BattleController _controller)
     {
         abilityToDisplayReferences = new Dictionary<Ability, AbilityDisplay>();
         displayToAbilityReferences = new Dictionary<AbilityDisplay, Ability>();
@@ -57,11 +57,11 @@ public class AbilityDisplayGroup : MonoBehaviour
                 {
                     if (lastSelection.Ability == ability)
                     {
-                        display.RefreshSequenceState(true, lastSelection.Overclock, stats.Character, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
+                        display.RefreshSequenceState(true, lastSelection.Overclock, stats.Character, stats.AbilityPoints, lastSelection.Ability.GetAPCost(lastSelection.Overclock));
                     }
                     else
                     {
-                        display.RefreshSequenceState(false, -1, stats.Character, stats.AbilityPoints, lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost);
+                        display.RefreshSequenceState(false, -1, stats.Character, stats.AbilityPoints, lastSelection.Ability.GetAPCost(lastSelection.Overclock));
                     }
                 }
                 else

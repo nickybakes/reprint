@@ -1,0 +1,255 @@
+SKIV NORMAL ENEMIES 
+RePrint Proto v0.7.1
+3/30/2026
+
+All enemies have multiple variants. 
+As the run progresses or higher difficulties are selected, higher level variants are used. 
+**See SHIFT1-Enemy encounter tables for specifics 
+
+===============================================================================
+1. SKIV  (id: 1, aiPattern: "skiv")
+===============================================================================
+
+  Role: Basic melee grunt. Attacks or braces for dodge.
+
+  VARIANTS
+  -----------------------------------------------------------------------
+  Key    | HP   |
+  -----------------------------------------------------------------------
+  skiv0  |  12  |   
+  skiv1  |  18  |   
+  skiv2  |  30  |   
+  skiv3  |  42  |   
+  -----------------------------------------------------------------------
+
+  ACTIONS
+
+  Strike (physical)
+    skiv0-skiv2:  3-4 dmg,  weight 60
+    skiv3:        4-5 dmg,  weight 70
+    - Resets all player chain on hit
+
+  Brace (defensive)
+    skiv0-skiv2:  +4 Dodge,  weight 40
+    skiv3:        +4 Dodge,  weight 30
+
+  AI BEHAVIOR: Simple weighted random. No priority or block conditions.
+  skiv0-skiv2 favor Strike (60/40). skiv3 favors Strike more (70/30).
+
+
+===============================================================================
+2. SKIV-CUTTER  (id: 2, aiPattern: "skiv-cutter")
+===============================================================================
+
+  Role: Bleed specialist. Buffs itself with Sharpen, then hits hard with
+        Cutthroat for amplified bleed damage.
+
+  Extra tracked status(buff): sharpen
+
+  VARIANTS
+  -----------------------------------------------------------------------
+  Key             | HP   |
+  -----------------------------------------------------------------------
+  skiv_cutter0    |  10  |   
+  skiv_cutter1    |  16  |   
+  skiv_cutter2    |  26  |   
+  -----------------------------------------------------------------------
+  All variants share identical actions and weights.
+
+  ACTIONS
+
+  Cutthroat (bleed)
+    All:  3-4 Bleed,  weight 60
+    - Does NOT reset chain
+    - Bonus damage equal to current sharpen stacks 
+    - At 10+ Bleed on player -> triggers Hemorrhage (25% max HP)
+    - PRIORITY: always used when sharpen > 0
+
+  Sharpen (buff)
+    All:  +2 sharpen,  weight 30
+    - Next attack deals +2 bonus damage
+
+  Double Sharp! (buff)
+    All:  +4 sharpen,  weight 10
+    - Next attack deals +4 bonus damage
+
+  AI BEHAVIOR: If sharpen > 0, ALWAYS uses Cutthroat (priority condition).
+  Otherwise weighted random: Cutthroat 60%, Sharpen 30%, Double Sharp! 10%.
+  Pattern = buff then attack, with rare big buff.
+
+
+===============================================================================
+3. SKIV-GUNNER  (id: 4, aiPattern: "skiv-gunner")
+===============================================================================
+
+  Role: Ranged attacker with alternating fire/reload pattern.
+        Low HP glass cannon.
+
+  VARIANTS
+  -----------------------------------------------------------------------
+  Key              | HP   | 
+  -----------------------------------------------------------------------
+  skiv_gunner0     |   7  |   
+  skiv_gunner1     |  14  |   
+  skiv_gunner2     |  22  |   
+  -----------------------------------------------------------------------
+
+  ACTIONS
+
+  Burst Shot (physical)
+    skiv_gunner0:  4-5 dmg,  weight 50
+    skiv_gunner1:  5-8 dmg,  weight 50
+    skiv_gunner2:  5-9 dmg,  weight 50
+    - Resets all player chain on hit
+    - BLOCKED if last action was Burst Shot (cannot repeat)
+
+  Reload (utility)
+    All:  no effect,  weight 50
+    - Preparing next shot
+    - BLOCKED if last action was Reload (cannot repeat)
+
+  AI BEHAVIOR: Strict alternation. Block conditions force Burst Shot ->
+  Reload -> Burst Shot pattern.
+
+
+===============================================================================
+4. SKIV-BOT  (id: 5, aiPattern: "skiv-bot")
+===============================================================================
+
+  Role: Shielded tank with self-destruct threat. Supports allies with
+        shields. Creates urgency -- must be dealt with before detonation
+        or shield bash becomes lethal.
+
+  Extra tracked status: detonation/countdown
+  Has SHIELD (absorbs damage before HP, does not expire)
+
+  VARIANTS
+  -----------------------------------------------------------------------
+  Key         | HP   | Shield | 
+  -----------------------------------------------------------------------
+  skiv_bot0   |  20  |   5    |   
+  skiv_bot1   |  38  |   5    |   
+  skiv_bot2   |  52  |   7    |   
+  -----------------------------------------------------------------------
+
+  ACTIONS
+  
+
+  Shield Up (shield)
+    skiv_bot0:        +3 Shield,  weight 70
+    skiv_bot1/bot2:   +5 Shield,  weight 70
+
+  Armor Web (support)
+    skiv_bot0:        all other enemies gain +3 Shield,  weight 30
+    skiv_bot1/bot2:   all other enemies gain +5 Shield,  weight 30
+    - Cooldown: 2 turns
+    - BLOCKED if Skiv-Bot is the only enemy alive
+
+  Shield Bash (physical)
+    All:  damage = current Shield (consumes all),  weight 50
+    - Cooldown: 2 turns
+    - Resets chain on hit
+    - PRIORITY (skiv_bot0): shield >= 5, OR last enemy alive with shield > 0
+    - PRIORITY (skiv_bot1/bot2): shield >= 10, OR last enemy alive with shield > 0
+    - BLOCKED (skiv_bot0): shield < 3
+    - BLOCKED (skiv_bot1/bot2): shield < 7
+    - TRIGGER EFFECT: Breaking Skiv-Bot's shield before it executes
+      Shield Bash triggers Self-Destruct countdown
+
+  Self-Destruct (physical, detonation)
+    skiv_bot0:        10 dmg,  weight 0 (never chosen -- triggered only)
+    skiv_bot1/bot2:   15 dmg,  weight 0 (never chosen -- triggered only)
+    - 2-turn countdown timer
+    - Hits ALL targets (player + enemies)
+    - Destroys self on detonation
+
+  AI BEHAVIOR: Primary loop is Shield Up (weight 70) to stack shield, then
+  Shield Bash when threshold is reached (priority condition). Armor Web
+  supplements allies when available. Self-Destruct is only triggered by
+  the shield-break trigger effect, never chosen by weight.
+
+  STRATEGIC NOTES:
+  - Player must decide: burn through shield fast to prevent Shield Bash,
+    but breaking shield triggers Self-Destruct countdown.
+  - Armor Web makes Skiv-Bot dangerous in groups -- shields entire field.
+  - When alone, Skiv-Bot will Shield Bash with any shield amount
+    (last-enemy priority override).
+
+
+===============================================================================
+5. SKIV-CYBER  (id: 3, aiPattern: "skiv-cyber")
+===============================================================================
+
+  Role: Shock specialist. Builds shock stacks to trigger Stasis, then
+        punishes stunned players with Beatdown. Electro-Field adds passive
+        shock on any player attack.
+
+  Extra tracked status(trap): electroField
+
+  VARIANTS
+  -----------------------------------------------------------------------
+  Key             | HP   |
+  -----------------------------------------------------------------------
+  skiv_cyber0     |  10  |
+  skiv_cyber1     |  16  |
+  skiv_cyber2     |  26  |
+  -----------------------------------------------------------------------
+
+  ACTIONS
+
+  Electro-shock (shock)
+    skiv_cyber0:  2-4 Shock,  weight 70
+    skiv_cyber1:  3-5 Shock,  weight 70
+    skiv_cyber2:  3-6 Shock,  weight 70
+    - Does NOT reset chain
+    - At 10+ Shock on player -> triggers Stasis
+
+  Electro-Field (shock-field, trap)
+    All:  no direct damage,  weight 30
+    - While active, any player attack on this enemy inflicts 1-2 Shock
+    - BLOCKED if electroField already active
+    - TRIGGER EFFECT: Defeating the Skiv-Cyber while it is prepping
+      Electro-Field deals 7-12 Shock to each enemy
+
+  Beatdown (physical)
+    skiv_cyber0:  1-5 dmg,  weight 100
+    skiv_cyber1:  1-8 dmg,  weight 100
+    skiv_cyber2:  1-8 dmg,  weight 100
+    - Resets all player chain on hit
+    - PRIORITY: always used when player is in Stasis
+    - BLOCKED: cannot use when player is NOT in Stasis
+
+  AI BEHAVIOR: Normal loop is Electro-shock (weight 70) to build shock
+  stacks toward Stasis trigger, with Electro-Field (weight 30) for passive
+  shock pressure. Once player enters Stasis, ALWAYS uses Beatdown
+  (priority condition). Beatdown is completely unavailable otherwise.
+
+  STRATEGIC NOTES:
+  - Electro-Field makes attacking this enemy costly -- each hit gives
+    the player 1-2 Shock.
+  - Killing a Skiv-Cyber while it preps Electro-Field punishes all
+    enemies with 7-12 Shock (beneficial for the player).
+  - Multiple Skiv-Cybers can stack shock very quickly toward Stasis.
+
+
+===============================================================================
+  SHARED SYSTEMS REFERENCE
+===============================================================================
+
+  STATUS THRESHOLDS (normal enemies)
+  - Bleed:  10 stacks -> Hemorrhage (deals dmg equal to 25% max of HP)
+  - Shock:  10 stacks -> Stasis (skip actions for 1 turn)
+  - Burn:   10 stacks -> Overheat (1-3 HP loss per turn)
+
+  AI SELECTION FLOW
+  1. Check priorityCondition on each action -- if true, use that action
+  2. Remove actions where blockCondition is true
+  3. Remove actions on cooldown
+  4. Weighted random from remaining valid actions
+  5. Fallback: first valid action
+
+  DAMAGE TYPES
+  - Physical: resets player chain on hit. undodged phys dmg reduces HP. 
+  - Bleed: does NOT reset chain. deals bleed dmg. triggers hemorrhage at 10 bleed. 
+  - Shock: does NOT reset chain. deals shock dmg. triggers stasis at 10 shock. 
+

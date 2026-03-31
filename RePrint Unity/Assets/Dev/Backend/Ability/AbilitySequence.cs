@@ -19,7 +19,7 @@ public class AbilitySequence
     {
         if (sequence.Count == 0 || !TryOverclockOrChangeLastAbility(ability, availableAP))
         {
-            if (availableAP >= ability.GetAbilityRules(0).APCost)
+            if (availableAP >= ability.GetAPCost(0))
             {
                 sequence.Add(new AbilitySelection(ability));
             }
@@ -76,8 +76,8 @@ public class AbilitySequence
             {
                 if (lastSelection.Overclock < Ability.MAX_OVERCLOCK)
                 {
-                    int nextAPCost = lastSelection.Ability.GetAbilityRules(lastSelection.Overclock + 1).APCost;
-                    int currAPCost = lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost;
+                    int nextAPCost = lastSelection.Ability.GetAPCost(lastSelection.Overclock + 1);
+                    int currAPCost = lastSelection.Ability.GetAPCost(lastSelection.Overclock);
                     if (availableAP + currAPCost >= nextAPCost)
                     {
                         lastSelection.IncreaseOverclock();
@@ -86,8 +86,8 @@ public class AbilitySequence
             }
             else
             {
-                int currAPCost = lastSelection.Ability.GetAbilityRules(lastSelection.Overclock).APCost;
-                if (availableAP + currAPCost >= newAbility.GetAbilityRules(0).APCost)
+                int currAPCost = lastSelection.Ability.GetAPCost(lastSelection.Overclock);
+                if (availableAP + currAPCost >= newAbility.GetAPCost(0))
                 {
                     lastSelection.SetAbility(newAbility);
                 }

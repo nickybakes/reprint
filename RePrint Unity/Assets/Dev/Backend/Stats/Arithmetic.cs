@@ -6,7 +6,7 @@ using UnityEngine;
 public class Arithmetic
 {
     [SerializeField] private MathType mathType;
-    [SerializeField] private InGameValueType inGameValueType;
+    [SerializeField] private GameValueType gameValueType;
 
     /// <summary>
     /// When false, the equation has the Incoming Value come after the Value in the equation.
@@ -20,7 +20,7 @@ public class Arithmetic
 
     [SerializeField] private int maxClamp;
 
-    public InGameValueType InGameValueType { get => inGameValueType; }
+    public GameValueType GameValueType { get => gameValueType; }
 
 
 

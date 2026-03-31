@@ -6,6 +6,6 @@ public class BattleData : ScriptableObject
 
     public CharacterData playerCharacterData;
 
-    public CharacterData[] enemyCharacterDatas;
+    public EnemyData[] enemyDatas;
 
 }

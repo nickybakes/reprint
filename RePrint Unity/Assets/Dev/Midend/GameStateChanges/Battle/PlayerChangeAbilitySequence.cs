@@ -22,12 +22,12 @@ public class PlayerChangeAbilitySequence : BattleStateChange
         if (abilitySequence.Sequence.Count > 0 && !abilitySequence.GetLastSelection().TargetIsSet)
         {
             AbilitySelection selection = abilitySequence.GetLastSelection();
-            if (selection.Ability.GetAbilityRules(selection.Overclock).CanTargetEnemies)
+            if (selection.Ability.CanTargetEnemies(selection.Overclock))
             {
                 view.BattleStatsPanel.EnableEnemySelection();
             }
 
-            if (selection.Ability.GetAbilityRules(selection.Overclock).CanTargetPlayer)
+            if (selection.Ability.CanTargetPlayer(selection.Overclock))
             {
                 view.BattleStatsPanel.EnablePlayerSelection();
             }

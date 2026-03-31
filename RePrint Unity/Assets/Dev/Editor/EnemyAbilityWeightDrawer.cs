@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(AbilityBehavior))]
-public class AbilityBehaviorDrawer : BetterPropertyDrawer
+[CustomPropertyDrawer(typeof(EnemyAbilityWeight))]
+public class EnemyAbilityWeightDrawer : BetterPropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -10,11 +10,9 @@ public class AbilityBehaviorDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
 
-        AddProperty("breakOutIfConditionsAreTrue");
+        AddProperty("abilityData");
 
-        AddProperty("conditions");
-
-        AddProperty("effects");
+        AddProperty("weight");
 
         EditorGUI.EndProperty();
     }

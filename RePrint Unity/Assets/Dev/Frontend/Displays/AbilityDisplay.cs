@@ -44,7 +44,7 @@ public class AbilityDisplay : FloatingDisplay
 
         nameText.SetTextNoBump(ability.Name);
         descriptionText.SetTextNoBump(ability.Description);
-        apCostText.SetTextNoBump(ability.GetAbilityRules(0).APCost.ToString());
+        apCostText.SetTextNoBump(ability.GetAPCost().ToString());
     }
 
 
@@ -54,7 +54,7 @@ public class AbilityDisplay : FloatingDisplay
         if (overclock > -1)
         {
             rarityText.SetText(rarityStrings[overclock]);
-            apCostText.SetText(ability.GetAbilityRules(overclock).APCost.ToString());
+            apCostText.SetText(ability.GetAPCost(overclock).ToString());
 
             button.Interactable = true;
 
@@ -72,12 +72,12 @@ public class AbilityDisplay : FloatingDisplay
         }
         else
         {
-            apCostText.SetText(ability.GetAbilityRules(0).APCost.ToString());
+            apCostText.SetText(ability.GetAPCost().ToString());
 
             if (abilityStatDisplayGroup)
                 abilityStatDisplayGroup.Refresh(ability, 0, activator);
 
-            if (ability.GetAbilityRules(0).APCost > availableAP + currentTempCost)
+            if (ability.GetAPCost() > availableAP + currentTempCost)
             {
                 button.Interactable = false;
             }

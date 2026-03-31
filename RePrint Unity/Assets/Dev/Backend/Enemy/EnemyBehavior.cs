@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
-public class AbilityBehavior
+public class EnemyBehavior
 {
     [SerializeField] private BetterEditorList<GameCondition> conditions;
-    [SerializeField] private BetterEditorList<AbilityEffect> effects;
+    [SerializeField] private BetterEditorList<EnemyAbilityWeight> abilityWeights;
     [SerializeField] private bool breakOutIfConditionsAreTrue;
 
     public List<GameCondition> Conditions { get => conditions.List; }
-    public List<AbilityEffect> Effects { get => effects.List; }
+    public List<EnemyAbilityWeight> AbilityWeights { get => abilityWeights.List; }
     public bool BreakOutIfConditionsAreTrue { get => breakOutIfConditionsAreTrue; }
 
 }

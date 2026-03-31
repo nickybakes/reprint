@@ -9,7 +9,7 @@ public class AbilityStatDisplayGroup : MonoBehaviour
 
     public void Refresh(Ability ability, int overclock, Character activator)
     {
-        AbilityStats stats = ability.GetAbilityStats(overclock, activator);
+        AbilityStats stats = ability.GetAbilityStats(activator, overclock);
 
         if (physicalDamageDisplay)
             physicalDamageDisplay.DisplayStat(stats.MinPhysicalDamage, stats.MaxPhysicalDamage);

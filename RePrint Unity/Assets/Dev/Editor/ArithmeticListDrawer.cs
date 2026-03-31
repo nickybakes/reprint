@@ -18,11 +18,11 @@ public class ArithmeticListDrawer : BetterListDrawer
         SerializedProperty mathTypeProperty = element.FindPropertyRelative("mathType");
         MathType mathType = (MathType)mathTypeProperty.enumValueIndex;
 
-        SerializedProperty incomingValueProperty = element.FindPropertyRelative("inGameValueType");
-        string[] displayNames = incomingValueProperty.enumDisplayNames;
+        SerializedProperty inGameValueProperty = element.FindPropertyRelative("gameValueType");
+        string[] displayNames = inGameValueProperty.enumDisplayNames;
 
         string name = "";
-        string incomingValueString = displayNames[incomingValueProperty.enumValueIndex];
+        string inGameValueString = displayNames[inGameValueProperty.enumValueIndex];
         string mathString = "";
 
         if (mathType == MathType.Add)
@@ -46,11 +46,11 @@ public class ArithmeticListDrawer : BetterListDrawer
 
         if (!invertEquation)
         {
-            name += "Value" + mathString + incomingValueString;
+            name += "Value" + mathString + inGameValueString;
         }
         else
         {
-            name += incomingValueString + mathString + "Value";
+            name += inGameValueString + mathString + "Value";
         }
 
         return name;

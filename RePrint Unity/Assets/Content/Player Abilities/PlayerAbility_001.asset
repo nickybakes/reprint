@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
+  m_Name: PlayerAbility_001
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
+  <Name>k__BackingField: Quick Slash
+  <Description>k__BackingField: Balanced damage and chain gain Starter Action.
+  <Type>k__BackingField: 0
+  <AbilityRulesOverclock0>k__BackingField:
+    apCost: 1
+    targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 1
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  <AbilityRulesOverclock1>k__BackingField:
+    apCost: 2
+    targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 1
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  <AbilityRulesOverclock2>k__BackingField:
+    apCost: 3
+    targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 1
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  <AbilityRulesOverclock3>k__BackingField:
+    apCost: 4
+    targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 1
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  <AbilityRulesOverclock4>k__BackingField:
+    apCost: 5
+    targetAllEnemies: 0
+    canTargetPlayer: 0
+    canTargetEnemies: 1
+    numberOfHits:
+      type: 0
+      baseValue: 1
+      maxValue: 0
+  <AbilityOverclock0Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 6
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 1
+            foldouts: 
+        listFoldout: 0
+        foldouts: 0101
+      breakOutIfConditionsAreTrue: 0
+    listFoldout: 1
+    foldouts: 01
+  <AbilityOverclock1Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 8
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 1
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 2
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 0
+        foldouts: 0101
+      breakOutIfConditionsAreTrue: 0
+    listFoldout: 1
+    foldouts: 01
+  <AbilityOverclock2Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 12
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 3
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 0
+        foldouts: 0101
+      breakOutIfConditionsAreTrue: 0
+    listFoldout: 1
+    foldouts: 01
+  <AbilityOverclock3Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 16
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 4
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 1
+        foldouts: 0101
+      breakOutIfConditionsAreTrue: 0
+    listFoldout: 1
+    foldouts: 01
+  <AbilityOverclock4Behaviors>k__BackingField:
+    list:
+    - conditions:
+        list: []
+        listFoldout: 0
+        foldouts: 
+      effects:
+        list:
+        - type: 0
+          valueInput:
+            type: 0
+            baseValue: 25
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        - type: 2
+          valueInput:
+            type: 0
+            baseValue: 6
+            maxValue: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+        listFoldout: 0
+        foldouts: 0101
+      breakOutIfConditionsAreTrue: 0
+    listFoldout: 0
+    foldouts: 00

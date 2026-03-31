@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AbilityData", menuName = "Scriptable Objects/Ability Data")]
-public class AbilityData : ScriptableObject
+[CreateAssetMenu(fileName = "PlayerAbilityData", menuName = "Scriptable Objects/Player Ability Data")]
+public class PlayerAbilityData : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
 

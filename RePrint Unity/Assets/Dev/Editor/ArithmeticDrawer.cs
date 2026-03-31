@@ -12,11 +12,11 @@ public class ArithmeticDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
         SerializedProperty mathTypeProperty = property.FindPropertyRelative("mathType");
-        SerializedProperty incomingValueProperty = property.FindPropertyRelative("inGameValueType");
+        SerializedProperty inGameValueProperty = property.FindPropertyRelative("gameValueType");
 
         StartSameLine(2);
         mathTypeProperty.enumValueIndex = (int)(MathType)AddDropDownSelection((MathType)mathTypeProperty.enumValueIndex);
-        incomingValueProperty.enumValueIndex = (int)(InGameValueType)AddDropDownSelection((InGameValueType)incomingValueProperty.enumValueIndex);
+        inGameValueProperty.enumValueIndex = (int)(GameValueType)AddDropDownSelection((GameValueType)inGameValueProperty.enumValueIndex);
 
         StartSameLine(2);
         AddProperty("invertEquation");

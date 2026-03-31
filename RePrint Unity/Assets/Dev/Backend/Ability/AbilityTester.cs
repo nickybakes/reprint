@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbilityTester : MonoBehaviour
 {
 
-    [SerializeField] private List<AbilityData> abilities;
+    [SerializeField] private List<PlayerAbilityData> abilities;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,11 +29,11 @@ public class AbilityTester : MonoBehaviour
 
         for (int i = 0; i < abilities.Count; i++)
         {
-            Ability ability = new Ability(abilities[i]);
+            PlayerAbility ability = new PlayerAbility(abilities[i]);
 
             Debug.Log("Ability: " + ability.Name);
 
-            List<List<bool>> combinations = ability.GetBehaviorCombinations(0);
+            List<List<bool>> combinations = ability.GetBehaviorCombinations(ability.GetAbilityBehaviors(0));
 
             for (int j = 0; j < combinations.Count; j++)
             {

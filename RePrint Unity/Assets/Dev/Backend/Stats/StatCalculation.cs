@@ -27,14 +27,12 @@ public class StatCalculation
             }
         }
 
-        List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Overclock, passingBehaviors);
-
-        AbilityRules rules = selection.Ability.GetAbilityRules(selection.Overclock);
+        List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
 
         int potentialDamage = GetPotentialPhysicalDamage(player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
-        if (rules.TargetAllEnemies)
+        if (selection.Ability.TargetAllEnemies(selection.Overclock))
         {
             enemyTeam.ApplyPhysicalDamageToTeam(potentialDamage);
         }
@@ -97,7 +95,7 @@ public class StatCalculation
 
             foreach (Arithmetic arithmetic in effect.ExtraArithmetics)
             {
-                baseAmount = arithmetic.CalculateSolution(baseAmount, activator.IncomingValues.GetIncomingValue(arithmetic.InGameValueType));
+                baseAmount = arithmetic.CalculateSolution(baseAmount, activator.GameValues.GetInGameValue(arithmetic.GameValueType));
             }
 
             totalAmount += baseAmount;
@@ -143,7 +141,7 @@ public class StatCalculation
 
             foreach (Arithmetic arithmetic in effect.ExtraArithmetics)
             {
-                amount = arithmetic.CalculateSolution(amount, activator.IncomingValues.GetIncomingValue(arithmetic.InGameValueType));
+                amount = arithmetic.CalculateSolution(amount, activator.GameValues.GetInGameValue(arithmetic.GameValueType));
             }
 
             totalAmount += amount;

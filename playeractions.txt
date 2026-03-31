@@ -23,7 +23,7 @@
 
 
 
-  "dodge": {
+"dodge": {
     "name": "Dodge",
     "ap": 1,
     "type": "utility",
@@ -43,11 +43,11 @@
       "2": { "dodge": [8, 11] },
       "3": { "dodge": [13, 17] },
       "4": { "dodge": [22, 25] }
-    }
-}
 
 
-"rift_cut": {
+
+
+  "rift_cut": {
   "name": "Rift Cut",
   "ap": 2,
   "type": "finisher",
@@ -69,7 +69,7 @@
       "3": { "damagePerChain": 10 },
       "4": { "damagePerChain": 13 }
     }
-  }
+
 
 
  "flurry": {

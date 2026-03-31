@@ -2,39 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character
+public abstract class Character
 {
 
-    public CharacterStats Stats { get; private set; }
-    public CharacterStats AbilitySequencingStats { get; private set; }
+    public CharacterStats Stats { get; protected set; }
+    public GameValues GameValues { get; protected set; }
 
-    public InGameValues IncomingValues { get; private set; }
-
-    public List<Ability> Abilities { get; private set; }
-
-    public Dictionary<Character, int> DodgePriorities { get; private set; }
-
-    public string Name { get; private set; }
-
-    private int index;
-
-    private bool isPlayerControlled;
-
-    public bool IsPlayerControlled
-    {
-        get
-        {
-            return isPlayerControlled;
-        }
-    }
-
-    public int Index
-    {
-        get
-        {
-            return index;
-        }
-    }
+    public string Name { get; protected set; }
 
     public bool IsAlive
     {
@@ -44,52 +18,13 @@ public class Character
         }
     }
 
-    public Character(CharacterData data)
+    public Character()
     {
-        Name = data.name;
-        IncomingValues = new InGameValues();
-
         Stats = new CharacterStats(this);
-        AbilitySequencingStats = new CharacterStats(this);
-
-        Stats.HealthMax = data.maxHealth.GetValue();
-        Stats.Health = Stats.HealthMax;
-
-        Stats.AbilityPointsMax = data.abilityPointsMax.GetValue();
-        Stats.AbilityPoints = Stats.AbilityPointsMax;
-
-        Stats.Chain = 0;
-
-        Abilities = new List<Ability>(data.abilities.Length);
-        foreach (AbilityData abilityData in data.abilities)
-        {
-            Abilities.Add(new Ability(abilityData));
-        }
+        GameValues = new GameValues();
     }
 
-    public void RefillAbilityPoints()
-    {
-        Stats.AbilityPoints = Stats.AbilityPointsMax;
-    }
-
-    public void ResetDodge()
-    {
-        DodgePriorities = new Dictionary<Character, int>();
-        Stats.Dodge = 0;
-    }
-
-    public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
-    {
-        AbilitySequencingStats.CopyFrom(Stats);
-        foreach (AbilitySelection abilitySelection in abilitySequence.Sequence)
-        {
-            AbilitySequencingStats.AbilityPoints -= abilitySelection.Ability.GetAbilityRules(abilitySelection.Overclock).APCost;
-            if (AbilitySequencingStats.AbilityPoints < 0)
-            {
-                AbilitySequencingStats.AbilityPoints = 0;
-            }
-        }
-    }
+    public abstract void ResetForTurn();
 
     public void ApplyPhysicalDamage(int damage)
     {
@@ -112,30 +47,14 @@ public class Character
         Stats.Chain += chain;
     }
 
-    public void ApplyDodge(int dodge, Character target)
+    public virtual void ApplyDodge(int dodge, Character target)
     {
-        if (target != this)
-        {
-            if (DodgePriorities.ContainsKey(target))
-            {
-                DodgePriorities[target] += dodge;
-            }
-            else
-            {
-                DodgePriorities.Add(target, dodge);
-            }
-        }
         Stats.Dodge += dodge;
     }
 
-    public void ApplyAbilitySequencingStats()
+    public void RefreshInGameValues(int numberOfEnemies)
     {
-        Stats.CopyFrom(AbilitySequencingStats);
-    }
-
-    public void RefreshIncomingValues(int numberOfEnemies)
-    {
-        IncomingValues.SetCalculatedChain(this);
-        IncomingValues.SetNumberOfEnemies(numberOfEnemies);
+        GameValues.SetCalculatedChain(this);
+        GameValues.SetNumberOfEnemies(numberOfEnemies);
     }
 }

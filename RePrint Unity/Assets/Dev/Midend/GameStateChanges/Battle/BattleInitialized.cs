@@ -4,10 +4,10 @@ using UnityEngine;
 public class BattleInitialized : BattleStateChange
 {
 
-    private Character playerCharacter;
+    private PlayerCharacter playerCharacter;
     private Team enemyTeam;
 
-    public BattleInitialized(Character _playerCharacter, Team _enemyTeam)
+    public BattleInitialized(PlayerCharacter _playerCharacter, Team _enemyTeam)
     {
         playerCharacter = _playerCharacter;
         enemyTeam = _enemyTeam;
