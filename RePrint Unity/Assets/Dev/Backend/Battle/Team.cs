@@ -9,7 +9,7 @@ public class Team
     /// <summary>
     /// The list of Characters in this Team.
     /// </summary>
-    private List<Character> members;
+    protected List<Character> members;
 
     /// <summary>
     /// Public getter for the list of Characters in this Team.
@@ -19,7 +19,7 @@ public class Team
     /// <summary>
     /// The list of Characters in this Team in turn order.
     /// </summary>
-    private List<Character> membersInTurnOrder;
+    protected List<Character> membersInTurnOrder;
 
     /// <summary>
     /// Public getter for the list of Characters in this Team in turn order.
@@ -33,15 +33,17 @@ public class Team
 
     public Team(Character character)
     {
-        members = new List<Character>();
-        members.Add(character);
+        members = new List<Character>
+        {
+            character
+        };
     }
 
     /// <summary>
     /// Adds a Character to the Team.
     /// </summary>
     /// <param name="character">The Character to add.</param>
-    public void AddMember(Character character)
+    public virtual void AddMember(Character character)
     {
         members.Add(character);
     }
@@ -50,7 +52,7 @@ public class Team
     /// Remove a Character at an index.
     /// </summary>
     /// <param name="index">The index to remove at.</param>
-    public void RemoveCardAt(int index)
+    public virtual void RemoveMemberAt(int index)
     {
         members.RemoveAt(index);
     }
@@ -60,7 +62,7 @@ public class Team
     /// </summary>
     /// <param name="character">The Character to remove.</param>
     /// <returns>Whether the Character was found and could be removed.</returns>
-    public bool RemoveCard(Character character)
+    public virtual bool RemoveMember(Character character)
     {
         return members.Remove(character);
     }
@@ -84,7 +86,7 @@ public class Team
         }
     }
 
-    public void CalculateTurnOrder(Dictionary<Character, int> priorities)
+    public virtual void CalculateTurnOrder(Dictionary<Character, int> priorities)
     {
         membersInTurnOrder = new List<Character>();
         List<Character> remainingMembers = new List<Character>(members);

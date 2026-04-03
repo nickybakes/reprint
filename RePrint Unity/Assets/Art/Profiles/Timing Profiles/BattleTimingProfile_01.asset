@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BattleTimingProfile_01
   m_EditorClassIdentifier: Assembly-CSharp::BattleTimingProfile
   playerAbilityTime: 1
+  enemyAbilityTime: 1

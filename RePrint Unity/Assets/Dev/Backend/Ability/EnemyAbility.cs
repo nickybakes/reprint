@@ -14,8 +14,11 @@ public enum EnemyIntent
 
 public class EnemyAbility : Ability
 {
+    public EnemyIntent Intent { get; private set; }
+
     public EnemyAbility(EnemyAbilityData data)
     {
+        Intent = data.Intent;
         behaviorsTable = new List<List<AbilityBehavior>>(1)
         {
             data.Behaviors.List

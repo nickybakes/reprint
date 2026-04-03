@@ -15,24 +15,19 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private List<BattleStateChange> pendingBattleChanges;
 
-    private PlayerCharacter playerCharacter;
+    public PlayerCharacter Player { get; private set; }
 
-    private Team enemyTeam;
+    public EnemyTeam EnemyTeam { get; private set; }
 
     /// <summary>
     /// The number of the current turn the battle is in. Increments once all teams have done an ability and loops back to the first team.
     /// </summary>
-    private int turnIndex = -1;
+    public int TurnIndex { get; private set; } = -1;
 
     /// <summary>
     /// The data for what characters are in this battle scenario
     /// </summary>
     private BattleData battleData;
-
-    /// <summary>
-    /// The data for how to set up the scene of the battle.
-    /// </summary>
-    private BattleSceneSetup battleSceneSetup;
 
     private AbilitySequence playerAbilitySequence;
 
@@ -47,19 +42,19 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(BattleData data)
     {
-        turnIndex = -1;
-        playerCharacter = new PlayerCharacter(data.playerCharacterData);
+        TurnIndex = -1;
+        Player = new PlayerCharacter(data.playerCharacterData);
 
-        enemyTeam = new Team();
+        EnemyTeam = new EnemyTeam();
 
         foreach (EnemyData enemyData in data.enemyDatas)
         {
-            enemyTeam.AddMember(new EnemyCharacter(enemyData));
+            EnemyTeam.AddMember(new EnemyCharacter(enemyData));
         }
 
         pendingBattleChanges = new List<BattleStateChange>
         {
-            new BattleInitialized(playerCharacter, enemyTeam)
+            new BattleInitialized(Player, EnemyTeam)
         };
         SubmitChanges();
 
@@ -69,20 +64,30 @@ public class BattleManager : MonoBehaviour
     public virtual void StartPlayerTurn()
     {
         playerAbilitySequence = new AbilitySequence();
-        turnIndex++;
-        playerCharacter.ResetForTurn();
-        playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
+        TurnIndex++;
+        Player.ResetForTurn();
+        Player.RefreshAbilitySequencingStats(playerAbilitySequence);
         RefreshAllCharacterInGameValues();
-        pendingBattleChanges.Add(new PlayerTurnStart(playerCharacter.AbilitySequencingStats, turnIndex));
+
+        foreach (EnemyCharacter enemy in EnemyTeam.Enemies)
+        {
+            if (enemy.IsAlive)
+            {
+                enemy.DecideAbility(this);
+                pendingBattleChanges.Add(new EnemyDecideAbility(enemy.ChosenAbility, enemy));
+            }
+        }
+
+        pendingBattleChanges.Add(new PlayerTurnStart(Player.AbilitySequencingStats, TurnIndex));
         SubmitChanges();
     }
 
     public void RefreshAllCharacterInGameValues()
     {
-        int numberOfEnemies = enemyTeam.GetNumberOfAliveMembers();
-        playerCharacter.RefreshInGameValues(numberOfEnemies);
+        int numberOfEnemies = EnemyTeam.GetNumberOfAliveMembers();
+        Player.RefreshInGameValues(numberOfEnemies);
 
-        foreach (Character enemy in enemyTeam.Members)
+        foreach (Character enemy in EnemyTeam.Members)
         {
             enemy.RefreshInGameValues(numberOfEnemies);
         }
@@ -90,7 +95,7 @@ public class BattleManager : MonoBehaviour
 
     public virtual void PlayerSubmitAbility(Ability ability)
     {
-        playerAbilitySequence.AddOrOverclockAbility(ability, playerCharacter.AbilitySequencingStats.AbilityPoints);
+        playerAbilitySequence.AddOrOverclockAbility(ability, Player.AbilitySequencingStats.AbilityPoints);
         SubmitPlayerChangeAbilitySequence();
     }
 
@@ -105,6 +110,8 @@ public class BattleManager : MonoBehaviour
         pendingBattleChanges.Add(new PlayerTurnEnd());
         DoPlayerAbilitySequence();
 
+        DoEnemyAbilities();
+
         // Check if all enemies are eliminated. If not, next turn!
 
         StartPlayerTurn();
@@ -112,20 +119,34 @@ public class BattleManager : MonoBehaviour
 
     public virtual void DoPlayerAbilitySequence()
     {
-        playerCharacter.ApplyAbilitySequencingStats();
+        Player.ApplyAbilitySequencingStats();
 
         foreach (AbilitySelection abilitySelection in playerAbilitySequence.Sequence)
         {
             RefreshAllCharacterInGameValues();
-            AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, playerAbilitySequence, playerCharacter, enemyTeam);
+            AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, playerAbilitySequence, this);
             pendingBattleChanges.Add(new PlayerDoAbility(abilitySelection, result));
         }
 
-        enemyTeam.CalculateTurnOrder(playerCharacter.DodgePriorities);
+        EnemyTeam.CalculateTurnOrder(Player.DodgePriorities);
 
         SubmitChanges();
     }
 
+    public virtual void DoEnemyAbilities()
+    {
+        foreach (EnemyCharacter enemy in EnemyTeam.EnemiesInTurnOrder)
+        {
+            if (enemy.IsAlive)
+            {
+                RefreshAllCharacterInGameValues();
+                AbilityResults results = StatCalculation.GetEnemyAbilityResult(enemy.ChosenAbility, enemy, this);
+                pendingBattleChanges.Add(new EnemyDoAbility(enemy.ChosenAbility, results));
+            }
+        }
+
+        SubmitChanges();
+    }
 
     public virtual void PlayerSubmitBack()
     {
@@ -139,8 +160,8 @@ public class BattleManager : MonoBehaviour
     protected virtual void SubmitPlayerChangeAbilitySequence()
     {
         RefreshAllCharacterInGameValues();
-        playerCharacter.RefreshAbilitySequencingStats(playerAbilitySequence);
-        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, playerCharacter.AbilitySequencingStats));
+        Player.RefreshAbilitySequencingStats(playerAbilitySequence);
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.AbilitySequencingStats));
         SubmitChanges();
     }
 }

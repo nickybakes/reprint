@@ -43,7 +43,7 @@ public class PlayerCharacter : Character
                 DodgePriorities.Add(target, dodge);
             }
         }
-        base.ApplyDodge(dodge, target);
+        Stats.Dodge += dodge;
     }
 
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)

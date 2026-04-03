@@ -6,6 +6,7 @@ public class BattleTimingProfile : ScriptableObject
 {
 
     [SerializeField] private float playerAbilityTime = .5f;
+    [SerializeField] private float enemyAbilityTime = .5f;
 
 
     public float GetTime(BattleStateChange change)
@@ -14,6 +15,12 @@ public class BattleTimingProfile : ScriptableObject
         {
             return playerAbilityTime;
         }
+
+        if (change is EnemyDoAbility)
+        {
+            return enemyAbilityTime;
+        }
+
         return 0;
     }
 }

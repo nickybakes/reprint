@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65ed982458fa7364b9f9287c681322f9, type: 3}
-  m_Name: EnemyData
+  m_Name: E_Skiv_03
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   maxHealth:
     type: 0
-    baseValue: 0
+    baseValue: 42
     maxValue: 0
   <Behaviors>k__BackingField:
     list:
@@ -24,27 +24,12 @@ MonoBehaviour:
         foldouts: 
       abilityWeights:
         list:
-        - abilityData: {fileID: 0}
+        - abilityData: {fileID: 11400000, guid: a77e30a8dbef3714ab45703b36d49751, type: 2}
           weight: 70
-        - abilityData: {fileID: 0}
-          weight: 70
-        - abilityData: {fileID: 0}
-          weight: 70
-        listFoldout: 1
-        foldouts: 010101
-      breakOutIfConditionsAreTrue: 0
-    - conditions:
-        list: []
-        listFoldout: 1
-        foldouts: 
-      abilityWeights:
-        list:
-        - abilityData: {fileID: 0}
-          weight: 70
-        - abilityData: {fileID: 0}
-          weight: 70
+        - abilityData: {fileID: 11400000, guid: ad6aad009779f7149ab5fb26d4f28a8b, type: 2}
+          weight: 30
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
-    foldouts: 0101
+    foldouts: 01

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CharacterBattlePanel : CharacterStatsPanel
 {
+    [SerializeField] private IntentDisplayGroup intentDisplayGroup;
 
     [SerializeField] private BetterButton targetButton;
 
@@ -41,6 +42,14 @@ public class CharacterBattlePanel : CharacterStatsPanel
     public void SubmitTarget()
     {
         controller.SubmitTarget(character);
+    }
+
+    public void UpdateIntent(EnemyAbility ability)
+    {
+        if (intentDisplayGroup)
+        {
+            intentDisplayGroup.Refresh(ability, character);
+        }
     }
 
     public void UpdatePosition()

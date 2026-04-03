@@ -47,10 +47,7 @@ public abstract class Character
         Stats.Chain += chain;
     }
 
-    public virtual void ApplyDodge(int dodge, Character target)
-    {
-        Stats.Dodge += dodge;
-    }
+    public abstract void ApplyDodge(int dodge, Character target);
 
     public void RefreshInGameValues(int numberOfEnemies)
     {

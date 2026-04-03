@@ -11,7 +11,7 @@ public enum StatType
 
 public class StatCalculation
 {
-    public static AbilityResults GetPlayerAbilityResult(AbilitySelection selection, AbilitySequence abilitySequence, Character player, Team enemyTeam)
+    public static AbilityResults GetPlayerAbilityResult(AbilitySelection selection, AbilitySequence abilitySequence, BattleManager battleManager)
     {
         // TODO: Check the conditions of behaviors and compile the list of effects
 
@@ -21,7 +21,7 @@ public class StatCalculation
 
         foreach (AbilityBehavior behavior in behaviors)
         {
-            if (BehaviorConditionsPass(behavior))
+            if (DoGameConditionsPass(behavior.Conditions, battleManager))
             {
                 passingBehaviors.Add(true);
             }
@@ -29,43 +29,85 @@ public class StatCalculation
 
         List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
 
-        int potentialDamage = GetPotentialPhysicalDamage(player, effects);
+        int potentialDamage = GetPotentialPhysicalDamage(battleManager.Player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
         if (selection.Ability.TargetAllEnemies(selection.Overclock))
         {
-            enemyTeam.ApplyPhysicalDamageToTeam(potentialDamage);
+            battleManager.EnemyTeam.ApplyPhysicalDamageToTeam(potentialDamage);
         }
         else
         {
             selection.Target.ApplyPhysicalDamage(potentialDamage);
         }
 
-        int potentialChainGain = GetPotentialChainGain(player, effects);
+        int potentialChainGain = GetPotentialChainGain(battleManager.Player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
-        player.ApplyChain(potentialChainGain);
+        battleManager.Player.ApplyChain(potentialChainGain);
 
-        int potentialChainLoss = GetPotentialChainLoss(player, effects);
+        int potentialChainLoss = GetPotentialChainLoss(battleManager.Player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
-        player.ApplyChain(-potentialChainLoss);
+        battleManager.Player.ApplyChain(-potentialChainLoss);
 
 
-        int potentialDodge = GetPotentialDodgeGain(player, effects);
+        int potentialDodge = GetPotentialDodgeGain(battleManager.Player, effects);
         // TODO: Alter the total amount based on the player's current mod chips
 
-        player.ApplyDodge(potentialDodge, selection.Target);
+        battleManager.Player.ApplyDodge(potentialDodge, selection.Target);
 
 
-        return new AbilityResults(player, enemyTeam);
+        return new AbilityResults(battleManager.Player, battleManager.EnemyTeam);
     }
 
-    public static bool BehaviorConditionsPass(AbilityBehavior behavior)
+    public static AbilityResults GetEnemyAbilityResult(EnemyAbility ability, EnemyCharacter activator, BattleManager battleManager)
     {
-        for (int i = 0; i < behavior.Conditions.Count; i++)
+        // TODO: Check the conditions of behaviors and compile the list of effects
+
+        List<AbilityBehavior> behaviors = new List<AbilityBehavior>(ability.GetAbilityBehaviors());
+
+        List<bool> passingBehaviors = new List<bool>();
+
+        foreach (AbilityBehavior behavior in behaviors)
         {
-            // TODO: Add logic for checking conditions
+            if (DoGameConditionsPass(behavior.Conditions, battleManager))
+            {
+                passingBehaviors.Add(true);
+            }
+        }
+
+        List<AbilityEffect> effects = ability.GetAbilityEffects(ability.GetAbilityBehaviors(), passingBehaviors);
+
+        int potentialDamage = GetPotentialPhysicalDamage(activator, effects);
+        // TODO: Alter the total amount based on the player's current mod chips
+
+        battleManager.Player.ApplyPhysicalDamage(potentialDamage);
+
+        // int potentialChainGain = GetPotentialChainGain(activator, effects);
+        // // TODO: Alter the total amount based on the player's current mod chips
+
+        // battleManager.Player.ApplyChain(potentialChainGain);
+
+        // int potentialChainLoss = GetPotentialChainLoss(activator, effects);
+        // // TODO: Alter the total amount based on the player's current mod chips
+
+        // battleManager.Player.ApplyChain(-potentialChainLoss);
+
+        int potentialDodge = GetPotentialDodgeGain(activator, effects);
+        // TODO: Alter the total amount based on the player's current mod chips
+
+        activator.ApplyDodge(potentialDodge, battleManager.Player);
+
+
+        return new AbilityResults(battleManager.Player, battleManager.EnemyTeam);
+    }
+
+    public static bool DoGameConditionsPass(List<GameCondition> conditions, BattleManager battleManager)
+    {
+        for (int i = 0; i < conditions.Count; i++)
+        {
+            // TODO: Add logic for checking conditions. If one fails, return false
         }
         return true;
     }

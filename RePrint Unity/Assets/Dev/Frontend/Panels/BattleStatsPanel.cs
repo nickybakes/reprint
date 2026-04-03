@@ -48,6 +48,14 @@ public class BattleStatsPanel : Panel
         }
     }
 
+    public void UpdateEnemyIntent(EnemyAbility ability, Character enemy)
+    {
+        if (EnemyStatPanels.ContainsKey(enemy))
+        {
+            EnemyStatPanels[enemy].UpdateIntent(ability);
+        }
+    }
+
     public void EnableEnemySelection()
     {
         foreach (CharacterBattlePanel panel in EnemyStatPanels.Values)
