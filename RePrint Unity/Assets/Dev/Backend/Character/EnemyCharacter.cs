@@ -60,9 +60,8 @@ public class EnemyCharacter : Character
         }
     }
 
-    public override void ApplyDodge(int dodge, Character target)
+    public override void ApplyDodgePriority(int dodge, Character target)
     {
-        Stats.Dodge += dodge;
     }
 
     public override void ResetForTurn()

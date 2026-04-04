@@ -14,11 +14,10 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
         SerializedProperty typeProperty = AddProperty("type", "Ability Effect Type");
         AbilityEffectType type = (AbilityEffectType)typeProperty.enumValueIndex;
 
+        AddProperty("applicationModes");
+
         switch (type)
         {
-            case AbilityEffectType.RemoveAllChain:
-                break;
-
             default:
                 AddQuarterBlankLine();
                 AddProperty("valueInput");

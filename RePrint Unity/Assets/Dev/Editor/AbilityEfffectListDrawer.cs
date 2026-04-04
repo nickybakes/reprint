@@ -24,9 +24,6 @@ public class AbilityEffectListDrawer : BetterListDrawer
 
         switch (type)
         {
-            case AbilityEffectType.RemoveAllChain:
-                break;
-
             default:
                 SerializedProperty valueInputProp = element.FindPropertyRelative("valueInput");
                 SerializedProperty valueTypeProp = valueInputProp.FindPropertyRelative("type");

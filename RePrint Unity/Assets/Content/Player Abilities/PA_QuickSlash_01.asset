@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
-  m_Name: PlayerAbility_001
+  m_Name: PA_QuickSlash_01
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Quick Slash
   <Description>k__BackingField: Balanced damage and chain gain Starter Action.
@@ -69,6 +69,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 0
+          applicationModes:
+            list:
+            - applicationMode: 1
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 6
@@ -78,6 +89,17 @@ MonoBehaviour:
             listFoldout: 0
             foldouts: 
         - type: 2
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 1
@@ -86,7 +108,7 @@ MonoBehaviour:
             list: []
             listFoldout: 1
             foldouts: 
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
@@ -95,11 +117,22 @@ MonoBehaviour:
     list:
     - conditions:
         list: []
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 
       effects:
         list:
         - type: 0
+          applicationModes:
+            list:
+            - applicationMode: 1
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 8
@@ -109,6 +142,17 @@ MonoBehaviour:
             listFoldout: 1
             foldouts: 
         - type: 2
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 2
@@ -117,7 +161,7 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
@@ -131,6 +175,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 0
+          applicationModes:
+            list:
+            - applicationMode: 1
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 12
@@ -140,6 +195,17 @@ MonoBehaviour:
             listFoldout: 0
             foldouts: 
         - type: 2
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 3
@@ -148,7 +214,7 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
@@ -162,6 +228,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 0
+          applicationModes:
+            list:
+            - applicationMode: 1
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 16
@@ -171,6 +248,17 @@ MonoBehaviour:
             listFoldout: 0
             foldouts: 
         - type: 2
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 4
@@ -193,6 +281,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 0
+          applicationModes:
+            list:
+            - applicationMode: 1
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 25
@@ -202,6 +301,17 @@ MonoBehaviour:
             listFoldout: 0
             foldouts: 
         - type: 2
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 0
             baseValue: 6
@@ -210,8 +320,8 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
-    listFoldout: 0
-    foldouts: 00
+    listFoldout: 1
+    foldouts: 01

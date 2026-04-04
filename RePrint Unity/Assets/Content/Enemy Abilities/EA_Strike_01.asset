@@ -24,6 +24,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 0
+          applicationModes:
+            list:
+            - applicationMode: 2
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 1
             baseValue: 3

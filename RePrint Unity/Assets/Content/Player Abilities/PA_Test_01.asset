@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
-  m_Name: PlayerAbility_004
+  m_Name: PA_Test_01
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Test Ability 4
   <Description>k__BackingField: test descrption
@@ -70,6 +70,7 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
+      breakOutIfConditionsAreTrue: 0
     - conditions:
         list: []
         listFoldout: 0
@@ -78,6 +79,7 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
+      breakOutIfConditionsAreTrue: 0
     - conditions:
         list: []
         listFoldout: 0
@@ -86,6 +88,7 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
+      breakOutIfConditionsAreTrue: 0
     - conditions:
         list: []
         listFoldout: 0
@@ -94,6 +97,7 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01010101
   <AbilityOverclock1Behaviors>k__BackingField:
@@ -109,26 +113,6 @@ MonoBehaviour:
     listFoldout: 0
     foldouts: 
   <AbilityOverclock4Behaviors>k__BackingField:
-    list: []
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock0>k__BackingField:
-    list: []
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock1>k__BackingField:
-    list: []
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock2>k__BackingField:
-    list: []
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock3>k__BackingField:
-    list: []
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock4>k__BackingField:
     list: []
     listFoldout: 0
     foldouts: 

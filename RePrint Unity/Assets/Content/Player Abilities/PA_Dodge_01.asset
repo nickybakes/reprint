@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
-  m_Name: PlayerAbility_002
+  m_Name: PA_Dodge_01
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Name>k__BackingField: Dodge
   <Description>k__BackingField: Gain Dodge to reduce incoming damage.
@@ -69,6 +69,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 1
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 1
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 1
             baseValue: 3
@@ -79,6 +90,7 @@ MonoBehaviour:
             foldouts: 
         listFoldout: 1
         foldouts: 01
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
   <AbilityOverclock1Behaviors>k__BackingField:
@@ -90,6 +102,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 1
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 1
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 1
             baseValue: 5
@@ -100,6 +123,7 @@ MonoBehaviour:
             foldouts: 
         listFoldout: 1
         foldouts: 01
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
   <AbilityOverclock2Behaviors>k__BackingField:
@@ -111,6 +135,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 1
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 1
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 1
             baseValue: 8
@@ -121,6 +156,7 @@ MonoBehaviour:
             foldouts: 
         listFoldout: 1
         foldouts: 01
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
   <AbilityOverclock3Behaviors>k__BackingField:
@@ -132,6 +168,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 1
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 1
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 1
             baseValue: 13
@@ -142,6 +189,7 @@ MonoBehaviour:
             foldouts: 
         listFoldout: 1
         foldouts: 01
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
   <AbilityOverclock4Behaviors>k__BackingField:
@@ -153,6 +201,17 @@ MonoBehaviour:
       effects:
         list:
         - type: 1
+          applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 1
+            listFoldout: 1
+            foldouts: 01
           valueInput:
             type: 1
             baseValue: 22
@@ -163,70 +222,6 @@ MonoBehaviour:
             foldouts: 
         listFoldout: 1
         foldouts: 01
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
-  <AbilityEffectsOverclock0>k__BackingField:
-    list:
-    - type: 1
-      valueInput:
-        type: 1
-        baseValue: 3
-        maxValue: 5
-      extraArithmetics:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    listFoldout: 0
-    foldouts: 00
-  <AbilityEffectsOverclock1>k__BackingField:
-    list:
-    - type: 1
-      valueInput:
-        type: 1
-        baseValue: 5
-        maxValue: 8
-      extraArithmetics:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    listFoldout: 0
-    foldouts: 01
-  <AbilityEffectsOverclock2>k__BackingField:
-    list:
-    - type: 1
-      valueInput:
-        type: 1
-        baseValue: 8
-        maxValue: 11
-      extraArithmetics:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock3>k__BackingField:
-    list:
-    - type: 1
-      valueInput:
-        type: 1
-        baseValue: 13
-        maxValue: 17
-      extraArithmetics:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    listFoldout: 0
-    foldouts: 
-  <AbilityEffectsOverclock4>k__BackingField:
-    list:
-    - type: 1
-      valueInput:
-        type: 1
-        baseValue: 22
-        maxValue: 25
-      extraArithmetics:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    listFoldout: 0
-    foldouts: 

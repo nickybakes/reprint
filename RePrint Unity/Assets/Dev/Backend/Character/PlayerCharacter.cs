@@ -30,7 +30,7 @@ public class PlayerCharacter : Character
         }
     }
 
-    public override void ApplyDodge(int dodge, Character target)
+    public override void ApplyDodgePriority(int dodge, Character target)
     {
         if (target != this)
         {
@@ -43,7 +43,6 @@ public class PlayerCharacter : Character
                 DodgePriorities.Add(target, dodge);
             }
         }
-        Stats.Dodge += dodge;
     }
 
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
