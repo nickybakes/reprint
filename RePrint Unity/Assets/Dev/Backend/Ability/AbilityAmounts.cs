@@ -53,7 +53,7 @@ public class AbilityAmounts
         }
     }
 
-    public void NegativeAmounts()
+    public void NegateAmounts()
     {
         Dictionary<Character, int> newAmounts = new Dictionary<Character, int>();
         foreach (Character character in Amounts.Keys)
@@ -63,7 +63,7 @@ public class AbilityAmounts
         Amounts = newAmounts;
     }
 
-    public void NegativePriorities()
+    public void NegatePriorities()
     {
         Dictionary<Character, int> newPriorities = new Dictionary<Character, int>();
         foreach (Character character in Priorities.Keys)

@@ -59,7 +59,7 @@ public class StatCalculation
         AbilityAmounts dodgeAmounts = GetPotentialDodgeGain(activator, target, effects, manager);
         AbilityAmounts chainGainAmounts = GetPotentialChainGain(activator, target, effects, manager);
         AbilityAmounts chainSpentAmounts = GetPotentialChainSpent(activator, target, effects, manager);
-        chainSpentAmounts.NegativeAmounts();
+        chainSpentAmounts.NegateAmounts();
 
         damageAmounts.ApplyAmountsToCharacters(StatType.PhysicalDamage);
 
