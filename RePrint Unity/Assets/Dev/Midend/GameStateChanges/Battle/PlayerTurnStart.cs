@@ -17,7 +17,7 @@ public class PlayerTurnStart : BattleStateChange
     public override void ParseChange(BattleView view, BattleController controller)
     {
         Debug.Log("Player turn start!");
-        view.TurnDisplay.SetText("Turn " + (turnIndex + 1));
+        view.TurnDisplay.SetText((turnIndex + 1).ToString());
         view.BattleStatsPanel.DisableAllTargetSelection();
         view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
         view.PlayerConfirmSequenceButton.Show();

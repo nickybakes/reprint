@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Figure : MonoBehaviour
 {
-    [SerializeField] protected MeshRenderer meshRenderer;
+    [SerializeField] protected MeshRenderer meshRendererCenter;
 
     [SerializeField] protected GameObject meshCenterOverride;
 
@@ -12,8 +12,10 @@ public class Figure : MonoBehaviour
         {
             if (meshCenterOverride)
                 return meshCenterOverride.transform.position;
+            else if (meshRendererCenter)
+                return meshRendererCenter.bounds.center;
             else
-                return meshRenderer.bounds.center;
+                return transform.position;
         }
     }
 }

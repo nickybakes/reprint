@@ -162,6 +162,14 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 31.4
       objectReference: {fileID: 0}
+    - target: {fileID: 7124072248763998510, guid: d1091cbe55375b84b886664e3880e645, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7124072248763998510, guid: d1091cbe55375b84b886664e3880e645, type: 3}
+      propertyPath: m_characterSpacing
+      value: -17.78
+      objectReference: {fileID: 0}
     - target: {fileID: 8485699862766232927, guid: d1091cbe55375b84b886664e3880e645, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

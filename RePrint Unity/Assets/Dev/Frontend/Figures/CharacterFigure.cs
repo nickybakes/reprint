@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class CharacterFigure : FloatingFigure
 {
+
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected Transform positionBone;
+
+    private bool isMovingInAnimation;
+
+
     /// <summary>
     /// Sets up the travel data.
     /// </summary>
@@ -12,6 +19,7 @@ public class CharacterFigure : FloatingFigure
 
     void Update()
     {
-        UpdateTravel();
+        if (!isMovingInAnimation)
+            UpdateTravel();
     }
 }

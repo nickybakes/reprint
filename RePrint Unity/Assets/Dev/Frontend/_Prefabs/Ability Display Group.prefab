@@ -77,7 +77,7 @@ MonoBehaviour:
   splineContainer: {fileID: 9084895509685642844}
   alignment: 1
   displaySizeNormalized: 0.176
-  bigDisplaySizeNormalized: 0.362
+  bigDisplaySizeNormalized: 0.395
   rotationFirst: {x: 0, y: 0, z: 15}
   rotationLast: {x: 0, y: 0, z: -15}
   displaySpaceMoveSpeed: 4
