@@ -121,12 +121,20 @@ public class BattleManager : MonoBehaviour
     {
         Player.ApplyAbilitySequencingStats();
 
-        foreach (AbilitySelection abilitySelection in playerAbilitySequence.Sequence)
+        List<AbilitySelection> sortedAbilitySequence = playerAbilitySequence.GetSortedSequence();
+
+        List<AbilitySelection> abilitySelections = new List<AbilitySelection>();
+        List<AbilityResults> results = new List<AbilityResults>();
+
+        foreach (AbilitySelection abilitySelection in sortedAbilitySequence)
         {
             RefreshAllCharacterInGameValues();
             AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, playerAbilitySequence, this);
-            pendingBattleChanges.Add(new PlayerDoAbility(abilitySelection, result));
+            abilitySelections.Add(abilitySelection);
+            results.Add(result);
         }
+
+        pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, results));
 
         EnemyTeam.CalculateTurnOrder(Player.DodgePriorities);
 

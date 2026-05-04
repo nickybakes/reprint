@@ -12,4 +12,9 @@ public class BattleStateChange : GameStateChange
     {
 
     }
+
+    public virtual void Update(BattleView view, BattleController controller)
+    {
+
+    }
 }

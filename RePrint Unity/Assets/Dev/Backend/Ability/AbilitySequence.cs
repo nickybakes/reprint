@@ -58,6 +58,32 @@ public class AbilitySequence
         return true;
     }
 
+    public List<AbilitySelection> GetSortedSequence()
+    {
+        List<AbilitySelection> sortedSequence = new List<AbilitySelection>();
+
+        // For now, the sorted sequence moves Utility abilities to the front
+        // of the sequence. Might want to change this later to a priority value system.
+
+        foreach (AbilitySelection abilitySelection in sequence)
+        {
+            if (abilitySelection.Ability.Type == AbilityType.Utility)
+            {
+                sortedSequence.Add(abilitySelection);
+            }
+        }
+
+        foreach (AbilitySelection abilitySelection in sequence)
+        {
+            if (abilitySelection.Ability.Type != AbilityType.Utility)
+            {
+                sortedSequence.Add(abilitySelection);
+            }
+        }
+
+        return sortedSequence;
+    }
+
     public AbilitySelection GetLastSelection()
     {
         return sequence[sequence.Count - 1];

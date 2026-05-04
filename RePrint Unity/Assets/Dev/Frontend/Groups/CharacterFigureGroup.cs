@@ -20,7 +20,6 @@ public class CharacterFigureGroup : MonoBehaviour
         foreach (Character character in _characters)
         {
             CharacterFigure figure = Instantiate(characterFigurePrefab);
-            // display.DisplayAbility(ability, controller);
             characterToFigureReferences.Add(character, figure);
             figureToCharacterReferences.Add(figure, character);
             group.AddFigureToGroup(figure);

@@ -15,6 +15,8 @@ public abstract class Ability
 {
     public static int MAX_OVERCLOCK = 4;
 
+    public AbilityProfile Profile { get { return baseData.Profile; } }
+
     public string Name { get { return baseData.Name; } }
     public string Description { get { return baseData.Description; } }
     public AbilityType Type { get { return baseData.Type; } }

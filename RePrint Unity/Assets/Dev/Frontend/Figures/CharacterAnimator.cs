@@ -3,15 +3,15 @@ using UnityEngine;
 public class CharacterAnimator : MonoBehaviour
 {
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    [SerializeField] protected CharacterFigure figure;
 
+    public void AnimEventFinishAbility()
+    {
+        figure.AnimEventFinishAbility();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AnimEventReturnToIdle()
     {
-
+        figure.AnimEventReturnToIdle();
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f575a1cebd5a4429e9f9e506cc77f2, type: 3}
   m_Name: EA_Strike_02
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAbilityData
+  <Profile>k__BackingField: {fileID: 11400000, guid: e8cfa8aa371935f4fb729229a3e20f85, type: 2}
   <Name>k__BackingField: Strike
   <Description>k__BackingField: 
   <Intent>k__BackingField: 0
@@ -36,7 +37,7 @@ MonoBehaviour:
             listFoldout: 1
             foldouts: 01
           valueInput:
-            type: 1
+            type: 0
             baseValue: 4
             maxValue: 5
           extraArithmetics:

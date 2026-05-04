@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: PA_Test_01
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
+  <Profile>k__BackingField: {fileID: 11400000, guid: e8cfa8aa371935f4fb729229a3e20f85, type: 2}
   <Name>k__BackingField: Test Ability 4
   <Description>k__BackingField: test descrption
   <Type>k__BackingField: 0
@@ -68,7 +69,7 @@ MonoBehaviour:
         foldouts: 
       effects:
         list: []
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 
       breakOutIfConditionsAreTrue: 0
     - conditions:
@@ -102,17 +103,17 @@ MonoBehaviour:
     foldouts: 01010101
   <AbilityOverclock1Behaviors>k__BackingField:
     list: []
-    listFoldout: 0
+    listFoldout: 1
     foldouts: 
   <AbilityOverclock2Behaviors>k__BackingField:
     list: []
-    listFoldout: 0
+    listFoldout: 1
     foldouts: 
   <AbilityOverclock3Behaviors>k__BackingField:
     list: []
-    listFoldout: 0
+    listFoldout: 1
     foldouts: 
   <AbilityOverclock4Behaviors>k__BackingField:
     list: []
-    listFoldout: 0
+    listFoldout: 1
     foldouts: 

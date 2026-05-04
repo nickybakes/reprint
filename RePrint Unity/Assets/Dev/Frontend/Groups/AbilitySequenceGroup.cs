@@ -34,7 +34,7 @@ public class AbilitySequenceGroup : MonoBehaviour
     {
         Clear();
 
-        List<AbilitySelection> sequence = abilitySequence.Sequence;
+        List<AbilitySelection> sequence = abilitySequence.GetSortedSequence();
 
         foreach (AbilitySelection abilitySelection in sequence)
         {

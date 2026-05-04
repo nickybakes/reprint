@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f575a1cebd5a4429e9f9e506cc77f2, type: 3}
   m_Name: EA_Brace_01
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAbilityData
+  <Profile>k__BackingField: {fileID: 11400000, guid: e8cfa8aa371935f4fb729229a3e20f85, type: 2}
   <Name>k__BackingField: Brace
   <Description>k__BackingField: 
   <Intent>k__BackingField: 5

@@ -61,6 +61,11 @@ public class BattleView : MonoBehaviour
     /// </summary>
     private bool parsingGameChanges;
 
+    private bool updatingGameChange;
+
+    private BattleStateChange stateChangeToUpdate;
+
+
 
     /// <summary>
     /// Initialize lists and disable player interactions on Awake
@@ -112,6 +117,19 @@ public class BattleView : MonoBehaviour
         uiRaycastShield.SetActive(false);
     }
 
+    public void SwitchToUpdatingStateChange(BattleStateChange stateChange)
+    {
+        parsingGameChanges = false;
+        updatingGameChange = true;
+        stateChangeToUpdate = stateChange;
+    }
+
+    public void SwitchToParsing()
+    {
+        parsingGameChanges = true;
+        updatingGameChange = false;
+    }
+
     /// <summary>
     /// Every frame try to parse game changes that still need to be parsed.
     /// </summary>
@@ -134,6 +152,11 @@ public class BattleView : MonoBehaviour
                     EnablePlayerInteractions();
                 }
             }
+        }
+
+        if (updatingGameChange)
+        {
+            stateChangeToUpdate.Update(this, battleController);
         }
     }
 

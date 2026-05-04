@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
   m_Name: PA_RiftCut_01
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
+  <Profile>k__BackingField: {fileID: 11400000, guid: e8cfa8aa371935f4fb729229a3e20f85, type: 2}
   <Name>k__BackingField: Rift Cut
   <Description>k__BackingField: 'Single-hit Finisher that scales with Chain. '
   <Type>k__BackingField: 1

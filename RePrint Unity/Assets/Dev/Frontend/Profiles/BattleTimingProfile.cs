@@ -11,10 +11,10 @@ public class BattleTimingProfile : ScriptableObject
 
     public float GetTime(BattleStateChange change)
     {
-        if (change is PlayerDoAbility)
-        {
-            return playerAbilityTime;
-        }
+        // if (change is PlayerDoAbility)
+        // {
+        //     return playerAbilityTime;
+        // }
 
         if (change is EnemyDoAbility)
         {
