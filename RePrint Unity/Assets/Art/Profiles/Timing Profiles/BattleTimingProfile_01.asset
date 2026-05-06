@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87ad3fa0a60e5848a96f704bfd218d7, type: 3}
   m_Name: BattleTimingProfile_01
   m_EditorClassIdentifier: Assembly-CSharp::BattleTimingProfile
-  playerAbilityTime: 1
+  <TimeBeforePlayerAbilityAnimationSequence>k__BackingField: 0.35
+  <TimeAfterPlayerAbilityAnimationSequence>k__BackingField: 0.25
   enemyAbilityTime: 1

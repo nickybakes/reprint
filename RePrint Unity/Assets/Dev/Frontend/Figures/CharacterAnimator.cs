@@ -14,4 +14,9 @@ public class CharacterAnimator : MonoBehaviour
     {
         figure.AnimEventReturnToIdle();
     }
+
+    public void AnimEventUpdateStats()
+    {
+        figure.AnimEventUpdateStats();
+    }
 }

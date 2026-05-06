@@ -17,6 +17,7 @@ public class CharacterFigure : FloatingFigure
 
     private Action finishAbilityAnimationAction;
     private Action returnToIdleAction;
+    private Action updateStatsAction;
 
 
     /// <summary>
@@ -28,17 +29,17 @@ public class CharacterFigure : FloatingFigure
         state = FigureState.Idle;
     }
 
-    public void PlayAnimation(AnimationTrigger trigger, Action _finishAbilityAnimationAction, Action _returnToIdleAction)
+    public void PlayAnimation(AnimationTrigger trigger, Action _finishAbilityAnimationAction, Action _returnToIdleAction, Action _updateStatsAction)
     {
         state = FigureState.Ability;
         finishAbilityAnimationAction = _finishAbilityAnimationAction;
         returnToIdleAction = _returnToIdleAction;
+        updateStatsAction = _updateStatsAction;
         animator.SetTrigger(trigger.TriggerName);
     }
 
     public void AnimEventFinishAbility()
     {
-        Debug.Log("dwdadwawdwad");
         if (finishAbilityAnimationAction != null)
         {
             finishAbilityAnimationAction.Invoke();
@@ -47,10 +48,17 @@ public class CharacterFigure : FloatingFigure
 
     public void AnimEventReturnToIdle()
     {
-        Debug.Log("return to idle");
         if (returnToIdleAction != null)
         {
             returnToIdleAction.Invoke();
+        }
+    }
+
+    public void AnimEventUpdateStats()
+    {
+        if (updateStatsAction != null)
+        {
+            updateStatsAction.Invoke();
         }
     }
 

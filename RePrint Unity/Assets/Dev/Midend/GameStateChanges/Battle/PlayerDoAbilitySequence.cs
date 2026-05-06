@@ -14,6 +14,15 @@ public class PlayerDoAbilitySequence : BattleStateChange
 
     private int currentAbilityIndex;
 
+    private bool sequenceEnded;
+
+    private float timeAfterSequenceEnded;
+
+    private bool sequenceStarted;
+
+    private float timeBeforeStartingSequence;
+
+
     private BattleView battleView;
 
     public PlayerDoAbilitySequence(Character _player, List<AbilitySelection> _abilitySelections, List<AbilityResults> _results)
@@ -21,6 +30,9 @@ public class PlayerDoAbilitySequence : BattleStateChange
         player = _player;
         abilitySelections = _abilitySelections;
         results = _results;
+
+        sequenceEnded = false;
+        sequenceStarted = false;
     }
 
     public override void ParseChange(BattleView view, BattleController controller)
@@ -28,35 +40,58 @@ public class PlayerDoAbilitySequence : BattleStateChange
         battleView = view;
         battleView.SwitchToUpdatingStateChange(this);
 
-        currentAbilityIndex = 0;
-
-        AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
         playerFigure = view.PlayerFigureGroup.GetFigure(player);
-        playerFigure.PlayAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence);
     }
 
     public override void Update(BattleView view, BattleController controller)
     {
+        if (!sequenceStarted)
+        {
+            timeBeforeStartingSequence += Time.deltaTime;
+            if (timeBeforeStartingSequence > view.BattleTimingProfile.TimeBeforePlayerAbilityAnimationSequence)
+            {
+                currentAbilityIndex = 0;
+                sequenceStarted = true;
+                PlayCurrentAnimation();
+            }
+        }
 
+        if (sequenceEnded)
+        {
+            timeAfterSequenceEnded += Time.deltaTime;
+            if (timeAfterSequenceEnded >= view.BattleTimingProfile.TimeAfterPlayerAbilityAnimationSequence)
+            {
+                battleView.SwitchToParsing();
+            }
+        }
     }
 
     public void ReturnToIdleAndFinishedSequence()
     {
         if (currentAbilityIndex >= abilitySelections.Count)
         {
-            battleView.SwitchToParsing();
+            sequenceEnded = true;
         }
     }
 
     public void FinishAbilityAnimation()
     {
-        battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(results[currentAbilityIndex].PlayerStatsAfter);
-        battleView.BattleStatsPanel.UpdateAllEnemyStats(results[currentAbilityIndex].EnemyStatsAfter);
         currentAbilityIndex++;
         if (currentAbilityIndex < abilitySelections.Count)
         {
-            AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
-            playerFigure.PlayAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence);
+            PlayCurrentAnimation();
         }
+    }
+
+    public void UpdateStats()
+    {
+        battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(results[currentAbilityIndex].PlayerStatsAfter);
+        battleView.BattleStatsPanel.UpdateAllEnemyStats(results[currentAbilityIndex].EnemyStatsAfter);
+    }
+
+    private void PlayCurrentAnimation()
+    {
+        AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
+        playerFigure.PlayAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence, UpdateStats);
     }
 }

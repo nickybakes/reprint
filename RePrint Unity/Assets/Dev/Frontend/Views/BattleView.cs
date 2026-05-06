@@ -18,7 +18,7 @@ public class BattleView : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
 
-    [SerializeField] private BattleTimingProfile battleTimingProfile;
+    [field: SerializeField] public BattleTimingProfile BattleTimingProfile { get; private set; }
 
 
     [field: SerializeField] public RectTransform CanvasRect { get; private set; }
@@ -144,7 +144,7 @@ public class BattleView : MonoBehaviour
 
                 currentChangeTime = 0;
 
-                timeForCurrentChange = battleTimingProfile.GetTime(battleStateChangesQueue[currentChangeIndex]);
+                timeForCurrentChange = BattleTimingProfile.GetTime(battleStateChangesQueue[currentChangeIndex]);
 
                 currentChangeIndex++;
                 if (currentChangeIndex >= battleStateChangesQueue.Count)

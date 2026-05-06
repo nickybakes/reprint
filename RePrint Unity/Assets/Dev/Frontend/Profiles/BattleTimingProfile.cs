@@ -5,17 +5,15 @@ using UnityEngine;
 public class BattleTimingProfile : ScriptableObject
 {
 
-    [SerializeField] private float playerAbilityTime = .5f;
+    [field: SerializeField] public float TimeBeforePlayerAbilityAnimationSequence { get; private set; } = .25f;
+
+    [field: SerializeField] public float TimeAfterPlayerAbilityAnimationSequence { get; private set; } = .25f;
+
     [SerializeField] private float enemyAbilityTime = .5f;
 
 
     public float GetTime(BattleStateChange change)
     {
-        // if (change is PlayerDoAbility)
-        // {
-        //     return playerAbilityTime;
-        // }
-
         if (change is EnemyDoAbility)
         {
             return enemyAbilityTime;

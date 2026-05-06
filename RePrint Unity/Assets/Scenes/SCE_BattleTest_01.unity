@@ -3000,7 +3000,7 @@ MonoBehaviour:
   battleManager: {fileID: 8876460293919416377}
   battleController: {fileID: 820702332}
   uiRaycastShield: {fileID: 1474173671}
-  battleTimingProfile: {fileID: 11400000, guid: 75f7eeb35a4f8c34b9b84b324f44c5c8, type: 2}
+  <BattleTimingProfile>k__BackingField: {fileID: 11400000, guid: 75f7eeb35a4f8c34b9b84b324f44c5c8, type: 2}
   <CanvasRect>k__BackingField: {fileID: 8637161791665177191}
   <BattleStatsPanel>k__BackingField: {fileID: 1751208051}
   <PlayerAbilityDisplayGroup>k__BackingField: {fileID: 1098711874}
