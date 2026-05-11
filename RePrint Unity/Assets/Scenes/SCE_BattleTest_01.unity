@@ -571,7 +571,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 56.45556
+  m_FocalLength: 42.548794
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -612,8 +612,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0433272, y: 0, z: 0, w: 0.9990609}
-  m_LocalPosition: {x: 0, y: 3.28, z: -15.71}
+  m_LocalRotation: {x: 0.010035496, y: 0, z: 0, w: 0.9999497}
+  m_LocalPosition: {x: -0.3, y: 2.08, z: -15.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -622,7 +622,7 @@ Transform:
   - {fileID: 601560089}
   - {fileID: 1026494189}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 10.7, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.15, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1871,8 +1871,8 @@ MonoBehaviour:
   alignment: 1
   figureSizeNormalized: 0.152
   bigFigureSizeNormalized: 0.258
-  rotationFirst: {x: 0, y: 140.5, z: 0}
-  rotationLast: {x: 0, y: 140.5, z: 0}
+  rotationFirst: {x: 0, y: 169, z: 0}
+  rotationLast: {x: 0, y: 169, z: 0}
   figureSpaceMoveSpeed: 4
   figureSpaceGrowSpeed: 4
   figuresInheritRotation: 1
@@ -1886,7 +1886,7 @@ Transform:
   m_GameObject: {fileID: 1098784868}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.23, y: 0.44, z: -5.19}
+  m_LocalPosition: {x: -1.64, y: 0.11, z: -5.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3084,7 +3084,7 @@ Transform:
   m_GameObject: {fileID: 1985378083}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.64, z: 9.94}
+  m_LocalPosition: {x: 0, y: 2.24, z: 9.94}
   m_LocalScale: {x: 28.89, y: 16.356224, z: 16.356224}
   m_ConstrainProportionsScale: 1
   m_Children: []
