@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterData", menuName = "Scriptable Objects/CharacterData")]
 public class CharacterData : ScriptableObject
 {
+    [field: SerializeField] public CharacterProfile Profile { get; private set; }
+
     public ValueInput maxHealth;
 
     public PlayerAbilityData[] abilities;

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Character
 {
 
+    public CharacterProfile Profile { get; protected set; }
     public CharacterStats Stats { get; protected set; }
     public GameValues GameValues { get; protected set; }
 

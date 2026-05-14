@@ -5,8 +5,6 @@ public class CharacterFigureGroup : MonoBehaviour
 {
     [SerializeField] private FloatingFigureGroup group;
 
-    [SerializeField] private CharacterFigure characterFigurePrefab;
-
     private Dictionary<Character, CharacterFigure> characterToFigureReferences;
     private Dictionary<CharacterFigure, Character> figureToCharacterReferences;
 
@@ -19,7 +17,8 @@ public class CharacterFigureGroup : MonoBehaviour
         controller = _controller;
         foreach (Character character in _characters)
         {
-            CharacterFigure figure = Instantiate(characterFigurePrefab);
+            CharacterFigure figure = Instantiate(character.Profile.Figure);
+            figure.Setup(character);
             characterToFigureReferences.Add(character, figure);
             figureToCharacterReferences.Add(figure, character);
             group.AddFigureToGroup(figure);

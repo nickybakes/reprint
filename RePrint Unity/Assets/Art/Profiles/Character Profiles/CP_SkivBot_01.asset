@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319576c46cda66b45a461a357d9f6b8a, type: 3}
+  m_Name: CP_SkivBot_01
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterProfile
+  <Name>k__BackingField: Skiv Bot
+  <Description>k__BackingField: 
+  <Figure>k__BackingField: {fileID: 1841583185903360907, guid: e67bad3bef44234469fb27d56ff1fcee, type: 3}

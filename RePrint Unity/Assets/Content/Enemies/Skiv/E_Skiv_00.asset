@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ed982458fa7364b9f9287c681322f9, type: 3}
   m_Name: E_Skiv_00
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  <Profile>k__BackingField: {fileID: 11400000, guid: 5a43726e9c73b0b46832f3ab72f1483e, type: 2}
   maxHealth:
     type: 0
-    baseValue: 12
+    baseValue: 30
     maxValue: 0
   <Behaviors>k__BackingField:
     list:

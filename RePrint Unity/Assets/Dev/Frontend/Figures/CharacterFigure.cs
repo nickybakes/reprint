@@ -19,6 +19,12 @@ public class CharacterFigure : FloatingFigure
     private Action returnToIdleAction;
     private Action updateStatsAction;
 
+    /// <summary>
+    /// The currently displayed states. When a character's stats get updated, we can reference these old stats to
+    /// do unique effects like playing specific HUD animations for losing or gaining health.
+    /// </summary>
+    protected CharacterStats currentStats;
+
 
     /// <summary>
     /// Sets up the travel data.
@@ -29,13 +35,36 @@ public class CharacterFigure : FloatingFigure
         state = FigureState.Idle;
     }
 
-    public void PlayAnimation(AnimationTrigger trigger, Action _finishAbilityAnimationAction, Action _returnToIdleAction, Action _updateStatsAction)
+    public void Setup(Character character)
+    {
+        currentStats = new CharacterStats(character.Stats);
+    }
+
+    public void PlayAbilityAnimation(AnimationTrigger trigger, Action _finishAbilityAnimationAction, Action _returnToIdleAction, Action _updateStatsAction)
     {
         state = FigureState.Ability;
         finishAbilityAnimationAction = _finishAbilityAnimationAction;
         returnToIdleAction = _returnToIdleAction;
         updateStatsAction = _updateStatsAction;
         animator.SetTrigger(trigger.TriggerName);
+    }
+
+    public void UpdateStats(CharacterStats stats)
+    {
+        if (stats.Health < currentStats.Health)
+        {
+            if (stats.Health == 0)
+            {
+                animator.SetTrigger("Death");
+            }
+            else
+            {
+                animator.SetTrigger("Hurt");
+            }
+        }
+
+        currentStats.Health = stats.Health;
+        currentStats.HealthMax = stats.HealthMax;
     }
 
     public void AnimEventFinishAbility()

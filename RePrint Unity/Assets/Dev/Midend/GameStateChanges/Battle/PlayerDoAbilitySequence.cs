@@ -87,11 +87,16 @@ public class PlayerDoAbilitySequence : BattleStateChange
     {
         battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(results[currentAbilityIndex].PlayerStatsAfter);
         battleView.BattleStatsPanel.UpdateAllEnemyStats(results[currentAbilityIndex].EnemyStatsAfter);
+
+        foreach (Character enemy in results[currentAbilityIndex].EnemyStatsAfter.Keys)
+        {
+            battleView.EnemyFigureGroup.GetFigure(enemy).UpdateStats(results[currentAbilityIndex].EnemyStatsAfter[enemy]);
+        }
     }
 
     private void PlayCurrentAnimation()
     {
         AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
-        playerFigure.PlayAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence, UpdateStats);
+        playerFigure.PlayAbilityAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence, UpdateStats);
     }
 }
