@@ -13,6 +13,8 @@ public class EnemyCharacter : Character
 
     public EnemyCharacter(EnemyData data) : base()
     {
+        Profile = data.Profile;
+
         Stats.HealthMax = data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
 

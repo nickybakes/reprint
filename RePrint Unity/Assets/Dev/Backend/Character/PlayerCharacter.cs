@@ -13,6 +13,9 @@ public class PlayerCharacter : Character
 
     public PlayerCharacter(CharacterData data) : base()
     {
+
+        Profile = data.Profile;
+
         AbilitySequencingStats = new CharacterStats(this);
 
         Stats.HealthMax = data.maxHealth.GetValue();

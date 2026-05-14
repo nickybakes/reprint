@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f38f68393fbd444b953787d4dfbb61, type: 3}
+  m_Name: CD_Jurin_01
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  <Profile>k__BackingField: {fileID: 11400000, guid: 3879749226cec42418809453ccef52cc, type: 2}
+  maxHealth:
+    type: 0
+    baseValue: 20
+    maxValue: 0
+  abilities:
+  - {fileID: 11400000, guid: 08c2cd44da9627d48918084217f68821, type: 2}
+  - {fileID: 11400000, guid: d7b540d766d1292448097c2a9309f5c7, type: 2}
+  - {fileID: 11400000, guid: 1d0b67aff21ccf74291d0db01536fec9, type: 2}
+  abilityPointsMax:
+    type: 0
+    baseValue: 3
+    maxValue: 0
