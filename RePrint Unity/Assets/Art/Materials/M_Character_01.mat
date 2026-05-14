@@ -56,7 +56,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Angle: 43.82
-    - _Emission: 1
+    - _Emission: 0.8
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rim_Light_Multiply: 1.71

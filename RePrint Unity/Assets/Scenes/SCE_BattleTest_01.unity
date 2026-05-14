@@ -1906,7 +1906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterFigureGroup
   group: {fileID: 1098784869}
-  characterFigurePrefab: {fileID: 1841583185903360907, guid: d01ab18c651c4c04fac2035def3b434c, type: 3}
 --- !u!1 &1109132350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,7 +2684,7 @@ Transform:
   m_GameObject: {fileID: 1712868718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.075065725, z: 0, w: 0.9971786}
-  m_LocalPosition: {x: 2.31, y: 0.47, z: -5.37}
+  m_LocalPosition: {x: 2.46, y: 0.05, z: -5.37}
   m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2705,7 +2704,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterFigureGroup
   group: {fileID: 1712868719}
-  characterFigurePrefab: {fileID: 1841583185903360907, guid: d01ab18c651c4c04fac2035def3b434c, type: 3}
 --- !u!1 &1751208049
 GameObject:
   m_ObjectHideFlags: 0
