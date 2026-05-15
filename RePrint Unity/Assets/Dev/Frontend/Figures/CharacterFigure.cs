@@ -12,6 +12,7 @@ public class CharacterFigure : FloatingFigure
 
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform positionBone;
+    [SerializeField] protected Transform attackPoint;
 
     private FigureState state;
 
@@ -24,6 +25,12 @@ public class CharacterFigure : FloatingFigure
     /// do unique effects like playing specific HUD animations for losing or gaining health.
     /// </summary>
     protected CharacterStats currentStats;
+
+    private Vector3 idlePosition;
+
+    private Vector3 targetAttackPosition;
+
+    private CharacterFigure currentTarget;
 
 
     /// <summary>
@@ -40,9 +47,21 @@ public class CharacterFigure : FloatingFigure
         currentStats = new CharacterStats(character.Stats);
     }
 
-    public void PlayAbilityAnimation(AnimationTrigger trigger, Action _finishAbilityAnimationAction, Action _returnToIdleAction, Action _updateStatsAction)
+    public Vector3 GetAttackPoint()
+    {
+        if (attackPoint)
+        {
+            return attackPoint.position;
+        }
+
+        return transform.position;
+    }
+
+    public void PlayAbilityAnimation(AnimationTrigger trigger, Action _finishAbilityAnimationAction, Action _returnToIdleAction, Action _updateStatsAction, CharacterFigure target)
     {
         state = FigureState.Ability;
+        currentTarget = target;
+        targetAttackPosition = target.GetAttackPoint();
         finishAbilityAnimationAction = _finishAbilityAnimationAction;
         returnToIdleAction = _returnToIdleAction;
         updateStatsAction = _updateStatsAction;
@@ -93,13 +112,13 @@ public class CharacterFigure : FloatingFigure
 
     void Update()
     {
-        if (state == FigureState.Idle)
+        UpdateTravel();
+
+        if (positionBone)
         {
-            UpdateTravel();
-        }
-        else if (state == FigureState.Ability)
-        {
-            // TODO: Read Locator bone position to move character based to target.
+            float lerpValue = Math.Abs(positionBone.localPosition.x * 100);
+            idlePosition = GetGoalPosition();
+            transform.position = Vector3.LerpUnclamped(idlePosition, targetAttackPosition, lerpValue);
         }
     }
 }

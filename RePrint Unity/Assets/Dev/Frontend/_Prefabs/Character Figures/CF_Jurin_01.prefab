@@ -197,7 +197,8 @@ MonoBehaviour:
   travelTimeLength: 0.2
   sizeTransition: 0
   animator: {fileID: 7866194627668534313}
-  positionBone: {fileID: 0}
+  positionBone: {fileID: 7252588025192502253}
+  attackPoint: {fileID: 0}
 --- !u!1001 &2208843084630578379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5696,6 +5697,11 @@ MonoBehaviour:
 --- !u!4 &4895597209834373567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
+  m_PrefabInstance: {fileID: 4934290169188525652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7252588025192502253 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2367838586318288313, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
   m_PrefabInstance: {fileID: 4934290169188525652}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8271978023156299172 stripped

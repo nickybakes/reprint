@@ -97,6 +97,7 @@ public class PlayerDoAbilitySequence : BattleStateChange
     private void PlayCurrentAnimation()
     {
         AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
-        playerFigure.PlayAbilityAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence, UpdateStats);
+        CharacterFigure targretFigure = battleView.EnemyFigureGroup.GetFigure(abilitySelections[currentAbilityIndex].Target);
+        playerFigure.PlayAbilityAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence, UpdateStats, targretFigure);
     }
 }

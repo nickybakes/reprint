@@ -50,6 +50,16 @@ public class TravelingFigure : Figure
         goalTransformData = new TransformDetails(transform);
     }
 
+    public Vector3 GetStartPosition()
+    {
+        return startTransformData.position;
+    }
+
+    public Vector3 GetGoalPosition()
+    {
+        return goalTransformData.position;
+    }
+
     /// <summary>
     /// Set the current traveling time to 0.
     /// </summary>
