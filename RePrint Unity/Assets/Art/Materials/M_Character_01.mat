@@ -55,14 +55,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Angle: 43.82
-    - _Emission: 0.8
+    - _Angle: 43.35
+    - _Emission: 0.77
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Rim_Light_Multiply: 1.71
-    - _Rim_Light_Power: 58.55
+    - _Rim_Light_Multiply: 1.31
+    - _Rim_Light_Power: 100.2
     - _Shading_Darkness: 1.55
-    - _Shading_Multiply: 1.42
+    - _Shading_Multiply: 0.82
     - _Shading_Opacity: 0.637
     - _Shading_Power: 138.07
     m_Colors:
