@@ -20,6 +20,7 @@ public class BattleView : MonoBehaviour
 
     [field: SerializeField] public BattleTimingProfile BattleTimingProfile { get; private set; }
 
+    [field: SerializeField] public CameraManager CameraManager { get; private set; }
 
     [field: SerializeField] public RectTransform CanvasRect { get; private set; }
 

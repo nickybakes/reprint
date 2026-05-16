@@ -94,6 +94,7 @@ public class PlayerDoAbilitySequence : BattleStateChange
         foreach (Character enemy in results[currentAbilityIndex].EnemyStatsAfter.Keys)
         {
             battleView.EnemyFigureGroup.GetFigure(enemy).UpdateStats(results[currentAbilityIndex].EnemyStatsAfter[enemy]);
+            battleView.CameraManager.Shake(1);
         }
     }
 

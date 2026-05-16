@@ -612,8 +612,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.010297264, y: 0, z: 0, w: 0.999947}
-  m_LocalPosition: {x: -0.3, y: 1.65, z: -15.71}
+  m_LocalRotation: {x: 0.010297264, y: -0, z: -0, w: 0.999947}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -621,7 +621,7 @@ Transform:
   - {fileID: 832575519}
   - {fileID: 601560089}
   - {fileID: 1026494189}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1440754990}
   m_LocalEulerAnglesHint: {x: 1.18, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -907,6 +907,53 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &444252628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 444252629}
+  - component: {fileID: 444252630}
+  m_Layer: 0
+  m_Name: Camera Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &444252629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444252628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3, y: 1.65, z: -15.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1440754990}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &444252630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444252628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ccfba0f6e7fbc4c83eb8533736485c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  camera: {fileID: 330585545}
+  cameraShaker: {fileID: 1440754991}
 --- !u!1 &505562962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,6 +2388,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399789626}
   m_CullTransparentMesh: 1
+--- !u!1 &1440754989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1440754990}
+  - component: {fileID: 1440754991}
+  m_Layer: 0
+  m_Name: Camera Shaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1440754990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440754989}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 444252629}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1440754991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440754989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4074bd4a4780f4cb5181cd82c5617d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shaker
+  shakerProfile: {fileID: 11400000, guid: cd51d5040d04ded44b389ca8696a5fc3, type: 2}
+  axis: 0
 --- !u!1 &1474173671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,6 +3093,7 @@ MonoBehaviour:
   battleController: {fileID: 820702332}
   uiRaycastShield: {fileID: 1474173671}
   <BattleTimingProfile>k__BackingField: {fileID: 11400000, guid: 75f7eeb35a4f8c34b9b84b324f44c5c8, type: 2}
+  <CameraManager>k__BackingField: {fileID: 444252630}
   <CanvasRect>k__BackingField: {fileID: 8637161791665177191}
   <BattleStatsPanel>k__BackingField: {fileID: 1751208051}
   <PlayerAbilityDisplayGroup>k__BackingField: {fileID: 1098711874}
@@ -3815,7 +3910,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 4875839470909847474}
-  - {fileID: 330585546}
+  - {fileID: 444252629}
   - {fileID: 410087041}
   - {fileID: 1874190060}
   - {fileID: 820702333}
