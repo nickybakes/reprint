@@ -887,6 +887,8 @@ GameObject:
   - component: {fileID: 1356024033624400239}
   - component: {fileID: 6813240382198912309}
   - component: {fileID: 7816339827430345193}
+  - component: {fileID: 3253909183027446872}
+  - component: {fileID: 8177037140763756075}
   m_Layer: 5
   m_Name: Character Battle Panel Player
   m_TagString: Untagged
@@ -939,12 +941,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e9cb3f8148e46459c234dd4d6a864a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBattlePanel
+  animator: {fileID: 8177037140763756075}
   healthDisplay: {fileID: 3856968877562197212}
   abilityPointsMeter: {fileID: 5850118317845992810}
   chainDisplay: {fileID: 3818363155935717529}
   dodgeDisplay: {fileID: 1680498893319647712}
   intentDisplayGroup: {fileID: 0}
   targetButton: {fileID: 6006917627685613414}
+--- !u!225 &3253909183027446872
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441291231967649166}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!95 &8177037140763756075
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441291231967649166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b3663a3b17c2ba4880a32882926a0ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6619815382187727131
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 public class CharacterStatsPanel : Panel
 {
 
+    [SerializeField] protected Animator animator;
+
     [SerializeField] protected StatDisplay healthDisplay;
 
     [SerializeField] protected SegmentedMeter abilityPointsMeter;
@@ -32,6 +34,16 @@ public class CharacterStatsPanel : Panel
         UpdateAbilityPoints(stats);
         UpdateChain(stats);
         UpdateDodge(stats);
+    }
+
+    public void Hide()
+    {
+        animator.SetTrigger("Hide");
+    }
+
+    public void Show()
+    {
+        animator.SetTrigger("Show");
     }
 
     private void UpdateHealth(CharacterStats stats)

@@ -33,27 +33,32 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: JurinRig_Body_Jurin_MAT
-    second: {fileID: 2100000, guid: f05e9677642364143ad77d6531b5086a, type: 2}
+    second: {fileID: 2100000, guid: f22d1886fa488a74baed260976007510, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: JurinRig_Clths_Jurin_MAT
-    second: {fileID: 2100000, guid: 09382d97eda2ed04caad36cd6bde292c, type: 2}
+    second: {fileID: 2100000, guid: 046ba677f4274e4499cef9a3cc012787, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: JurinRig_Eyes_Jurin_MAT
-    second: {fileID: 2100000, guid: ec27a1af65fae2549876232c11260090, type: 2}
+    second: {fileID: 2100000, guid: 2857b8ced1ea44d4b8c7f621eebf54f8, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: JurinRig_Hair_Jurin_MAT
-    second: {fileID: 2100000, guid: a34ebb3ed3cf22140b3659b5f4d97c55, type: 2}
+    second: {fileID: 2100000, guid: 510048f0a72643e41a159928d6e0dda3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: JurinRig_Head_Jurin_MAT
-    second: {fileID: 2100000, guid: b94971effaecc9a4589987b94d970319, type: 2}
+    second: {fileID: 2100000, guid: 11edb19102d9e3740a23563f70594429, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: JurinRig_JurinModel_lambert2
+    second: {fileID: 2100000, guid: f22d1886fa488a74baed260976007510, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

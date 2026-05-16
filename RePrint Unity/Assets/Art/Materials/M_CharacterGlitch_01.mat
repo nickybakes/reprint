@@ -66,20 +66,21 @@ Material:
     - _Alpha_Minimum: 0.588
     - _Alpha_Scale: 3.43
     - _Alpha_Threshold: 0
-    - _Angle: 43.82
-    - _Distort_Amount: 0.53
+    - _Angle: 43.35
+    - _Distort_Amount: 0.75
     - _Distort_Angle: 90
     - _Distort_Angle_Specificity: 3.4
-    - _Distort_Bias: -0.236
+    - _Distort_Bias: -0.026
     - _Distort_Bias_Base: 0.8
-    - _Emission: 1
+    - _Emission: 0.77
+    - _Glitch_Effect: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Rim_Light_Multiply: 1.71
-    - _Rim_Light_Power: 58.55
+    - _Rim_Light_Multiply: 1.31
+    - _Rim_Light_Power: 100.2
     - _Rounding_Scale: 24
     - _Shading_Darkness: 1.55
-    - _Shading_Multiply: 1.42
+    - _Shading_Multiply: 0.82
     - _Shading_Opacity: 0.637
     - _Shading_Power: 138.07
     m_Colors:

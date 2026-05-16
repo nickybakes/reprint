@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum FigureState
@@ -13,6 +14,13 @@ public class CharacterFigure : FloatingFigure
     [SerializeField] protected Animator animator;
     [SerializeField] protected Transform positionBone;
     [SerializeField] protected Transform attackPoint;
+    [SerializeField] protected List<Material> glitchMaterials;
+
+    [SerializeField] protected float glitchCooldown = .5f;
+    [SerializeField] protected float glitchMinimumTime = .15f;
+    [SerializeField] protected float glitchMultiplier = 2;
+    [SerializeField] protected float glitchSpeedThreshold = .001f;
+
 
     private FigureState state;
 
@@ -31,6 +39,10 @@ public class CharacterFigure : FloatingFigure
     private Vector3 targetAttackPosition;
 
     private CharacterFigure currentTarget;
+
+    private Vector3 previousPosition;
+
+    private float timeStoodStill;
 
 
     /// <summary>
@@ -72,7 +84,7 @@ public class CharacterFigure : FloatingFigure
     {
         if (stats.Health < currentStats.Health)
         {
-            if (stats.Health == 0)
+            if (stats.Health <= 0)
             {
                 animator.SetTrigger("Death");
             }
@@ -119,6 +131,27 @@ public class CharacterFigure : FloatingFigure
             float lerpValue = Math.Abs(positionBone.localPosition.x * 100);
             idlePosition = GetGoalPosition();
             transform.position = Vector3.LerpUnclamped(idlePosition, targetAttackPosition, lerpValue);
+
+            float speed = Vector3.Distance(previousPosition, transform.position) / Time.deltaTime;
+
+            if (speed < glitchSpeedThreshold)
+            {
+                timeStoodStill += Time.deltaTime;
+            }
+            else
+            {
+                timeStoodStill = -glitchMinimumTime;
+            }
+            previousPosition = transform.position;
+
+            float glitchLerp = glitchCooldown - timeStoodStill;
+
+            glitchLerp = Math.Clamp(glitchLerp * (1f / glitchCooldown) * glitchMultiplier, 0, 1);
+
+            foreach (Material material in glitchMaterials)
+            {
+                material.SetFloat("_Glitch_Effect", glitchLerp);
+            }
         }
     }
 }

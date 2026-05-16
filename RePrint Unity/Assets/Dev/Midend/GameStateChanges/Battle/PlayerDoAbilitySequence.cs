@@ -41,6 +41,8 @@ public class PlayerDoAbilitySequence : BattleStateChange
         battleView.SwitchToUpdatingStateChange(this);
 
         playerFigure = view.PlayerFigureGroup.GetFigure(player);
+
+        view.BattleStatsPanel.PlayerStatPanel.Hide();
     }
 
     public override void Update(BattleView view, BattleController controller)
@@ -71,6 +73,7 @@ public class PlayerDoAbilitySequence : BattleStateChange
         if (currentAbilityIndex >= abilitySelections.Count)
         {
             sequenceEnded = true;
+            battleView.BattleStatsPanel.PlayerStatPanel.Show();
         }
     }
 
@@ -98,6 +101,12 @@ public class PlayerDoAbilitySequence : BattleStateChange
     {
         AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
         CharacterFigure targretFigure = battleView.EnemyFigureGroup.GetFigure(abilitySelections[currentAbilityIndex].Target);
+
+        if (abilitySelections[currentAbilityIndex].Target == player)
+        {
+            targretFigure = battleView.PlayerFigureGroup.GetFigure(player);
+        }
+
         playerFigure.PlayAbilityAnimation(animation, FinishAbilityAnimation, ReturnToIdleAndFinishedSequence, UpdateStats, targretFigure);
     }
 }
