@@ -61,9 +61,9 @@ Material:
     m_Floats:
     - _Alpha_Fade_High: 2.47
     - _Alpha_Fade_Low: -0.2
-    - _Alpha_Fresnel_Multiply: 0.93
+    - _Alpha_Fresnel_Multiply: 1.35
     - _Alpha_Fresnel_Power: 0.42
-    - _Alpha_Minimum: 0.588
+    - _Alpha_Minimum: 0.06
     - _Alpha_Scale: 3.43
     - _Alpha_Threshold: 0
     - _Angle: 43.35
