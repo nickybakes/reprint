@@ -21,6 +21,7 @@ public class CharacterFigure : FloatingFigure
     [SerializeField] protected float glitchMultiplier = 2;
     [SerializeField] protected float glitchSpeedThreshold = .001f;
 
+    private BattleView battleView;
 
     private FigureState state;
 
@@ -54,8 +55,9 @@ public class CharacterFigure : FloatingFigure
         state = FigureState.Idle;
     }
 
-    public void Setup(Character character)
+    public void Setup(Character character, BattleView _battleView)
     {
+        battleView = _battleView;
         currentStats = new CharacterStats(character.Stats);
     }
 
@@ -120,6 +122,16 @@ public class CharacterFigure : FloatingFigure
         {
             updateStatsAction.Invoke();
         }
+    }
+
+    public void AnimEventCameraFocusEnemies()
+    {
+        battleView.CameraManager.FocusEnemies();
+    }
+
+    public void AnimEventCameraFocusDefault()
+    {
+        battleView.CameraManager.FocusDefault();
     }
 
     void Update()

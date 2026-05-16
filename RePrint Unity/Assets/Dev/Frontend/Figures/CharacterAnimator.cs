@@ -19,4 +19,14 @@ public class CharacterAnimator : MonoBehaviour
     {
         figure.AnimEventUpdateStats();
     }
+
+    public void AnimEventCameraFocusEnemies()
+    {
+        figure.AnimEventCameraFocusEnemies();
+    }
+
+    public void AnimEventCameraFocusDefault()
+    {
+        figure.AnimEventCameraFocusDefault();
+    }
 }
