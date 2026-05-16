@@ -234,6 +234,8 @@ MonoBehaviour:
   attackPoint: {fileID: 2062367951404116811}
   glitchMaterials: []
   glitchCooldown: 1
+  glitchMinimumTime: 0.15
+  glitchMultiplier: 2
   glitchSpeedThreshold: 0.001
 --- !u!1001 &3092896435620739710
 PrefabInstance:
@@ -245,15 +247,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 67e2d3185844f49438a8a3d83d61fa93, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.83
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e2d3185844f49438a8a3d83d61fa93, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.83
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e2d3185844f49438a8a3d83d61fa93, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.83
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e2d3185844f49438a8a3d83d61fa93, type: 3}
       propertyPath: m_LocalPosition.x
