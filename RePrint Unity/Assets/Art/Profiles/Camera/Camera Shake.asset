@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Camera Shake
   m_EditorClassIdentifier: Assembly-CSharp::ShakeProfile
   <Range>k__BackingField: 0.1
-  <Damping>k__BackingField: 1
-  <MaxAmount>k__BackingField: 0.3
+  <Damping>k__BackingField: 0.4
+  <MaxAmount>k__BackingField: 0.05
   <Speed>k__BackingField: 10
   <Deviation>k__BackingField: 3

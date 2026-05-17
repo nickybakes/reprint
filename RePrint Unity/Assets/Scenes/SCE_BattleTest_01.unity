@@ -981,7 +981,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   enemyFocusOffset:
-    positionOffset: {x: 1, y: -0.1, z: 3}
+    positionOffset: {x: 0.2, y: -0.1, z: 0}
     fovOffset: -0.5
 --- !u!1 &505562962
 GameObject:
