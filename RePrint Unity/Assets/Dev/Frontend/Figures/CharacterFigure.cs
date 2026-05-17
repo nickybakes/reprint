@@ -59,6 +59,7 @@ public class CharacterFigure : FloatingFigure
     {
         battleView = _battleView;
         currentStats = new CharacterStats(character.Stats);
+        animator.SetBool("Idling", true);
     }
 
     public Vector3 GetAttackPoint()
@@ -102,6 +103,8 @@ public class CharacterFigure : FloatingFigure
 
     public void AnimEventFinishAbility()
     {
+        animator.SetBool("Idling", false);
+
         if (finishAbilityAnimationAction != null)
         {
             finishAbilityAnimationAction.Invoke();
@@ -110,6 +113,8 @@ public class CharacterFigure : FloatingFigure
 
     public void AnimEventReturnToIdle()
     {
+        animator.SetBool("Idling", true);
+
         if (returnToIdleAction != null)
         {
             returnToIdleAction.Invoke();
