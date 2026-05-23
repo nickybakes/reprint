@@ -34,8 +34,8 @@ ModelImporter:
       name: Jurin_idleCycle
       takeName: Jurin_idleCycle
       internalID: 5594689582149064553
-      firstFrame: -1
-      lastFrame: 37
+      firstFrame: 169
+      lastFrame: 206
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -58,7 +58,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 169
     isReadable: 0
   meshes:
     lODScreenPercentages: []
