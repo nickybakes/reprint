@@ -119,9 +119,12 @@ public class AbilityDisplay : FloatingDisplay
 
     public void TryCollapse()
     {
-        if (currentlyExpanded)
+        if (currentlyExpanded && !currentlySelected)
         {
             animator.SetTrigger("Collapse");
+        }
+        if (currentlyExpanded)
+        {
             currentlyExpanded = false;
         }
     }
