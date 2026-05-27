@@ -1649,13 +1649,65 @@ PrefabInstance:
       value: -0.65715003
       objectReference: {fileID: 0}
     - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButton
+      value: 
+      objectReference: {fileID: 2085818010}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
       propertyPath: spawnParent
       value: 
       objectReference: {fileID: 4542622528868963793}
     - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButtonOffset.x
+      value: -26.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButtonOffset.y
+      value: -37.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
       propertyPath: abilityDisplayPrefab
       value: 
       objectReference: {fileID: 3010339616592584042, guid: 323222a97b6c18a40a8edb763796e96e, type: 3}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButtonOffsetExpanded.x
+      value: -26.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButtonOffsetExpanded.y
+      value: -54.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: abilityStatsGroupOffset.x
+      value: -71.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: abilityStatsGroupOffset.y
+      value: 21.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: abilityStatsGroupOffsetExpanded.x
+      value: -71.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: abilityStatsGroupOffsetExpanded.y
+      value: 44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButtonOffsetLastAbilityExpanded.x
+      value: -26.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: goButtonOffsetLastAbilityExpanded.y
+      value: -54.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: abilityStatsGroupOffsetFirstAbilityExpanded.x
+      value: -71.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145058310986273832, guid: ecd29f23700449144a28d82893b84249, type: 3}
+      propertyPath: abilityStatsGroupOffsetFirstAbilityExpanded.y
+      value: 44.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4180,7 +4232,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1136116830072893410, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1712632803}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2085818010}
   m_SourcePrefab: {fileID: 100100000, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
 --- !u!224 &2085818007 stripped
 RectTransform:
@@ -4192,12 +4247,29 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
   m_PrefabInstance: {fileID: 2085818006}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2085818009}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5178b7752d90c564593a105f24d1b857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RePrintButton
+--- !u!1 &2085818009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4754355773289184452, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
+  m_PrefabInstance: {fileID: 2085818006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2085818010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085818009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cc0a9652f562db48aee4437fd19bcaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Display
 --- !u!1 &2139176824
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class CharacterStatsPanel : Panel
 
     [SerializeField] protected StatDisplay healthDisplay;
 
-    [SerializeField] protected SegmentedMeter abilityPointsMeter;
+    [SerializeField] protected StatDisplay abilityPointsMeter;
     [SerializeField] protected StatDisplay chainDisplay;
     [SerializeField] protected StatDisplay dodgeDisplay;
 
@@ -60,7 +60,7 @@ public class CharacterStatsPanel : Panel
     {
         if (abilityPointsMeter)
         {
-            abilityPointsMeter.Refresh(stats.AbilityPoints, stats.AbilityPointsMax);
+            abilityPointsMeter.DisplayFraction(stats.AbilityPoints, stats.AbilityPointsMax);
         }
         displayedStats.AbilityPoints = stats.AbilityPoints;
         displayedStats.AbilityPointsMax = stats.AbilityPointsMax;

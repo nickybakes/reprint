@@ -6,6 +6,8 @@ public class CharacterBattlePanel : CharacterStatsPanel
 
     [SerializeField] private BetterButton targetButton;
 
+    [SerializeField] private Display AbilityStatsGroup;
+
     protected CharacterFigure figure;
     protected BattleView view;
 
@@ -26,6 +28,11 @@ public class CharacterBattlePanel : CharacterStatsPanel
         controller = _controller;
         character = _character;
         displayedStats = new CharacterStats(character);
+        if (AbilityStatsGroup != null)
+        {
+            // AbilityStatsGroup.transform.parent = AbilityStatsGroup.transform.parent.parent.parent;
+            view.PlayerAbilityDisplayGroup.abilityStatsGroup = AbilityStatsGroup;
+        }
         UpdateStats(_character.Stats);
     }
 

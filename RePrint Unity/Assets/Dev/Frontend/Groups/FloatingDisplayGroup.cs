@@ -69,6 +69,14 @@ public class FloatingDisplayGroup : Display
     /// </summary>
     protected int numDisplaysInGroup;
 
+    public float BigSizeRatio
+    {
+        get
+        {
+            return bigDisplaySizeNormalized / displaySizeNormalized;
+        }
+    }
+
     /// <summary>
     /// Initialize the Display Group spaces list.
     /// </summary>
