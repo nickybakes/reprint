@@ -1602,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2660737152356515, guid: ecd29f23700449144a28d82893b84249, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -212.66467
+      value: -212.66464
       objectReference: {fileID: 0}
     - target: {fileID: 2660737152356515, guid: ecd29f23700449144a28d82893b84249, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3527,7 +3527,7 @@ MonoBehaviour:
   view: {fileID: 1874190059}
   controller: {fileID: 820702332}
   playerBattlePanelPrefab: {fileID: 7816339827430345193, guid: d81495ac92544e64e83fcc77036c2fe8, type: 3}
-  enemyBattlePanelPrefab: {fileID: 2614181189186896387, guid: e3929d7577f73704681aa36aed639148, type: 3}
+  enemyBattlePanelPrefab: {fileID: 2614181189186896387, guid: c2e9ef9abc2cead408dfde4cbc231b11, type: 3}
 --- !u!222 &1751208052
 CanvasRenderer:
   m_ObjectHideFlags: 0

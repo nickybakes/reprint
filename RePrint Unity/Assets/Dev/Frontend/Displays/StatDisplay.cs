@@ -10,6 +10,10 @@ public class StatDisplay : Display
 
     [SerializeField] private DifferenceDisplayPool differenceDisplayPool;
 
+    [SerializeField] private string singleValueFormat = "%a";
+
+    [SerializeField] private string fractionValueFormat = "%a/%b";
+
     private float currentValue;
 
     private bool valueNotSet;
@@ -24,7 +28,14 @@ public class StatDisplay : Display
 
     public void DisplayValue(float value)
     {
-        textDisplay.SetText(value.ToString());
+        string finalString = singleValueFormat;
+        while (finalString.Contains("%a"))
+        {
+            finalString = finalString.Replace("%a", value.ToString());
+        }
+
+        textDisplay.SetText(finalString);
+
         DisplayDifference(value);
     }
 
@@ -34,7 +45,18 @@ public class StatDisplay : Display
         {
             meter.UpdateFill(numerator / denominator);
         }
-        textDisplay.SetText(numerator.ToString() + '/' + denominator.ToString());
+
+        string finalString = fractionValueFormat;
+        while (finalString.Contains("%a"))
+        {
+            finalString = finalString.Replace("%a", numerator.ToString());
+        }
+        while (finalString.Contains("%b"))
+        {
+            finalString = finalString.Replace("%b", denominator.ToString());
+        }
+
+        textDisplay.SetText(finalString);
 
         DisplayDifference(numerator);
     }
