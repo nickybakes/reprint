@@ -209,6 +209,8 @@ MonoBehaviour:
   glitchMinimumTime: 0
   glitchMultiplier: 2
   glitchSpeedThreshold: 0.001
+  lerpDifferenceThreshold: -0.1
+  bigJumpFrameDelay: 1
 --- !u!1001 &2208843084630578379
 PrefabInstance:
   m_ObjectHideFlags: 0
