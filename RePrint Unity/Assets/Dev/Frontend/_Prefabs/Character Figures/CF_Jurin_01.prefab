@@ -196,7 +196,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   travelTimeLength: 0.2
   sizeTransition: 0
-  animator: {fileID: 7866194627668534313}
+  animator: {fileID: 2138700663768172064}
   positionBone: {fileID: 7252588025192502253}
   attackPoint: {fileID: 0}
   glitchMaterials:
@@ -217,7 +217,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8271978023156299172}
+    m_TransformParent: {fileID: 4895597209834373567}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ea2112b4dee0e0744a8d7927a707b3ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5903,23 +5903,23 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8778944313846405019}
-    - targetCorrespondingSourceObject: {fileID: -5282186988835925008, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1814346366743655200}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -4431451792857773044, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7866194627668534313}
+      addedObject: {fileID: 2138700663768172064}
     - targetCorrespondingSourceObject: {fileID: -4431451792857773044, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1597807323839497205}
+      addedObject: {fileID: 4139004836375679277}
   m_SourcePrefab: {fileID: 100100000, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
 --- !u!1 &502798793337399896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4431451792857773044, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
   m_PrefabInstance: {fileID: 4934290169188525652}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &7866194627668534313
+--- !u!95 &2138700663768172064
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -5941,7 +5941,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1597807323839497205
+--- !u!114 &4139004836375679277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5962,10 +5962,5 @@ Transform:
 --- !u!4 &7252588025192502253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2367838586318288313, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
-  m_PrefabInstance: {fileID: 4934290169188525652}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8271978023156299172 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -5282186988835925008, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
   m_PrefabInstance: {fileID: 4934290169188525652}
   m_PrefabAsset: {fileID: 0}
