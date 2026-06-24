@@ -18,6 +18,8 @@ public class BattleView : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
 
+    [field: SerializeField] public VFXManager VFXManager { get; private set; }
+
     [field: SerializeField] public BattleTimingProfile BattleTimingProfile { get; private set; }
 
     [field: SerializeField] public CameraManager CameraManager { get; private set; }
