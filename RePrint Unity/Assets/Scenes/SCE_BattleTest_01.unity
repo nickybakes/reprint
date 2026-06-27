@@ -2316,8 +2316,8 @@ MonoBehaviour:
   alignment: 1
   figureSizeNormalized: 0.152
   bigFigureSizeNormalized: 0.258
-  rotationFirst: {x: 0, y: 175, z: 0}
-  rotationLast: {x: 0, y: 175, z: 0}
+  rotationFirst: {x: 0, y: 180, z: 0}
+  rotationLast: {x: 0, y: 180, z: 0}
   figureSpaceMoveSpeed: 4
   figureSpaceGrowSpeed: 4
   figuresInheritRotation: 1
