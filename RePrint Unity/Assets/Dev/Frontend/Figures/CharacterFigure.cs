@@ -20,6 +20,7 @@ public class CharacterFigure : FloatingFigure
     [SerializeField] protected float glitchMinimumTime = .15f;
     [SerializeField] protected float glitchMultiplier = 2;
     [SerializeField] protected float glitchSpeedThreshold = .001f;
+    [SerializeField] protected List<VisualEffectAndTransform> visualEffects;
 
     private BattleView battleView;
 
@@ -69,6 +70,11 @@ public class CharacterFigure : FloatingFigure
         battleView = _battleView;
         currentStats = new CharacterStats(character.Stats);
         animator.SetBool("Idling", true);
+
+        foreach (VisualEffectAndTransform effect in visualEffects)
+        {
+            _battleView.VFXManager.CacheEffect(effect.VisualEffect);
+        }
     }
 
     public Vector3 GetAttackPoint()
@@ -147,6 +153,11 @@ public class CharacterFigure : FloatingFigure
     public void AnimEventCameraFocusDefault()
     {
         battleView.CameraManager.FocusDefault();
+    }
+
+    public void AnimEventVFX(int index)
+    {
+        battleView.VFXManager.PlayEffect(visualEffects[index].VisualEffect, visualEffects[index].Transform);
     }
 
     void Update()

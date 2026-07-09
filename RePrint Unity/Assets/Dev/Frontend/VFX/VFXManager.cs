@@ -10,6 +10,14 @@ public class VFXManager : MonoBehaviour
         cachedEffects = new Dictionary<VisualEffect, List<VisualEffect>>();
     }
 
+    public void CacheEffects(List<VisualEffect> effects)
+    {
+        foreach (VisualEffect effect in effects)
+        {
+            CacheEffect(effect);
+        }
+    }
+
     public void CacheEffect(VisualEffect effect, int amount = 3)
     {
         if (!cachedEffects.ContainsKey(effect))
@@ -23,20 +31,27 @@ public class VFXManager : MonoBehaviour
         }
     }
 
-    public VisualEffect SpawnEffect(VisualEffect effectToSpawn, Transform spawnTransform)
+    public VisualEffect PlayEffect(VisualEffect effectToPlay, Transform spawnTransform)
     {
-        List<VisualEffect> effects = cachedEffects[effectToSpawn];
+        List<VisualEffect> effects = cachedEffects[effectToPlay];
 
         if (effects == null)
         {
-            Debug.Log("Spawning uncached Visual Effect. Please try to cache this effect at the beginnig of the game instead!");
-            CacheEffect(effectToSpawn);
-            effects = cachedEffects[effectToSpawn];
+            Debug.Log("Playing uncached Visual Effect. Please try to cache this effect at the beginnig of the game instead!");
+            CacheEffect(effectToPlay);
+            effects = cachedEffects[effectToPlay];
         }
 
-        VisualEffect spawnedVisualEffect = GetCachedEffectObject(effectToSpawn, effects);
+        VisualEffect effect = GetCachedEffectObject(effectToPlay, effects);
 
-        return spawnedVisualEffect;
+        effect.gameObject.SetActive(true);
+        effect.transform.position = spawnTransform.position;
+        effect.transform.rotation = spawnTransform.rotation;
+        effect.transform.localScale = spawnTransform.localScale;
+
+        effect.Spawn();
+
+        return effect;
     }
 
     /// <summary>

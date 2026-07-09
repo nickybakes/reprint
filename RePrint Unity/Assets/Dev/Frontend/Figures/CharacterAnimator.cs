@@ -29,4 +29,9 @@ public class CharacterAnimator : MonoBehaviour
     {
         figure.AnimEventCameraFocusDefault();
     }
+
+    public void AnimEventVFX(int index)
+    {
+        figure.AnimEventVFX(index);
+    }
 }
