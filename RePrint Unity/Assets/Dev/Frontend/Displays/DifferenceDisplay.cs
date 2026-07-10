@@ -1,11 +1,18 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 
 public class DifferenceDisplay : Display
 {
     [SerializeField] private TextDisplay textDisplay;
+    [SerializeField] private bool haveTextDisplayBump;
     [SerializeField] private float lifeTime = .5f;
     [SerializeField] private float fadeTime = .1f;
+
+    [Header("Use %a for the value, and %b for the plus/minus sign.")]
+    [SerializeField] private string valueFormat = "%a";
+
+    [Header("Movement")]
     [SerializeField] private Vector2 startingVelocityMin;
     [SerializeField] private Vector2 startingVelocityMax;
     [SerializeField] private float gravity = -30f;
@@ -26,14 +33,32 @@ public class DifferenceDisplay : Display
     public void Display(int a, int b)
     {
         int difference = Math.Abs(a - b);
-        if (a >= b)
+        string finalString = valueFormat;
+        while (finalString.Contains("%a"))
         {
-            textDisplay.SetText("-" + difference);
+            finalString = finalString.Replace("%a", difference.ToString());
+        }
+
+        string signString = "";
+        if (a > b)
+            signString = "-";
+        else if (a < b)
+            signString = "+";
+
+        while (finalString.Contains("%b"))
+        {
+            finalString = finalString.Replace("%b", signString);
+        }
+
+        if (haveTextDisplayBump)
+        {
+            textDisplay.SetText(finalString, true);
         }
         else
         {
-            textDisplay.SetText("+" + difference);
+            textDisplay.SetTextNoBump(finalString);
         }
+
         currentTime = 0;
         velocity = new Vector2
         {

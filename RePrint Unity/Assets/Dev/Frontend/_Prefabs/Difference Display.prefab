@@ -59,11 +59,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DifferenceDisplay
   textDisplay: {fileID: 8876055266203964657}
+  haveTextDisplayBump: 0
   lifeTime: 0.59
   fadeTime: 0.1
-  startingVelocityMin: {x: -400, y: 800}
-  startingVelocityMax: {x: 400, y: 100}
-  gravity: -2400
+  valueFormat: '%a'
+  startingVelocityMin: {x: 0, y: 0}
+  startingVelocityMax: {x: 0, y: 0}
+  gravity: 0
 --- !u!1001 &2275015383682299029
 PrefabInstance:
   m_ObjectHideFlags: 0

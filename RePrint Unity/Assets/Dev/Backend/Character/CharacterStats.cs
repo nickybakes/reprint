@@ -12,6 +12,11 @@ public record CharacterStats
     public int AbilityPoints { get; set; }
     public int AbilityPointsMax { get; set; }
 
+    public int PhysicalDamageTaken { get; set; }
+    public int BleedDamageTaken { get; set; }
+    public int CriticalDamageTaken { get; set; }
+
+
     public CharacterStats(Character character)
     {
         Character = character;
