@@ -233,12 +233,8 @@ MonoBehaviour:
   positionBone: {fileID: 7252588025192502253}
   attackPoint: {fileID: 0}
   glitchMaterials:
-  - {fileID: 2100000, guid: f22d1886fa488a74baed260976007510, type: 2}
-  - {fileID: 2100000, guid: 046ba677f4274e4499cef9a3cc012787, type: 2}
-  - {fileID: 2100000, guid: 2857b8ced1ea44d4b8c7f621eebf54f8, type: 2}
-  - {fileID: 2100000, guid: 510048f0a72643e41a159928d6e0dda3, type: 2}
-  - {fileID: 2100000, guid: 11edb19102d9e3740a23563f70594429, type: 2}
-  glitchCooldown: 0.2
+  - {fileID: 2100000, guid: 549ab241ec52a044286c37eeea1f4b2c, type: 2}
+  glitchCooldown: 0.1
   glitchMinimumTime: 0
   glitchMultiplier: 2
   glitchSpeedThreshold: 0.001

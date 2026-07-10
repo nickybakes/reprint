@@ -61,15 +61,15 @@ Material:
     m_Floats:
     - _Alpha_Fade_High: 2.47
     - _Alpha_Fade_Low: -0.2
-    - _Alpha_Fresnel_Multiply: 1.35
+    - _Alpha_Fresnel_Multiply: 0.9
     - _Alpha_Fresnel_Power: 0.42
     - _Alpha_Minimum: 0.06
     - _Alpha_Scale: 3.43
     - _Alpha_Threshold: 0
     - _Angle: 43.35
-    - _Distort_Amount: 0.75
+    - _Distort_Amount: 8.43
     - _Distort_Angle: 90
-    - _Distort_Angle_Specificity: 3.4
+    - _Distort_Angle_Specificity: 16.66
     - _Distort_Bias: -0.026
     - _Distort_Bias_Base: 0.8
     - _Emission: 0.77
@@ -84,6 +84,7 @@ Material:
     - _Shading_Opacity: 0.637
     - _Shading_Power: 138.07
     m_Colors:
+    - _Alpha_Stretch: {r: 0.57, g: 1, b: 0, a: 0}
     - _Aspect_Ratio: {r: 1, g: 1.777778, b: 0, a: 0}
     - _Rim_Light_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Shading_Color_Tint: {r: 0.4406016, g: 0, b: 0.5943396, a: 1}
