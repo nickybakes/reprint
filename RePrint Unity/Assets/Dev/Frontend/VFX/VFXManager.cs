@@ -3,26 +3,26 @@ using UnityEngine;
 
 public class VFXManager : MonoBehaviour
 {
-    private Dictionary<VisualEffect, List<VisualEffect>> cachedEffects;
+    private Dictionary<VisualFX, List<VisualFX>> cachedEffects;
 
     void Awake()
     {
-        cachedEffects = new Dictionary<VisualEffect, List<VisualEffect>>();
+        cachedEffects = new Dictionary<VisualFX, List<VisualFX>>();
     }
 
-    public void CacheEffects(List<VisualEffect> effects)
+    public void CacheEffects(List<VisualFX> effects)
     {
-        foreach (VisualEffect effect in effects)
+        foreach (VisualFX effect in effects)
         {
             CacheEffect(effect);
         }
     }
 
-    public void CacheEffect(VisualEffect effect, int amount = 3)
+    public void CacheEffect(VisualFX effect, int amount = 3)
     {
         if (!cachedEffects.ContainsKey(effect))
         {
-            cachedEffects.Add(effect, new List<VisualEffect>(amount));
+            cachedEffects.Add(effect, new List<VisualFX>(amount));
         }
 
         for (int i = 0; i < amount; i++)
@@ -31,9 +31,9 @@ public class VFXManager : MonoBehaviour
         }
     }
 
-    public VisualEffect PlayEffect(VisualEffect effectToPlay, Transform spawnTransform)
+    public VisualFX PlayEffect(VisualFX effectToPlay, Transform spawnTransform)
     {
-        List<VisualEffect> effects = cachedEffects[effectToPlay];
+        List<VisualFX> effects = cachedEffects[effectToPlay];
 
         if (effects == null)
         {
@@ -42,7 +42,7 @@ public class VFXManager : MonoBehaviour
             effects = cachedEffects[effectToPlay];
         }
 
-        VisualEffect effect = GetCachedEffectObject(effectToPlay, effects);
+        VisualFX effect = GetCachedEffectObject(effectToPlay, effects);
 
         effect.gameObject.SetActive(true);
         effect.transform.position = spawnTransform.position;
@@ -58,9 +58,9 @@ public class VFXManager : MonoBehaviour
     /// Get a currently inactive Visual Effect from the pool. If none exist, caches a new one.
     /// </summary>
     /// <returns></returns>
-    private VisualEffect GetCachedEffectObject(VisualEffect effect, List<VisualEffect> effects)
+    private VisualFX GetCachedEffectObject(VisualFX effect, List<VisualFX> effects)
     {
-        foreach (VisualEffect effectObject in effects)
+        foreach (VisualFX effectObject in effects)
         {
             if (!effectObject.gameObject.activeSelf)
             {
@@ -71,9 +71,9 @@ public class VFXManager : MonoBehaviour
         return CacheIndividualEffect(effect, effects);
     }
 
-    private VisualEffect CacheIndividualEffect(VisualEffect effect, List<VisualEffect> effects)
+    private VisualFX CacheIndividualEffect(VisualFX effect, List<VisualFX> effects)
     {
-        VisualEffect effectObject = Instantiate(effect);
+        VisualFX effectObject = Instantiate(effect);
         effectObject.gameObject.SetActive(false);
         effects.Add(effectObject);
         return effectObject;

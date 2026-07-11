@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3937a5fb0f103dc4da0505bec4d876d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeScaleController
-  speeds:
+  timeScales:
   - 0.1
   - 0.25
   - 0.5

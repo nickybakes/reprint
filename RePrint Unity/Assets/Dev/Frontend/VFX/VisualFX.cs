@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class VisualEffect : MonoBehaviour
+public class VisualFX : MonoBehaviour
 {
 
     [SerializeField] private float lifetime = 1;
@@ -27,9 +27,9 @@ public class VisualEffect : MonoBehaviour
 [Serializable]
 public class VisualEffectAndTransform
 {
-    [SerializeField] private VisualEffect visualEffect;
+    [SerializeField] private VisualFX visualEffect;
     [SerializeField] private Transform transform;
 
-    public VisualEffect VisualEffect { get => visualEffect; }
+    public VisualFX VisualEffect { get => visualEffect; }
     public Transform Transform { get => transform; }
 }
