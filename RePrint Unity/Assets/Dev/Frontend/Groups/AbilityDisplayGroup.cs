@@ -22,6 +22,8 @@ public class AbilityDisplayGroup : MonoBehaviour
     [SerializeField] private Vector2 goButtonOffsetExpanded;
 
     [HideInInspector] public Display abilityStatsGroup;
+    [SerializeField] private SFXData cancelSound;
+
 
     private Dictionary<Ability, AbilityDisplay> abilityToDisplayReferences;
     private Dictionary<AbilityDisplay, Ability> displayToAbilityReferences;

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SFX_Select_01
   m_EditorClassIdentifier: Assembly-CSharp::SFXData
   <Clips>k__BackingField:
-  - {fileID: 8300000, guid: 73850060488a5914c8be67110d822b47, type: 3}
-  - {fileID: 8300000, guid: 585ec7c4d641fd846a96e4b92f112d9f, type: 3}
+  - {fileID: 8300000, guid: 019211d5ddd7446428f4e9a4676e5876, type: 3}
   <Channel>k__BackingField: 0
-  <PitchMin>k__BackingField: 1
-  <PitchMax>k__BackingField: 1
+  <PitchMin>k__BackingField: 0.93
+  <PitchMax>k__BackingField: 1.03
   <Volume>k__BackingField: 1
   <OverwriteIfAlreadyPlaying>k__BackingField: 0

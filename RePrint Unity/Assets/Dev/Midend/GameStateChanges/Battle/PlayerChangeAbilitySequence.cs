@@ -39,3 +39,14 @@ public class PlayerChangeAbilitySequence : BattleStateChange
         view.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence, playerAbilitySequencingStats);
     }
 }
+
+public enum AbilitySequenceChangeType
+{
+    Reset,
+    SelectAbility,
+    UnselectAbility,
+    IncreaseOverclock,
+    DecreaseOverclock,
+    SelectTarget,
+    UnselectTarget
+}

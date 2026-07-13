@@ -19,6 +19,7 @@ public class AbilityDisplay : FloatingDisplay
 
     [SerializeField] private AbilityStatDisplayGroup abilityStatDisplayGroup;
     [SerializeField] private SFXData hoverSound;
+    [SerializeField] private SFXData submitSound;
 
     private BattleController controller;
 
@@ -41,6 +42,11 @@ public class AbilityDisplay : FloatingDisplay
     public void PlayHoverSound()
     {
         SFXManager.sfx.Play(hoverSound);
+    }
+
+    public void PlaySubmitSound()
+    {
+        SFXManager.sfx.Play(submitSound);
     }
 
     public void DisplayAbility(Ability _ability, BattleController _controller)
