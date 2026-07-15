@@ -10,10 +10,22 @@ public class ModEffectDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
 
-        AddProperty("chainGainAmount");
+        SerializedProperty typeProperty = AddProperty("type");
+        ModEffectType type = (ModEffectType)typeProperty.enumValueIndex;
 
         AddQuarterBlankLine();
-        AddProperty("extraArithmetics");
+
+        switch (type)
+        {
+            case ModEffectType.DoDamage:
+                AddProperty("gameEvent");
+                AddProperty("applicationModes");
+                AddProperty("valueInput1");
+                break;
+
+        }
+
+        AddQuarterBlankLine();
 
         EditorGUI.EndProperty();
     }

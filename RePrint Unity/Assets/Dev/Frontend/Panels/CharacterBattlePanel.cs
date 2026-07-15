@@ -63,7 +63,7 @@ public class CharacterBattlePanel : CharacterStatsPanel
     {
         if (figure && view)
         {
-            rectTransform.anchoredPosition = view.WorldToCanvasPoint(figure.Center);
+            rectTransform.anchoredPosition = UIView.WorldToCanvasPoint(figure.Center);
         }
     }
 

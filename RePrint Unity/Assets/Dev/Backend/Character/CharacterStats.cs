@@ -38,3 +38,13 @@ public record CharacterStats
         AbilityPointsMax = source.AbilityPointsMax;
     }
 }
+
+public enum CharacterStat
+{
+    Health,
+    AbilityPoints,
+    Chain,
+    PhysicalDamageTaken,
+    BleedDamageTaken,
+    CriticalDamageTaken,
+}

@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RePrintButton
   m_Interactable: 1
+  selectSound: {fileID: 11400000, guid: b809238d9e3a87f43a27394099648331, type: 2}
   selectEvent:
     m_PersistentCalls:
       m_Calls: []

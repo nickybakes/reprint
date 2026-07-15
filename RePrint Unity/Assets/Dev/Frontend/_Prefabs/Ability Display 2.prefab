@@ -793,8 +793,6 @@ MonoBehaviour:
   - Ethereal
   - Mythic
   abilityStatDisplayGroup: {fileID: 5579256189867185928}
-  hoverSound: {fileID: 11400000, guid: b809238d9e3a87f43a27394099648331, type: 2}
-  submitSound: {fileID: 11400000, guid: b0bf9ea571b16d64e91b486d4a32e4e5, type: 2}
 --- !u!114 &7196881349193645885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BetterButton
   m_Interactable: 1
+  selectSound: {fileID: 11400000, guid: b809238d9e3a87f43a27394099648331, type: 2}
   selectEvent:
     m_PersistentCalls:
       m_Calls:
@@ -835,18 +834,6 @@ MonoBehaviour:
           m_StringArgument: Expand
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 3010339616592584042}
-        m_TargetAssemblyTypeName: AbilityDisplay, Assembly-CSharp
-        m_MethodName: PlayHoverSound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Expand
-          m_BoolArgument: 0
-        m_CallState: 1
   deselectEvent:
     m_PersistentCalls:
       m_Calls:
@@ -868,18 +855,6 @@ MonoBehaviour:
       - m_Target: {fileID: 3010339616592584042}
         m_TargetAssemblyTypeName: AbilityDisplay, Assembly-CSharp
         m_MethodName: SubmitAbility
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 3010339616592584042}
-        m_TargetAssemblyTypeName: AbilityDisplay, Assembly-CSharp
-        m_MethodName: PlaySubmitSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

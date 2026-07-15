@@ -62,6 +62,15 @@ MonoBehaviour:
   group: {fileID: -3050753695048888627}
   spawnParent: {fileID: 0}
   abilityDisplayPrefab: {fileID: 3010339616592584042, guid: bbc476af47c6ed94f978c1456d75dc24, type: 3}
+  abilityStatsGroupOffset: {x: 0, y: 0}
+  abilityStatsGroupOffsetExpanded: {x: 0, y: 0}
+  goButton: {fileID: 0}
+  goButtonOffset: {x: 0, y: 0}
+  goButtonOffsetExpanded: {x: 0, y: 0}
+  abilityStatsGroup: {fileID: 0}
+  selectAbilitySound: {fileID: 11400000, guid: b0bf9ea571b16d64e91b486d4a32e4e5, type: 2}
+  selectTargetSound: {fileID: 11400000, guid: b0bf9ea571b16d64e91b486d4a32e4e5, type: 2}
+  cancelSound: {fileID: 11400000, guid: ec32479962638104db70aa556be18f26, type: 2}
 --- !u!114 &-3050753695048888627
 MonoBehaviour:
   m_ObjectHideFlags: 0

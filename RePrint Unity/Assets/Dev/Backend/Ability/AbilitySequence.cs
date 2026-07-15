@@ -15,47 +15,50 @@ public class AbilitySequence
         sequence = new List<AbilitySelection>();
     }
 
-    public void AddOrOverclockAbility(Ability ability, int availableAP)
+    public AbilitySequenceChangeType AddOrOverclockAbility(Ability ability, int availableAP)
     {
-        if (sequence.Count == 0 || !TryOverclockOrChangeLastAbility(ability, availableAP))
+        AbilitySequenceChangeType changeType = TryOverclockOrChangeLastAbility(ability, availableAP);
+        if (changeType == AbilitySequenceChangeType.None && availableAP >= ability.GetAPCost(0))
         {
-            if (availableAP >= ability.GetAPCost(0))
-            {
-                sequence.Add(new AbilitySelection(ability));
-            }
+            sequence.Add(new AbilitySelection(ability));
+            return AbilitySequenceChangeType.SubmitAbility;
         }
+
+        return changeType;
     }
 
-    public void SetLastAbilityTarget(Character target)
+    public AbilitySequenceChangeType SetLastAbilityTarget(Character target)
     {
         if (sequence.Count == 0)
-            return;
+            return AbilitySequenceChangeType.None;
 
         AbilitySelection lastAbility = GetLastSelection();
         lastAbility.SetTarget(target);
+        return AbilitySequenceChangeType.SubmitTarget;
     }
 
-    public bool StepBackInSequenceBuilding()
+    public AbilitySequenceChangeType StepBackInSequenceBuilding()
     {
         if (sequence.Count == 0)
-            return false;
+            return AbilitySequenceChangeType.None;
 
         AbilitySelection lastAbility = GetLastSelection();
 
         if (lastAbility.TargetIsSet)
         {
             lastAbility.UnsetTarget();
+            return AbilitySequenceChangeType.UnsubmitTarget;
         }
         else if (lastAbility.Overclock == 0)
         {
             sequence.RemoveAt(sequence.Count - 1);
+            return AbilitySequenceChangeType.UnsubmitAbility;
         }
         else
         {
             lastAbility.DecreaseOverclock();
+            return AbilitySequenceChangeType.DecreaseOverclock;
         }
-
-        return true;
     }
 
     public List<AbilitySelection> GetSortedSequence()
@@ -89,10 +92,10 @@ public class AbilitySequence
         return sequence[sequence.Count - 1];
     }
 
-    private bool TryOverclockOrChangeLastAbility(Ability newAbility, int availableAP)
+    private AbilitySequenceChangeType TryOverclockOrChangeLastAbility(Ability newAbility, int availableAP)
     {
         if (sequence.Count == 0)
-            return false;
+            return AbilitySequenceChangeType.None;
 
         AbilitySelection lastSelection = GetLastSelection();
 
@@ -107,6 +110,11 @@ public class AbilitySequence
                     if (availableAP + currAPCost >= nextAPCost)
                     {
                         lastSelection.IncreaseOverclock();
+                        return AbilitySequenceChangeType.IncreaseOverclock;
+                    }
+                    else
+                    {
+                        return AbilitySequenceChangeType.None;
                     }
                 }
             }
@@ -116,11 +124,11 @@ public class AbilitySequence
                 if (availableAP + currAPCost >= newAbility.GetAPCost(0))
                 {
                     lastSelection.SetAbility(newAbility);
+                    return AbilitySequenceChangeType.SubmitAbility;
                 }
             }
-            return true;
         }
 
-        return false;
+        return AbilitySequenceChangeType.None;
     }
 }

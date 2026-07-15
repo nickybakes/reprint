@@ -22,6 +22,8 @@ public class AbilityDisplayGroup : MonoBehaviour
     [SerializeField] private Vector2 goButtonOffsetExpanded;
 
     [HideInInspector] public Display abilityStatsGroup;
+    [SerializeField] private SFXData selectAbilitySound;
+    [SerializeField] private SFXData selectTargetSound;
     [SerializeField] private SFXData cancelSound;
 
 
@@ -70,7 +72,7 @@ public class AbilityDisplayGroup : MonoBehaviour
         }
     }
 
-    public void RefreshSequenceState(AbilitySequence abilitySequence, CharacterStats stats)
+    public void RefreshSequenceState(AbilitySequence abilitySequence, CharacterStats stats, AbilitySequenceChangeType changeType)
     {
         List<AbilitySelection> sequence = abilitySequence.Sequence;
 
@@ -98,10 +100,27 @@ public class AbilityDisplayGroup : MonoBehaviour
                     display.RefreshSequenceState(false, -1, stats.Character, stats.AbilityPoints, 0);
                 }
             }
+
         }
         else
         {
             ResetSequenceState(stats);
+        }
+
+        switch (changeType)
+        {
+            case AbilitySequenceChangeType.SubmitAbility:
+            case AbilitySequenceChangeType.IncreaseOverclock:
+                SFXManager.sfx.Play(selectAbilitySound);
+                break;
+            case AbilitySequenceChangeType.SubmitTarget:
+                SFXManager.sfx.Play(selectTargetSound);
+                break;
+            case AbilitySequenceChangeType.UnsubmitAbility:
+            case AbilitySequenceChangeType.UnsubmitTarget:
+            case AbilitySequenceChangeType.DecreaseOverclock:
+                SFXManager.sfx.Play(cancelSound);
+                break;
         }
     }
 

@@ -10,8 +10,25 @@ public class GameConditionDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
 
-        // AddProperty("minChainThreshold");
-        AddLabel("TODO");
+        SerializedProperty typeProperty = AddProperty("type");
+        GameConditionType type = (GameConditionType)typeProperty.enumValueIndex;
+
+        AddQuarterBlankLine();
+
+        switch (type)
+        {
+            case GameConditionType.OnGameEvent:
+                AddProperty("gameEvent");
+                break;
+            case GameConditionType.PlayerStat:
+                AddProperty("characterStat", "Stat");
+                AddProperty("comparison1", "");
+                AddProperty("valueInput1");
+                break;
+
+        }
+
+        AddQuarterBlankLine();
 
         EditorGUI.EndProperty();
     }

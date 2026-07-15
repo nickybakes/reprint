@@ -8,11 +8,14 @@ public class PlayerChangeAbilitySequence : BattleStateChange
 
     private CharacterStats playerAbilitySequencingStats;
 
+    private AbilitySequenceChangeType changeType;
 
-    public PlayerChangeAbilitySequence(AbilitySequence _abilitySequence, CharacterStats _playerAbilitySequencingStats)
+
+    public PlayerChangeAbilitySequence(AbilitySequence _abilitySequence, CharacterStats _playerAbilitySequencingStats, AbilitySequenceChangeType _changeType)
     {
         abilitySequence = _abilitySequence;
         playerAbilitySequencingStats = _playerAbilitySequencingStats;
+        changeType = _changeType;
     }
 
     public override void ParseChange(BattleView view, BattleController controller)
@@ -36,17 +39,18 @@ public class PlayerChangeAbilitySequence : BattleStateChange
         {
             view.BattleStatsPanel.DisableAllTargetSelection();
         }
-        view.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence, playerAbilitySequencingStats);
+        view.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence, playerAbilitySequencingStats, changeType);
     }
 }
 
 public enum AbilitySequenceChangeType
 {
     Reset,
-    SelectAbility,
-    UnselectAbility,
+    SubmitAbility,
+    UnsubmitAbility,
     IncreaseOverclock,
     DecreaseOverclock,
-    SelectTarget,
-    UnselectTarget
+    SubmitTarget,
+    UnsubmitTarget,
+    None
 }

@@ -15,36 +15,28 @@ MonoBehaviour:
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
-        list: []
-        listFoldout: 0
-        foldouts: 
+        list:
+        - type: 0
+          gameEvent: 4
+          characterStat: 0
+          comparison1: 0
+          valueInput1:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+        - type: 1
+          gameEvent: 0
+          characterStat: 0
+          comparison1: 0
+          valueInput1:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+        listFoldout: 1
+        foldouts: 0101
       effects:
         list: []
-        listFoldout: 0
-        foldouts: 
-    - conditions:
-        list: []
-        listFoldout: 0
-        foldouts: 
-      effects:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    - conditions:
-        list: []
-        listFoldout: 0
-        foldouts: 
-      effects:
-        list: []
-        listFoldout: 0
-        foldouts: 
-    - conditions:
-        list: []
-        listFoldout: 0
-        foldouts: 
-      effects:
-        list: []
-        listFoldout: 0
+        listFoldout: 1
         foldouts: 
     listFoldout: 1
-    foldouts: 01010101
+    foldouts: 01

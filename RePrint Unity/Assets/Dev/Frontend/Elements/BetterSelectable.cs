@@ -17,6 +17,7 @@ public class BetterSelectable :
     [Tooltip("Can the Selectable be interacted with?")]
     [SerializeField]
     private bool m_Interactable = true;
+    [SerializeField] protected SFXData selectSound;
 
     /// <summary>
     /// The event invoke when this is selected.
@@ -27,7 +28,6 @@ public class BetterSelectable :
     /// The event invoke when this is deselected.
     /// </summary>
     [SerializeField] protected UnityEvent<int> deselectEvent;
-
 
     /// <summary>
     /// Useable index value thats passed on the select and deselect event.
@@ -163,6 +163,10 @@ public class BetterSelectable :
             SetAnimationTrigger("Select");
             selectEvent.Invoke(index);
             hasSelection = true;
+            if (SFXManager.sfx && selectSound)
+            {
+                SFXManager.sfx.Play(selectSound);
+            }
         }
     }
 

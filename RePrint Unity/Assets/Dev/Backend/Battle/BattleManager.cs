@@ -95,14 +95,20 @@ public class BattleManager : MonoBehaviour
 
     public virtual void PlayerSubmitAbility(Ability ability)
     {
-        playerAbilitySequence.AddOrOverclockAbility(ability, Player.AbilitySequencingStats.AbilityPoints);
-        SubmitPlayerChangeAbilitySequence();
+        AbilitySequenceChangeType changeType = playerAbilitySequence.AddOrOverclockAbility(ability, Player.AbilitySequencingStats.AbilityPoints);
+        if (changeType != AbilitySequenceChangeType.None)
+        {
+            SubmitPlayerChangeAbilitySequence(changeType);
+        }
     }
 
     public virtual void PlayerSubmitTarget(Character target)
     {
-        playerAbilitySequence.SetLastAbilityTarget(target);
-        SubmitPlayerChangeAbilitySequence();
+        AbilitySequenceChangeType changeType = playerAbilitySequence.SetLastAbilityTarget(target);
+        if (changeType != AbilitySequenceChangeType.None)
+        {
+            SubmitPlayerChangeAbilitySequence(changeType);
+        }
     }
 
     public virtual void PlayerSubmitConfirmAbilitySequence()
@@ -160,16 +166,19 @@ public class BattleManager : MonoBehaviour
     {
         if (playerAbilitySequence != null)
         {
-            playerAbilitySequence.StepBackInSequenceBuilding();
-            SubmitPlayerChangeAbilitySequence();
+            AbilitySequenceChangeType changeType = playerAbilitySequence.StepBackInSequenceBuilding();
+            if (changeType != AbilitySequenceChangeType.None)
+            {
+                SubmitPlayerChangeAbilitySequence(changeType);
+            }
         }
     }
 
-    protected virtual void SubmitPlayerChangeAbilitySequence()
+    protected virtual void SubmitPlayerChangeAbilitySequence(AbilitySequenceChangeType changeType)
     {
         RefreshAllCharacterInGameValues();
         Player.RefreshAbilitySequencingStats(playerAbilitySequence);
-        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.AbilitySequencingStats));
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.AbilitySequencingStats, changeType));
         SubmitChanges();
     }
 }

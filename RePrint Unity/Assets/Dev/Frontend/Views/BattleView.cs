@@ -162,14 +162,4 @@ public class BattleView : MonoBehaviour
             stateChangeToUpdate.Update(this, battleController);
         }
     }
-
-    public Vector3 WorldToCanvasPoint(Vector3 position)
-    {
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(position);
-        screenPosition.x *= CanvasRect.rect.width / (float)Camera.main.pixelWidth;
-        screenPosition.y *= CanvasRect.rect.height / (float)Camera.main.pixelHeight;
-        screenPosition.x = screenPosition.x - CanvasRect.sizeDelta.x / 2f;
-        screenPosition.y = screenPosition.y - CanvasRect.sizeDelta.y / 2f;
-        return screenPosition;
-    }
 }

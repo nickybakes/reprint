@@ -5,17 +5,33 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// An in-game button that is a bit more streamlined than the default Unity buttons.
 /// </summary>
-public class BetterButton : BetterSelectable, IPointerDownHandler, IPointerUpHandler, ISubmitHandler
+public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUpHandler, ISubmitHandler
 {
     /// <summary>
-    /// The event to call when this button is submitted (clicked).
+    /// The event to call when the user starts dragging this element.
     /// </summary>
-    [SerializeField] protected UnityEvent submitEvent;
+    [SerializeField] protected UnityEvent startDragEvent;
+
+    /// <summary>
+    /// The event to call on each frame while dragging.
+    /// </summary>
+    [SerializeField] protected UnityEvent draggingUpdateEvent;
+
+    /// <summary>
+    /// The event to call when the user stops dragging this element.
+    /// </summary>
+    [SerializeField] protected UnityEvent stopDragEvent;
+
+    [SerializeField] private float deadzone = 5f;
 
     /// <summary>
     /// Cooldown between when this button can be submitted again.
     /// </summary>
     [SerializeField] private float cooldownTime = .1f;
+
+    private Vector2 startDragMousePosition;
+
+    private bool isBeingDragged;
 
     /// <summary>
     /// The time since the last submission.
@@ -41,8 +57,6 @@ public class BetterButton : BetterSelectable, IPointerDownHandler, IPointerUpHan
         SetAnimationTrigger("Release");
 
         pressed = false;
-
-        submitEvent.Invoke();
     }
 
     /// <summary>
@@ -53,8 +67,8 @@ public class BetterButton : BetterSelectable, IPointerDownHandler, IPointerUpHan
         if (!IsActive() || !Interactable)
             return;
 
-        ResetAnimationTrigger("Release");
-        SetAnimationTrigger("Press");
+        startDragMousePosition = UIView.view.MouseViewPosition;
+
         pressed = true;
     }
 
@@ -104,6 +118,15 @@ public class BetterButton : BetterSelectable, IPointerDownHandler, IPointerUpHan
     void Update()
     {
         timeSinceSubmit += Time.deltaTime;
+
+        if (pressed)
+        {
+            Vector2 currentMousePosition = UIView.view.MouseViewPosition;
+            if (Vector2.Distance(startDragMousePosition, currentMousePosition) > deadzone)
+            {
+                Debug.Log("adadawdawdawdwad");
+            }
+        }
     }
 
     /// <summary>

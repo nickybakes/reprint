@@ -6,7 +6,7 @@ public class FloatingDisplay : TravelingDisplay
     /// <summary>
     /// Transition lerp between unselected and selected size. Use the animator to control this.
     /// </summary>
-    [SerializeField, Range(0.0f, 1.0f)] private float sizeTransition;
+    [SerializeField, Range(0.0f, 1.0f)] protected float sizeTransition;
 
     /// <summary>
     /// Transition lerp between unselected and selected size. Use the animator to control this.
