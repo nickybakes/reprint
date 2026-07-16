@@ -17,6 +17,8 @@ public class DragManager : MonoBehaviour
 
     private bool isDragging;
 
+    private int groupIndexToInsertIn;
+
     public FloatingDisplayGroup CursorGroup
     {
         get => cursorGroup;
@@ -65,10 +67,22 @@ public class DragManager : MonoBehaviour
 
             if (displaysBeingDragged != null)
             {
-                foreach (FloatingDraggableDisplay draggable in displaysBeingDragged)
+                if (groupIndexToInsertIn != -1)
                 {
-                    draggable.Group.AddDraggableToGroup(draggable, draggable.IndexInGroup);
-                    cursorGroup.RemoveDisplayFromGroup(draggable);
+                    for (int i = 0; i < displaysBeingDragged.Count; i++)
+                    {
+                        FloatingDraggableDisplay draggable = displaysBeingDragged[i];
+                        groups[groupIndexToInsertIn].AddDraggableToGroup(draggable, groups[groupIndexToInsertIn].IndexToInsertTo + i);
+                        cursorGroup.RemoveDisplayFromGroup(draggable);
+                    }
+                }
+                else
+                {
+                    foreach (FloatingDraggableDisplay draggable in displaysBeingDragged)
+                    {
+                        draggable.Group.AddDraggableToGroup(draggable, draggable.IndexInGroup);
+                        cursorGroup.RemoveDisplayFromGroup(draggable);
+                    }
                 }
             }
 
@@ -77,7 +91,6 @@ public class DragManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         cursorDisplay.SetGoalTransform(UIView.view.MouseViewPosition, Quaternion.identity, Vector3.one);
@@ -112,6 +125,8 @@ public class DragManager : MonoBehaviour
                     groups[i].DisableDragConnection();
                 }
             }
+
+            groupIndexToInsertIn = closestGroupIndex;
         }
     }
 }

@@ -43,8 +43,8 @@ public class FloatingDraggableDisplay : FloatingDisplay
     private void StopDrag()
     {
         SetStartTransform(rectTransform);
-        group.StopDragFromElement(this);
         StartTraveling();
+        group.StopDragFromElement(this);
     }
 
     void Update()

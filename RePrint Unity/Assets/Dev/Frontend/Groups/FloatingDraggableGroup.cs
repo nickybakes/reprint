@@ -26,6 +26,10 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
 
     public UnityEvent<int, FloatingDraggableDisplay> StopDragEvent { get => stopDragEvent; }
 
+    protected int indexToInsertTo;
+
+    public int IndexToInsertTo { get => indexToInsertTo; }
+
     private FloatingDisplaySpace fakeSpace;
 
     private float3 nearestPointOnSpline;
@@ -37,8 +41,14 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
 
     private Dictionary<FloatingDisplaySpace, float> storedSpacePositions;
 
+    private Vector3 mousePosition;
+
     public void AddDraggableToGroup(FloatingDraggableDisplay display, int indexPosition = -1)
     {
+        if (indexPosition > numDisplaysInGroup)
+        {
+            indexPosition = -1;
+        }
         display.SetGroup(this, AddDisplayToGroup(display, indexPosition));
     }
 
@@ -55,30 +65,21 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
 
     public float TestDistanceToSpline(Vector3 pos)
     {
+        mousePosition = pos;
         localSplinePoint = splineContainer.transform.InverseTransformPoint(pos);
         float distance = SplineUtility.GetNearestPoint(splineContainer.Spline, localSplinePoint, out nearestPointOnSpline, out nearestNormalizedPoint);
-        // nearestNormalizedPoint = Mathf.Clamp(nearestNormalizedPoint, 0f, 1f);
 
         return distance;
     }
 
     public void EnableDragConnection()
     {
-        float fakeSpaceIndex = 0;
-
-        switch (alignment)
-        {
-            case TextAlignment.Center:
-                break;
-        }
-
-        int closestDisplaySpaceIndex = -1;
+        int closestDisplaySpaceIndex = 0;
         float closestDistance = float.MaxValue;
 
         for (int i = 0; i < invisDuplicateGroup.displaySpaces.Count; i++)
         {
-            float normalizedIndex = invisDuplicateGroup.displaySpaces[i].SpaceIndexPositionGoal / invisDuplicateGroup.numDisplaysInGroup;
-            float distance = Math.Abs(nearestNormalizedPoint - normalizedIndex);
+            float distance = Vector2.Distance(mousePosition, invisDuplicateGroup.displaySpaces[i].display.transform.position);
             if (distance < closestDistance)
             {
                 closestDistance = distance;
@@ -86,27 +87,26 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
             }
         }
 
-        if (closestDisplaySpaceIndex != -1)
-        {
-            fakeSpaceIndex = invisDuplicateGroup.displaySpaces[closestDisplaySpaceIndex].SpaceIndexPositionGoal;
-        }
+        fakeSpace.SetGoalSize(1);
 
+        indexToInsertTo = closestDisplaySpaceIndex;
+        fakeSpace.SetGoalPosition(closestDisplaySpaceIndex);
         foreach (FloatingDisplaySpace displaySpace in storedSpacePositions.Keys)
         {
-            if (storedSpacePositions[displaySpace] < fakeSpaceIndex)
+            if (storedSpacePositions[displaySpace] >= closestDisplaySpaceIndex)
             {
-                displaySpace.SetGoalPosition(storedSpacePositions[displaySpace] - .5f);
+                displaySpace.SetGoalPosition(storedSpacePositions[displaySpace] + 1f);
             }
             else
             {
-                displaySpace.SetGoalPosition(storedSpacePositions[displaySpace] + .5f);
+                displaySpace.SetGoalPosition(storedSpacePositions[displaySpace]);
             }
         }
     }
 
     public void DisableDragConnection()
     {
-        // fakeSpace.SetGoalSize(0);
+        fakeSpace.SetGoalSize(0);
         foreach (FloatingDisplaySpace displaySpace in storedSpacePositions.Keys)
         {
             displaySpace.SetGoalPosition(storedSpacePositions[displaySpace]);
@@ -115,8 +115,9 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
 
     public void StartDragMode()
     {
+        CopyGroupProperties();
+
         storedSpacePositions = new Dictionary<FloatingDisplaySpace, float>(displaySpaces.Count - 1);
-        invisDuplicateGroup.ClearAndDestroyDisplays();
         Transform newParent = transform.parent;
         foreach (FloatingDisplaySpace displaySpace in displaySpaces)
         {
@@ -137,12 +138,9 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
 
     public void StopDragMode()
     {
-        tempRemovedDisplayAmount = 0;
         DisableDragConnection();
-        foreach (FloatingDisplaySpace displaySpace in storedSpacePositions.Keys)
-        {
-            displaySpace.SetGoalPosition(storedSpacePositions[displaySpace]);
-        }
+        invisDuplicateGroup.ClearAndDestroyDisplays();
+        tempRemovedDisplayAmount = 0;
     }
 
     public void StartDragFromElement(FloatingDraggableDisplay display)
@@ -171,12 +169,17 @@ public class FloatingDraggableGroup : FloatingDisplayGroup
 
     void Start()
     {
+        CopyGroupProperties();
+    }
+
+    private void CopyGroupProperties()
+    {
         invisDuplicateGroup.splineContainer = splineContainer;
         invisDuplicateGroup.alignment = alignment;
         invisDuplicateGroup.displaySizeNormalized = displaySizeNormalized;
         invisDuplicateGroup.bigDisplaySizeNormalized = bigDisplaySizeNormalized;
-        invisDuplicateGroup.displaySpaceMoveSpeed = displaySpaceMoveSpeed;
-        invisDuplicateGroup.displaySpaceGrowSpeed = displaySpaceGrowSpeed;
+        invisDuplicateGroup.displaySpaceMoveSpeed = 1000;
+        invisDuplicateGroup.displaySpaceGrowSpeed = 1000;
     }
 
     // Update is called once per frame

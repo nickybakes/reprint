@@ -244,6 +244,7 @@ public class FloatingDisplayGroup : Display
                 Destroy(displaySpaces[i].display.gameObject);
             }
         }
+        displaySpaces = new List<FloatingDisplaySpace>();
         numDisplaysInGroup = 0;
     }
 
