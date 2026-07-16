@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class DragManager : MonoBehaviour
@@ -9,12 +10,14 @@ public class DragManager : MonoBehaviour
 
     public List<FloatingDraggableGroup> groups;
 
-    [SerializeField] private FloatingDraggableGroup cursorGroup;
+    [SerializeField] private FloatingDisplayGroup cursorGroup;
     [SerializeField] private TravelingDisplay cursorDisplay;
 
-    private Vector3 mousePosition;
+    private List<FloatingDraggableDisplay> displaysBeingDragged;
 
-    public FloatingDraggableGroup CursorGroup
+    private bool isDragging;
+
+    public FloatingDisplayGroup CursorGroup
     {
         get => cursorGroup;
     }
@@ -29,10 +32,49 @@ public class DragManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
 
+    public void StartDragging(List<FloatingDraggableDisplay> draggables)
+    {
+        if (!isDragging)
+        {
+            displaysBeingDragged = draggables;
+            foreach (FloatingDraggableDisplay draggable in displaysBeingDragged)
+            {
+                cursorGroup.AddDisplayToGroup(draggable);
+                draggable.Group.TempRemoveDraggableFromGroup(draggable);
+            }
+
+            foreach (FloatingDraggableGroup group in groups)
+            {
+                group.StartDragMode();
+            }
+
+            isDragging = true;
+            BetterSelectable.ignoreMouseInteractions = true;
+        }
+    }
+
+    public void StopDragging()
+    {
+        if (isDragging)
+        {
+            foreach (FloatingDraggableGroup group in groups)
+            {
+                group.StopDragMode();
+            }
+
+            if (displaysBeingDragged != null)
+            {
+                foreach (FloatingDraggableDisplay draggable in displaysBeingDragged)
+                {
+                    draggable.Group.AddDraggableToGroup(draggable, draggable.IndexInGroup);
+                    cursorGroup.RemoveDisplayFromGroup(draggable);
+                }
+            }
+
+            isDragging = false;
+            BetterSelectable.ignoreMouseInteractions = false;
+        }
     }
 
     // Update is called once per frame
@@ -40,5 +82,36 @@ public class DragManager : MonoBehaviour
     {
         cursorDisplay.SetGoalTransform(UIView.view.MouseViewPosition, Quaternion.identity, Vector3.one);
         cursorDisplay.UpdateTravel();
+
+        if (isDragging)
+        {
+            int closestGroupIndex = -1;
+            float closestDistance = float.MaxValue;
+            for (int i = 0; i < groups.Count; i++)
+            {
+                float distance = groups[i].TestDistanceToSpline(cursorDisplay.GetRect().position);
+
+                if (distance < groups[i].DragConnectDistance)
+                {
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestGroupIndex = i;
+                    }
+                }
+            }
+
+            for (int i = 0; i < groups.Count; i++)
+            {
+                if (i == closestGroupIndex)
+                {
+                    groups[i].EnableDragConnection();
+                }
+                else
+                {
+                    groups[i].DisableDragConnection();
+                }
+            }
+        }
     }
 }

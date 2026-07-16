@@ -40,6 +40,7 @@ public class UIView : MonoBehaviour
     void Update()
     {
         mouseScreenPosition = Mouse.current.position.value;
+        mouseScreenPosition.z = 0;
         mouseScreenPosition.x = mouseScreenPosition.x / Screen.width;
         mouseScreenPosition.y = mouseScreenPosition.y / Screen.height;
         mouseScreenPosition.x -= .5f;

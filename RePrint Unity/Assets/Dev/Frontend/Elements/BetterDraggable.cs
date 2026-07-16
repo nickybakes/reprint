@@ -12,6 +12,8 @@ public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUp
     /// </summary>
     [SerializeField] protected UnityEvent startDragEvent;
 
+    public UnityEvent StartDragEvent { get => startDragEvent; }
+
     /// <summary>
     /// The event to call on each frame while dragging.
     /// </summary>
@@ -21,6 +23,8 @@ public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUp
     /// The event to call when the user stops dragging this element.
     /// </summary>
     [SerializeField] protected UnityEvent stopDragEvent;
+    public UnityEvent StopDragEvent { get => stopDragEvent; }
+
 
     [SerializeField] private float deadzone = 5f;
 
@@ -28,6 +32,7 @@ public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUp
     /// Cooldown between when this button can be submitted again.
     /// </summary>
     [SerializeField] private float cooldownTime = .1f;
+    [SerializeField] private float dragCooldownTime = .1f;
 
     private Vector2 startDragMousePosition;
 
@@ -38,10 +43,39 @@ public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUp
     /// </summary>
     private float timeSinceSubmit;
 
+    private float timeSinceDragged;
+
+
     /// <summary>
     /// Whether the button is currently held down/pressed.
     /// </summary>
     private bool pressed;
+
+    public virtual void StartDrag()
+    {
+        if (!IsActive() || !Interactable)
+            return;
+
+        timeSinceDragged = 0;
+
+        SetAnimationTrigger("Release");
+
+        isBeingDragged = true;
+        startDragEvent.Invoke();
+    }
+
+    public virtual void StopDrag()
+    {
+        if (!IsActive() || !Interactable)
+            return;
+
+        Deselect();
+        SetAnimationTrigger("Release");
+
+        isBeingDragged = false;
+        pressed = false;
+        stopDragEvent.Invoke();
+    }
 
     /// <summary>
     /// Play the press and release animation and invoke the submit event.
@@ -118,13 +152,14 @@ public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUp
     void Update()
     {
         timeSinceSubmit += Time.deltaTime;
+        timeSinceDragged += Time.deltaTime;
 
-        if (pressed)
+        if (pressed && !isBeingDragged)
         {
             Vector2 currentMousePosition = UIView.view.MouseViewPosition;
             if (Vector2.Distance(startDragMousePosition, currentMousePosition) > deadzone)
             {
-                Debug.Log("adadawdawdawdwad");
+                StartDrag();
             }
         }
     }
@@ -152,7 +187,14 @@ public class BetterDraggable : BetterSelectable, IPointerDownHandler, IPointerUp
         if (eventData.button != PointerEventData.InputButton.Left)
             return;
 
-        Release();
+        if (!isBeingDragged)
+        {
+            Release();
+        }
+        else
+        {
+            StopDrag();
+        }
     }
 
     /// <summary>

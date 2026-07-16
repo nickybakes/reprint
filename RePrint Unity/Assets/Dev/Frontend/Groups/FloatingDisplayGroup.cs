@@ -12,62 +12,62 @@ public class FloatingDisplayGroup : Display
     /// <summary>
     /// The spline track for displays to be on.
     /// </summary>
-    [SerializeField] protected SplineContainer splineContainer;
+    [SerializeField] public SplineContainer splineContainer;
 
     /// <summary>
     /// How to align the displays along the group.
     /// </summary>
-    [SerializeField] protected TextAlignment alignment = TextAlignment.Center;
+    [SerializeField] public TextAlignment alignment = TextAlignment.Center;
 
     /// <summary>
     /// The normalized size of regular displays in the group.
     /// </summary>
-    [SerializeField][Range(0.0f, 1.0f)] protected float displaySizeNormalized;
+    [SerializeField][Range(0.0f, 1.0f)] public float displaySizeNormalized;
 
     /// <summary>
     /// The normalized size of big (selected) displays in the group.
     /// </summary>
-    [SerializeField][Range(0.0f, 1.0f)] protected float bigDisplaySizeNormalized;
+    [SerializeField][Range(0.0f, 1.0f)] public float bigDisplaySizeNormalized;
 
     /// <summary>
     /// The first bound of the lerped rotation to apply to displays in the group.
     /// </summary>
-    [SerializeField] protected Vector3 rotationFirst;
+    [SerializeField] public Vector3 rotationFirst;
 
     /// <summary>
     /// The last bound of the lerped rotation to apply to displays in the group.
     /// </summary>
-    [SerializeField] protected Vector3 rotationLast;
+    [SerializeField] public Vector3 rotationLast;
 
     /// <summary>
     /// The move speed of floating display spaces.
     /// </summary>
-    [SerializeField] protected float displaySpaceMoveSpeed = 4f;
+    [SerializeField] public float displaySpaceMoveSpeed = 4f;
 
     /// <summary>
     /// The grow speed of floating display spaces.
     /// </summary>
-    [SerializeField] protected float displaySpaceGrowSpeed = 4f;
+    [SerializeField] public float displaySpaceGrowSpeed = 4f;
 
     /// <summary>
     /// Whether displays in this group should inherit the rotation of the Display Group and its parents.
     /// </summary>
-    [SerializeField] protected bool displaysInheritRotation = true;
+    [SerializeField] public bool displaysInheritRotation = true;
 
     /// <summary>
     /// Whether displays in this group should inherit the scale of the Display Group and its parents.
     /// </summary>
-    [SerializeField] protected bool displaysInheritScale = true;
+    [SerializeField] public bool displaysInheritScale = true;
 
     /// <summary>
     /// The list of floating display spaces in this Display Group.
     /// </summary>
-    protected List<FloatingDisplaySpace> displaySpaces;
+    public List<FloatingDisplaySpace> displaySpaces;
 
     /// <summary>
     /// The number of displays in this group.
     /// </summary>
-    protected int numDisplaysInGroup;
+    public int numDisplaysInGroup;
 
     public float BigSizeRatio
     {
@@ -100,7 +100,7 @@ public class FloatingDisplayGroup : Display
     /// </summary>
     /// <param name="display">The display display to add.</param>
     /// <param name="indexPosition">Optional specified index of where in this group the display should be at.</param>
-    public void AddDisplayToGroup(FloatingDisplay display, int indexPosition = -1)
+    public int AddDisplayToGroup(FloatingDisplay display, int indexPosition = -1)
     {
         // If not specified index position, put display at the end.
         if (indexPosition == -1)
@@ -113,7 +113,7 @@ public class FloatingDisplayGroup : Display
         int newSpaceIndexInArray = -1;
         for (int i = 0; i < displaySpaces.Count; i++)
         {
-            if (displaySpaces[i].displayRemoved)
+            if (displaySpaces[i].displayRemoved && !displaySpaces[i].fakeSpace)
             {
                 newSpace = displaySpaces[i];
                 newSpaceIndexInArray = i;
@@ -136,6 +136,8 @@ public class FloatingDisplayGroup : Display
             if (i != newSpaceIndexInArray && !displaySpaces[i].displayRemoved && displaySpaces[i].IncrementGoalPositionIfGreaterThanIndex(indexPosition - 1))
                 displaySpaces[i].display.transform.SetAsLastSibling();
         }
+
+        return indexPosition;
     }
 
     public void UpdateSpaces()
@@ -216,7 +218,7 @@ public class FloatingDisplayGroup : Display
 
         for (int i = 0; i < displaySpaces.Count; i++)
         {
-            if (displaySpaces[i].display == display && !displaySpaces[i].displayRemoved)
+            if (displaySpaces[i].display == display && !displaySpaces[i].displayRemoved && !displaySpaces[i].fakeSpace)
             {
                 displaySpaces[i].displayRemoved = true;
                 displaySpaces[i].SetGoalSize(0);
@@ -232,6 +234,32 @@ public class FloatingDisplayGroup : Display
         }
     }
 
+    public void ClearAndDestroyDisplays()
+    {
+        for (int i = 0; i < displaySpaces.Count; i++)
+        {
+            if (!displaySpaces[i].displayRemoved && !displaySpaces[i].fakeSpace)
+            {
+                displaySpaces[i].displayRemoved = true;
+                Destroy(displaySpaces[i].display.gameObject);
+            }
+        }
+        numDisplaysInGroup = 0;
+    }
+
+    public int GetDisplayIndexPosition(FloatingDisplay display)
+    {
+        foreach (FloatingDisplaySpace displaySpace in displaySpaces)
+        {
+            if (displaySpace.display == display)
+            {
+                return (int)displaySpace.SpaceIndexPositionGoal;
+            }
+        }
+
+        return -1;
+    }
+
     /// <summary>
     /// Get the normalized display size by lerping its transition amount and the display space size.
     /// </summary>
@@ -242,7 +270,7 @@ public class FloatingDisplayGroup : Display
     protected float GetDisplayOffsetSizeNormalized(int index, float scaledDisplaySizeNormalized, float scaledBigDisplaySizeNormalized)
     {
         float sizeTransition = 0;
-        if (!displaySpaces[index].displayRemoved)
+        if (!displaySpaces[index].displayRemoved && !displaySpaces[index].fakeSpace)
             sizeTransition = displaySpaces[index].display.SizeTransition;
         return (scaledBigDisplaySizeNormalized - scaledDisplaySizeNormalized) * sizeTransition;
     }

@@ -12,6 +12,8 @@ public class BetterSelectable :
         IPointerEnterHandler, IPointerExitHandler,
         ISelectHandler, IDeselectHandler
 {
+
+    public static bool ignoreMouseInteractions;
     private bool m_EnableCalled = false;
 
     [Tooltip("Can the Selectable be interacted with?")]
@@ -189,6 +191,9 @@ public class BetterSelectable :
     /// </summary>
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        if (ignoreMouseInteractions)
+            return;
+
         isPointerInside = true;
         OnSelected();
     }
@@ -198,6 +203,9 @@ public class BetterSelectable :
     /// </summary>
     public virtual void OnPointerExit(PointerEventData eventData)
     {
+        if (ignoreMouseInteractions)
+            return;
+
         isPointerInside = false;
         OnDeselected();
     }

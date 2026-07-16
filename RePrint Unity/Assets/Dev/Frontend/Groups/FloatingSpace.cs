@@ -29,6 +29,8 @@ public class FloatingSpace
     /// </summary>
     public float SpaceSize { get => spaceSize; }
 
+    public bool fakeSpace;
+
     /// <summary>
     /// The current floating index in the group that this space is at.
     /// </summary>
