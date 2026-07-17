@@ -5,6 +5,7 @@ public class BattleData : ScriptableObject
 {
 
     public CharacterData playerCharacterData;
+    public ModData[] playerMods;
 
     public EnemyData[] enemyDatas;
 

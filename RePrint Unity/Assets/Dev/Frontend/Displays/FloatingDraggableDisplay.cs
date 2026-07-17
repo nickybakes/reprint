@@ -28,6 +28,11 @@ public class FloatingDraggableDisplay : FloatingDisplay
     {
         SetupRectTransform();
         SetupTravelingTransformData();
+        SetupDraggable();
+    }
+
+    protected void SetupDraggable()
+    {
         draggable = GetComponent<BetterDraggable>();
         draggable.StartDragEvent.AddListener(StartDrag);
         draggable.StopDragEvent.AddListener(StopDrag);

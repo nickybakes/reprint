@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AbilityProfile", menuName = "Scriptable Objects/Ability Profile")]
-public class AbilityProfile : ScriptableObject
+[CreateAssetMenu(fileName = "ModProfile", menuName = "Scriptable Objects/Mod Profile")]
+public class ModProfile : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
 

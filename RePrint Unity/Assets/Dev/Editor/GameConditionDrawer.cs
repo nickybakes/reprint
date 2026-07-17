@@ -18,7 +18,22 @@ public class GameConditionDrawer : BetterPropertyDrawer
         switch (type)
         {
             case GameConditionType.OnGameEvent:
-                AddProperty("gameEvent");
+                SerializedProperty eventProperty = AddProperty("gameEvent");
+                GameEvent gameEvent = (GameEvent)eventProperty.enumValueIndex;
+
+                switch (gameEvent)
+                {
+                    case GameEvent.OnPlayerUseAbility:
+                        SerializedProperty indexTypeProp = AddProperty("indexType");
+                        IndexType indexType = (IndexType)indexTypeProp.enumValueIndex;
+                        switch (indexType)
+                        {
+                            case IndexType.Specific:
+                                AddProperty("valueInput1");
+                                break;
+                        }
+                        break;
+                }
                 break;
             case GameConditionType.PlayerStat:
                 AddProperty("characterStat", "Stat");

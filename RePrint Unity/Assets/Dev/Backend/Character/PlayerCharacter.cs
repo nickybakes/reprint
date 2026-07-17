@@ -11,7 +11,7 @@ public class PlayerCharacter : Character
 
     public Dictionary<Character, int> DodgePriorities { get; private set; }
 
-    public PlayerCharacter(CharacterData data) : base()
+    public PlayerCharacter(CharacterData data, ModData[] equippedMods) : base()
     {
 
         Profile = data.Profile;

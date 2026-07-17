@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: ModData
   m_EditorClassIdentifier: Assembly-CSharp::ModData
+  <Profile>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: 
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 4
+          gameEvent: 0
           characterStat: 0
           comparison1: 0
           valueInput1:
             type: 0
             baseValue: 0
             maxValue: 0
+          indexType: 0
         - type: 1
           gameEvent: 0
           characterStat: 0
@@ -32,6 +35,7 @@ MonoBehaviour:
             type: 0
             baseValue: 0
             maxValue: 0
+          indexType: 0
         listFoldout: 1
         foldouts: 0101
       effects:

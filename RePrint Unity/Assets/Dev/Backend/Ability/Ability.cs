@@ -17,8 +17,8 @@ public abstract class Ability
 
     public AbilityProfile Profile { get { return baseData.Profile; } }
 
-    public string Name { get { return baseData.Name; } }
-    public string Description { get { return baseData.Description; } }
+    public string Name { get { return baseData.Profile.Name; } }
+    public string Description { get { return baseData.Profile.Description; } }
     public AbilityType Type { get { return baseData.Type; } }
     protected PlayerAbilityData baseData;
 

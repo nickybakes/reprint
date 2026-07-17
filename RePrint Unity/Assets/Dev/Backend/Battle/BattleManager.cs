@@ -43,7 +43,7 @@ public class BattleManager : MonoBehaviour
     public void SetupBattle(BattleData data)
     {
         TurnIndex = -1;
-        Player = new PlayerCharacter(data.playerCharacterData);
+        Player = new PlayerCharacter(data.playerCharacterData, data.playerMods);
 
         EnemyTeam = new EnemyTeam();
 

@@ -19,6 +19,9 @@ public class GameCondition
     [SerializeField] private ValueInput valueInput1;
     public ValueInput ValueInput1 { get => valueInput1; }
 
+    [SerializeField] private IndexType indexType;
+    public IndexType IndexType { get => indexType; }
+
 }
 
 public enum GameConditionType
@@ -38,12 +41,17 @@ public enum ValueComparisonType
 
 }
 
-
 public enum GameEvent
 {
     StartBattle,
-    StartPlayerDecisionMaking,
     ChangeAbilitySequence,
-    StartPlayerAbilitySequence,
     OnPlayerUseAbility,
+}
+
+public enum IndexType
+{
+    First,
+    Last,
+    Middle,
+    Specific
 }
