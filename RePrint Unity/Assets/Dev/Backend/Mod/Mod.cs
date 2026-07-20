@@ -7,19 +7,30 @@ public class Mod
 
     public string Name { get { return baseData.Profile.Name; } }
     public string Description { get { return baseData.Profile.Description; } }
-
-    protected List<List<ModBehavior>> behaviorsTable;
+    public List<ModBehavior> Behaviors { get { return baseData.ModBehaviors.List; } }
 
     protected ModData baseData;
 
     public Mod(ModData data)
     {
         baseData = data;
+    }
 
-        behaviorsTable = new List<List<ModBehavior>>()
+    public List<ModEffect> GetModEffects(List<bool> passingBehaviors)
+    {
+        List<ModEffect> effects = new List<ModEffect>();
+        for (int i = 0; i < passingBehaviors.Count; i++)
         {
-            data.ModBehaviors.List
-        };
+            if (passingBehaviors[i])
+            {
+                effects.AddRange(Behaviors[i].Effects);
+                if (Behaviors[i].BreakOutIfConditionsAreTrue)
+                {
+                    return effects;
+                }
+            }
+        }
+        return effects;
     }
 
 }

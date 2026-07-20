@@ -19,17 +19,23 @@ public class EnemyCharacter : Character
         Stats.Health = Stats.HealthMax;
 
         Behaviors = new List<EnemyBehavior>(data.Behaviors.List);
+
+        Mods = new List<Mod>();
     }
 
     public virtual void DecideAbility(BattleManager battleManager)
     {
-
         List<EnemyAbilityWeight> weights = new List<EnemyAbilityWeight>();
 
+        GameValues gameValues = new GameValues
+        {
+            battleManager = battleManager,
+            activator = this,
+        };
 
         foreach (EnemyBehavior behavior in Behaviors)
         {
-            if (StatCalculation.DoGameConditionsPass(behavior.Conditions, battleManager))
+            if (StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues))
             {
                 weights.AddRange(behavior.AbilityWeights);
                 if (behavior.BreakOutIfConditionsAreTrue)

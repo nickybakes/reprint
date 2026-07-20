@@ -31,6 +31,19 @@ public class PlayerCharacter : Character
         {
             Abilities.Add(new PlayerAbility(abilityData));
         }
+
+        if (equippedMods == null)
+        {
+            Mods = new List<Mod>();
+        }
+        else
+        {
+            Mods = new List<Mod>(equippedMods.Length);
+            foreach (ModData modData in equippedMods)
+            {
+                Mods.Add(new Mod(modData));
+            }
+        }
     }
 
     public override void ApplyDodgePriority(int dodge, Character target)

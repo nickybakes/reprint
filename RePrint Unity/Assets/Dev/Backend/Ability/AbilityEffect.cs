@@ -30,7 +30,15 @@ public class AbilityEffect
 
         foreach (Arithmetic arithmetic in ExtraArithmetics)
         {
-            amount = arithmetic.CalculateSolution(amount, gameValues.GetInGameValue(arithmetic.GameValueType));
+            int incomingValue = 0;
+            switch (arithmetic.GameValueType)
+            {
+                case GameValueType.Chain:
+                    incomingValue = gameValues.activator.Stats.Chain;
+                    break;
+            }
+
+            amount = arithmetic.CalculateSolution(amount, incomingValue);
         }
 
         return amount;

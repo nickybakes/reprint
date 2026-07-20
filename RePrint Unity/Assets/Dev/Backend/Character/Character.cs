@@ -7,7 +7,7 @@ public abstract class Character
 
     public CharacterProfile Profile { get; protected set; }
     public CharacterStats Stats { get; protected set; }
-    public GameValues GameValues { get; protected set; }
+    public List<Mod> Mods { get; protected set; }
 
     public string Name { get; protected set; }
 
@@ -22,14 +22,13 @@ public abstract class Character
     public Character()
     {
         Stats = new CharacterStats(this);
-        GameValues = new GameValues();
     }
 
     public abstract void ResetForTurn();
 
     public void ApplyPhysicalDamage(int damage)
     {
-        //TODO: Use any resistances on the victim to lessen the damage
+        //TODO: Use any mods/resistances on the victim to lessen the damage
 
         // Use dodge first
         int tempDamage = damage;
@@ -54,10 +53,4 @@ public abstract class Character
     }
 
     public abstract void ApplyDodgePriority(int dodge, Character target);
-
-    public void RefreshInGameValues(int numberOfEnemies)
-    {
-        GameValues.SetCalculatedChain(this);
-        GameValues.SetNumberOfEnemies(numberOfEnemies);
-    }
 }

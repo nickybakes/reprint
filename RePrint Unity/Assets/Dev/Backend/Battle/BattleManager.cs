@@ -67,7 +67,6 @@ public class BattleManager : MonoBehaviour
         TurnIndex++;
         Player.ResetForTurn();
         Player.RefreshAbilitySequencingStats(playerAbilitySequence);
-        RefreshAllCharacterInGameValues();
 
         foreach (EnemyCharacter enemy in EnemyTeam.Enemies)
         {
@@ -80,17 +79,6 @@ public class BattleManager : MonoBehaviour
 
         pendingBattleChanges.Add(new PlayerTurnStart(Player.AbilitySequencingStats, TurnIndex));
         SubmitChanges();
-    }
-
-    public void RefreshAllCharacterInGameValues()
-    {
-        int numberOfEnemies = EnemyTeam.GetNumberOfAliveMembers();
-        Player.RefreshInGameValues(numberOfEnemies);
-
-        foreach (Character enemy in EnemyTeam.Members)
-        {
-            enemy.RefreshInGameValues(numberOfEnemies);
-        }
     }
 
     public virtual void PlayerSubmitAbility(Ability ability)
@@ -132,12 +120,14 @@ public class BattleManager : MonoBehaviour
         List<AbilitySelection> abilitySelections = new List<AbilitySelection>();
         List<AbilityResults> results = new List<AbilityResults>();
 
+        int abilitySeqIndex = 0;
+
         foreach (AbilitySelection abilitySelection in sortedAbilitySequence)
         {
-            RefreshAllCharacterInGameValues();
-            AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, playerAbilitySequence, this);
+            AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, abilitySeqIndex, playerAbilitySequence, this);
             abilitySelections.Add(abilitySelection);
             results.Add(result);
+            abilitySeqIndex++;
         }
 
         pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, results));
@@ -153,7 +143,6 @@ public class BattleManager : MonoBehaviour
         {
             if (enemy.IsAlive)
             {
-                RefreshAllCharacterInGameValues();
                 AbilityResults results = StatCalculation.GetEnemyAbilityResult(enemy.ChosenAbility, enemy, this);
                 pendingBattleChanges.Add(new EnemyDoAbility(enemy.ChosenAbility, results));
             }
@@ -176,7 +165,6 @@ public class BattleManager : MonoBehaviour
 
     protected virtual void SubmitPlayerChangeAbilitySequence(AbilitySequenceChangeType changeType)
     {
-        RefreshAllCharacterInGameValues();
         Player.RefreshAbilitySequencingStats(playerAbilitySequence);
         pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.AbilitySequencingStats, changeType));
         SubmitChanges();

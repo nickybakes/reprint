@@ -10,6 +10,8 @@ public class ModBehaviorDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
 
+        AddProperty("breakOutIfConditionsAreTrue");
+
         AddProperty("conditions");
 
         AddProperty("effects");

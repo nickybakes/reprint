@@ -21,6 +21,7 @@ MonoBehaviour:
         - type: 0
           gameEvent: 0
           characterStat: 0
+          character: 0
           comparison1: 0
           valueInput1:
             type: 0
@@ -30,6 +31,7 @@ MonoBehaviour:
         - type: 1
           gameEvent: 0
           characterStat: 0
+          character: 0
           comparison1: 0
           valueInput1:
             type: 0

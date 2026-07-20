@@ -13,6 +13,9 @@ public class GameCondition
     [SerializeField] private CharacterStat characterStat;
     public CharacterStat CharacterStat { get => characterStat; }
 
+    [SerializeField] private AbilityEffectApplicationMode character;
+    public AbilityEffectApplicationMode Character { get => character; }
+
     [SerializeField] private ValueComparisonType comparison1;
     public ValueComparisonType Comparison1 { get => comparison1; }
 
@@ -27,7 +30,7 @@ public class GameCondition
 public enum GameConditionType
 {
     OnGameEvent,
-    PlayerStat
+    CharacterStat
 }
 
 public enum ValueComparisonType
