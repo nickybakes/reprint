@@ -68,10 +68,6 @@ public class EnemyCharacter : Character
         }
     }
 
-    public override void ApplyDodgePriority(int dodge, Character target)
-    {
-    }
-
     public override void ResetForTurn()
     {
     }

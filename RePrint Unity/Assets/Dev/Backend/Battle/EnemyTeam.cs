@@ -41,9 +41,9 @@ public class EnemyTeam : Team
         return base.RemoveMember(character);
     }
 
-    public override void CalculateTurnOrder(Dictionary<Character, int> priorities)
+    public override void CalculateTurnOrder()
     {
-        base.CalculateTurnOrder(priorities);
+        base.CalculateTurnOrder();
 
         enemiesInTurnOrder = new List<EnemyCharacter>();
 

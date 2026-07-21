@@ -20,7 +20,7 @@ public record CharacterStats
 
     public float PhysicalDamageResistance { get; set; }
     public int PhysicalDamageShield { get; set; }
-
+    public int TurnPriority { get; set; }
 
 
     public CharacterStats(Character character)
@@ -48,6 +48,7 @@ public record CharacterStats
         CriticalDamageTaken = source.CriticalDamageTaken;
         PhysicalDamageResistance = source.PhysicalDamageResistance;
         PhysicalDamageShield = source.PhysicalDamageShield;
+        TurnPriority = source.TurnPriority;
     }
 }
 

@@ -20,38 +20,6 @@ public class AmountsPerCharacter
         Priorities = new Dictionary<Character, int>();
     }
 
-    public void ApplyAmountsToCharacters(StatType statType)
-    {
-        foreach (Character character in Amounts.Keys)
-        {
-            switch (statType)
-            {
-                case StatType.PhysicalDamage:
-                    character.ApplyPhysicalDamage(Amounts[character]);
-                    break;
-                case StatType.Dodge:
-                    character.ApplyDodge(Amounts[character]);
-                    break;
-                case StatType.Chain:
-                    character.ApplyChain(Amounts[character]);
-                    break;
-            }
-        }
-    }
-
-    public void ApplyPrioritiesToCharacter(Character activator, StatType statType)
-    {
-        foreach (Character character in Priorities.Keys)
-        {
-            switch (statType)
-            {
-                case StatType.Dodge:
-                    activator.ApplyDodgePriority(Priorities[character], character);
-                    break;
-            }
-        }
-    }
-
     public void NegateAmounts()
     {
         Dictionary<Character, int> newAmounts = new Dictionary<Character, int>();

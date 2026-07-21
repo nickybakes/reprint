@@ -56,8 +56,6 @@ public abstract class Character
         Stats.Dodge += dodge;
     }
 
-    public abstract void ApplyDodgePriority(int dodge, Character target);
-
     public void CalculateStatChangesFromMods(GameValues gameValues, StatChangeBreakdown statChangeBreakdown)
     {
         for (int i = 0; i < Mods.Count; i++)

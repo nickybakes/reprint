@@ -9,8 +9,6 @@ public class PlayerCharacter : Character
 
     public List<PlayerAbility> Abilities { get; private set; }
 
-    public Dictionary<Character, int> DodgePriorities { get; private set; }
-
     public PlayerCharacter(CharacterData data, ModData[] equippedMods) : base()
     {
 
@@ -46,21 +44,6 @@ public class PlayerCharacter : Character
         }
     }
 
-    public override void ApplyDodgePriority(int dodge, Character target)
-    {
-        if (target != this)
-        {
-            if (DodgePriorities.ContainsKey(target))
-            {
-                DodgePriorities[target] += dodge;
-            }
-            else
-            {
-                DodgePriorities.Add(target, dodge);
-            }
-        }
-    }
-
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
     {
         AbilitySequencingStats.CopyFrom(Stats);
@@ -82,7 +65,6 @@ public class PlayerCharacter : Character
     public override void ResetForTurn()
     {
         Stats.AbilityPoints = Stats.AbilityPointsMax;
-        DodgePriorities = new Dictionary<Character, int>();
         Stats.Dodge = 0;
     }
 }

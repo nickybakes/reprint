@@ -29,11 +29,27 @@ public class StatChangeBreakdown
         statsAfter = new StatChangeResults(player, enemyTeam);
     }
 
+    /// <summary>
+    /// TODO:
+    /// Implement all stat changes being applied to the character's stats
+    /// </summary>
+    /// <param name="character"></param>
     private void ApplyStatChanges(Character character)
     {
         int totalPhysicalDamageTaken = GetTotalStatChange(character, StatChange.PhysicalDamageTaken);
 
         character.ApplyPhysicalDamage(totalPhysicalDamageTaken);
+
+        int totalDodgeGained = GetTotalStatChange(character, StatChange.DodgeGained);
+        totalDodgeGained -= GetTotalStatChange(character, StatChange.DodgeTaken);
+        character.ApplyDodge(totalDodgeGained);
+
+        int totalChainGained = GetTotalStatChange(character, StatChange.ChainGained);
+        totalChainGained -= GetTotalStatChange(character, StatChange.ChainSpent);
+        character.ApplyChain(totalChainGained);
+
+        int totalTurnPriorityGained = GetTotalStatChange(character, StatChange.TurnPriorityGained);
+        character.Stats.TurnPriority += totalTurnPriorityGained;
     }
 
     public int GetTotalStatChange(Character character, StatChange stat)

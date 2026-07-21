@@ -65,6 +65,7 @@ public class BattleManager : MonoBehaviour
     {
         playerAbilitySequence = new AbilitySequence();
         TurnIndex++;
+        EnemyTeam.ResetTurnPriorities();
         Player.ResetForTurn();
         Player.RefreshAbilitySequencingStats(playerAbilitySequence);
 
@@ -124,7 +125,7 @@ public class BattleManager : MonoBehaviour
 
         foreach (AbilitySelection abilitySelection in sortedAbilitySequence)
         {
-            StatChangeBreakdown result = StatCalculation.GetPlayerAbilityResult(abilitySelection, abilitySeqIndex, playerAbilitySequence, this);
+            StatChangeBreakdown result = StatCalculation.GetPlayerAbilityStatChangeBreakdown(abilitySelection, abilitySeqIndex, playerAbilitySequence, this);
             abilitySelections.Add(abilitySelection);
             statChangeBreakdowns.Add(result);
             abilitySeqIndex++;
@@ -132,7 +133,7 @@ public class BattleManager : MonoBehaviour
 
         pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, statChangeBreakdowns));
 
-        EnemyTeam.CalculateTurnOrder(Player.DodgePriorities);
+        EnemyTeam.CalculateTurnOrder();
 
         SubmitChanges();
     }
@@ -143,7 +144,7 @@ public class BattleManager : MonoBehaviour
         {
             if (enemy.IsAlive)
             {
-                StatChangeBreakdown results = StatCalculation.GetEnemyAbilityResult(enemy.ChosenAbility, enemy, this);
+                StatChangeBreakdown results = StatCalculation.GetEnemyAbilityStatChangeBreakdown(enemy.ChosenAbility, enemy, this);
                 pendingBattleChanges.Add(new EnemyDoAbility(enemy.ChosenAbility, results));
             }
         }

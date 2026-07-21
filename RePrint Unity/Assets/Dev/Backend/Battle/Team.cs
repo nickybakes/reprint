@@ -86,7 +86,7 @@ public class Team
         }
     }
 
-    public virtual void CalculateTurnOrder(Dictionary<Character, int> priorities)
+    public virtual void CalculateTurnOrder()
     {
         membersInTurnOrder = new List<Character>();
         List<Character> remainingMembers = new List<Character>(members);
@@ -97,15 +97,23 @@ public class Team
             int highestPriority = -1;
             foreach (Character member in remainingMembers)
             {
-                if (priorities.ContainsKey(member) && priorities[member] > highestPriority)
+                if (member.Stats.TurnPriority > highestPriority)
                 {
-                    highestPriority = priorities[member];
+                    highestPriority = member.Stats.TurnPriority;
                     highestPriorityMember = member;
                 }
             }
 
             membersInTurnOrder.Add(highestPriorityMember);
             remainingMembers.Remove(highestPriorityMember);
+        }
+    }
+
+    public void ResetTurnPriorities()
+    {
+        foreach (Character member in members)
+        {
+            member.Stats.TurnPriority = 0;
         }
     }
 }
