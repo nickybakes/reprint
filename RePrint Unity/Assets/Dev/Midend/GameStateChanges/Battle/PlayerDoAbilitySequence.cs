@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDoAbilitySequence : BattleStateChange
 {
 
-    private List<AbilityResults> results;
+    private List<StatChangeBreakdown> statChangeBreakdowns;
 
     private List<AbilitySelection> abilitySelections;
 
@@ -25,11 +25,11 @@ public class PlayerDoAbilitySequence : BattleStateChange
 
     private BattleView battleView;
 
-    public PlayerDoAbilitySequence(Character _player, List<AbilitySelection> _abilitySelections, List<AbilityResults> _results)
+    public PlayerDoAbilitySequence(Character _player, List<AbilitySelection> _abilitySelections, List<StatChangeBreakdown> _statChangeBreakdowns)
     {
         player = _player;
         abilitySelections = _abilitySelections;
-        results = _results;
+        statChangeBreakdowns = _statChangeBreakdowns;
 
         sequenceEnded = false;
         sequenceStarted = false;
@@ -88,12 +88,12 @@ public class PlayerDoAbilitySequence : BattleStateChange
 
     public void UpdateStats()
     {
-        battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(results[currentAbilityIndex].PlayerStatsAfter);
-        battleView.BattleStatsPanel.UpdateAllEnemyStats(results[currentAbilityIndex].EnemyStatsAfter);
+        battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.PlayerStats);
+        battleView.BattleStatsPanel.UpdateAllEnemyStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats);
 
-        foreach (Character enemy in results[currentAbilityIndex].EnemyStatsAfter.Keys)
+        foreach (Character enemy in statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats.Keys)
         {
-            battleView.EnemyFigureGroup.GetFigure(enemy).UpdateStats(results[currentAbilityIndex].EnemyStatsAfter[enemy]);
+            battleView.EnemyFigureGroup.GetFigure(enemy).UpdateStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats[enemy]);
             battleView.CameraManager.Shake(1);
         }
     }

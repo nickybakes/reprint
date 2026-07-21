@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class AbilityAmounts
+public class AmountsPerCharacter
 {
 
     public Dictionary<Character, int> Amounts { get; private set; }
@@ -12,8 +12,7 @@ public class AbilityAmounts
 
     private Team enemyTeam;
 
-
-    public AbilityAmounts(Character _player, Team _enemyTeam)
+    public AmountsPerCharacter(Character _player, Team _enemyTeam)
     {
         player = _player;
         enemyTeam = _enemyTeam;
@@ -112,9 +111,40 @@ public class AbilityAmounts
         }
     }
 
+    public int GetTotalAmount()
+    {
+        int total = 0;
 
-    // public static AbilityAmounts operator +(AbilityAmounts left, AbilityAmounts right)
-    // {
-    //     AbilityAmounts newAmounts = new AbilityAmounts()
-    // }
+        foreach (int amount in Amounts.Values)
+        {
+            total += amount;
+        }
+
+        return total;
+    }
+
+    public int GetTotalAmountDoneToPlayer()
+    {
+        if (Amounts.ContainsKey(player))
+        {
+            return Amounts[player];
+        }
+
+        return 0;
+    }
+
+    public int GetTotalAmountDoneToEnemies()
+    {
+        int total = 0;
+
+        foreach (Character enemy in enemyTeam.Members)
+        {
+            if (Amounts.ContainsKey(enemy))
+            {
+                total += Amounts[enemy];
+            }
+        }
+
+        return total;
+    }
 }

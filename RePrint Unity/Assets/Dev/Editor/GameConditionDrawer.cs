@@ -23,7 +23,7 @@ public class GameConditionDrawer : BetterPropertyDrawer
 
                 switch (gameEvent)
                 {
-                    case GameEvent.OnPlayerUseAbility:
+                    case GameEvent.OnCharacterUsesAbility:
                         SerializedProperty indexTypeProp = AddProperty("indexType");
                         IndexType indexType = (IndexType)indexTypeProp.enumValueIndex;
                         switch (indexType)

@@ -5,19 +5,19 @@ using UnityEngine;
 public class EnemyDoAbility : BattleStateChange
 {
 
-    private AbilityResults results;
+    private StatChangeBreakdown statChangeBreakdown;
 
     private EnemyAbility enemyAbility;
 
-    public EnemyDoAbility(EnemyAbility _enemyAbility, AbilityResults _results)
+    public EnemyDoAbility(EnemyAbility _enemyAbility, StatChangeBreakdown _results)
     {
         enemyAbility = _enemyAbility;
-        results = _results;
+        statChangeBreakdown = _results;
     }
 
     public override void ParseChange(BattleView view, BattleController controller)
     {
-        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(results.PlayerStatsAfter);
-        view.BattleStatsPanel.UpdateAllEnemyStats(results.EnemyStatsAfter);
+        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(statChangeBreakdown.statsAfter.PlayerStats);
+        view.BattleStatsPanel.UpdateAllEnemyStats(statChangeBreakdown.statsAfter.EnemyStats);
     }
 }

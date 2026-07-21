@@ -48,7 +48,8 @@ public enum GameEvent
 {
     StartBattle,
     ChangeAbilitySequence,
-    OnPlayerUseAbility,
+    OnCharacterUsesAbility,
+    OnOtherCharacterUsesAbility,
 }
 
 public enum IndexType

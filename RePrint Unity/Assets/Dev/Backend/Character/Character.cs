@@ -26,6 +26,10 @@ public abstract class Character
 
     public abstract void ResetForTurn();
 
+    // public void ApplyTakenStats(){
+
+    // }
+
     public void ApplyPhysicalDamage(int damage)
     {
         //TODO: Use any mods/resistances on the victim to lessen the damage
@@ -53,4 +57,18 @@ public abstract class Character
     }
 
     public abstract void ApplyDodgePriority(int dodge, Character target);
+
+    public void CalculateStatChangesFromMods(GameValues gameValues, StatChangeBreakdown statChangeBreakdown)
+    {
+        for (int i = 0; i < Mods.Count; i++)
+        {
+            Mod mod = Mods[i];
+            List<bool> passingBehaviors = new List<bool>();
+
+            foreach (ModBehavior behavior in mod.Behaviors)
+            {
+                passingBehaviors.Add(StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues));
+            }
+        }
+    }
 }

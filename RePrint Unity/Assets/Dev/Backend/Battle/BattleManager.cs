@@ -118,19 +118,19 @@ public class BattleManager : MonoBehaviour
         List<AbilitySelection> sortedAbilitySequence = playerAbilitySequence.GetSortedSequence();
 
         List<AbilitySelection> abilitySelections = new List<AbilitySelection>();
-        List<AbilityResults> results = new List<AbilityResults>();
+        List<StatChangeBreakdown> statChangeBreakdowns = new List<StatChangeBreakdown>();
 
         int abilitySeqIndex = 0;
 
         foreach (AbilitySelection abilitySelection in sortedAbilitySequence)
         {
-            AbilityResults result = StatCalculation.GetPlayerAbilityResult(abilitySelection, abilitySeqIndex, playerAbilitySequence, this);
+            StatChangeBreakdown result = StatCalculation.GetPlayerAbilityResult(abilitySelection, abilitySeqIndex, playerAbilitySequence, this);
             abilitySelections.Add(abilitySelection);
-            results.Add(result);
+            statChangeBreakdowns.Add(result);
             abilitySeqIndex++;
         }
 
-        pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, results));
+        pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, statChangeBreakdowns));
 
         EnemyTeam.CalculateTurnOrder(Player.DodgePriorities);
 
@@ -143,7 +143,7 @@ public class BattleManager : MonoBehaviour
         {
             if (enemy.IsAlive)
             {
-                AbilityResults results = StatCalculation.GetEnemyAbilityResult(enemy.ChosenAbility, enemy, this);
+                StatChangeBreakdown results = StatCalculation.GetEnemyAbilityResult(enemy.ChosenAbility, enemy, this);
                 pendingBattleChanges.Add(new EnemyDoAbility(enemy.ChosenAbility, results));
             }
         }

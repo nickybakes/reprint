@@ -9,14 +9,12 @@ public enum GameValueType
 
 public class GameValues
 {
+    public GameEvent gameEvent;
     public int abilitySeqIndex;
     public int abilitySeqLength;
     public Ability ability;
     public Character activator;
     public Character target;
     public BattleManager battleManager;
-    public AbilityAmounts physicalDamageAmounts;
-    public AbilityAmounts dodgeAmounts;
-    public AbilityAmounts chainGainAmounts;
-    public AbilityAmounts chainSpentAmounts;
+    public StatChangeBreakdown currentStatChangeBreakdown;
 }
