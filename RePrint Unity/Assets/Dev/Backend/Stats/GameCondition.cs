@@ -52,7 +52,7 @@ public enum ValueComparisonType
 public enum GameEvent
 {
     StartBattle,
-    ChangeAbilitySequence,
+    PlayerTurnStart,
     OnCharacterUsesAbility,
     OnOtherCharacterUsesAbility,
 }

@@ -17,7 +17,7 @@ public class StatChangeAmounts
         Changes = new Dictionary<Character, StatChanges>();
     }
 
-    public void AddAmount(Character character, int amount, StatChange stat)
+    public void AddAmount(Character character, float amount, StatChange stat)
     {
         if (amount != 0)
         {
@@ -33,7 +33,7 @@ public class StatChangeAmounts
         }
     }
 
-    public void AddAmounts(Dictionary<Character, int> amounts, StatChange stat)
+    public void AddAmounts(Dictionary<Character, float> amounts, StatChange stat)
     {
         foreach (Character character in amounts.Keys)
         {
@@ -49,7 +49,7 @@ public class StatChangeAmounts
         }
     }
 
-    public int GetAmount(Character character, StatChange stat)
+    public float GetAmount(Character character, StatChange stat)
     {
         if (Changes.ContainsKey(character))
         {

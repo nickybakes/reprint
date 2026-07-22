@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class AmountsPerCharacter
 {
 
-    public Dictionary<Character, int> Amounts { get; private set; }
+    public Dictionary<Character, float> Amounts { get; private set; }
 
-    public Dictionary<Character, int> Priorities { get; private set; }
+    public Dictionary<Character, float> Priorities { get; private set; }
 
     private Character player;
 
@@ -16,13 +16,13 @@ public class AmountsPerCharacter
     {
         player = _player;
         enemyTeam = _enemyTeam;
-        Amounts = new Dictionary<Character, int>();
-        Priorities = new Dictionary<Character, int>();
+        Amounts = new Dictionary<Character, float>();
+        Priorities = new Dictionary<Character, float>();
     }
 
     public void NegateAmounts()
     {
-        Dictionary<Character, int> newAmounts = new Dictionary<Character, int>();
+        Dictionary<Character, float> newAmounts = new Dictionary<Character, float>();
         foreach (Character character in Amounts.Keys)
         {
             newAmounts.Add(character, Amounts[character] * -1);
@@ -32,7 +32,7 @@ public class AmountsPerCharacter
 
     public void NegatePriorities()
     {
-        Dictionary<Character, int> newPriorities = new Dictionary<Character, int>();
+        Dictionary<Character, float> newPriorities = new Dictionary<Character, float>();
         foreach (Character character in Priorities.Keys)
         {
             newPriorities.Add(character, Priorities[character] * -1);
@@ -40,7 +40,7 @@ public class AmountsPerCharacter
         Priorities = newPriorities;
     }
 
-    public void AddAmountToCharacter(Character character, int amount, Character priorityCharacter = null, int priority = 0)
+    public void AddAmountToCharacter(Character character, float amount, Character priorityCharacter = null, int priority = 0)
     {
         AddAmountToCharacter(character, amount);
         if (priorityCharacter != null && priority != 0)
@@ -49,7 +49,7 @@ public class AmountsPerCharacter
         }
     }
 
-    private void AddAmountToCharacter(Character character, int amount)
+    private void AddAmountToCharacter(Character character, float amount)
     {
         if (amount != 0)
         {
@@ -64,7 +64,7 @@ public class AmountsPerCharacter
         }
     }
 
-    private void AddPriorityToCharacter(Character character, int priority)
+    private void AddPriorityToCharacter(Character character, float priority)
     {
         if (priority != 0)
         {
@@ -79,11 +79,11 @@ public class AmountsPerCharacter
         }
     }
 
-    public int GetTotalAmount()
+    public float GetTotalAmount()
     {
-        int total = 0;
+        float total = 0;
 
-        foreach (int amount in Amounts.Values)
+        foreach (float amount in Amounts.Values)
         {
             total += amount;
         }
@@ -91,7 +91,7 @@ public class AmountsPerCharacter
         return total;
     }
 
-    public int GetTotalAmountDoneToPlayer()
+    public float GetTotalAmountDoneToPlayer()
     {
         if (Amounts.ContainsKey(player))
         {
@@ -101,9 +101,9 @@ public class AmountsPerCharacter
         return 0;
     }
 
-    public int GetTotalAmountDoneToEnemies()
+    public float GetTotalAmountDoneToEnemies()
     {
-        int total = 0;
+        float total = 0;
 
         foreach (Character enemy in enemyTeam.Members)
         {

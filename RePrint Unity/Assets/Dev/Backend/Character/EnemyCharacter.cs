@@ -70,5 +70,6 @@ public class EnemyCharacter : Character
 
     public override void ResetForTurn()
     {
+        TurnStatsStorage.CopyFrom(Stats);
     }
 }

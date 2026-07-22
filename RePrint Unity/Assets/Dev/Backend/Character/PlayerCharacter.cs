@@ -5,16 +5,12 @@ using UnityEngine;
 public class PlayerCharacter : Character
 {
 
-    public CharacterStats TurnStatsStorage { get; private set; }
-
     public List<PlayerAbility> Abilities { get; private set; }
 
     public PlayerCharacter(CharacterData data, ModData[] equippedMods) : base()
     {
 
         Profile = data.Profile;
-
-        TurnStatsStorage = new CharacterStats(this);
 
         Stats.HealthMax = data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
@@ -44,12 +40,27 @@ public class PlayerCharacter : Character
         }
     }
 
-    public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
+    public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence, BattleManager battleManager)
     {
         Stats.CopyFrom(TurnStatsStorage);
+        battleManager.EnemyTeam.CopyStatsFromTurnStatsStorage();
 
         // TODO check mods to change stats
+        GameValues gameValues = new GameValues
+        {
+            battleManager = battleManager,
+            activator = this,
+            target = null,
+            gameEvent = GameEvent.PlayerTurnStart,
+        };
 
+        List<ModResult> modResults = new List<ModResult>();
+        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults);
+
+        CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+        statChangeBreakdown.ApplyStatChanges(this, battleManager.EnemyTeam);
+
+        // Calculate current AP points
         foreach (AbilitySelection abilitySelection in abilitySequence.Sequence)
         {
             Stats.AbilityPoints -= abilitySelection.Ability.GetAPCost(abilitySelection.Overclock);

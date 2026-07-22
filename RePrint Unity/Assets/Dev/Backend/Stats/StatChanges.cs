@@ -8,39 +8,43 @@ public class StatChanges
     public int ChainGained { get; set; }
     public int ChainSpent { get; set; }
     public int ChainTaken { get; set; }
+    public float StarterPhysicalDamageMultiplier { get; set; }
 
-    public void AddAmount(StatChange stat, int amount)
+    public void AddAmount(StatChange stat, float amount)
     {
         switch (stat)
         {
             case StatChange.PhysicalDamageTaken:
-                PhysicalDamageTaken += amount;
+                PhysicalDamageTaken += (int)amount;
                 break;
             case StatChange.HealthGained:
-                HealthGained += amount;
+                HealthGained += (int)amount;
                 break;
             case StatChange.DodgeTaken:
-                DodgeTaken += amount;
+                DodgeTaken += (int)amount;
                 break;
             case StatChange.DodgeGained:
-                DodgeGained += amount;
+                DodgeGained += (int)amount;
                 break;
             case StatChange.TurnPriorityGained:
-                TurnPriorityGained += amount;
+                TurnPriorityGained += (int)amount;
                 break;
             case StatChange.ChainGained:
-                ChainGained += amount;
+                ChainGained += (int)amount;
                 break;
             case StatChange.ChainSpent:
-                ChainSpent += amount;
+                ChainSpent += (int)amount;
                 break;
             case StatChange.ChainTaken:
-                ChainTaken += amount;
+                ChainTaken += (int)amount;
+                break;
+            case StatChange.StarterPhysicalDamageMultiplier:
+                StarterPhysicalDamageMultiplier += amount;
                 break;
         }
     }
 
-    public int GetAmount(StatChange stat)
+    public float GetAmount(StatChange stat)
     {
         switch (stat)
         {
@@ -60,6 +64,8 @@ public class StatChanges
                 return ChainSpent;
             case StatChange.ChainTaken:
                 return ChainTaken;
+            case StatChange.StarterPhysicalDamageMultiplier:
+                return StarterPhysicalDamageMultiplier;
         }
 
         return 0;
@@ -76,4 +82,5 @@ public enum StatChange
     ChainGained,
     ChainSpent,
     ChainTaken,
+    StarterPhysicalDamageMultiplier
 }

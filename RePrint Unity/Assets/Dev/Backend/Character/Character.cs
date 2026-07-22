@@ -7,6 +7,8 @@ public abstract class Character
 
     public CharacterProfile Profile { get; protected set; }
     public CharacterStats Stats { get; protected set; }
+    public CharacterStats TurnStatsStorage { get; private set; }
+
     public List<Mod> Mods { get; protected set; }
 
     public string Name { get; protected set; }
@@ -22,13 +24,10 @@ public abstract class Character
     public Character()
     {
         Stats = new CharacterStats(this);
+        TurnStatsStorage = new CharacterStats(this);
     }
 
     public abstract void ResetForTurn();
-
-    // public void ApplyTakenStats(){
-
-    // }
 
     public void ApplyPhysicalDamage(int damage)
     {

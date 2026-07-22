@@ -36,31 +36,52 @@ public class StatChangeBreakdown
     /// <param name="character"></param>
     private void ApplyStatChanges(Character character)
     {
-        int totalPhysicalDamageTaken = GetTotalStatChange(character, StatChange.PhysicalDamageTaken);
+        int totalPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.PhysicalDamageTaken);
 
         character.ApplyPhysicalDamage(totalPhysicalDamageTaken);
 
-        int totalDodgeGained = GetTotalStatChange(character, StatChange.DodgeGained);
-        totalDodgeGained -= GetTotalStatChange(character, StatChange.DodgeTaken);
+        int totalDodgeGained = (int)GetTotalStatChangeAdditive(character, StatChange.DodgeGained);
+        totalDodgeGained -= (int)GetTotalStatChangeAdditive(character, StatChange.DodgeTaken);
         character.ApplyDodge(totalDodgeGained);
 
-        int totalChainGained = GetTotalStatChange(character, StatChange.ChainGained);
-        totalChainGained -= GetTotalStatChange(character, StatChange.ChainSpent);
+        int totalChainGained = (int)GetTotalStatChangeAdditive(character, StatChange.ChainGained);
+        totalChainGained -= (int)GetTotalStatChangeAdditive(character, StatChange.ChainSpent);
         character.ApplyChain(totalChainGained);
 
-        int totalTurnPriorityGained = GetTotalStatChange(character, StatChange.TurnPriorityGained);
+        int totalTurnPriorityGained = (int)GetTotalStatChangeAdditive(character, StatChange.TurnPriorityGained);
         character.Stats.TurnPriority += totalTurnPriorityGained;
     }
 
-    public int GetTotalStatChange(Character character, StatChange stat)
+    public float GetTotalStatChangeAdditive(Character character, StatChange stat)
     {
-        int total = 0;
+        float total = 0;
 
-        total += abilityStatChanges.GetAmount(character, stat);
+        if (abilityStatChanges != null)
+            total += abilityStatChanges.GetAmount(character, stat);
 
         foreach (ModResult modResult in modResults)
         {
             total += modResult.statChangeAmounts.GetAmount(character, stat);
+        }
+
+        return total;
+    }
+
+    public float GetTotalStatChangeMultiplicative(Character character, StatChange stat, float startingValue = 1)
+    {
+        float total = startingValue;
+
+        if (abilityStatChanges != null && abilityStatChanges.Changes.ContainsKey(character))
+        {
+            total *= abilityStatChanges.GetAmount(character, stat);
+        }
+
+        foreach (ModResult modResult in modResults)
+        {
+            if (modResult.statChangeAmounts.Changes.ContainsKey(character))
+            {
+                total *= modResult.statChangeAmounts.GetAmount(character, stat);
+            }
         }
 
         return total;

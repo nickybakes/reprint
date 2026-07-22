@@ -66,20 +66,9 @@ public class BattleManager : MonoBehaviour
         playerAbilitySequence = new AbilitySequence();
         TurnIndex++;
         EnemyTeam.ResetTurnPriorities();
+        EnemyTeam.ResetForTurn();
         Player.ResetForTurn();
-        Player.RefreshAbilitySequencingStats(playerAbilitySequence);
-
-        // GameValues gameValues = new GameValues
-        // {
-        //     battleManager = this,
-        //     activator = Player,
-        //     gameEvent = GameEvent.ChangeAbilitySequence,
-        // };
-
-        // StatChangeAmounts abilityStatChanges = new StatChangeAmounts(Player, EnemyTeam);
-        // List<ModResult> modResults = new List<ModResult>();
-        // StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
-        // Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+        Player.RefreshAbilitySequencingStats(playerAbilitySequence, this);
 
         foreach (EnemyCharacter enemy in EnemyTeam.Enemies)
         {
@@ -176,7 +165,7 @@ public class BattleManager : MonoBehaviour
 
     protected virtual void SubmitPlayerChangeAbilitySequence(AbilitySequenceChangeType changeType)
     {
-        Player.RefreshAbilitySequencingStats(playerAbilitySequence);
+        Player.RefreshAbilitySequencingStats(playerAbilitySequence, this);
         pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.Stats, changeType));
         SubmitChanges();
     }

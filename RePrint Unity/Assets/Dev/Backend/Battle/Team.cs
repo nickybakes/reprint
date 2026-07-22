@@ -116,4 +116,20 @@ public class Team
             member.Stats.TurnPriority = 0;
         }
     }
+
+    public void ResetForTurn()
+    {
+        foreach (Character member in members)
+        {
+            member.ResetForTurn();
+        }
+    }
+
+    public void CopyStatsFromTurnStatsStorage()
+    {
+        foreach (Character member in members)
+        {
+            member.Stats.CopyFrom(member.TurnStatsStorage);
+        }
+    }
 }
