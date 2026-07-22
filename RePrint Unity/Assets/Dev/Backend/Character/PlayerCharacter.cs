@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCharacter : Character
 {
 
-    public CharacterStats AbilitySequencingStats { get; private set; }
+    public CharacterStats TurnStatsStorage { get; private set; }
 
     public List<PlayerAbility> Abilities { get; private set; }
 
@@ -14,7 +14,7 @@ public class PlayerCharacter : Character
 
         Profile = data.Profile;
 
-        AbilitySequencingStats = new CharacterStats(this);
+        TurnStatsStorage = new CharacterStats(this);
 
         Stats.HealthMax = data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
@@ -46,25 +46,24 @@ public class PlayerCharacter : Character
 
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence)
     {
-        AbilitySequencingStats.CopyFrom(Stats);
+        Stats.CopyFrom(TurnStatsStorage);
+
+        // TODO check mods to change stats
+
         foreach (AbilitySelection abilitySelection in abilitySequence.Sequence)
         {
-            AbilitySequencingStats.AbilityPoints -= abilitySelection.Ability.GetAPCost(abilitySelection.Overclock);
-            if (AbilitySequencingStats.AbilityPoints < 0)
+            Stats.AbilityPoints -= abilitySelection.Ability.GetAPCost(abilitySelection.Overclock);
+            if (Stats.AbilityPoints < 0)
             {
-                AbilitySequencingStats.AbilityPoints = 0;
+                Stats.AbilityPoints = 0;
             }
         }
-    }
-
-    public void ApplyAbilitySequencingStats()
-    {
-        Stats.CopyFrom(AbilitySequencingStats);
     }
 
     public override void ResetForTurn()
     {
         Stats.AbilityPoints = Stats.AbilityPointsMax;
         Stats.Dodge = 0;
+        TurnStatsStorage.CopyFrom(Stats);
     }
 }

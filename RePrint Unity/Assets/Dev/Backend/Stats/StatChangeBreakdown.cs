@@ -4,15 +4,15 @@ public class StatChangeBreakdown
 {
     public StatChangeAmounts abilityStatChanges;
 
-    public List<StatChangeAmounts> modStatChanges;
+    public List<ModResult> modResults;
 
     public StatChangeResults statsBefore;
     public StatChangeResults statsAfter;
 
-    public StatChangeBreakdown(StatChangeAmounts _abilityStatChanges, List<StatChangeAmounts> _modStatChanges)
+    public StatChangeBreakdown(StatChangeAmounts _abilityStatChanges, List<ModResult> _modResults)
     {
         abilityStatChanges = _abilityStatChanges;
-        modStatChanges = _modStatChanges;
+        modResults = _modResults;
     }
 
     public void ApplyStatChanges(Character player, Team enemyTeam)
@@ -58,9 +58,9 @@ public class StatChangeBreakdown
 
         total += abilityStatChanges.GetAmount(character, stat);
 
-        foreach (StatChangeAmounts statChangeAmounts in modStatChanges)
+        foreach (ModResult modResult in modResults)
         {
-            total += statChangeAmounts.GetAmount(character, stat);
+            total += modResult.statChangeAmounts.GetAmount(character, stat);
         }
 
         return total;

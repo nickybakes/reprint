@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
-  m_Name: ModData
+  m_Name: MD_12thAscent_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: 
+  <Profile>k__BackingField: {fileID: 11400000, guid: 7590ab48a5751074e9a151c91c648a72, type: 2}
+  <Name>k__BackingField: 12th Ascent
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 0
+          gameEvent: 2
           characterStat: 0
           character: 0
           comparison1: 0
@@ -28,21 +28,42 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
           indexType: 0
+          abilityType: 0
         - type: 1
           gameEvent: 0
-          characterStat: 0
+          characterStat: 2
           character: 0
-          comparison1: 0
+          comparison1: 1
           valueInput1:
             type: 0
-            baseValue: 0
+            baseValue: 12
             maxValue: 0
           indexType: 0
+          abilityType: 0
         listFoldout: 1
         foldouts: 0101
       effects:
-        list: []
+        list:
+        - type: 1
+          applicationModes:
+            list:
+            - applicationMode: 4
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
+          valueInput1:
+            type: 0
+            baseValue: 2
+            maxValue: 0
+          mathType: 2
+          statChange: 0
         listFoldout: 1
-        foldouts: 
+        foldouts: 01
+      breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01

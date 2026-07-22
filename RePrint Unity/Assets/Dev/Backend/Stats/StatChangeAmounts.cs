@@ -1,29 +1,19 @@
 using System;
 using System.Collections.Generic;
 
-public enum StatChangeSource
-{
-    FromAbility,
-    FromMod,
-}
-
 public class StatChangeAmounts
 {
     public Dictionary<Character, StatChanges> Changes { get; private set; }
-
-    public StatChangeSource source;
-    public Mod mod;
 
     private Character player;
 
     private Team enemyTeam;
 
 
-    public StatChangeAmounts(Character _player, Team _enemyTeam, StatChangeSource _source)
+    public StatChangeAmounts(Character _player, Team _enemyTeam)
     {
         player = _player;
         enemyTeam = _enemyTeam;
-        source = _source;
         Changes = new Dictionary<Character, StatChanges>();
     }
 

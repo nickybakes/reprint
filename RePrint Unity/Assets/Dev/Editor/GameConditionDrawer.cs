@@ -21,25 +21,32 @@ public class GameConditionDrawer : BetterPropertyDrawer
                 SerializedProperty eventProperty = AddProperty("gameEvent");
                 GameEvent gameEvent = (GameEvent)eventProperty.enumValueIndex;
 
-                switch (gameEvent)
-                {
-                    case GameEvent.OnCharacterUsesAbility:
-                        SerializedProperty indexTypeProp = AddProperty("indexType");
-                        IndexType indexType = (IndexType)indexTypeProp.enumValueIndex;
-                        switch (indexType)
-                        {
-                            case IndexType.Specific:
-                                AddProperty("valueInput1");
-                                break;
-                        }
-                        break;
-                }
+                // switch (gameEvent)
+                // {
+                //     case GameEvent.OnCharacterUsesAbility:
+
+                //         break;
+                // }
                 break;
             case GameConditionType.CharacterStat:
                 AddProperty("characterStat", "Stat");
                 AddProperty("character");
                 AddProperty("comparison1", "");
                 AddProperty("valueInput1");
+                break;
+            case GameConditionType.AbilityType:
+                AddProperty("abilityType");
+                break;
+            case GameConditionType.AbilitySequenceIndex:
+                AddProperty("abilityType");
+                SerializedProperty indexTypeProp = AddProperty("indexType");
+                IndexType indexType = (IndexType)indexTypeProp.enumValueIndex;
+                switch (indexType)
+                {
+                    case IndexType.Specific:
+                        AddProperty("valueInput1");
+                        break;
+                }
                 break;
 
         }

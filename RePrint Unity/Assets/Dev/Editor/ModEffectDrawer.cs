@@ -18,9 +18,14 @@ public class ModEffectDrawer : BetterPropertyDrawer
         switch (type)
         {
             case ModEffectType.DoDamage:
-                AddProperty("gameEvent");
                 AddProperty("applicationModes");
                 AddProperty("valueInput1");
+                break;
+            case ModEffectType.AffectStatChange:
+                AddProperty("statChange");
+                AddProperty("mathType");
+                AddProperty("valueInput1");
+                AddProperty("applicationModes");
                 break;
 
         }

@@ -69,6 +69,18 @@ public class BattleManager : MonoBehaviour
         Player.ResetForTurn();
         Player.RefreshAbilitySequencingStats(playerAbilitySequence);
 
+        // GameValues gameValues = new GameValues
+        // {
+        //     battleManager = this,
+        //     activator = Player,
+        //     gameEvent = GameEvent.ChangeAbilitySequence,
+        // };
+
+        // StatChangeAmounts abilityStatChanges = new StatChangeAmounts(Player, EnemyTeam);
+        // List<ModResult> modResults = new List<ModResult>();
+        // StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
+        // Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+
         foreach (EnemyCharacter enemy in EnemyTeam.Enemies)
         {
             if (enemy.IsAlive)
@@ -78,13 +90,13 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        pendingBattleChanges.Add(new PlayerTurnStart(Player.AbilitySequencingStats, TurnIndex));
+        pendingBattleChanges.Add(new PlayerTurnStart(Player.Stats, TurnIndex));
         SubmitChanges();
     }
 
     public virtual void PlayerSubmitAbility(Ability ability)
     {
-        AbilitySequenceChangeType changeType = playerAbilitySequence.AddOrOverclockAbility(ability, Player.AbilitySequencingStats.AbilityPoints);
+        AbilitySequenceChangeType changeType = playerAbilitySequence.AddOrOverclockAbility(ability, Player.Stats.AbilityPoints);
         if (changeType != AbilitySequenceChangeType.None)
         {
             SubmitPlayerChangeAbilitySequence(changeType);
@@ -114,8 +126,6 @@ public class BattleManager : MonoBehaviour
 
     public virtual void DoPlayerAbilitySequence()
     {
-        Player.ApplyAbilitySequencingStats();
-
         List<AbilitySelection> sortedAbilitySequence = playerAbilitySequence.GetSortedSequence();
 
         List<AbilitySelection> abilitySelections = new List<AbilitySelection>();
@@ -167,7 +177,7 @@ public class BattleManager : MonoBehaviour
     protected virtual void SubmitPlayerChangeAbilitySequence(AbilitySequenceChangeType changeType)
     {
         Player.RefreshAbilitySequencingStats(playerAbilitySequence);
-        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.AbilitySequencingStats, changeType));
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.Stats, changeType));
         SubmitChanges();
     }
 }

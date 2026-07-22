@@ -83,14 +83,14 @@ public class StatCalculation
             gameEvent = GameEvent.OnCharacterUsesAbility,
         };
 
-        StatChangeAmounts abilityStatChanges = new StatChangeAmounts(battleManager.Player, battleManager.EnemyTeam, StatChangeSource.FromAbility);
+        StatChangeAmounts abilityStatChanges = new StatChangeAmounts(battleManager.Player, battleManager.EnemyTeam);
         CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, effects, battleManager);
         CalculatePotentialDodgeGain(abilityStatChanges, gameValues, effects, battleManager);
         CalculatePotentialChainGain(abilityStatChanges, gameValues, effects, battleManager);
         CalculatePotentialChainSpent(abilityStatChanges, gameValues, effects, battleManager);
 
-        List<StatChangeAmounts> modStatChanges = new List<StatChangeAmounts>();
-        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modStatChanges);
+        List<ModResult> modResults = new List<ModResult>();
+        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
         activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);

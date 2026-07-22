@@ -25,12 +25,17 @@ public class GameCondition
     [SerializeField] private IndexType indexType;
     public IndexType IndexType { get => indexType; }
 
+    [SerializeField] private AbilityType abilityType;
+    public AbilityType AbilityType { get => abilityType; }
+
 }
 
 public enum GameConditionType
 {
     OnGameEvent,
-    CharacterStat
+    CharacterStat,
+    AbilityType,
+    AbilitySequenceIndex
 }
 
 public enum ValueComparisonType
