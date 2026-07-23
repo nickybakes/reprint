@@ -73,6 +73,7 @@ public class PlayerDoAbilitySequence : BattleStateChange
         if (currentAbilityIndex >= abilitySelections.Count)
         {
             sequenceEnded = true;
+            battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(player.Stats);
             battleView.BattleStatsPanel.PlayerStatPanel.Show();
         }
     }

@@ -18,6 +18,8 @@ public class PlayerCharacter : Character
         Stats.AbilityPointsMax = data.abilityPointsMax.GetValue();
         Stats.AbilityPoints = Stats.AbilityPointsMax;
 
+        BaseMaxAP = Stats.AbilityPointsMax;
+
         Stats.Chain = 0;
 
         Abilities = new List<PlayerAbility>(data.abilities.Length);
@@ -42,24 +44,12 @@ public class PlayerCharacter : Character
 
     public void RefreshAbilitySequencingStats(AbilitySequence abilitySequence, BattleManager battleManager)
     {
-        Stats.CopyFrom(TurnStatsStorage);
-        battleManager.EnemyTeam.CopyStatsFromTurnStatsStorage();
+        RestoreTurnStats();
+        battleManager.EnemyTeam.RestoreTurnStats();
 
-        // TODO check mods to change stats
-        GameValues gameValues = new GameValues
-        {
-            battleManager = battleManager,
-            activator = this,
-            target = null,
-            gameEvent = GameEvent.PlayerTurnStart,
-        };
+        battleManager.DoPlayerMods(GameEvent.OnRefreshAbilitySequenceStats);
 
-        List<ModResult> modResults = new List<ModResult>();
-        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults);
-
-        CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-        statChangeBreakdown.ApplyStatChanges(this, battleManager.EnemyTeam);
-
+        Stats.AbilityPoints = Stats.AbilityPointsMax;
         // Calculate current AP points
         foreach (AbilitySelection abilitySelection in abilitySequence.Sequence)
         {
@@ -73,8 +63,8 @@ public class PlayerCharacter : Character
 
     public override void ResetForTurn()
     {
-        Stats.AbilityPoints = Stats.AbilityPointsMax;
+        Stats.AbilityPointsMax = BaseMaxAP;
         Stats.Dodge = 0;
-        TurnStatsStorage.CopyFrom(Stats);
+        ResetTempStats();
     }
 }

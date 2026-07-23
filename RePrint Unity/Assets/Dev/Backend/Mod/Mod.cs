@@ -11,9 +11,12 @@ public class Mod
 
     protected ModData baseData;
 
+    public AbilitySelection[] internalAbilitySelectionStorage;
+
     public Mod(ModData data)
     {
         baseData = data;
+        internalAbilitySelectionStorage = new AbilitySelection[5];
     }
 
     public List<ModEffect> GetModEffects(List<bool> passingBehaviors)

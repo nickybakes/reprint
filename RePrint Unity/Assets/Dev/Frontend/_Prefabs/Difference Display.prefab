@@ -62,7 +62,7 @@ MonoBehaviour:
   haveTextDisplayBump: 0
   lifeTime: 0.59
   fadeTime: 0.1
-  valueFormat: '%a'
+  valueFormat: '%b%a'
   startingVelocityMin: {x: 0, y: 0}
   startingVelocityMax: {x: 0, y: 0}
   gravity: 0

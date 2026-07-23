@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
-  m_Name: MD_12thAscent_01
+  m_Name: MD_ExtraAP_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: 7590ab48a5751074e9a151c91c648a72, type: 2}
-  <Name>k__BackingField: 12th Ascent
+  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Name>k__BackingField: Extra AP
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 3
+          gameEvent: 2
           characterStat: 0
           character: 0
           comparison1: 0
@@ -29,19 +29,8 @@ MonoBehaviour:
             maxValue: 0
           indexType: 0
           abilityType: 0
-        - type: 1
-          gameEvent: 0
-          characterStat: 2
-          character: 0
-          comparison1: 1
-          valueInput1:
-            type: 0
-            baseValue: 12
-            maxValue: 0
-          indexType: 0
-          abilityType: 0
         listFoldout: 1
-        foldouts: 0101
+        foldouts: 01
       effects:
         list:
         - applicationModes:
@@ -64,8 +53,8 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-          mathType: 2
-          statChange: 2
+          mathType: 0
+          statChange: 12
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

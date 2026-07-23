@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(AbilityEffectApplication))]
+[CustomPropertyDrawer(typeof(EffectApplication))]
 public class AbilityEffectApplicationDrawer : BetterPropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -11,9 +11,9 @@ public class AbilityEffectApplicationDrawer : BetterPropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
 
         SerializedProperty modeProperty = AddProperty("applicationMode");
-        AbilityEffectApplicationMode mode = (AbilityEffectApplicationMode)modeProperty.enumValueIndex;
+        EffectApplicationMode mode = (EffectApplicationMode)modeProperty.enumValueIndex;
 
-        if (mode == AbilityEffectApplicationMode.NonTargetedEnemies)
+        if (mode == EffectApplicationMode.NonTargetedEnemies)
         {
             AddProperty("nonTargetedEnemyPriority");
             AddProperty("numberOfNonTargetedEnemies");

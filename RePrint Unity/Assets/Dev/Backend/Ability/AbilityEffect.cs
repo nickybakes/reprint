@@ -1,25 +1,22 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
-public class AbilityEffect
+public class AbilityEffect : Effect
 {
     [SerializeField] private AbilityEffectType type;
-    [SerializeField] private BetterEditorList<AbilityEffectApplication> applicationModes;
 
     [SerializeField] private ValueInput valueInput;
     [SerializeField] private BetterEditorList<Arithmetic> extraArithmetics;
 
     public AbilityEffectType Type { get => type; }
-    public List<AbilityEffectApplication> ApplicationModes { get => applicationModes.List; }
 
     public ValueInput ValueInput { get => valueInput; }
     public List<Arithmetic> ExtraArithmetics { get => extraArithmetics.List; }
 
 
-    public int GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
+    public override int GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
     {
         int amount = ValueInput.GetValue();
 
@@ -30,15 +27,7 @@ public class AbilityEffect
 
         foreach (Arithmetic arithmetic in ExtraArithmetics)
         {
-            int incomingValue = 0;
-            switch (arithmetic.GameValueType)
-            {
-                case GameValueType.Chain:
-                    incomingValue = gameValues.activator.Stats.Chain;
-                    break;
-            }
-
-            amount = arithmetic.CalculateSolution(amount, incomingValue);
+            amount = arithmetic.CalculateSolution(amount, gameValues.GetIntGameValue(arithmetic.GameValueType));
         }
 
         return amount;

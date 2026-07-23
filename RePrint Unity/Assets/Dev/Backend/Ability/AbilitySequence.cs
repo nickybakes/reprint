@@ -15,6 +15,18 @@ public class AbilitySequence
         sequence = new List<AbilitySelection>();
     }
 
+    public int GetTotalOverclock()
+    {
+        int total = 0;
+
+        foreach (AbilitySelection selection in sequence)
+        {
+            total += selection.Overclock;
+        }
+
+        return total;
+    }
+
     public AbilitySequenceChangeType AddOrOverclockAbility(Ability ability, int availableAP)
     {
         AbilitySequenceChangeType changeType = TryOverclockOrChangeLastAbility(ability, availableAP);

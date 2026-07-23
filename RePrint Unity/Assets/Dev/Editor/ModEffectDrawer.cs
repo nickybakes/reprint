@@ -21,10 +21,10 @@ public class ModEffectDrawer : BetterPropertyDrawer
                 AddProperty("applicationModes");
                 AddProperty("valueInput1");
                 break;
-            case ModEffectType.AffectStatChange:
+            case ModEffectType.StackStatChange:
                 AddProperty("statChange");
-                AddProperty("mathType");
                 AddProperty("valueInput1");
+                AddProperty("extraArithmetics1");
                 AddProperty("applicationModes");
                 break;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class StatChangeBreakdown
@@ -36,9 +37,17 @@ public class StatChangeBreakdown
     /// <param name="character"></param>
     private void ApplyStatChanges(Character character)
     {
-        int totalPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.PhysicalDamageTaken);
+        int totalStarterPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.StarterPhysicalDamageTaken);
 
-        character.ApplyPhysicalDamage(totalPhysicalDamageTaken);
+        float totalStarterPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.StarterPhysicalDamageMultiplier);
+
+        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier);
+
+        int totalFinisherPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.FinisherPhysicalDamageTaken);
+
+        float totalFinisherPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.FinisherPhysicalDamageMultiplier);
+
+        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier);
 
         int totalDodgeGained = (int)GetTotalStatChangeAdditive(character, StatChange.DodgeGained);
         totalDodgeGained -= (int)GetTotalStatChangeAdditive(character, StatChange.DodgeTaken);
@@ -46,10 +55,20 @@ public class StatChangeBreakdown
 
         int totalChainGained = (int)GetTotalStatChangeAdditive(character, StatChange.ChainGained);
         totalChainGained -= (int)GetTotalStatChangeAdditive(character, StatChange.ChainSpent);
+        totalChainGained -= (int)GetTotalStatChangeAdditive(character, StatChange.ChainTaken);
         character.ApplyChain(totalChainGained);
+
+        int totalTempChainGained = (int)GetTotalStatChangeAdditive(character, StatChange.TempChainGained);
+        character.Stats.TempChain += totalTempChainGained;
 
         int totalTurnPriorityGained = (int)GetTotalStatChangeAdditive(character, StatChange.TurnPriorityGained);
         character.Stats.TurnPriority += totalTurnPriorityGained;
+
+        int totalAPMaxIncrease = (int)GetTotalStatChangeAdditive(character, StatChange.APMaxIncrease);
+        totalAPMaxIncrease -= (int)GetTotalStatChangeAdditive(character, StatChange.APMaxDecrease);
+
+        character.Stats.AbilityPointsMax = Math.Max(character.Stats.AbilityPointsMax + totalAPMaxIncrease, 0);
+
     }
 
     public float GetTotalStatChangeAdditive(Character character, StatChange stat)

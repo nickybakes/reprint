@@ -78,14 +78,6 @@ public class Team
         return members.Count;
     }
 
-    public void ApplyPhysicalDamageToTeam(int damage)
-    {
-        foreach (Character member in members)
-        {
-            member.ApplyPhysicalDamage(damage);
-        }
-    }
-
     public virtual void CalculateTurnOrder()
     {
         membersInTurnOrder = new List<Character>();
@@ -122,6 +114,22 @@ public class Team
         foreach (Character member in members)
         {
             member.ResetForTurn();
+        }
+    }
+
+    public void SetTurnStats()
+    {
+        foreach (Character member in members)
+        {
+            member.SetTurnStats();
+        }
+    }
+
+    public void RestoreTurnStats()
+    {
+        foreach (Character member in members)
+        {
+            member.RestoreTurnStats();
         }
     }
 

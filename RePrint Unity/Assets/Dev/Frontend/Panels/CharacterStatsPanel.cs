@@ -70,7 +70,7 @@ public class CharacterStatsPanel : Panel
     {
         if (chainDisplay)
         {
-            chainDisplay.DisplayValue(stats.Chain);
+            chainDisplay.DisplayValue(stats.Chain + stats.TempChain);
         }
         displayedStats.Chain = stats.Chain;
     }

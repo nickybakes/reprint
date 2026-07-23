@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: TestBattle_01
   m_EditorClassIdentifier: Assembly-CSharp::BattleData
   playerCharacterData: {fileID: 11400000, guid: d6e74b8a3a5254745b337b6b06f795fe, type: 2}
+  playerMods:
+  - {fileID: 11400000, guid: e6b1f5b5d9173504ca58ffd4a35111d3, type: 2}
+  - {fileID: 11400000, guid: cb99835a1c7590b4c963b4a165134147, type: 2}
   enemyDatas:
-  - {fileID: 11400000, guid: 0074c83b9dd5e504ba3e6da77d166f4b, type: 2}
-  - {fileID: 11400000, guid: fbe84188c016b6145a13986e2c20ff78, type: 2}
+  - {fileID: 11400000, guid: 3594a9fc748d5da428bc30b6c0284826, type: 2}
+  - {fileID: 11400000, guid: 3594a9fc748d5da428bc30b6c0284826, type: 2}

@@ -58,6 +58,12 @@ public class BattleManager : MonoBehaviour
         };
         SubmitChanges();
 
+        DoPlayerMods(GameEvent.StartBattle);
+
+        // TODO: right now, starting a wave is the same as starting the full battle.
+        // Change this when we have "waves".
+        DoPlayerMods(GameEvent.StartWave);
+
         StartPlayerTurn();
     }
 
@@ -68,6 +74,14 @@ public class BattleManager : MonoBehaviour
         EnemyTeam.ResetTurnPriorities();
         EnemyTeam.ResetForTurn();
         Player.ResetForTurn();
+
+        DoPlayerMods(GameEvent.PlayerTurnStart);
+
+        EnemyTeam.SetTurnStats();
+        Player.SetTurnStats();
+
+        Player.Stats.AbilityPoints = Player.Stats.AbilityPointsMax;
+
         Player.RefreshAbilitySequencingStats(playerAbilitySequence, this);
 
         foreach (EnemyCharacter enemy in EnemyTeam.Enemies)
@@ -81,6 +95,24 @@ public class BattleManager : MonoBehaviour
 
         pendingBattleChanges.Add(new PlayerTurnStart(Player.Stats, TurnIndex));
         SubmitChanges();
+    }
+
+    public virtual void DoPlayerMods(GameEvent _gameEvent)
+    {
+        GameValues gameValues = new GameValues
+        {
+            battleManager = this,
+            activator = Player,
+            target = null,
+            gameEvent = _gameEvent,
+            abilitySequence = playerAbilitySequence,
+        };
+
+        List<ModResult> modResults = new List<ModResult>();
+        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults);
+
+        Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+        statChangeBreakdown.ApplyStatChanges(Player, EnemyTeam);
     }
 
     public virtual void PlayerSubmitAbility(Ability ability)
@@ -129,6 +161,8 @@ public class BattleManager : MonoBehaviour
             statChangeBreakdowns.Add(result);
             abilitySeqIndex++;
         }
+
+        Player.ResetTempStats();
 
         pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, statChangeBreakdowns));
 

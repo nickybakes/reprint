@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class AbilityEffectApplication
+public class EffectApplication
 {
-    [SerializeField] private AbilityEffectApplicationMode applicationMode;
+    [SerializeField] private EffectApplicationMode applicationMode;
     [SerializeField] private ValueInput numberOfNonTargetedEnemies;
     [SerializeField] private NonTargetedEnemyPriority nonTargetedEnemyPriority;
     [SerializeField] private bool addValueToTargetPriority;
-    public AbilityEffectApplicationMode Mode { get => applicationMode; }
+    public EffectApplicationMode Mode { get => applicationMode; }
     public ValueInput NumberOfNonTargetedEnemies { get => numberOfNonTargetedEnemies; }
     public NonTargetedEnemyPriority NonTargetedEnemyPriority { get => nonTargetedEnemyPriority; }
     public bool AddValueToTargetPriority { get => addValueToTargetPriority; }
 }
 
 
-public enum AbilityEffectApplicationMode
+public enum EffectApplicationMode
 {
     Self,
     TargetedCharacter,
