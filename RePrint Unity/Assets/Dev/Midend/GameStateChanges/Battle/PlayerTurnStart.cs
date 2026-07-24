@@ -4,13 +4,13 @@ using UnityEngine;
 public class PlayerTurnStart : BattleStateChange
 {
 
-    private CharacterStats playerAbilitySequencingStats;
+    private BattleManager battleManager;
 
     private int turnIndex;
 
-    public PlayerTurnStart(CharacterStats _playerAbilitySequencingStats, int _turnIndex)
+    public PlayerTurnStart(BattleManager _battleManager, int _turnIndex)
     {
-        playerAbilitySequencingStats = _playerAbilitySequencingStats;
+        battleManager = _battleManager;
         turnIndex = _turnIndex;
     }
 
@@ -19,10 +19,12 @@ public class PlayerTurnStart : BattleStateChange
         Debug.Log("Player turn start!");
         view.TurnDisplay.SetText((turnIndex + 1).ToString());
         view.BattleStatsPanel.DisableAllTargetSelection();
-        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
+        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(battleManager.Player.Stats);
+        view.BattleStatsPanel.UpdateAllEnemyStats(battleManager.EnemyTeam);
+        view.BattleStatsPanel.PlayerStatPanel.Show();
         view.PlayerConfirmSequenceButton.Show();
         view.PlayerAbilitySequenceGroup.Clear();
-        view.PlayerAbilityDisplayGroup.ResetSequenceState(playerAbilitySequencingStats);
+        view.PlayerAbilityDisplayGroup.ResetSequenceState(battleManager.Player.Stats);
         view.PlayerAbilityDisplayGroup.Show();
         view.EnablePlayerInteractions();
     }

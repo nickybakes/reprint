@@ -48,6 +48,17 @@ public class BattleStatsPanel : Panel
         }
     }
 
+    public void UpdateAllEnemyStats(Team enemyTeam)
+    {
+        foreach (Character enemy in enemyTeam.Members)
+        {
+            if (EnemyStatPanels.ContainsKey(enemy))
+            {
+                EnemyStatPanels[enemy].UpdateStats(enemy.Stats);
+            }
+        }
+    }
+
     public void UpdateEnemyIntent(EnemyAbility ability, Character enemy)
     {
         if (EnemyStatPanels.ContainsKey(enemy))

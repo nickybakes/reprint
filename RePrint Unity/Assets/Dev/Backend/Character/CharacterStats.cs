@@ -52,14 +52,39 @@ public record CharacterStats
         PhysicalDamageShield = source.PhysicalDamageShield;
         TurnPriority = source.TurnPriority;
     }
+
+    public int GetStat(CharacterStat stat)
+    {
+        switch (stat)
+        {
+            case CharacterStat.Health:
+                return Health;
+            case CharacterStat.Chain:
+                return Chain;
+            case CharacterStat.AbilityPoints:
+                return AbilityPoints;
+        }
+
+        return 0;
+    }
+
+    public float GetPercentage(CharacterStat stat)
+    {
+        switch (stat)
+        {
+            case CharacterStat.Health:
+                return (float)Health / HealthMax;
+            case CharacterStat.AbilityPoints:
+                return (float)AbilityPoints / AbilityPointsMax;
+        }
+
+        return 0;
+    }
 }
 
 public enum CharacterStat
 {
     Health,
-    AbilityPoints,
     Chain,
-    PhysicalDamageTaken,
-    BleedDamageTaken,
-    CriticalDamageTaken,
+    AbilityPoints,
 }

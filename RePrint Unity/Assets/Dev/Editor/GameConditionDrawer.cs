@@ -30,7 +30,7 @@ public class GameConditionDrawer : BetterPropertyDrawer
                 break;
             case GameConditionType.CharacterStat:
                 AddProperty("characterStat", "Stat");
-                AddProperty("character");
+                AddProperty("characters");
                 AddProperty("comparison1", "");
                 AddProperty("valueInput1");
                 break;

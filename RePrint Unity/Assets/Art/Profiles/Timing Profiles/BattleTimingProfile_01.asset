@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleTimingProfile
   <TimeBeforePlayerAbilityAnimationSequence>k__BackingField: 0.35
   <TimeAfterPlayerAbilityAnimationSequence>k__BackingField: 0.25
-  enemyAbilityTime: 1
+  enemyAbilityTime: 0.38
+  beforePlayerTurnStartTime: 0.79

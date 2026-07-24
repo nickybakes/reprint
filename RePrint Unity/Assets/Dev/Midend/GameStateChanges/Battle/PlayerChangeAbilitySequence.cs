@@ -6,22 +6,23 @@ public class PlayerChangeAbilitySequence : BattleStateChange
 
     private AbilitySequence abilitySequence;
 
-    private CharacterStats playerAbilitySequencingStats;
+    private BattleManager battleManager;
 
     private AbilitySequenceChangeType changeType;
 
 
-    public PlayerChangeAbilitySequence(AbilitySequence _abilitySequence, CharacterStats _playerAbilitySequencingStats, AbilitySequenceChangeType _changeType)
+    public PlayerChangeAbilitySequence(AbilitySequence _abilitySequence, BattleManager _battleManager, AbilitySequenceChangeType _changeType)
     {
         abilitySequence = _abilitySequence;
-        playerAbilitySequencingStats = _playerAbilitySequencingStats;
+        battleManager = _battleManager;
         changeType = _changeType;
     }
 
     public override void ParseChange(BattleView view, BattleController controller)
     {
         view.PlayerAbilitySequenceGroup.Refresh(abilitySequence);
-        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(playerAbilitySequencingStats);
+        view.BattleStatsPanel.PlayerStatPanel.UpdateStats(battleManager.Player.Stats);
+        view.BattleStatsPanel.UpdateAllEnemyStats(battleManager.EnemyTeam);
         if (abilitySequence.Sequence.Count > 0 && !abilitySequence.GetLastSelection().TargetIsSet)
         {
             AbilitySelection selection = abilitySequence.GetLastSelection();
@@ -39,7 +40,7 @@ public class PlayerChangeAbilitySequence : BattleStateChange
         {
             view.BattleStatsPanel.DisableAllTargetSelection();
         }
-        view.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence, playerAbilitySequencingStats, changeType);
+        view.PlayerAbilityDisplayGroup.RefreshSequenceState(abilitySequence, battleManager.Player.Stats, changeType);
     }
 }
 

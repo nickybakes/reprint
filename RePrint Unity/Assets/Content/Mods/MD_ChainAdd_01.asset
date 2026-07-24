@@ -13,8 +13,74 @@ MonoBehaviour:
   m_Name: MD_ChainAdd_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
   <Profile>k__BackingField: {fileID: 0}
-  <Name>k__BackingField: 
+  <Name>k__BackingField: Chain Add
   <ModBehaviors>k__BackingField:
-    list: []
-    listFoldout: 0
-    foldouts: 
+    list:
+    - conditions:
+        list:
+        - type: 0
+          gameEvent: 2
+          characterStat: 0
+          characters:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          comparison1: 0
+          valueInput1:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+          indexType: 0
+          abilityType: 0
+        - type: 1
+          gameEvent: 2
+          characterStat: 1
+          characters:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
+          comparison1: 1
+          valueInput1:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+          indexType: 0
+          abilityType: 0
+        listFoldout: 1
+        foldouts: 0101
+      effects:
+        list:
+        - applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
+          type: 1
+          valueInput1:
+            type: 0
+            baseValue: 2
+            maxValue: 0
+          extraArithmetics1:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          mathType: 0
+          statChange: 8
+        listFoldout: 1
+        foldouts: 01
+      breakOutIfConditionsAreTrue: 0
+    listFoldout: 1
+    foldouts: 01

@@ -21,7 +21,10 @@ MonoBehaviour:
         - type: 0
           gameEvent: 2
           characterStat: 0
-          character: 0
+          characters:
+            list: []
+            listFoldout: 0
+            foldouts: 
           comparison1: 0
           valueInput1:
             type: 0

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
-  m_Name: MD_12thAscent_01
+  m_Name: MD_ChainBurst_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: 7590ab48a5751074e9a151c91c648a72, type: 2}
-  <Name>k__BackingField: 12th Ascent
+  <Profile>k__BackingField: {fileID: 0}
+  <Name>k__BackingField: Chain Burst
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 3
+          gameEvent: 2
           characterStat: 0
           characters:
             list: []
@@ -33,8 +33,8 @@ MonoBehaviour:
           indexType: 0
           abilityType: 0
         - type: 1
-          gameEvent: 0
-          characterStat: 2
+          gameEvent: 2
+          characterStat: 1
           characters:
             list:
             - applicationMode: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
           comparison1: 1
           valueInput1:
             type: 0
-            baseValue: 12
+            baseValue: 5
             maxValue: 0
           indexType: 0
           abilityType: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
         list:
         - applicationModes:
             list:
-            - applicationMode: 0
+            - applicationMode: 4
               numberOfNonTargetedEnemies:
                 type: 0
                 baseValue: 0
@@ -70,15 +70,15 @@ MonoBehaviour:
             foldouts: 01
           type: 1
           valueInput1:
-            type: 0
-            baseValue: 2
-            maxValue: 0
+            type: 1
+            baseValue: 3
+            maxValue: 9
           extraArithmetics1:
             list: []
             listFoldout: 0
             foldouts: 
-          mathType: 2
-          statChange: 2
+          mathType: 0
+          statChange: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

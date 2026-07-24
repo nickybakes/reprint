@@ -58,12 +58,6 @@ public class BattleManager : MonoBehaviour
         };
         SubmitChanges();
 
-        DoPlayerMods(GameEvent.StartBattle);
-
-        // TODO: right now, starting a wave is the same as starting the full battle.
-        // Change this when we have "waves".
-        DoPlayerMods(GameEvent.StartWave);
-
         StartPlayerTurn();
     }
 
@@ -74,6 +68,15 @@ public class BattleManager : MonoBehaviour
         EnemyTeam.ResetTurnPriorities();
         EnemyTeam.ResetForTurn();
         Player.ResetForTurn();
+
+        if (TurnIndex == 0)
+        {
+            DoPlayerMods(GameEvent.StartBattle);
+
+            // TODO: right now, starting a wave is the same as starting the full battle.
+            // Change this when we have "waves".
+            DoPlayerMods(GameEvent.StartWave);
+        }
 
         DoPlayerMods(GameEvent.PlayerTurnStart);
 
@@ -93,7 +96,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        pendingBattleChanges.Add(new PlayerTurnStart(Player.Stats, TurnIndex));
+        pendingBattleChanges.Add(new PlayerTurnStart(this, TurnIndex));
         SubmitChanges();
     }
 
@@ -141,6 +144,10 @@ public class BattleManager : MonoBehaviour
         DoEnemyAbilities();
 
         // Check if all enemies are eliminated. If not, next turn!
+
+
+        pendingBattleChanges.Add(new BeforePlayerTurnStart(this));
+        SubmitChanges();
 
         StartPlayerTurn();
     }
@@ -200,7 +207,7 @@ public class BattleManager : MonoBehaviour
     protected virtual void SubmitPlayerChangeAbilitySequence(AbilitySequenceChangeType changeType)
     {
         Player.RefreshAbilitySequencingStats(playerAbilitySequence, this);
-        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, Player.Stats, changeType));
+        pendingBattleChanges.Add(new PlayerChangeAbilitySequence(playerAbilitySequence, this, changeType));
         SubmitChanges();
     }
 }

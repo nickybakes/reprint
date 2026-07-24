@@ -138,6 +138,11 @@ public class StatCalculation
         return GetPotentialEffectAmount(gameValues, new List<Effect>(new Effect[] { effect }));
     }
 
+    public static List<Character> GetAffectedCharacters(GameValues gameValues, EffectApplication effectApplication)
+    {
+        return GetAffectedCharacters(gameValues, new List<EffectApplication>(new EffectApplication[] { effectApplication }));
+    }
+
     public static List<Character> GetAffectedCharacters(GameValues gameValues, List<EffectApplication> applicationModes)
     {
         List<Character> affectedCharacters = new List<Character>();
@@ -262,6 +267,14 @@ public class StatCalculation
                         return false;
                     break;
                 case GameConditionType.CharacterStat:
+                    List<Character> characters = GetAffectedCharacters(gameValues, condition.Characters);
+                    foreach (Character character in characters)
+                    {
+                        if (!condition.CheckCharacterStatCondition(character, condition.ValueInput1.GetValue(), condition.Comparison1))
+                        {
+                            return false;
+                        }
+                    }
                     break;
             }
         }

@@ -8,6 +8,7 @@ public class Mod
     public string Name { get { return baseData.Profile.Name; } }
     public string Description { get { return baseData.Profile.Description; } }
     public List<ModBehavior> Behaviors { get { return baseData.ModBehaviors.List; } }
+    public string DebugName { get { return baseData.Name; } }
 
     protected ModData baseData;
 

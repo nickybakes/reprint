@@ -74,7 +74,6 @@ public class PlayerDoAbilitySequence : BattleStateChange
         {
             sequenceEnded = true;
             battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(player.Stats);
-            battleView.BattleStatsPanel.PlayerStatPanel.Show();
         }
     }
 

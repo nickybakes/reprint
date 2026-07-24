@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -13,8 +14,9 @@ public class GameCondition
     [SerializeField] private CharacterStat characterStat;
     public CharacterStat CharacterStat { get => characterStat; }
 
-    [SerializeField] private EffectApplicationMode character;
-    public EffectApplicationMode Character { get => character; }
+    [SerializeField] protected BetterEditorList<EffectApplication> characters;
+
+    public List<EffectApplication> Characters { get => characters.List; }
 
     [SerializeField] private ValueComparisonType comparison1;
     public ValueComparisonType Comparison1 { get => comparison1; }
@@ -27,6 +29,33 @@ public class GameCondition
 
     [SerializeField] private AbilityType abilityType;
     public AbilityType AbilityType { get => abilityType; }
+
+    public bool CheckCharacterStatCondition(Character character, float threshold, ValueComparisonType comparisonType)
+    {
+        int amount = character.Stats.GetStat(characterStat);
+        return CheckComparison(amount, threshold, comparisonType);
+    }
+
+    public bool CheckComparison(float a, float b, ValueComparisonType comparisonType)
+    {
+        switch (comparisonType)
+        {
+            case ValueComparisonType.IsGreaterThan:
+                return a > b;
+            case ValueComparisonType.IsGreaterThanOrEqualTo:
+                return a >= b;
+            case ValueComparisonType.IsEqualTo:
+                return a == b;
+            case ValueComparisonType.IsNotEqualTo:
+                return a != b;
+            case ValueComparisonType.IsLessThan:
+                return a < b;
+            case ValueComparisonType.IsLessThanOrEqualTo:
+                return a <= b;
+        }
+
+        return false;
+    }
 
 }
 
