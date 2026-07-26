@@ -14,6 +14,8 @@ public class ModEffect : Effect
     [SerializeField] private BetterEditorList<Arithmetic> extraArithmetics1;
     public List<Arithmetic> ExtraArithmetics1 { get => extraArithmetics1.List; }
 
+    [SerializeField] private int intValue1;
+    public int IntValue1 { get => intValue1; }
 
     [SerializeField] private MathType mathType;
     public MathType MathType { get => mathType; }
@@ -21,9 +23,9 @@ public class ModEffect : Effect
     [SerializeField] private StatChange statChange;
     public StatChange StatChange { get => statChange; }
 
-    public override int GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
+    public override float GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
     {
-        int amount = ValueInput1.GetValue();
+        float amount = ValueInput1.GetValue();
 
         if (getMinimum)
             amount = ValueInput1.GetMinValue();
@@ -49,6 +51,7 @@ public enum ModEffectType
 {
     DoDamage,
     StackStatChange,
+    RetriggerAbility,
     Heal,
     GainChain,
 

@@ -34,7 +34,7 @@ public class PlayerAbility : Ability
 
     public override int GetNumberOfHits(int overclock = 0)
     {
-        return rulesTable[overclock].NumberOfHits.GetValue();
+        return (int)rulesTable[overclock].NumberOfHits.GetValue();
     }
 
     public override bool CanTargetEnemies(int overclock = 0)

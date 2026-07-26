@@ -16,9 +16,9 @@ public class AbilityEffect : Effect
     public List<Arithmetic> ExtraArithmetics { get => extraArithmetics.List; }
 
 
-    public override int GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
+    public override float GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
     {
-        int amount = ValueInput.GetValue();
+        float amount = ValueInput.GetValue();
 
         if (getMinimum)
             amount = ValueInput.GetMinValue();

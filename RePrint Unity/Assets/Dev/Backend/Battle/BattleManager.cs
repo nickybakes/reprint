@@ -143,7 +143,7 @@ public class BattleManager : MonoBehaviour
 
         DoEnemyAbilities();
 
-        // Check if all enemies are eliminated. If not, next turn!
+        // TODO: Check if all enemies are eliminated. If not, next turn!
 
 
         pendingBattleChanges.Add(new BeforePlayerTurnStart(this));
@@ -156,9 +156,17 @@ public class BattleManager : MonoBehaviour
     {
         List<AbilitySelection> sortedAbilitySequence = playerAbilitySequence.GetSortedSequence();
 
+        Player.CurrentCombo = 0;
+        Player.TotalCombo = 0;
+
+        StatCalculation.CheckAbilitySequence(sortedAbilitySequence, playerAbilitySequence, this);
+
+        Player.TotalCombo = StatCalculation.GetTotalCombo(sortedAbilitySequence);
+
         List<AbilitySelection> abilitySelections = new List<AbilitySelection>();
         List<StatChangeBreakdown> statChangeBreakdowns = new List<StatChangeBreakdown>();
 
+        Player.CurrentCombo = 0;
         int abilitySeqIndex = 0;
 
         foreach (AbilitySelection abilitySelection in sortedAbilitySequence)

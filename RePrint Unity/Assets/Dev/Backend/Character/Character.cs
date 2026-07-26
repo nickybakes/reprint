@@ -7,7 +7,10 @@ public abstract class Character
 
     public CharacterProfile Profile { get; protected set; }
     public CharacterStats Stats { get; protected set; }
-    public CharacterStats TurnStatsStorage { get; private set; }
+    public CharacterStats TurnStatsStorage { get; protected set; }
+
+    public int CurrentCombo { get; set; }
+    public int TotalCombo { get; set; }
 
     public List<Mod> Mods { get; protected set; }
 
@@ -83,6 +86,7 @@ public abstract class Character
 
             foreach (ModBehavior behavior in mod.Behaviors)
             {
+                gameValues.currentMod = mod;
                 passingBehaviors.Add(StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues));
                 numPassingBehaviors++;
             }
@@ -103,6 +107,9 @@ public abstract class Character
                     case ModEffectType.StackStatChange:
                         AmountsPerCharacter amounts = StatCalculation.GetPotentialEffectAmount(gameValues, effect);
                         modResult.statChangeAmounts.AddAmounts(amounts.Amounts, effect.StatChange);
+                        break;
+                    case ModEffectType.RetriggerAbility:
+                        modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
                         break;
                 }
             }

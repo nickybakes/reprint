@@ -40,7 +40,7 @@ public class AmountsPerCharacter
         Priorities = newPriorities;
     }
 
-    public void AddAmountToCharacter(Character character, float amount, Character priorityCharacter = null, int priority = 0)
+    public void AddAmountToCharacter(Character character, float amount, Character priorityCharacter = null, float priority = 0)
     {
         AddAmountToCharacter(character, amount);
         if (priorityCharacter != null && priority != 0)

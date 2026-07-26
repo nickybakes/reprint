@@ -30,6 +30,12 @@ public class GameCondition
     [SerializeField] private AbilityType abilityType;
     public AbilityType AbilityType { get => abilityType; }
 
+    [SerializeField] private int intValue1;
+    public int IntValue1 { get => intValue1; }
+
+    [SerializeField] private ComboCountType comboCountType;
+    public ComboCountType ComboCountType { get => comboCountType; }
+
     public bool CheckCharacterStatCondition(Character character, float threshold, ValueComparisonType comparisonType)
     {
         int amount = character.Stats.GetStat(characterStat);
@@ -64,7 +70,9 @@ public enum GameConditionType
     OnGameEvent,
     CharacterStat,
     AbilityType,
-    AbilitySequenceIndex
+    AbilitySequenceIndex,
+    StoreAbilityInternally,
+    ComboAmount,
 }
 
 public enum ValueComparisonType
@@ -85,7 +93,8 @@ public enum GameEvent
     PlayerTurnStart,
     OnCharacterUsesAbility,
     OnOtherCharacterUsesAbility,
-    OnRefreshAbilitySequenceStats
+    OnRefreshAbilitySequenceStats,
+    OnCheckAbilitySequence
 }
 
 public enum IndexType
@@ -94,4 +103,10 @@ public enum IndexType
     Last,
     Middle,
     Specific
+}
+
+public enum ComboCountType
+{
+    Current,
+    Total
 }

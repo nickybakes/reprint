@@ -2,8 +2,10 @@ public class StatChanges
 {
     public int StarterPhysicalDamageTaken { get; set; }
     public int FinisherPhysicalDamageTaken { get; set; }
+    public int GenericPhysicalDamageTaken { get; set; }
     public float StarterPhysicalDamageMultiplier { get; set; } = 1;
     public float FinisherPhysicalDamageMultiplier { get; set; } = 1;
+    public float AllPhysicalDamageMultiplier { get; set; } = 1;
     public int HealthGained { get; set; }
     public int DodgeTaken { get; set; }
     public int DodgeGained { get; set; }
@@ -23,13 +25,19 @@ public class StatChanges
                 StarterPhysicalDamageTaken += (int)amount;
                 break;
             case StatChange.StarterPhysicalDamageMultiplier:
-                StarterPhysicalDamageMultiplier += amount;
+                StarterPhysicalDamageMultiplier *= amount;
                 break;
             case StatChange.FinisherPhysicalDamageTaken:
                 FinisherPhysicalDamageTaken += (int)amount;
                 break;
             case StatChange.FinisherPhysicalDamageMultiplier:
-                FinisherPhysicalDamageMultiplier += amount;
+                FinisherPhysicalDamageMultiplier *= amount;
+                break;
+            case StatChange.GenericPhysicalDamageTaken:
+                FinisherPhysicalDamageTaken += (int)amount;
+                break;
+            case StatChange.AllPhysicalDamageMultiplier:
+                AllPhysicalDamageMultiplier *= amount;
                 break;
             case StatChange.HealthGained:
                 HealthGained += (int)amount;
@@ -76,6 +84,10 @@ public class StatChanges
                 return FinisherPhysicalDamageTaken;
             case StatChange.FinisherPhysicalDamageMultiplier:
                 return FinisherPhysicalDamageMultiplier;
+            case StatChange.GenericPhysicalDamageTaken:
+                return GenericPhysicalDamageTaken;
+            case StatChange.AllPhysicalDamageMultiplier:
+                return AllPhysicalDamageMultiplier;
             case StatChange.HealthGained:
                 return HealthGained;
             case StatChange.DodgeTaken:
@@ -106,8 +118,10 @@ public enum StatChange
 {
     StarterPhysicalDamageTaken,
     FinisherPhysicalDamageTaken,
+    GenericPhysicalDamageTaken,
     StarterPhysicalDamageMultiplier,
     FinisherPhysicalDamageMultiplier,
+    AllPhysicalDamageMultiplier,
     HealthGained,
     DodgeTaken,
     DodgeGained,

@@ -41,13 +41,19 @@ public class StatChangeBreakdown
 
         float totalStarterPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.StarterPhysicalDamageMultiplier);
 
-        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier);
+        float totalAllPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.AllPhysicalDamageMultiplier);
+
+        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier * totalAllPhysicalDamageMultiplier);
 
         int totalFinisherPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.FinisherPhysicalDamageTaken);
 
         float totalFinisherPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.FinisherPhysicalDamageMultiplier);
 
-        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier);
+        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier * totalAllPhysicalDamageMultiplier);
+
+        int totalGenericPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.GenericPhysicalDamageTaken);
+
+        character.ApplyPhysicalDamage(totalGenericPhysicalDamageTaken, totalAllPhysicalDamageMultiplier);
 
         int totalDodgeGained = (int)GetTotalStatChangeAdditive(character, StatChange.DodgeGained);
         totalDodgeGained -= (int)GetTotalStatChangeAdditive(character, StatChange.DodgeTaken);

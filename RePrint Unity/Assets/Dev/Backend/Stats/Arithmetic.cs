@@ -16,18 +16,18 @@ public class Arithmetic
 
     [SerializeField] private bool clamp;
 
-    [SerializeField] private int minClamp;
+    [SerializeField] private float minClamp;
 
-    [SerializeField] private int maxClamp;
+    [SerializeField] private float maxClamp;
 
     public GameValueType GameValueType { get => gameValueType; }
 
 
 
-    public int CalculateSolution(int _value, int _incomingValue)
+    public float CalculateSolution(float _value, float _incomingValue)
     {
-        int a = _value;
-        int b = _incomingValue;
+        float a = _value;
+        float b = _incomingValue;
 
         if (invertEquation)
         {
@@ -35,7 +35,7 @@ public class Arithmetic
             b = _value;
         }
 
-        int finalValue = 0;
+        float finalValue = 0;
 
         switch (mathType)
         {

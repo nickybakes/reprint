@@ -15,7 +15,7 @@ public class EnemyCharacter : Character
     {
         Profile = data.Profile;
 
-        Stats.HealthMax = data.maxHealth.GetValue();
+        Stats.HealthMax = (int)data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
 
         Behaviors = new List<EnemyBehavior>(data.Behaviors.List);

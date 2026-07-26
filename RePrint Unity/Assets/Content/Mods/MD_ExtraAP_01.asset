@@ -30,8 +30,11 @@ MonoBehaviour:
             type: 0
             baseValue: 0
             maxValue: 0
+            floatMode: 0
           indexType: 0
           abilityType: 0
+          intValue1: 0
+          comboCountType: 0
         listFoldout: 1
         foldouts: 01
       effects:
@@ -43,6 +46,7 @@ MonoBehaviour:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
             listFoldout: 1
@@ -52,12 +56,14 @@ MonoBehaviour:
             type: 0
             baseValue: 2
             maxValue: 0
+            floatMode: 0
           extraArithmetics1:
             list: []
             listFoldout: 0
             foldouts: 
+          intValue1: 0
           mathType: 0
-          statChange: 12
+          statChange: 14
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
-  m_Name: MD_12thAscent_01
+  m_Name: MD_EchoTrigger_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: 7590ab48a5751074e9a151c91c648a72, type: 2}
-  <Name>k__BackingField: 12th Ascent
+  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Name>k__BackingField: Echo Trigger
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 3
+          gameEvent: 6
           characterStat: 0
           characters:
             list: []
@@ -30,65 +30,78 @@ MonoBehaviour:
             type: 0
             baseValue: 0
             maxValue: 0
-            floatMode: 0
           indexType: 0
           abilityType: 0
           intValue1: 0
           comboCountType: 0
-        - type: 1
-          gameEvent: 0
-          characterStat: 1
+        - type: 5
+          gameEvent: 6
+          characterStat: 0
           characters:
-            list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
-            listFoldout: 1
-            foldouts: 01
-          comparison1: 1
+            list: []
+            listFoldout: 0
+            foldouts: 
+          comparison1: 2
           valueInput1:
             type: 0
-            baseValue: 12
+            baseValue: 2
             maxValue: 0
-            floatMode: 0
+          indexType: 0
+          abilityType: 0
+          intValue1: 0
+          comboCountType: 0
+        - type: 2
+          gameEvent: 6
+          characterStat: 0
+          characters:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          comparison1: 0
+          valueInput1:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+          indexType: 0
+          abilityType: 0
+          intValue1: 0
+          comboCountType: 0
+        - type: 4
+          gameEvent: 6
+          characterStat: 0
+          characters:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          comparison1: 0
+          valueInput1:
+            type: 0
+            baseValue: 0
+            maxValue: 0
           indexType: 0
           abilityType: 0
           intValue1: 0
           comboCountType: 0
         listFoldout: 1
-        foldouts: 0101
+        foldouts: 01010101
       effects:
         list:
         - applicationModes:
-            list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
-            listFoldout: 1
-            foldouts: 01
-          type: 1
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 2
           valueInput1:
             type: 0
-            baseValue: 2
+            baseValue: 0
             maxValue: 0
-            floatMode: 0
           extraArithmetics1:
             list: []
             listFoldout: 0
             foldouts: 
           intValue1: 0
-          mathType: 2
-          statChange: 3
+          mathType: 0
+          statChange: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

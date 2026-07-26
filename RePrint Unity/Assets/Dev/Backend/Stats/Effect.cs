@@ -9,5 +9,5 @@ public abstract class Effect
 
     public List<EffectApplication> ApplicationModes { get => applicationModes.List; }
 
-    public abstract int GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false);
+    public abstract float GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false);
 }

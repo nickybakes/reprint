@@ -14,11 +14,14 @@ public class GameValues
     public int abilitySeqIndex;
     public int abilitySeqLength;
     public AbilitySequence abilitySequence;
+    public AbilitySelection currentAbilitySelection;
     public Ability ability;
+    public AbilityType abilityType;
     public Character activator;
     public Character target;
     public BattleManager battleManager;
     public StatChangeBreakdown currentStatChangeBreakdown;
+    public Mod currentMod;
 
     public int GetIntGameValue(GameValueType valueType)
     {

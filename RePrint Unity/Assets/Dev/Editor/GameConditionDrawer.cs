@@ -48,7 +48,15 @@ public class GameConditionDrawer : BetterPropertyDrawer
                         break;
                 }
                 break;
-
+            case GameConditionType.StoreAbilityInternally:
+                SerializedProperty intValue1 = property.FindPropertyRelative("intValue1");
+                intValue1.intValue = AddIntSlider(intValue1.intValue, 0, 4, "Slot");
+                break;
+            case GameConditionType.ComboAmount:
+                AddProperty("comboCountType");
+                AddProperty("comparison1", "");
+                AddProperty("valueInput1");
+                break;
         }
 
         AddQuarterBlankLine();

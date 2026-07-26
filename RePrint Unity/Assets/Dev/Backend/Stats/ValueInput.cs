@@ -7,9 +7,10 @@ public class ValueInput
 {
     [SerializeField] private ValueType type;
 
-    [SerializeField] private int baseValue;
+    [SerializeField] private float baseValue;
 
-    [SerializeField] private int maxValue;
+    [SerializeField] private float maxValue;
+    [SerializeField] private bool floatMode;
 
     public ValueInput(int _baseValue)
     {
@@ -17,7 +18,7 @@ public class ValueInput
         baseValue = _baseValue;
     }
 
-    public int GetValue()
+    public float GetValue()
     {
         if (type == ValueType.Range)
         {
@@ -27,12 +28,12 @@ public class ValueInput
         return baseValue;
     }
 
-    public int GetMinValue()
+    public float GetMinValue()
     {
         return baseValue;
     }
 
-    public int GetMaxValue()
+    public float GetMaxValue()
     {
         if (type == ValueType.Range)
         {

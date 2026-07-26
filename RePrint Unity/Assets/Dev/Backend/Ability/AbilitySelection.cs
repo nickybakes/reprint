@@ -11,12 +11,22 @@ public class AbilitySelection
     public Character Target { get; private set; }
 
     public bool TargetIsSet { get; private set; }
+    public bool IsRetrigger { get; private set; }
 
     public AbilitySelection(Ability _ability)
     {
         Ability = _ability;
         Target = null;
         TargetIsSet = false;
+    }
+
+    public AbilitySelection(AbilitySelection source, bool isRetrigger)
+    {
+        Ability = source.Ability;
+        Overclock = source.Overclock;
+        Target = source.Target;
+        TargetIsSet = source.TargetIsSet;
+        IsRetrigger = isRetrigger;
     }
 
     public void SetAbility(Ability _ability)

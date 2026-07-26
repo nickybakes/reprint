@@ -155,6 +155,20 @@ public class BetterPropertyDrawer : PropertyDrawer
     }
 
     /// <summary>
+    /// Adds an integer slider to the inspector.
+    /// </summary>
+    /// <param name="value">The value to show on the slider.</param>
+    /// <param name="leftValue">The left bound value.</param>
+    /// <param name="rightValue">The right bound value.</param>
+    /// <returns>The value the slider is now at.</returns>
+    protected int AddIntSlider(int value, int leftValue, int rightValue, string text)
+    {
+        Rect position = Position();
+        NextLine();
+        return EditorGUI.IntSlider(position, text, value, leftValue, rightValue);
+    }
+
+    /// <summary>
     /// Add an integer input field to the inspector.
     /// </summary>
     /// <param name="value">The value to show on the field.</param>
@@ -171,6 +185,32 @@ public class BetterPropertyDrawer : PropertyDrawer
         SerializedProperty prop = property.FindPropertyRelative(propertyName);
         prop.intValue = AddIntField(prop.intValue);
         return prop.intValue;
+    }
+
+    /// <summary>
+    /// Add a float input field to the inspector.
+    /// </summary>
+    /// <param name="value">The value to show on the field.</param>
+    /// <returns>The value the field is now at.</returns>
+    protected float AddFloatField(float value)
+    {
+        Rect position = Position();
+        NextLine();
+        return EditorGUI.FloatField(position, value);
+    }
+
+    protected float AddFloatProperty(string propertyName)
+    {
+        SerializedProperty prop = property.FindPropertyRelative(propertyName);
+        prop.floatValue = AddFloatField(prop.floatValue);
+        return prop.floatValue;
+    }
+
+    protected float AddTruncatedFloatProperty(string propertyName)
+    {
+        SerializedProperty prop = property.FindPropertyRelative(propertyName);
+        prop.floatValue = AddIntField((int)prop.floatValue);
+        return prop.floatValue;
     }
 
     /// <summary>

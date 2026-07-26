@@ -83,7 +83,7 @@ public abstract class Ability
 
             if (effects.Count > 0)
             {
-                currentValue += StatCalculation.GetMinOrMaxStat(getMinimum, activator, effects, type);
+                currentValue += (int)StatCalculation.GetMinOrMaxStat(getMinimum, activator, effects, type);
 
                 if (getMinimum)
                 {

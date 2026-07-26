@@ -12,10 +12,10 @@ public class PlayerCharacter : Character
 
         Profile = data.Profile;
 
-        Stats.HealthMax = data.maxHealth.GetValue();
+        Stats.HealthMax = (int)data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
 
-        Stats.AbilityPointsMax = data.abilityPointsMax.GetValue();
+        Stats.AbilityPointsMax = (int)data.abilityPointsMax.GetValue();
         Stats.AbilityPoints = Stats.AbilityPointsMax;
 
         BaseMaxAP = Stats.AbilityPointsMax;
@@ -65,6 +65,8 @@ public class PlayerCharacter : Character
     {
         Stats.AbilityPointsMax = BaseMaxAP;
         Stats.Dodge = 0;
+        CurrentCombo = 0;
+        TotalCombo = 0;
         ResetTempStats();
     }
 }

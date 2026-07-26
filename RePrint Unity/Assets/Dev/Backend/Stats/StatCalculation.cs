@@ -22,6 +22,8 @@ public class StatCalculation
             battleManager = battleManager,
             activator = battleManager.Player,
             target = selection.Target,
+            currentAbilitySelection = selection,
+            abilityType = selection.Ability.Type,
         };
 
         foreach (AbilityBehavior behavior in behaviors)
@@ -29,11 +31,70 @@ public class StatCalculation
             passingBehaviors.Add(DoGameConditionsPass(behavior.Conditions, gameValues));
         }
 
+        if (selection.Ability.Type == AbilityType.Starter)
+        {
+            battleManager.Player.CurrentCombo++;
+        }
+
         List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
 
-        StatChangeBreakdown results = GetAbilityStatChangeBreakdown(battleManager.Player, selection.Target, effects, selection.Ability.Type, battleManager);
+        StatChangeBreakdown results = GetAbilityStatChangeBreakdown(gameValues, effects);
 
         return results;
+    }
+
+    public static void CheckAbilitySequence(List<AbilitySelection> sequence, AbilitySequence abilitySequence, BattleManager battleManager)
+    {
+        GameValues gameValues = new GameValues
+        {
+            battleManager = battleManager,
+            activator = battleManager.Player,
+            gameEvent = GameEvent.OnCheckAbilitySequence,
+            abilitySequence = abilitySequence
+        };
+
+        for (int i = 0; i < sequence.Count; i++)
+        {
+            AbilitySelection abilitySelection = sequence[i];
+
+            if (abilitySelection.Ability.Type == AbilityType.Starter)
+            {
+                battleManager.Player.CurrentCombo++;
+            }
+
+            gameValues.target = abilitySelection.Target;
+            gameValues.currentAbilitySelection = abilitySelection;
+            gameValues.abilityType = abilitySelection.Ability.Type;
+
+            List<ModResult> modResults = new List<ModResult>();
+            StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults);
+            gameValues.battleManager.Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+
+            foreach (ModResult modResult in modResults)
+            {
+                foreach (AbilitySelection abilityRetrigger in modResult.retriggerAbilities)
+                {
+                    AbilitySelection newAbilitySelection = new AbilitySelection(abilityRetrigger, true);
+                    int index = sequence.IndexOf(abilityRetrigger);
+                    sequence.Insert(index + 1, newAbilitySelection);
+                }
+            }
+        }
+    }
+
+    public static int GetTotalCombo(List<AbilitySelection> sequence)
+    {
+        int amount = 0;
+
+        foreach (AbilitySelection selection in sequence)
+        {
+            if (selection.Ability.Type == AbilityType.Starter)
+            {
+                amount++;
+            }
+        }
+
+        return amount;
     }
 
     public static StatChangeBreakdown GetEnemyAbilityStatChangeBreakdown(EnemyAbility ability, EnemyCharacter activator, BattleManager battleManager)
@@ -46,6 +107,7 @@ public class StatCalculation
         {
             battleManager = battleManager,
             activator = activator,
+            abilityType = AbilityType.Starter
         };
 
         foreach (AbilityBehavior behavior in behaviors)
@@ -55,36 +117,30 @@ public class StatCalculation
 
         List<AbilityEffect> effects = ability.GetAbilityEffects(ability.GetAbilityBehaviors(), passingBehaviors);
 
-        return GetAbilityStatChangeBreakdown(activator, null, effects, AbilityType.Starter, battleManager);
+        return GetAbilityStatChangeBreakdown(gameValues, effects);
     }
 
-    public static StatChangeBreakdown GetAbilityStatChangeBreakdown(Character activator, Character target, List<AbilityEffect> effects, AbilityType abilityType, BattleManager battleManager)
+    public static StatChangeBreakdown GetAbilityStatChangeBreakdown(GameValues gameValues, List<AbilityEffect> effects)
     {
         List<Character> nonActivatorCharacters = new List<Character>();
 
-        if (activator != battleManager.Player)
+        if (gameValues.activator != gameValues.battleManager.Player)
         {
-            nonActivatorCharacters.Add(battleManager.Player);
+            nonActivatorCharacters.Add(gameValues.battleManager.Player);
         }
 
-        foreach (Character enemy in battleManager.EnemyTeam.Members)
+        foreach (Character enemy in gameValues.battleManager.EnemyTeam.Members)
         {
-            if (enemy != activator)
+            if (enemy != gameValues.activator)
             {
                 nonActivatorCharacters.Add(enemy);
             }
         }
 
-        GameValues gameValues = new GameValues
-        {
-            battleManager = battleManager,
-            activator = activator,
-            target = target,
-            gameEvent = GameEvent.OnCharacterUsesAbility,
-        };
+        gameValues.gameEvent = GameEvent.OnCharacterUsesAbility;
 
-        StatChangeAmounts abilityStatChanges = new StatChangeAmounts(battleManager.Player, battleManager.EnemyTeam);
-        CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, effects, abilityType);
+        StatChangeAmounts abilityStatChanges = new StatChangeAmounts(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
+        CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, effects, gameValues.abilityType);
         CalculatePotentialDodgeGain(abilityStatChanges, gameValues, effects);
         CalculatePotentialChainGain(abilityStatChanges, gameValues, effects);
         CalculatePotentialChainSpent(abilityStatChanges, gameValues, effects);
@@ -93,7 +149,7 @@ public class StatCalculation
         StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
-        activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+        gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
 
         // Calculate Mod Stat Changes for victims
         gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;
@@ -102,7 +158,7 @@ public class StatCalculation
             character.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
         }
 
-        statChangeBreakdown.ApplyStatChanges(battleManager.Player, battleManager.EnemyTeam);
+        statChangeBreakdown.ApplyStatChanges(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
 
         return statChangeBreakdown;
     }
@@ -113,7 +169,7 @@ public class StatCalculation
 
         foreach (Effect effect in effects)
         {
-            int amount = effect.GetAmount(gameValues);
+            float amount = effect.GetAmount(gameValues);
 
             List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
 
@@ -173,7 +229,7 @@ public class StatCalculation
                         }
                     }
 
-                    int totalCharacters = application.NumberOfNonTargetedEnemies.GetValue();
+                    int totalCharacters = (int)application.NumberOfNonTargetedEnemies.GetValue();
                     int numCharacters = 0;
 
                     switch (application.NonTargetedEnemyPriority)
@@ -276,13 +332,36 @@ public class StatCalculation
                         }
                     }
                     break;
+                case GameConditionType.AbilityType:
+                    if (condition.AbilityType != gameValues.abilityType)
+                        return false;
+                    break;
+                case GameConditionType.ComboAmount:
+                    int amount = 0;
+                    switch (condition.ComboCountType)
+                    {
+                        case ComboCountType.Current:
+                            amount = gameValues.battleManager.Player.CurrentCombo;
+                            break;
+                        case ComboCountType.Total:
+                            amount = gameValues.battleManager.Player.TotalCombo;
+                            break;
+                    }
+                    if (!condition.CheckComparison(amount, condition.ValueInput1.GetValue(), condition.Comparison1))
+                    {
+                        return false;
+                    }
+                    break;
+                case GameConditionType.StoreAbilityInternally:
+                    gameValues.currentMod.internalAbilitySelectionStorage[condition.IntValue1] = gameValues.currentAbilitySelection;
+                    break;
             }
         }
 
         return true;
     }
 
-    public static int GetMinOrMaxStat(bool getMinimum, Character activator, List<AbilityEffect> effects, StatType type)
+    public static float GetMinOrMaxStat(bool getMinimum, Character activator, List<AbilityEffect> effects, StatType type)
     {
         List<AbilityEffect> filteredEffects = new List<AbilityEffect>();
         switch (type)
@@ -291,7 +370,7 @@ public class StatCalculation
                 filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.DoDamage));
                 break;
             case StatType.Chain:
-                int totalAmount = GetMinOrMaxEffectAmount(getMinimum, activator, FilterForEffectType(effects, AbilityEffectType.GainChain));
+                float totalAmount = GetMinOrMaxEffectAmount(getMinimum, activator, FilterForEffectType(effects, AbilityEffectType.GainChain));
                 totalAmount -= GetMinOrMaxEffectAmount(getMinimum, activator, FilterForEffectType(effects, AbilityEffectType.SpendChain));
                 return totalAmount;
             case StatType.Dodge:
@@ -303,9 +382,9 @@ public class StatCalculation
 
     }
 
-    public static int GetMinOrMaxEffectAmount(bool getMinimum, Character activator, List<AbilityEffect> effects)
+    public static float GetMinOrMaxEffectAmount(bool getMinimum, Character activator, List<AbilityEffect> effects)
     {
-        int totalAmount = 0;
+        float totalAmount = 0;
 
         GameValues gameValues = new GameValues()
         {

@@ -27,7 +27,10 @@ public class ModEffectDrawer : BetterPropertyDrawer
                 AddProperty("extraArithmetics1");
                 AddProperty("applicationModes");
                 break;
-
+            case ModEffectType.RetriggerAbility:
+                SerializedProperty intValue1 = property.FindPropertyRelative("intValue1");
+                intValue1.intValue = AddIntSlider(intValue1.intValue, 0, 4, "Slot");
+                break;
         }
 
         AddQuarterBlankLine();
