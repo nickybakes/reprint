@@ -22,24 +22,30 @@ MonoBehaviour:
         list: []
         listFoldout: 1
         foldouts: 
+      hits:
+        list: []
+        listFoldout: 0
+        foldouts: 
       effects:
         list:
-        - type: 1
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 0
               numberOfNonTargetedEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
+          type: 1
           valueInput:
             type: 0
             baseValue: 4
             maxValue: 4
+            floatMode: 0
           extraArithmetics:
             list: []
             listFoldout: 0

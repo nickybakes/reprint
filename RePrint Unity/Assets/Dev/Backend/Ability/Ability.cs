@@ -25,7 +25,6 @@ public abstract class Ability
     protected List<List<AbilityBehavior>> behaviorsTable;
 
     public abstract int GetAPCost(int overclock = 0);
-    public abstract int GetNumberOfHits(int overclock = 0);
     public abstract bool TargetAllEnemies(int overclock = 0);
     public abstract bool CanTargetPlayer(int overclock = 0);
     public abstract bool CanTargetEnemies(int overclock = 0);
@@ -50,6 +49,23 @@ public abstract class Ability
         };
 
         return stats;
+    }
+
+    public List<AbilityHit> GetAbilityHits(List<AbilityBehavior> behaviors, List<bool> passingBehaviors)
+    {
+        List<AbilityHit> hits = new List<AbilityHit>();
+        for (int i = 0; i < passingBehaviors.Count; i++)
+        {
+            if (passingBehaviors[i])
+            {
+                hits.AddRange(behaviors[i].Hits);
+                if (behaviors[i].BreakOutIfConditionsAreTrue)
+                {
+                    return hits;
+                }
+            }
+        }
+        return hits;
     }
 
     public List<AbilityEffect> GetAbilityEffects(List<AbilityBehavior> behaviors, List<bool> passingBehaviors)

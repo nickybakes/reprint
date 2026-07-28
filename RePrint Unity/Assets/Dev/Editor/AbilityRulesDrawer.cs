@@ -20,7 +20,6 @@ public class AbilityRulesDrawer : BetterPropertyDrawer
             AddProperty("apCost", "AP Cost");
             AddProperty("canTargetEnemies");
             AddProperty("canTargetPlayer");
-            AddProperty("numberOfHits");
             AddProperty("targetAllEnemies");
         }
 

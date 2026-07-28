@@ -36,9 +36,9 @@ public class StatCalculation
             battleManager.Player.CurrentCombo++;
         }
 
-        List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
+        List<AbilityHit> hits = selection.Ability.GetAbilityHits(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
 
-        StatChangeBreakdown results = GetAbilityStatChangeBreakdown(gameValues, effects);
+        StatChangeBreakdown results = GetAbilityStatChangeBreakdown(gameValues, hits);
 
         return results;
     }
@@ -115,12 +115,12 @@ public class StatCalculation
             passingBehaviors.Add(DoGameConditionsPass(behavior.Conditions, gameValues));
         }
 
-        List<AbilityEffect> effects = ability.GetAbilityEffects(ability.GetAbilityBehaviors(), passingBehaviors);
+        List<AbilityHit> hits = ability.GetAbilityHits(ability.GetAbilityBehaviors(), passingBehaviors);
 
-        return GetAbilityStatChangeBreakdown(gameValues, effects);
+        return GetAbilityStatChangeBreakdown(gameValues, hits);
     }
 
-    public static StatChangeBreakdown GetAbilityStatChangeBreakdown(GameValues gameValues, List<AbilityEffect> effects)
+    public static StatChangeBreakdown GetAbilityStatChangeBreakdown(GameValues gameValues, List<AbilityHit> hits)
     {
         List<Character> nonActivatorCharacters = new List<Character>();
 
@@ -140,16 +140,32 @@ public class StatCalculation
         gameValues.gameEvent = GameEvent.OnThisCharacterUsesAbility;
 
         StatChangeAmounts abilityStatChanges = new StatChangeAmounts(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
-        CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, effects, gameValues.abilityType);
-        CalculatePotentialDodgeGain(abilityStatChanges, gameValues, effects);
-        CalculatePotentialChainGain(abilityStatChanges, gameValues, effects);
-        CalculatePotentialChainSpent(abilityStatChanges, gameValues, effects);
 
         List<ModResult> modResults = new List<ModResult>();
         StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
         gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+
+        int hitTotal = 0;
+
+        gameValues.gameEvent = GameEvent.OnThisCharacterHits;
+
+        for (int i = 0; i < hits.Count; i++)
+        {
+            AbilityHit hit = hits[i];
+            int hitAmount = hit.GetAmount(gameValues);
+            for (int j = 0; j < hitAmount; j++)
+            {
+                hitTotal += hitAmount;
+                CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, hit.Effects, gameValues.abilityType);
+                CalculatePotentialDodgeGain(abilityStatChanges, gameValues, hit.Effects);
+                CalculatePotentialChainGain(abilityStatChanges, gameValues, hit.Effects);
+                CalculatePotentialChainSpent(abilityStatChanges, gameValues, hit.Effects);
+                gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+            }
+        }
+
 
         // Calculate Mod Stat Changes for victims
         gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;

@@ -30,11 +30,6 @@ public class EnemyAbility : Ability
         return 0;
     }
 
-    public override int GetNumberOfHits(int overclock = 0)
-    {
-        return 1;
-    }
-
     public override bool CanTargetEnemies(int overclock = 0)
     {
         return false;

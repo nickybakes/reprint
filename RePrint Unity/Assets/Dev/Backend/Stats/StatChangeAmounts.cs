@@ -5,6 +5,10 @@ public class StatChangeAmounts
 {
     public Dictionary<Character, StatChanges> Changes { get; private set; }
 
+    public List<Character> uniqueEnemiesHit;
+
+    public int totalHits;
+
     private Character player;
 
     private Team enemyTeam;
@@ -15,6 +19,7 @@ public class StatChangeAmounts
         player = _player;
         enemyTeam = _enemyTeam;
         Changes = new Dictionary<Character, StatChanges>();
+        uniqueEnemiesHit = new List<Character>();
     }
 
     public void AddAmount(Character character, float amount, StatChange stat)

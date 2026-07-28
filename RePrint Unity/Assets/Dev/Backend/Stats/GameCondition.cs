@@ -105,6 +105,8 @@ public enum GameEvent
     OnRefreshAbilitySequenceStats,
     OnCheckAbilitySequence,
     OnCheckAbilitySequenceWithRetriggers,
+    OnThisCharacterHits,
+    // OnThisCharacterGetsHit
 }
 
 public enum IndexType

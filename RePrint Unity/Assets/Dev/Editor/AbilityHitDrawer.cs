@@ -1,8 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(AbilityBehavior))]
-public class AbilityBehaviorDrawer : BetterPropertyDrawer
+[CustomPropertyDrawer(typeof(AbilityHit))]
+public class AbilityHitDrawer : BetterPropertyDrawer
 {
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
@@ -10,10 +10,8 @@ public class AbilityBehaviorDrawer : BetterPropertyDrawer
 
         EditorGUI.BeginProperty(position, label, property);
 
-        AddProperty("breakOutIfConditionsAreTrue");
-
-        AddProperty("conditions");
-        AddProperty("hits");
+        AddProperty("amount");
+        AddProperty("extraArithmetics");
 
         AddProperty("effects");
 
