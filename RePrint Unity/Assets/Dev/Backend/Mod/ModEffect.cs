@@ -49,11 +49,7 @@ public class ModEffect : Effect
 
 public enum ModEffectType
 {
-    DoDamage,
     StackStatChange,
     RetriggerAbility,
-    Heal,
-    GainChain,
-
-
+    // Heal,
 }

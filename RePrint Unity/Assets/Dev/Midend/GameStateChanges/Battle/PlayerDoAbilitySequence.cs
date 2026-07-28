@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerDoAbilitySequence : BattleStateChange
 {
 
-    private List<StatChangeBreakdown> statChangeBreakdowns;
+    public List<StatChangeBreakdown> statChangeBreakdowns;
 
-    private List<AbilitySelection> abilitySelections;
+    public List<AbilitySelection> abilitySelections;
 
     private Character player;
     private CharacterFigure playerFigure;

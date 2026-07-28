@@ -9,6 +9,7 @@ public class Mod
     public string Description { get { return baseData.Profile.Description; } }
     public List<ModBehavior> Behaviors { get { return baseData.ModBehaviors.List; } }
     public string DebugName { get { return baseData.Name; } }
+    public int SortOrder { get { return baseData.SortOrder; } }
 
     protected ModData baseData;
 

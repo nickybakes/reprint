@@ -36,6 +36,15 @@ public class GameCondition
     [SerializeField] private ComboCountType comboCountType;
     public ComboCountType ComboCountType { get => comboCountType; }
 
+    [SerializeField] private TurnIndexType turnIndexType;
+    public TurnIndexType TurnIndexType { get => turnIndexType; }
+
+    [SerializeField] private TurnStat turnStat;
+    public TurnStat TurnStat { get => turnStat; }
+
+    [SerializeField] private TurnCountType turnCountType;
+    public TurnCountType TurnCountType { get => turnCountType; }
+
     public bool CheckCharacterStatCondition(Character character, float threshold, ValueComparisonType comparisonType)
     {
         int amount = character.Stats.GetStat(characterStat);
@@ -73,6 +82,8 @@ public enum GameConditionType
     AbilitySequenceIndex,
     StoreAbilityInternally,
     ComboAmount,
+    TurnHistory,
+    TurnOrWaveIndex,
 }
 
 public enum ValueComparisonType
@@ -88,13 +99,12 @@ public enum ValueComparisonType
 
 public enum GameEvent
 {
-    StartBattle,
-    StartWave,
     PlayerTurnStart,
-    OnCharacterUsesAbility,
+    OnThisCharacterUsesAbility,
     OnOtherCharacterUsesAbility,
     OnRefreshAbilitySequenceStats,
-    OnCheckAbilitySequence
+    OnCheckAbilitySequence,
+    OnCheckAbilitySequenceWithRetriggers,
 }
 
 public enum IndexType
@@ -103,6 +113,28 @@ public enum IndexType
     Last,
     Middle,
     Specific
+}
+
+public enum TurnIndexType
+{
+    PreviousTurn,
+    // CurrentTurn,
+    // AnyTurn,
+    // AnyTurnThisWave,
+    // SpecificIndexOffset,
+    // SpecificIndex,
+}
+
+public enum TurnCountType
+{
+    TurnIndexInBattle,
+    TurnIndexInWave,
+    WaveIndex
+}
+
+public enum TurnStat
+{
+    TotalHealthLost,
 }
 
 public enum ComboCountType

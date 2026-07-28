@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyDoAbility : BattleStateChange
 {
 
-    private StatChangeBreakdown statChangeBreakdown;
+    public StatChangeBreakdown statChangeBreakdown;
 
-    private EnemyAbility enemyAbility;
+    public EnemyAbility enemyAbility;
 
     public EnemyDoAbility(EnemyAbility _enemyAbility, StatChangeBreakdown _results)
     {

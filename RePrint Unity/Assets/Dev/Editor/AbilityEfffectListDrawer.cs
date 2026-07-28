@@ -31,11 +31,11 @@ public class AbilityEffectListDrawer : BetterListDrawer
                 SerializedProperty valueMaxProp = valueInputProp.FindPropertyRelative("maxValue");
                 ValueType valueType = (ValueType)valueTypeProp.enumValueIndex;
 
-                string valueString = " (" + valueBaseProp.intValue.ToString();
+                string valueString = " (" + valueBaseProp.floatValue.ToString();
 
                 if (valueType == ValueType.Range)
                 {
-                    valueString += " to " + valueMaxProp.intValue.ToString();
+                    valueString += " to " + valueMaxProp.floatValue.ToString();
                 }
 
                 name += valueString + ")";

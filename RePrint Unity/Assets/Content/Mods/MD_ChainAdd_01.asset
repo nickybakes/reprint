@@ -19,7 +19,7 @@ MonoBehaviour:
     - conditions:
         list:
         - type: 0
-          gameEvent: 2
+          gameEvent: 0
           characterStat: 0
           characters:
             list: []
@@ -35,6 +35,9 @@ MonoBehaviour:
           abilityType: 0
           intValue1: 0
           comboCountType: 0
+          turnIndexType: 0
+          turnStat: 0
+          turnCountType: 0
         - type: 1
           gameEvent: 2
           characterStat: 1
@@ -60,6 +63,9 @@ MonoBehaviour:
           abilityType: 0
           intValue1: 0
           comboCountType: 0
+          turnIndexType: 0
+          turnStat: 0
+          turnCountType: 0
         listFoldout: 1
         foldouts: 0101
       effects:
@@ -76,7 +82,7 @@ MonoBehaviour:
               addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 1
+          type: 0
           valueInput1:
             type: 0
             baseValue: 2

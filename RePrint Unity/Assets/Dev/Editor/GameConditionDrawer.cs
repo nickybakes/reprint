@@ -57,6 +57,31 @@ public class GameConditionDrawer : BetterPropertyDrawer
                 AddProperty("comparison1", "");
                 AddProperty("valueInput1");
                 break;
+            case GameConditionType.TurnHistory:
+                SerializedProperty turnIndexTypeProp = AddProperty("turnIndexType");
+                TurnIndexType turnIndexType = (TurnIndexType)turnIndexTypeProp.enumValueIndex;
+                // switch (turnIndexType)
+                // {
+                //     case IndexType.Specific:
+                //         AddProperty("valueInput1");
+                //         break;
+                // }
+                AddProperty("turnStat");
+                AddProperty("characters");
+                AddProperty("comparison1", "");
+                AddProperty("valueInput1");
+                break;
+            case GameConditionType.TurnOrWaveIndex:
+                AddProperty("turnCountType");
+                indexTypeProp = AddProperty("indexType");
+                indexType = (IndexType)indexTypeProp.enumValueIndex;
+                switch (indexType)
+                {
+                    case IndexType.Specific:
+                        AddProperty("valueInput1");
+                        break;
+                }
+                break;
         }
 
         AddQuarterBlankLine();

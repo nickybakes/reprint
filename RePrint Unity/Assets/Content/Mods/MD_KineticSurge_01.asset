@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
-  m_Name: MD_ClockworkPlus_01
+  m_Name: MD_KineticSurge_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: d7b104bddee7bf446b798d818d54e253, type: 2}
-  <Name>k__BackingField: Clockwork+
-  <Rarity>k__BackingField: 2
-  <SortOrder>k__BackingField: 0
+  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Name>k__BackingField: Gambit Chip
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 3
+          gameEvent: 1
           characterStat: 0
           characters:
             list: []
@@ -46,7 +44,7 @@ MonoBehaviour:
         list:
         - applicationModes:
             list:
-            - applicationMode: 0
+            - applicationMode: 4
               numberOfNonTargetedEnemies:
                 type: 0
                 baseValue: 0
@@ -58,23 +56,17 @@ MonoBehaviour:
             foldouts: 01
           type: 0
           valueInput1:
-            type: 0
-            baseValue: 2
-            maxValue: 0
-            floatMode: 0
+            type: 1
+            baseValue: 1
+            maxValue: 1.25
+            floatMode: 1
           extraArithmetics1:
-            list:
-            - mathType: 2
-              gameValueType: 2
-              invertEquation: 0
-              clamp: 0
-              minClamp: 0
-              maxClamp: 0
-            listFoldout: 1
-            foldouts: 01
+            list: []
+            listFoldout: 0
+            foldouts: 
           intValue1: 0
           mathType: 0
-          statChange: 10
+          statChange: 5
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

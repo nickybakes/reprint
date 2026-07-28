@@ -137,7 +137,7 @@ public class StatCalculation
             }
         }
 
-        gameValues.gameEvent = GameEvent.OnCharacterUsesAbility;
+        gameValues.gameEvent = GameEvent.OnThisCharacterUsesAbility;
 
         StatChangeAmounts abilityStatChanges = new StatChangeAmounts(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
         CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, effects, gameValues.abilityType);
@@ -354,6 +354,64 @@ public class StatCalculation
                     break;
                 case GameConditionType.StoreAbilityInternally:
                     gameValues.currentMod.internalAbilitySelectionStorage[condition.IntValue1] = gameValues.currentAbilitySelection;
+                    break;
+                case GameConditionType.TurnHistory:
+                    TurnResults turnResults = gameValues.battleManager.currentTurnResults;
+                    switch (condition.TurnIndexType)
+                    {
+                        case TurnIndexType.PreviousTurn:
+                            if (gameValues.battleManager.TurnIndex == 0)
+                            {
+                                return false;
+                            }
+                            turnResults = gameValues.battleManager.turnHistory[gameValues.battleManager.TurnIndex - 1];
+                            break;
+                    }
+                    List<Character> charactersTurnHistory = GetAffectedCharacters(gameValues, condition.Characters);
+                    foreach (Character character in charactersTurnHistory)
+                    {
+                        int amountTurn = 0;
+                        switch (condition.TurnStat)
+                        {
+                            case TurnStat.TotalHealthLost:
+                                amountTurn = turnResults.GetStatDifference(character, CharacterStat.Health);
+                                amountTurn *= -1;
+                                break;
+                        }
+                        if (!condition.CheckComparison(amountTurn, condition.ValueInput1.GetValue(), condition.Comparison1))
+                        {
+                            return false;
+                        }
+                    }
+
+                    break;
+                case GameConditionType.TurnOrWaveIndex:
+                    int indexToCompare = gameValues.battleManager.TurnIndex;
+                    switch (condition.TurnCountType)
+                    {
+                        case TurnCountType.TurnIndexInWave:
+                            indexToCompare = gameValues.battleManager.TurnIndexInWave;
+                            break;
+                        case TurnCountType.WaveIndex:
+                            indexToCompare = gameValues.battleManager.WaveIndex;
+                            break;
+                    }
+
+                    switch (condition.IndexType)
+                    {
+                        case IndexType.First:
+                            if (indexToCompare != 0)
+                                return false;
+                            break;
+                        case IndexType.Middle:
+                            if (indexToCompare == 0)
+                                return false;
+                            break;
+                        case IndexType.Specific:
+                            if (indexToCompare != (int)condition.ValueInput1.GetValue())
+                                return false;
+                            break;
+                    }
                     break;
             }
         }

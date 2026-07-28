@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
-  m_Name: MD_12thAscent_01
+  m_Name: MD_Reflex_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: 7590ab48a5751074e9a151c91c648a72, type: 2}
-  <Name>k__BackingField: 12th Ascent
-  <Rarity>k__BackingField: 2
-  <SortOrder>k__BackingField: 0
+  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Name>k__BackingField: Retaliate
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
         list:
         - type: 0
-          gameEvent: 1
+          gameEvent: 0
           characterStat: 0
           characters:
             list: []
@@ -40,9 +38,9 @@ MonoBehaviour:
           turnIndexType: 0
           turnStat: 0
           turnCountType: 0
-        - type: 1
-          gameEvent: 0
-          characterStat: 1
+        - type: 6
+          gameEvent: 3
+          characterStat: 0
           characters:
             list:
             - applicationMode: 0
@@ -55,10 +53,10 @@ MonoBehaviour:
               addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          comparison1: 1
+          comparison1: 0
           valueInput1:
             type: 0
-            baseValue: 12
+            baseValue: 0
             maxValue: 0
             floatMode: 0
           indexType: 0
@@ -86,19 +84,44 @@ MonoBehaviour:
             foldouts: 01
           type: 0
           valueInput1:
-            type: 0
+            type: 1
             baseValue: 2
-            maxValue: 0
+            maxValue: 4
             floatMode: 0
           extraArithmetics1:
             list: []
             listFoldout: 0
             foldouts: 
           intValue1: 0
-          mathType: 2
-          statChange: 3
+          mathType: 0
+          statChange: 10
+        - applicationModes:
+            list:
+            - applicationMode: 0
+              numberOfNonTargetedEnemies:
+                type: 0
+                baseValue: 0
+                maxValue: 0
+                floatMode: 0
+              nonTargetedEnemyPriority: 0
+              addValueToTargetPriority: 0
+            listFoldout: 1
+            foldouts: 01
+          type: 0
+          valueInput1:
+            type: 0
+            baseValue: 2
+            maxValue: 1.3
+            floatMode: 0
+          extraArithmetics1:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          intValue1: 0
+          mathType: 0
+          statChange: 8
         listFoldout: 1
-        foldouts: 01
+        foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01

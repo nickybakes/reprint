@@ -17,10 +17,6 @@ public class ModEffectDrawer : BetterPropertyDrawer
 
         switch (type)
         {
-            case ModEffectType.DoDamage:
-                AddProperty("applicationModes");
-                AddProperty("valueInput1");
-                break;
             case ModEffectType.StackStatChange:
                 AddProperty("statChange");
                 AddProperty("valueInput1");

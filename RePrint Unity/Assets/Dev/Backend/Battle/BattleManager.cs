@@ -23,6 +23,9 @@ public class BattleManager : MonoBehaviour
     /// The number of the current turn the battle is in. Increments once all teams have done an ability and loops back to the first team.
     /// </summary>
     public int TurnIndex { get; private set; } = -1;
+    public int TurnIndexInWave { get; private set; } = -1;
+    public int WaveIndex { get; private set; } = -1;
+
 
     /// <summary>
     /// The data for what characters are in this battle scenario
@@ -30,6 +33,9 @@ public class BattleManager : MonoBehaviour
     private BattleData battleData;
 
     private AbilitySequence playerAbilitySequence;
+
+    public List<TurnResults> turnHistory;
+    public TurnResults currentTurnResults;
 
     /// <summary>
     /// Invokes the Submit Changes Event and starts a new list of changes.
@@ -42,7 +48,10 @@ public class BattleManager : MonoBehaviour
 
     public void SetupBattle(BattleData data)
     {
+        turnHistory = new List<TurnResults>();
         TurnIndex = -1;
+        TurnIndexInWave = -1;
+        WaveIndex = -1;
         Player = new PlayerCharacter(data.playerCharacterData, data.playerMods);
 
         EnemyTeam = new EnemyTeam();
@@ -56,27 +65,28 @@ public class BattleManager : MonoBehaviour
         {
             new BattleInitialized(Player, EnemyTeam)
         };
+
+        StartWave();
+
         SubmitChanges();
 
         StartPlayerTurn();
+    }
+
+    public void StartWave()
+    {
+        WaveIndex++;
+        TurnIndexInWave = -1;
     }
 
     public virtual void StartPlayerTurn()
     {
         playerAbilitySequence = new AbilitySequence();
         TurnIndex++;
+        TurnIndexInWave++;
         EnemyTeam.ResetTurnPriorities();
         EnemyTeam.ResetForTurn();
         Player.ResetForTurn();
-
-        if (TurnIndex == 0)
-        {
-            DoPlayerMods(GameEvent.StartBattle);
-
-            // TODO: right now, starting a wave is the same as starting the full battle.
-            // Change this when we have "waves".
-            DoPlayerMods(GameEvent.StartWave);
-        }
 
         DoPlayerMods(GameEvent.PlayerTurnStart);
 
@@ -139,12 +149,17 @@ public class BattleManager : MonoBehaviour
     public virtual void PlayerSubmitConfirmAbilitySequence()
     {
         pendingBattleChanges.Add(new PlayerTurnEnd());
-        DoPlayerAbilitySequence();
 
-        DoEnemyAbilities();
+        currentTurnResults = new TurnResults(Player, EnemyTeam)
+        {
+            playerDoAbilitySequence = DoPlayerAbilitySequence(),
+            enemyDoAbilities = DoEnemyAbilities()
+        };
+
+        currentTurnResults.CalculateStatsAfter(Player, EnemyTeam);
+        turnHistory.Add(currentTurnResults);
 
         // TODO: Check if all enemies are eliminated. If not, next turn!
-
 
         pendingBattleChanges.Add(new BeforePlayerTurnStart(this));
         SubmitChanges();
@@ -152,7 +167,7 @@ public class BattleManager : MonoBehaviour
         StartPlayerTurn();
     }
 
-    public virtual void DoPlayerAbilitySequence()
+    public virtual PlayerDoAbilitySequence DoPlayerAbilitySequence()
     {
         List<AbilitySelection> sortedAbilitySequence = playerAbilitySequence.GetSortedSequence();
 
@@ -179,25 +194,33 @@ public class BattleManager : MonoBehaviour
 
         Player.ResetTempStats();
 
-        pendingBattleChanges.Add(new PlayerDoAbilitySequence(Player, abilitySelections, statChangeBreakdowns));
+        PlayerDoAbilitySequence results = new PlayerDoAbilitySequence(Player, abilitySelections, statChangeBreakdowns);
+
+        pendingBattleChanges.Add(results);
 
         EnemyTeam.CalculateTurnOrder();
 
         SubmitChanges();
+
+        return results;
     }
 
-    public virtual void DoEnemyAbilities()
+    public virtual List<EnemyDoAbility> DoEnemyAbilities()
     {
+        List<EnemyDoAbility> enemyDoAbilities = new List<EnemyDoAbility>();
         foreach (EnemyCharacter enemy in EnemyTeam.EnemiesInTurnOrder)
         {
             if (enemy.IsAlive)
             {
                 StatChangeBreakdown results = StatCalculation.GetEnemyAbilityStatChangeBreakdown(enemy.ChosenAbility, enemy, this);
-                pendingBattleChanges.Add(new EnemyDoAbility(enemy.ChosenAbility, results));
+                EnemyDoAbility enemyDoAbility = new EnemyDoAbility(enemy.ChosenAbility, results);
+                pendingBattleChanges.Add(enemyDoAbility);
+                enemyDoAbilities.Add(enemyDoAbility);
             }
         }
 
         SubmitChanges();
+        return enemyDoAbilities;
     }
 
     public virtual void PlayerSubmitBack()

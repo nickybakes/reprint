@@ -76,9 +76,11 @@ public abstract class Character
 
     public void CalculateStatChangesFromMods(GameValues gameValues, StatChangeBreakdown statChangeBreakdown)
     {
-        for (int i = 0; i < Mods.Count; i++)
+        List<Mod> sortedMods = GetSortedMods();
+
+        for (int i = 0; i < sortedMods.Count; i++)
         {
-            Mod mod = Mods[i];
+            Mod mod = sortedMods[i];
 
             int numPassingBehaviors = 0;
 
@@ -117,5 +119,30 @@ public abstract class Character
             statChangeBreakdown.modResults.Add(modResult);
         }
 
+    }
+
+    public List<Mod> GetSortedMods()
+    {
+        List<Mod> sortedMods = new List<Mod>();
+        List<Mod> remainingMods = new List<Mod>(Mods);
+
+        while (remainingMods.Count > 0)
+        {
+            Mod lowestSortMod = remainingMods[0];
+            int lowestSort = int.MaxValue;
+            foreach (Mod mod in remainingMods)
+            {
+                if (mod.SortOrder < lowestSort)
+                {
+                    lowestSort = mod.SortOrder;
+                    lowestSortMod = mod;
+                }
+            }
+
+            sortedMods.Add(lowestSortMod);
+            remainingMods.Remove(lowestSortMod);
+        }
+
+        return sortedMods;
     }
 }

@@ -34,7 +34,7 @@ MonoBehaviour:
               addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 1
+          type: 0
           valueInput1:
             type: 1
             baseValue: 1
