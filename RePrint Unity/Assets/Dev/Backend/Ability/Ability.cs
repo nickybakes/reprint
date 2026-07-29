@@ -51,23 +51,6 @@ public abstract class Ability
         return stats;
     }
 
-    public List<AbilityHit> GetAbilityHits(List<AbilityBehavior> behaviors, List<bool> passingBehaviors)
-    {
-        List<AbilityHit> hits = new List<AbilityHit>();
-        for (int i = 0; i < passingBehaviors.Count; i++)
-        {
-            if (passingBehaviors[i])
-            {
-                hits.AddRange(behaviors[i].Hits);
-                if (behaviors[i].BreakOutIfConditionsAreTrue)
-                {
-                    return hits;
-                }
-            }
-        }
-        return hits;
-    }
-
     public List<AbilityEffect> GetAbilityEffects(List<AbilityBehavior> behaviors, List<bool> passingBehaviors)
     {
         List<AbilityEffect> effects = new List<AbilityEffect>();
@@ -87,6 +70,7 @@ public abstract class Ability
 
     protected int GetMinOrMaxStat(bool getMinimum, Character activator, int overclock, List<List<bool>> combinations, StatType type)
     {
+        Character placeholderTarget = new DummyCharacter(activator.battleManager);
         int bestValue = int.MinValue;
         if (getMinimum)
             bestValue = int.MaxValue;
@@ -99,8 +83,22 @@ public abstract class Ability
 
             if (effects.Count > 0)
             {
-                currentValue += (int)StatCalculation.GetMinOrMaxStat(getMinimum, activator, effects, type);
+                StatChangeAmounts statChangeAmounts = StatCalculation.GetMinOrMaxStat(activator.battleManager, getMinimum, activator, placeholderTarget, effects);
 
+                switch (type)
+                {
+                    case StatType.PhysicalDamage:
+                        currentValue += (int)statChangeAmounts.GetAmount(placeholderTarget, StatChange.StarterPhysicalDamageTaken);
+                        currentValue += (int)statChangeAmounts.GetAmount(placeholderTarget, StatChange.FinisherPhysicalDamageTaken);
+                        break;
+                    case StatType.Dodge:
+                        currentValue += (int)statChangeAmounts.GetAmount(activator, StatChange.DodgeGained);
+                        break;
+                    case StatType.Chain:
+                        currentValue += (int)statChangeAmounts.GetAmount(activator, StatChange.ChainGained);
+                        currentValue -= (int)statChangeAmounts.GetAmount(activator, StatChange.ChainSpent);
+                        break;
+                }
                 if (getMinimum)
                 {
                     if (currentValue < bestValue)

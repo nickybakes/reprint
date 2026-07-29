@@ -24,6 +24,7 @@ public class StatCalculation
             target = selection.Target,
             currentAbilitySelection = selection,
             abilityType = selection.Ability.Type,
+            ability = selection.Ability,
         };
 
         foreach (AbilityBehavior behavior in behaviors)
@@ -36,9 +37,9 @@ public class StatCalculation
             battleManager.Player.CurrentCombo++;
         }
 
-        List<AbilityHit> hits = selection.Ability.GetAbilityHits(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
+        List<AbilityEffect> effects = selection.Ability.GetAbilityEffects(selection.Ability.GetAbilityBehaviors(selection.Overclock), passingBehaviors);
 
-        StatChangeBreakdown results = GetAbilityStatChangeBreakdown(gameValues, hits);
+        StatChangeBreakdown results = GetAbilityStatChangeBreakdown(gameValues, effects);
 
         return results;
     }
@@ -115,12 +116,12 @@ public class StatCalculation
             passingBehaviors.Add(DoGameConditionsPass(behavior.Conditions, gameValues));
         }
 
-        List<AbilityHit> hits = ability.GetAbilityHits(ability.GetAbilityBehaviors(), passingBehaviors);
+        List<AbilityEffect> effects = ability.GetAbilityEffects(ability.GetAbilityBehaviors(), passingBehaviors);
 
-        return GetAbilityStatChangeBreakdown(gameValues, hits);
+        return GetAbilityStatChangeBreakdown(gameValues, effects);
     }
 
-    public static StatChangeBreakdown GetAbilityStatChangeBreakdown(GameValues gameValues, List<AbilityHit> hits)
+    public static StatChangeBreakdown GetAbilityStatChangeBreakdown(GameValues gameValues, List<AbilityEffect> effects)
     {
         List<Character> nonActivatorCharacters = new List<Character>();
 
@@ -140,32 +141,12 @@ public class StatCalculation
         gameValues.gameEvent = GameEvent.OnThisCharacterUsesAbility;
 
         StatChangeAmounts abilityStatChanges = new StatChangeAmounts(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
-
+        CalculateAbilityEffects(gameValues, effects, abilityStatChanges);
         List<ModResult> modResults = new List<ModResult>();
         StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
         gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-
-        int hitTotal = 0;
-
-        gameValues.gameEvent = GameEvent.OnThisCharacterHits;
-
-        for (int i = 0; i < hits.Count; i++)
-        {
-            AbilityHit hit = hits[i];
-            int hitAmount = hit.GetAmount(gameValues);
-            for (int j = 0; j < hitAmount; j++)
-            {
-                hitTotal += hitAmount;
-                CalculatePotentialPhysicalDamage(abilityStatChanges, gameValues, hit.Effects, gameValues.abilityType);
-                CalculatePotentialDodgeGain(abilityStatChanges, gameValues, hit.Effects);
-                CalculatePotentialChainGain(abilityStatChanges, gameValues, hit.Effects);
-                CalculatePotentialChainSpent(abilityStatChanges, gameValues, hit.Effects);
-                gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-            }
-        }
-
 
         // Calculate Mod Stat Changes for victims
         gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;
@@ -179,40 +160,75 @@ public class StatCalculation
         return statChangeBreakdown;
     }
 
-    public static AmountsPerCharacter GetPotentialEffectAmount(GameValues gameValues, List<Effect> effects)
+    public static void CalculateAbilityEffects(GameValues gameValues, List<AbilityEffect> effects, StatChangeAmounts statChanges, bool getMinimum = false, bool getMaximum = false)
     {
-        AmountsPerCharacter amounts = new AmountsPerCharacter(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
-
-        foreach (Effect effect in effects)
+        foreach (AbilityEffect effect in effects)
         {
-            float amount = effect.GetAmount(gameValues);
-
             List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
 
             foreach (Character character in affectedCharacters)
             {
-                if (character == gameValues.activator)
+                switch (effect.Type)
                 {
-                    amounts.AddAmountToCharacter(character, amount, gameValues.target, amount);
+                    case AbilityEffectType.DoDamage:
+                        float damage = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                        if (gameValues.abilityType == AbilityType.Finisher)
+                        {
+                            statChanges.AddAmount(character, damage, StatChange.FinisherPhysicalDamageTaken);
+                        }
+                        else
+                        {
+                            statChanges.AddAmount(character, damage, StatChange.StarterPhysicalDamageTaken);
+                        }
+                        break;
+                    case AbilityEffectType.GainDodge:
+                        float dodge = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                        if (gameValues.activator == gameValues.battleManager.Player && gameValues.target != null)
+                        {
+                            statChanges.AddAmount(gameValues.target, dodge, StatChange.TurnPriorityGained);
+                        }
+                        statChanges.AddAmount(character, dodge, StatChange.DodgeGained);
+                        break;
+                    case AbilityEffectType.GainChain:
+                        float chainGain = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                        statChanges.AddAmount(character, chainGain, StatChange.ChainGained);
+                        break;
+                    case AbilityEffectType.SpendChain:
+                        float chainSpent = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                        statChanges.AddAmount(character, chainSpent, StatChange.ChainSpent);
+                        break;
+                    case AbilityEffectType.CountHits:
+                        break;
                 }
-                else
+
+                if (effect.ExtraEffects != null && effect.ExtraEffects.Count > 0)
                 {
-                    amounts.AddAmountToCharacter(character, amount);
+                    CalculateAbilityEffects(gameValues, effect.ExtraEffects, statChanges);
                 }
             }
         }
-
-        return amounts;
     }
 
-    public static AmountsPerCharacter GetPotentialEffectAmount(GameValues gameValues, Effect effect)
+    public static void CalculateModEffects(GameValues gameValues, Mod mod, List<ModEffect> effects, ModResult modResult)
     {
-        return GetPotentialEffectAmount(gameValues, new List<Effect>(new Effect[] { effect }));
-    }
+        foreach (ModEffect effect in effects)
+        {
+            List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
 
-    public static List<Character> GetAffectedCharacters(GameValues gameValues, EffectApplication effectApplication)
-    {
-        return GetAffectedCharacters(gameValues, new List<EffectApplication>(new EffectApplication[] { effectApplication }));
+            foreach (Character character in affectedCharacters)
+            {
+                switch (effect.Type)
+                {
+                    case ModEffectType.StackStatChange:
+                        float statChangeAmount = effect.GetAmount(gameValues);
+                        modResult.statChangeAmounts.AddAmount(character, statChangeAmount, effect.StatChange);
+                        break;
+                    case ModEffectType.RetriggerAbility:
+                        modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
+                        break;
+                }
+            }
+        }
     }
 
     public static List<Character> GetAffectedCharacters(GameValues gameValues, List<EffectApplication> applicationModes)
@@ -235,6 +251,30 @@ public class StatCalculation
                     affectedCharacters.Add(gameValues.battleManager.Player);
                     break;
 
+                case EffectApplicationMode.RandomEnemies:
+                    List<Character> possibleRandomEnemies = new List<Character>();
+                    foreach (Character member in gameValues.battleManager.EnemyTeam.Members)
+                    {
+                        if (member.IsAlive)
+                        {
+                            possibleRandomEnemies.Add(member);
+                        }
+                    }
+
+                    int totalCharacters = (int)application.NumberOfEnemies.GetValue();
+                    int numCharacters = 0;
+
+                    while (numCharacters < totalCharacters && possibleRandomEnemies.Count > 0)
+                    {
+                        int randomIndex = UnityEngine.Random.Range(0, possibleRandomEnemies.Count);
+                        affectedCharacters.Add(possibleRandomEnemies[randomIndex]);
+                        if (!application.CanRepeatEnemies)
+                            possibleRandomEnemies.RemoveAt(randomIndex);
+                        numCharacters++;
+                    }
+
+                    break;
+
                 case EffectApplicationMode.NonTargetedEnemies:
                     List<Character> possibleEnemies = new List<Character>();
                     foreach (Character member in gameValues.battleManager.EnemyTeam.Members)
@@ -245,8 +285,8 @@ public class StatCalculation
                         }
                     }
 
-                    int totalCharacters = (int)application.NumberOfNonTargetedEnemies.GetValue();
-                    int numCharacters = 0;
+                    totalCharacters = (int)application.NumberOfEnemies.GetValue();
+                    numCharacters = 0;
 
                     switch (application.NonTargetedEnemyPriority)
                     {
@@ -278,54 +318,6 @@ public class StatCalculation
         return affectedCharacters;
     }
 
-    public static void CalculatePotentialPhysicalDamage(StatChangeAmounts statChanges, GameValues gameValues, List<AbilityEffect> effects, AbilityType abilityType)
-    {
-        List<Effect> filteredEffects = new List<Effect>();
-        filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.DoDamage));
-
-        AmountsPerCharacter amounts = GetPotentialEffectAmount(gameValues, filteredEffects);
-
-        if (abilityType == AbilityType.Finisher)
-        {
-            statChanges.AddAmounts(amounts.Amounts, StatChange.FinisherPhysicalDamageTaken);
-        }
-        else
-        {
-            statChanges.AddAmounts(amounts.Amounts, StatChange.StarterPhysicalDamageTaken);
-        }
-
-    }
-
-    public static void CalculatePotentialChainGain(StatChangeAmounts statChanges, GameValues gameValues, List<AbilityEffect> effects)
-    {
-        List<Effect> filteredEffects = new List<Effect>();
-        filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.GainChain));
-
-        AmountsPerCharacter amounts = GetPotentialEffectAmount(gameValues, filteredEffects);
-
-        statChanges.AddAmounts(amounts.Amounts, StatChange.ChainGained);
-    }
-
-    public static void CalculatePotentialChainSpent(StatChangeAmounts statChanges, GameValues gameValues, List<AbilityEffect> effects)
-    {
-        List<Effect> filteredEffects = new List<Effect>();
-        filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.SpendChain));
-
-        AmountsPerCharacter amounts = GetPotentialEffectAmount(gameValues, filteredEffects);
-
-        statChanges.AddAmounts(amounts.Amounts, StatChange.ChainSpent);
-    }
-
-    public static void CalculatePotentialDodgeGain(StatChangeAmounts statChanges, GameValues gameValues, List<AbilityEffect> effects)
-    {
-        List<Effect> filteredEffects = new List<Effect>();
-        filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.GainDodge));
-
-        AmountsPerCharacter amounts = GetPotentialEffectAmount(gameValues, filteredEffects);
-
-        statChanges.AddAmounts(amounts.Amounts, StatChange.DodgeGained);
-        statChanges.AddAmounts(amounts.Priorities, StatChange.TurnPriorityGained);
-    }
 
     public static bool DoGameConditionsPass(List<GameCondition> conditions, GameValues gameValues)
     {
@@ -435,28 +427,22 @@ public class StatCalculation
         return true;
     }
 
-    public static float GetMinOrMaxStat(bool getMinimum, Character activator, List<AbilityEffect> effects, StatType type)
+    public static StatChangeAmounts GetMinOrMaxStat(BattleManager battleManager, bool getMinimum, Character activator, Character target, List<AbilityEffect> effects)
     {
-        List<AbilityEffect> filteredEffects = new List<AbilityEffect>();
-        switch (type)
+        StatChangeAmounts statChanges = new StatChangeAmounts(battleManager.Player, battleManager.EnemyTeam);
+        GameValues gameValues = new GameValues()
         {
-            case StatType.PhysicalDamage:
-                filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.DoDamage));
-                break;
-            case StatType.Chain:
-                float totalAmount = GetMinOrMaxEffectAmount(getMinimum, activator, FilterForEffectType(effects, AbilityEffectType.GainChain));
-                totalAmount -= GetMinOrMaxEffectAmount(getMinimum, activator, FilterForEffectType(effects, AbilityEffectType.SpendChain));
-                return totalAmount;
-            case StatType.Dodge:
-                filteredEffects.AddRange(FilterForEffectType(effects, AbilityEffectType.GainDodge));
-                break;
-        }
+            battleManager = battleManager,
+            activator = activator,
+            target = target
+        };
 
-        return GetMinOrMaxEffectAmount(getMinimum, activator, filteredEffects);
+        CalculateAbilityEffects(gameValues, effects, statChanges, getMinimum, !getMinimum);
 
+        return statChanges;
     }
 
-    public static float GetMinOrMaxEffectAmount(bool getMinimum, Character activator, List<AbilityEffect> effects)
+    public static float GetMinOrMaxEffectAmount(bool getMinimum, Character activator, Character target, List<AbilityEffect> effects)
     {
         float totalAmount = 0;
 

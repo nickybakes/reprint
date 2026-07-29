@@ -52,13 +52,13 @@ public class BattleManager : MonoBehaviour
         TurnIndex = -1;
         TurnIndexInWave = -1;
         WaveIndex = -1;
-        Player = new PlayerCharacter(data.playerCharacterData, data.playerMods);
+        Player = new PlayerCharacter(data.playerCharacterData, data.playerMods, this);
 
         EnemyTeam = new EnemyTeam();
 
         foreach (EnemyData enemyData in data.enemyDatas)
         {
-            EnemyTeam.AddMember(new EnemyCharacter(enemyData));
+            EnemyTeam.AddMember(new EnemyCharacter(enemyData, this));
         }
 
         pendingBattleChanges = new List<BattleStateChange>

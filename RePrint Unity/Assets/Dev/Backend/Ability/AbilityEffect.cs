@@ -6,14 +6,22 @@ using UnityEngine;
 public class AbilityEffect : Effect
 {
     [SerializeField] private AbilityEffectType type;
-
-    [SerializeField] private ValueInput valueInput;
-    [SerializeField] private BetterEditorList<Arithmetic> extraArithmetics;
-
     public AbilityEffectType Type { get => type; }
 
+    [SerializeField] private ValueInput valueInput;
     public ValueInput ValueInput { get => valueInput; }
+
+    [SerializeField] private BetterEditorList<Arithmetic> extraArithmetics;
     public List<Arithmetic> ExtraArithmetics { get => extraArithmetics.List; }
+
+    [SerializeField] private BetterEditorList<AbilityEffect> extraEffects;
+    public List<AbilityEffect> ExtraEffects { get => extraEffects.List; }
+
+    [SerializeField] private bool dontAutoCountHits;
+    public bool DontAutoCountHits { get => dontAutoCountHits; }
+
+    [SerializeField] private ValueInput hitAmount;
+    public ValueInput HitAmount { get => hitAmount; }
 
 
     public override float GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
@@ -42,5 +50,6 @@ public enum AbilityEffectType
     GainChain,
     ApplyStatusEffect,
     CooldownAbility,
-    SpendChain
+    SpendChain,
+    CountHits,
 }

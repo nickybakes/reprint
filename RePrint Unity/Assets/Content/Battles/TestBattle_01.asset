@@ -15,8 +15,6 @@ MonoBehaviour:
   playerCharacterData: {fileID: 11400000, guid: d6e74b8a3a5254745b337b6b06f795fe, type: 2}
   playerMods:
   - {fileID: 11400000, guid: e6b1f5b5d9173504ca58ffd4a35111d3, type: 2}
-  - {fileID: 11400000, guid: 3f762d593b0539a42a5afb037d1fc5fa, type: 2}
-  - {fileID: 11400000, guid: a59c03b3f07ec3945adb2d2181cd04c9, type: 2}
   enemyDatas:
   - {fileID: 11400000, guid: 3594a9fc748d5da428bc30b6c0284826, type: 2}
   - {fileID: 11400000, guid: 3594a9fc748d5da428bc30b6c0284826, type: 2}

@@ -13,7 +13,6 @@ public class AbilityBehaviorDrawer : BetterPropertyDrawer
         AddProperty("breakOutIfConditionsAreTrue");
 
         AddProperty("conditions");
-        AddProperty("hits");
 
         AddProperty("effects");
 

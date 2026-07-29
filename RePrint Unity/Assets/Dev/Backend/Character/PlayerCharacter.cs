@@ -7,7 +7,7 @@ public class PlayerCharacter : Character
 
     public List<PlayerAbility> Abilities { get; private set; }
 
-    public PlayerCharacter(CharacterData data, ModData[] equippedMods) : base()
+    public PlayerCharacter(CharacterData data, ModData[] equippedMods, BattleManager _battleManager) : base(_battleManager)
     {
 
         Profile = data.Profile;
@@ -67,6 +67,8 @@ public class PlayerCharacter : Character
         Stats.Dodge = 0;
         CurrentCombo = 0;
         TotalCombo = 0;
+        UniqueCharactersHit = new List<Character>();
+        CurrentHits = 0;
         ResetTempStats();
     }
 }

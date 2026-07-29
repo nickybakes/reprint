@@ -11,7 +11,7 @@ public class EnemyCharacter : Character
 
     public EnemyAbility ChosenAbility { get => chosenAbility; }
 
-    public EnemyCharacter(EnemyData data) : base()
+    public EnemyCharacter(EnemyData data, BattleManager _battleManager) : base(_battleManager)
     {
         Profile = data.Profile;
 
@@ -71,5 +71,7 @@ public class EnemyCharacter : Character
     public override void ResetForTurn()
     {
         TurnStatsStorage.CopyFrom(Stats);
+        UniqueCharactersHit = new List<Character>();
+        CurrentHits = 0;
     }
 }

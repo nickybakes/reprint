@@ -21,46 +21,26 @@ MonoBehaviour:
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock1>k__BackingField:
     apCost: 3
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock2>k__BackingField:
     apCost: 4
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock3>k__BackingField:
     apCost: 5
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock4>k__BackingField:
     apCost: 6
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityOverclock0Behaviors>k__BackingField:
     list:
     - conditions:
@@ -69,22 +49,25 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 0
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 0
           valueInput:
             type: 0
             baseValue: 4
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -95,22 +78,35 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
-        - type: 5
-          applicationModes:
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -121,8 +117,18 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
         listFoldout: 1
-        foldouts: 0001
+        foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -134,22 +140,25 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 0
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 0
           valueInput:
             type: 0
             baseValue: 5
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -160,22 +169,35 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
-        - type: 5
-          applicationModes:
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -186,6 +208,16 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
         listFoldout: 1
         foldouts: 0001
       breakOutIfConditionsAreTrue: 0
@@ -199,22 +231,25 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 0
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 0
           valueInput:
             type: 0
             baseValue: 7
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -225,22 +260,35 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
-        - type: 5
-          applicationModes:
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -251,6 +299,16 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 0
             foldouts: 01
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
@@ -264,22 +322,25 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 0
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 0
           valueInput:
             type: 0
             baseValue: 10
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -290,22 +351,35 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 0
             foldouts: 
-        - type: 5
-          applicationModes:
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -316,6 +390,16 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
         listFoldout: 1
         foldouts: 0001
       breakOutIfConditionsAreTrue: 0
@@ -329,22 +413,25 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 0
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 0
           valueInput:
             type: 0
             baseValue: 13
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -355,22 +442,35 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 0
             foldouts: 01
-        - type: 5
-          applicationModes:
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
+            floatMode: 0
           extraArithmetics:
             list:
             - mathType: 2
@@ -381,6 +481,16 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0

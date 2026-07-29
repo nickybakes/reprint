@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModData
   <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
   <Name>k__BackingField: Ruthless Accelerator
+  <Rarity>k__BackingField: 0
+  <SortOrder>k__BackingField: 0
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
@@ -44,14 +46,15 @@ MonoBehaviour:
         list:
         - applicationModes:
             list:
-            - applicationMode: 4
-              numberOfNonTargetedEnemies:
+            - applicationMode: 5
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           type: 0

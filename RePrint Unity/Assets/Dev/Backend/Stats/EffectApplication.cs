@@ -6,13 +6,18 @@ using UnityEngine;
 public class EffectApplication
 {
     [SerializeField] private EffectApplicationMode applicationMode;
-    [SerializeField] private ValueInput numberOfNonTargetedEnemies;
+    [SerializeField] private ValueInput numberOfEnemies;
     [SerializeField] private NonTargetedEnemyPriority nonTargetedEnemyPriority;
     [SerializeField] private bool addValueToTargetPriority;
     public EffectApplicationMode Mode { get => applicationMode; }
-    public ValueInput NumberOfNonTargetedEnemies { get => numberOfNonTargetedEnemies; }
+    public ValueInput NumberOfEnemies { get => numberOfEnemies; }
     public NonTargetedEnemyPriority NonTargetedEnemyPriority { get => nonTargetedEnemyPriority; }
     public bool AddValueToTargetPriority { get => addValueToTargetPriority; }
+
+    [SerializeField] private bool canRepeatEnemies;
+    public bool CanRepeatEnemies { get => canRepeatEnemies; }
+
+
 }
 
 
@@ -21,6 +26,7 @@ public enum EffectApplicationMode
     Self,
     TargetedCharacter,
     Player,
+    RandomEnemies,
     NonTargetedEnemies,
     AllEnemies,
 }

@@ -220,7 +220,7 @@ public class BetterListDrawer : BetterPropertyDrawer
 
             if (normalizedAddNewButtonWidth != 0)
             {
-                normalizedWidthOverride = normalizedAddNewButtonWidth;
+                normalizedWidthOverride = Mathf.Max(normalizedAddNewButtonWidth, .5f);
                 normalizedXPositionOverride = .5f - normalizedAddNewButtonWidth * .5f;
             }
 

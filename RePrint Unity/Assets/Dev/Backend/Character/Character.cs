@@ -9,6 +9,10 @@ public abstract class Character
     public CharacterStats Stats { get; protected set; }
     public CharacterStats TurnStatsStorage { get; protected set; }
 
+    public int CurrentHits { get; set; }
+
+    public List<Character> UniqueCharactersHit { get; set; }
+
     public int CurrentCombo { get; set; }
     public int TotalCombo { get; set; }
 
@@ -16,6 +20,8 @@ public abstract class Character
 
     public string Name { get; protected set; }
     public int BaseMaxAP { get; protected set; }
+
+    public BattleManager battleManager;
 
     public bool IsAlive
     {
@@ -25,8 +31,9 @@ public abstract class Character
         }
     }
 
-    public Character()
+    public Character(BattleManager _battleManager)
     {
+        battleManager = _battleManager;
         Stats = new CharacterStats(this);
         TurnStatsStorage = new CharacterStats(this);
     }
@@ -101,21 +108,7 @@ public abstract class Character
             List<ModEffect> effects = mod.GetModEffects(passingBehaviors);
 
             ModResult modResult = new ModResult(mod, gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
-
-            foreach (ModEffect effect in effects)
-            {
-                switch (effect.Type)
-                {
-                    case ModEffectType.StackStatChange:
-                        AmountsPerCharacter amounts = StatCalculation.GetPotentialEffectAmount(gameValues, effect);
-                        modResult.statChangeAmounts.AddAmounts(amounts.Amounts, effect.StatChange);
-                        break;
-                    case ModEffectType.RetriggerAbility:
-                        modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
-                        break;
-                }
-            }
-
+            StatCalculation.CalculateModEffects(gameValues, mod, effects, modResult);
             statChangeBreakdown.modResults.Add(modResult);
         }
 

@@ -13,10 +13,15 @@ public class AbilityEffectApplicationDrawer : BetterPropertyDrawer
         SerializedProperty modeProperty = AddProperty("applicationMode");
         EffectApplicationMode mode = (EffectApplicationMode)modeProperty.enumValueIndex;
 
-        if (mode == EffectApplicationMode.NonTargetedEnemies)
+        if (mode == EffectApplicationMode.RandomEnemies)
+        {
+            AddProperty("numberOfEnemies");
+            AddProperty("canRepeatEnemies");
+        }
+        else if (mode == EffectApplicationMode.NonTargetedEnemies)
         {
             AddProperty("nonTargetedEnemyPriority");
-            AddProperty("numberOfNonTargetedEnemies");
+            AddProperty("numberOfEnemies");
         }
         // else if (mode == AbilityEffectApplicationMode.Self)
         // {

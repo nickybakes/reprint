@@ -11,26 +11,30 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
         AddQuarterBlankLine();
 
+        AddProperty("applicationModes");
+
         SerializedProperty typeProperty = AddProperty("type", "Ability Effect Type");
         AbilityEffectType type = (AbilityEffectType)typeProperty.enumValueIndex;
-
-        AddProperty("applicationModes");
+        AddQuarterBlankLine();
 
         switch (type)
         {
-            default:
-                AddQuarterBlankLine();
+            case AbilityEffectType.DoDamage:
                 AddProperty("valueInput");
-                AddQuarterBlankLine();
-
                 AddProperty("extraArithmetics");
-                AddQuarterBlankLine();
+                AddProperty("dontAutoCountHits");
                 break;
-
-
+            case AbilityEffectType.CountHits:
+                AddProperty("hitAmount");
+                AddProperty("extraArithmetics");
+                break;
+            default:
+                AddProperty("valueInput");
+                AddProperty("extraArithmetics");
+                break;
         }
 
-
+        AddProperty("extraEffects");
 
         EditorGUI.EndProperty();
     }

@@ -47,79 +47,19 @@ MonoBehaviour:
         list: []
         listFoldout: 1
         foldouts: 
-      hits:
-        list:
-        - amount:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          effects:
-            list:
-            - applicationModes:
-                list:
-                - applicationMode: 1
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 0
-              valueInput:
-                type: 0
-                baseValue: 6
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            - applicationModes:
-                list:
-                - applicationMode: 0
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 2
-              valueInput:
-                type: 0
-                baseValue: 1
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 1
-                foldouts: 
-            listFoldout: 1
-            foldouts: 0101
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 1
-        foldouts: 01
       effects:
         list:
         - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           type: 0
@@ -132,30 +72,51 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        - applicationModes:
+          extraEffects:
             list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
+            - applicationModes:
+                list:
+                - applicationMode: 0
+                  numberOfEnemies:
+                    type: 0
+                    baseValue: 0
+                    maxValue: 0
+                    floatMode: 0
+                  nonTargetedEnemyPriority: 0
+                  addValueToTargetPriority: 0
+                  canRepeatEnemies: 0
+                listFoldout: 1
+                foldouts: 01
+              type: 2
+              valueInput:
+                type: 0
+                baseValue: 1
+                maxValue: 0
+                floatMode: 0
+              extraArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              extraEffects:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              dontAutoCountHits: 0
+              hitAmount:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 2
-          valueInput:
+          dontAutoCountHits: 0
+          hitAmount:
             type: 0
-            baseValue: 1
+            baseValue: 0
             maxValue: 0
             floatMode: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 1
-            foldouts: 
-        listFoldout: 0
-        foldouts: 0101
+        listFoldout: 1
+        foldouts: 01
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -165,35 +126,19 @@ MonoBehaviour:
         list: []
         listFoldout: 1
         foldouts: 
-      hits:
-        list:
-        - amount:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          effects:
-            list: []
-            listFoldout: 0
-            foldouts: 
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 1
-        foldouts: 01
       effects:
         list:
         - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           type: 0
@@ -206,30 +151,51 @@ MonoBehaviour:
             list: []
             listFoldout: 1
             foldouts: 
-        - applicationModes:
+          extraEffects:
             list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
+            - applicationModes:
+                list:
+                - applicationMode: 0
+                  numberOfEnemies:
+                    type: 0
+                    baseValue: 0
+                    maxValue: 0
+                    floatMode: 0
+                  nonTargetedEnemyPriority: 0
+                  addValueToTargetPriority: 0
+                  canRepeatEnemies: 0
+                listFoldout: 1
+                foldouts: 01
+              type: 2
+              valueInput:
+                type: 0
+                baseValue: 2
+                maxValue: 0
+                floatMode: 0
+              extraArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              extraEffects:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              dontAutoCountHits: 0
+              hitAmount:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 2
-          valueInput:
+          dontAutoCountHits: 0
+          hitAmount:
             type: 0
-            baseValue: 2
+            baseValue: 0
             maxValue: 0
             floatMode: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
         listFoldout: 1
-        foldouts: 0101
+        foldouts: 01
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -239,79 +205,19 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
-      hits:
-        list:
-        - amount:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          effects:
-            list:
-            - applicationModes:
-                list:
-                - applicationMode: 1
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 0
-              valueInput:
-                type: 0
-                baseValue: 12
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            - applicationModes:
-                list:
-                - applicationMode: 0
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 2
-              valueInput:
-                type: 0
-                baseValue: 3
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            listFoldout: 0
-            foldouts: 0101
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 1
-        foldouts: 01
       effects:
         list:
         - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           type: 0
@@ -324,30 +230,51 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        - applicationModes:
+          extraEffects:
             list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
+            - applicationModes:
+                list:
+                - applicationMode: 0
+                  numberOfEnemies:
+                    type: 0
+                    baseValue: 0
+                    maxValue: 0
+                    floatMode: 0
+                  nonTargetedEnemyPriority: 0
+                  addValueToTargetPriority: 0
+                  canRepeatEnemies: 0
+                listFoldout: 1
+                foldouts: 01
+              type: 2
+              valueInput:
+                type: 0
+                baseValue: 3
+                maxValue: 0
+                floatMode: 0
+              extraArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              extraEffects:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              dontAutoCountHits: 0
+              hitAmount:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 2
-          valueInput:
+          dontAutoCountHits: 0
+          hitAmount:
             type: 0
-            baseValue: 3
+            baseValue: 0
             maxValue: 0
             floatMode: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 0
-        foldouts: 0101
+        listFoldout: 1
+        foldouts: 01
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -357,79 +284,19 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
-      hits:
-        list:
-        - amount:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          effects:
-            list:
-            - applicationModes:
-                list:
-                - applicationMode: 1
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 0
-              valueInput:
-                type: 0
-                baseValue: 16
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            - applicationModes:
-                list:
-                - applicationMode: 0
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 2
-              valueInput:
-                type: 0
-                baseValue: 4
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            listFoldout: 0
-            foldouts: 0101
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 1
-        foldouts: 01
       effects:
         list:
         - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           type: 0
@@ -442,30 +309,51 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        - applicationModes:
+          extraEffects:
             list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
+            - applicationModes:
+                list:
+                - applicationMode: 0
+                  numberOfEnemies:
+                    type: 0
+                    baseValue: 0
+                    maxValue: 0
+                    floatMode: 0
+                  nonTargetedEnemyPriority: 0
+                  addValueToTargetPriority: 0
+                  canRepeatEnemies: 0
+                listFoldout: 1
+                foldouts: 01
+              type: 2
+              valueInput:
+                type: 0
+                baseValue: 4
+                maxValue: 0
+                floatMode: 0
+              extraArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              extraEffects:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              dontAutoCountHits: 0
+              hitAmount:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 2
-          valueInput:
+          dontAutoCountHits: 0
+          hitAmount:
             type: 0
-            baseValue: 4
+            baseValue: 0
             maxValue: 0
             floatMode: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 0
-        foldouts: 0101
+        listFoldout: 1
+        foldouts: 01
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -475,79 +363,19 @@ MonoBehaviour:
         list: []
         listFoldout: 0
         foldouts: 
-      hits:
-        list:
-        - amount:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          effects:
-            list:
-            - applicationModes:
-                list:
-                - applicationMode: 1
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 0
-              valueInput:
-                type: 0
-                baseValue: 25
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            - applicationModes:
-                list:
-                - applicationMode: 0
-                  numberOfNonTargetedEnemies:
-                    type: 0
-                    baseValue: 0
-                    maxValue: 0
-                    floatMode: 0
-                  nonTargetedEnemyPriority: 0
-                  addValueToTargetPriority: 0
-                listFoldout: 1
-                foldouts: 01
-              type: 2
-              valueInput:
-                type: 0
-                baseValue: 6
-                maxValue: 0
-                floatMode: 0
-              extraArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
-            listFoldout: 1
-            foldouts: 0101
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
-        listFoldout: 1
-        foldouts: 01
       effects:
         list:
         - applicationModes:
             list:
             - applicationMode: 1
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           type: 0
@@ -560,30 +388,51 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-        - applicationModes:
+          extraEffects:
             list:
-            - applicationMode: 0
-              numberOfNonTargetedEnemies:
+            - applicationModes:
+                list:
+                - applicationMode: 0
+                  numberOfEnemies:
+                    type: 0
+                    baseValue: 0
+                    maxValue: 0
+                    floatMode: 0
+                  nonTargetedEnemyPriority: 0
+                  addValueToTargetPriority: 0
+                  canRepeatEnemies: 0
+                listFoldout: 1
+                foldouts: 01
+              type: 2
+              valueInput:
+                type: 0
+                baseValue: 6
+                maxValue: 0
+                floatMode: 0
+              extraArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              extraEffects:
+                list: []
+                listFoldout: 0
+                foldouts: 
+              dontAutoCountHits: 0
+              hitAmount:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
-              nonTargetedEnemyPriority: 0
-              addValueToTargetPriority: 0
             listFoldout: 1
             foldouts: 01
-          type: 2
-          valueInput:
+          dontAutoCountHits: 0
+          hitAmount:
             type: 0
-            baseValue: 6
+            baseValue: 0
             maxValue: 0
             floatMode: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
         listFoldout: 1
-        foldouts: 0101
+        foldouts: 01
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
