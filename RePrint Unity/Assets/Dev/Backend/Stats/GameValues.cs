@@ -4,7 +4,10 @@ public enum GameValueType
 {
     Chain,
     NumberOfEnemies,
-    TotalOverclock
+    TotalOverclock,
+    PreviousTurnTotalHits,
+    PreviousTurnUniqueEnemiesHit,
+    PreviousTurnTotalCombo,
 }
 
 
@@ -31,6 +34,18 @@ public class GameValues
                 return activator.Stats.Chain + activator.Stats.TempChain;
             case GameValueType.TotalOverclock:
                 return abilitySequence.GetTotalOverclock();
+            case GameValueType.PreviousTurnTotalHits:
+                if (battleManager.TurnIndex > 0)
+                    return battleManager.turnHistory[battleManager.TurnIndex - 1].totalHits;
+                break;
+            case GameValueType.PreviousTurnUniqueEnemiesHit:
+                if (battleManager.TurnIndex > 0)
+                    return battleManager.turnHistory[battleManager.TurnIndex - 1].uniqueCharactersHit.Count;
+                break;
+            case GameValueType.PreviousTurnTotalCombo:
+                if (battleManager.TurnIndex > 0)
+                    return battleManager.turnHistory[battleManager.TurnIndex - 1].totalCombo;
+                break;
         }
 
         return 0;

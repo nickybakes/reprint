@@ -11,6 +11,10 @@ public class TurnResults
     public StatChangeResults statsBefore;
     public StatChangeResults statsAfter;
 
+    public int totalCombo;
+    public int totalHits;
+    public List<Character> uniqueCharactersHit;
+
     public TurnResults(Character player, Team enemyTeam)
     {
         statsBefore = new StatChangeResults(player, enemyTeam);

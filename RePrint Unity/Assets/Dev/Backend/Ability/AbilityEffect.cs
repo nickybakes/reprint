@@ -23,6 +23,9 @@ public class AbilityEffect : Effect
     [SerializeField] private ValueInput hitAmount;
     public ValueInput HitAmount { get => hitAmount; }
 
+    [SerializeField] private bool dontAddCharacterToUniqueHitList;
+    public bool DontAddCharacterToUniqueHitList { get => dontAddCharacterToUniqueHitList; }
+
 
     public override float GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
     {
@@ -39,6 +42,23 @@ public class AbilityEffect : Effect
         }
 
         return amount;
+    }
+
+    public int GetHitAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
+    {
+        float amount = HitAmount.GetValue();
+
+        if (getMinimum)
+            amount = HitAmount.GetMinValue();
+        else if (getMaximum)
+            amount = HitAmount.GetMaxValue();
+
+        foreach (Arithmetic arithmetic in ExtraArithmetics)
+        {
+            amount = arithmetic.CalculateSolution(amount, gameValues.GetIntGameValue(arithmetic.GameValueType));
+        }
+
+        return (int)amount;
     }
 
 }

@@ -38,22 +38,17 @@ public class StatChangeBreakdown
     private void ApplyStatChanges(Character character)
     {
         int totalStarterPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.StarterPhysicalDamageTaken);
-
         float totalStarterPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.StarterPhysicalDamageMultiplier);
-
-        float totalAllPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.AllPhysicalDamageMultiplier);
-
-        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier * totalAllPhysicalDamageMultiplier);
+        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier);
 
         int totalFinisherPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.FinisherPhysicalDamageTaken);
-
         float totalFinisherPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.FinisherPhysicalDamageMultiplier);
+        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier);
 
-        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier * totalAllPhysicalDamageMultiplier);
+        int totalKineticDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.KineticDamageTaken);
+        float totalKineticDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.KineticDamageMultiplier);
+        character.ApplyPhysicalDamage(totalKineticDamageTaken, totalKineticDamageMultiplier);
 
-        int totalGenericPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.GenericPhysicalDamageTaken);
-
-        character.ApplyPhysicalDamage(totalGenericPhysicalDamageTaken, totalAllPhysicalDamageMultiplier);
 
         int totalDodgeGained = (int)GetTotalStatChangeAdditive(character, StatChange.DodgeGained);
         totalDodgeGained -= (int)GetTotalStatChangeAdditive(character, StatChange.DodgeTaken);
@@ -110,5 +105,32 @@ public class StatChangeBreakdown
         }
 
         return total;
+    }
+
+    public float GetTotalStatChangeEscalating(Character character, StatChange stat, bool subtractFromBase = false, float startingValue = 1, float baseValue = 0, float topValue = 1)
+    {
+        float total = startingValue;
+
+        if (abilityStatChanges != null && abilityStatChanges.Changes.ContainsKey(character))
+        {
+            total *= topValue - abilityStatChanges.GetAmount(character, stat);
+        }
+
+        foreach (ModResult modResult in modResults)
+        {
+            if (modResult.statChangeAmounts.Changes.ContainsKey(character))
+            {
+                total *= topValue - modResult.statChangeAmounts.GetAmount(character, stat);
+            }
+        }
+
+        if (subtractFromBase)
+        {
+            return baseValue - total;
+        }
+        else
+        {
+            return baseValue + total;
+        }
     }
 }

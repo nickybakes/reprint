@@ -9,9 +9,10 @@ public abstract class Character
     public CharacterStats Stats { get; protected set; }
     public CharacterStats TurnStatsStorage { get; protected set; }
 
-    public int CurrentHits { get; set; }
+    public int CurrentHitsInAbility { get; set; }
+    public int CurrentHitsInTurn { get; set; }
 
-    public List<Character> UniqueCharactersHit { get; set; }
+    public List<Character> UniqueCharactersHitThisTurn { get; set; }
 
     public int CurrentCombo { get; set; }
     public int TotalCombo { get; set; }
@@ -137,5 +138,13 @@ public abstract class Character
         }
 
         return sortedMods;
+    }
+
+    public void AddUniqueHitCharacter(Character character)
+    {
+        if (character != this && !UniqueCharactersHitThisTurn.Contains(character))
+        {
+            UniqueCharactersHitThisTurn.Add(character);
+        }
     }
 }

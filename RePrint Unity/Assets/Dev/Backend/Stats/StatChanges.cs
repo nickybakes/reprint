@@ -1,116 +1,43 @@
+using System;
+
 public class StatChanges
 {
-    public int StarterPhysicalDamageTaken { get; set; }
-    public int FinisherPhysicalDamageTaken { get; set; }
-    public int GenericPhysicalDamageTaken { get; set; }
-    public float StarterPhysicalDamageMultiplier { get; set; } = 1;
-    public float FinisherPhysicalDamageMultiplier { get; set; } = 1;
-    public float AllPhysicalDamageMultiplier { get; set; } = 1;
-    public int HealthGained { get; set; }
-    public int DodgeTaken { get; set; }
-    public int DodgeGained { get; set; }
-    public int TurnPriorityGained { get; set; }
-    public int ChainGained { get; set; }
-    public int ChainSpent { get; set; }
-    public int ChainTaken { get; set; }
-    public int TempChainGained { get; set; }
-    public int APMaxIncrease { get; set; }
-    public int APMaxDecrease { get; set; }
+    public static int STAT_CHANGE_LENGTH = Enum.GetValues(typeof(StatChange)).Length;
 
-    public void AddAmount(StatChange stat, float amount)
+    private float[] values;
+
+    public StatChanges()
     {
-        switch (stat)
+        values = new float[STAT_CHANGE_LENGTH];
+        for (int i = 0; i < values.Length; i++)
         {
-            case StatChange.StarterPhysicalDamageTaken:
-                StarterPhysicalDamageTaken += (int)amount;
-                break;
-            case StatChange.StarterPhysicalDamageMultiplier:
-                StarterPhysicalDamageMultiplier *= amount;
-                break;
-            case StatChange.FinisherPhysicalDamageTaken:
-                FinisherPhysicalDamageTaken += (int)amount;
-                break;
-            case StatChange.FinisherPhysicalDamageMultiplier:
-                FinisherPhysicalDamageMultiplier *= amount;
-                break;
-            case StatChange.GenericPhysicalDamageTaken:
-                FinisherPhysicalDamageTaken += (int)amount;
-                break;
-            case StatChange.AllPhysicalDamageMultiplier:
-                AllPhysicalDamageMultiplier *= amount;
-                break;
-            case StatChange.HealthGained:
-                HealthGained += (int)amount;
-                break;
-            case StatChange.DodgeTaken:
-                DodgeTaken += (int)amount;
-                break;
-            case StatChange.DodgeGained:
-                DodgeGained += (int)amount;
-                break;
-            case StatChange.TurnPriorityGained:
-                TurnPriorityGained += (int)amount;
-                break;
-            case StatChange.ChainGained:
-                ChainGained += (int)amount;
-                break;
-            case StatChange.ChainSpent:
-                ChainSpent += (int)amount;
-                break;
-            case StatChange.ChainTaken:
-                ChainTaken += (int)amount;
-                break;
-            case StatChange.TempChainGained:
-                TempChainGained += (int)amount;
-                break;
-            case StatChange.APMaxIncrease:
-                APMaxIncrease += (int)amount;
-                break;
-            case StatChange.APMaxDecrease:
-                APMaxIncrease += (int)amount;
-                break;
+            if (isMultiplicative((StatChange)i))
+            {
+                values[i] = 1;
+            }
         }
+    }
+
+    public void StackAmount(StatChange stat, float amount)
+    {
+        if (isMultiplicative(stat))
+        {
+            values[(int)stat] *= amount;
+        }
+        else
+        {
+            values[(int)stat] += amount;
+        }
+    }
+
+    private bool isMultiplicative(StatChange stat)
+    {
+        return stat == StatChange.StarterPhysicalDamageMultiplier || stat == StatChange.FinisherPhysicalDamageMultiplier || stat == StatChange.KineticDamageMultiplier;
     }
 
     public float GetAmount(StatChange stat)
     {
-        switch (stat)
-        {
-            case StatChange.StarterPhysicalDamageTaken:
-                return StarterPhysicalDamageTaken;
-            case StatChange.StarterPhysicalDamageMultiplier:
-                return StarterPhysicalDamageMultiplier;
-            case StatChange.FinisherPhysicalDamageTaken:
-                return FinisherPhysicalDamageTaken;
-            case StatChange.FinisherPhysicalDamageMultiplier:
-                return FinisherPhysicalDamageMultiplier;
-            case StatChange.GenericPhysicalDamageTaken:
-                return GenericPhysicalDamageTaken;
-            case StatChange.AllPhysicalDamageMultiplier:
-                return AllPhysicalDamageMultiplier;
-            case StatChange.HealthGained:
-                return HealthGained;
-            case StatChange.DodgeTaken:
-                return DodgeTaken;
-            case StatChange.DodgeGained:
-                return DodgeGained;
-            case StatChange.TurnPriorityGained:
-                return TurnPriorityGained;
-            case StatChange.ChainGained:
-                return ChainGained;
-            case StatChange.ChainSpent:
-                return ChainSpent;
-            case StatChange.ChainTaken:
-                return ChainTaken;
-            case StatChange.TempChainGained:
-                return TempChainGained;
-            case StatChange.APMaxIncrease:
-                return APMaxIncrease;
-            case StatChange.APMaxDecrease:
-                return APMaxDecrease;
-        }
-
-        return 0;
+        return values[(int)stat];
     }
 }
 
@@ -118,10 +45,10 @@ public enum StatChange
 {
     StarterPhysicalDamageTaken,
     FinisherPhysicalDamageTaken,
-    GenericPhysicalDamageTaken,
     StarterPhysicalDamageMultiplier,
     FinisherPhysicalDamageMultiplier,
-    AllPhysicalDamageMultiplier,
+    KineticDamageTaken,
+    KineticDamageMultiplier,
     HealthGained,
     DodgeTaken,
     DodgeGained,

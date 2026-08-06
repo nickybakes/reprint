@@ -137,6 +137,9 @@ public enum TurnCountType
 public enum TurnStat
 {
     TotalHealthLost,
+    TotalCombo,
+    TotalHits,
+    UniqueEnemiesHit,
 }
 
 public enum ComboCountType

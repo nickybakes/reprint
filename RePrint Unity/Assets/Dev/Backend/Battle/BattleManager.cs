@@ -153,7 +153,10 @@ public class BattleManager : MonoBehaviour
         currentTurnResults = new TurnResults(Player, EnemyTeam)
         {
             playerDoAbilitySequence = DoPlayerAbilitySequence(),
-            enemyDoAbilities = DoEnemyAbilities()
+            enemyDoAbilities = DoEnemyAbilities(),
+            totalCombo = Player.TotalCombo,
+            uniqueCharactersHit = Player.UniqueCharactersHitThisTurn,
+            totalHits = Player.CurrentHitsInTurn,
         };
 
         currentTurnResults.CalculateStatsAfter(Player, EnemyTeam);
@@ -171,6 +174,8 @@ public class BattleManager : MonoBehaviour
     {
         List<AbilitySelection> sortedAbilitySequence = playerAbilitySequence.GetSortedSequence();
 
+        Player.CurrentHitsInAbility = 0;
+        Player.CurrentHitsInTurn = 0;
         Player.CurrentCombo = 0;
         Player.TotalCombo = 0;
 
@@ -186,6 +191,7 @@ public class BattleManager : MonoBehaviour
 
         foreach (AbilitySelection abilitySelection in sortedAbilitySequence)
         {
+            Player.CurrentHitsInAbility = 0;
             StatChangeBreakdown result = StatCalculation.GetPlayerAbilityStatChangeBreakdown(abilitySelection, abilitySeqIndex, playerAbilitySequence, this);
             abilitySelections.Add(abilitySelection);
             statChangeBreakdowns.Add(result);

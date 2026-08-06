@@ -9,7 +9,8 @@ public class DummyCharacter : Character
 
     public override void ResetForTurn()
     {
-        UniqueCharactersHit = new List<Character>();
-        CurrentHits = 0;
+        UniqueCharactersHitThisTurn = new List<Character>();
+        CurrentHitsInAbility = 0;
+        CurrentHitsInTurn = 0;
     }
 }

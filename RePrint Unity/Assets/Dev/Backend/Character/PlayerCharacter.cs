@@ -67,8 +67,9 @@ public class PlayerCharacter : Character
         Stats.Dodge = 0;
         CurrentCombo = 0;
         TotalCombo = 0;
-        UniqueCharactersHit = new List<Character>();
-        CurrentHits = 0;
+        UniqueCharactersHitThisTurn = new List<Character>();
+        CurrentHitsInAbility = 0;
+        CurrentHitsInTurn = 0;
         ResetTempStats();
     }
 }

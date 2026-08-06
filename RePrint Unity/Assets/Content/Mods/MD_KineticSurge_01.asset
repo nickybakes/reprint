@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MD_KineticSurge_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
   <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
-  <Name>k__BackingField: Gambit Chip
+  <Name>k__BackingField: Kinetic Surge
   <Rarity>k__BackingField: 0
   <SortOrder>k__BackingField: 0
   <ModBehaviors>k__BackingField:
@@ -21,7 +21,7 @@ MonoBehaviour:
     - conditions:
         list:
         - type: 0
-          gameEvent: 1
+          gameEvent: 6
           characterStat: 0
           characters:
             list: []
@@ -46,10 +46,10 @@ MonoBehaviour:
         list:
         - applicationModes:
             list:
-            - applicationMode: 5
+            - applicationMode: 3
               numberOfEnemies:
                 type: 0
-                baseValue: 0
+                baseValue: 1
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
@@ -61,8 +61,8 @@ MonoBehaviour:
           valueInput1:
             type: 1
             baseValue: 1
-            maxValue: 1.25
-            floatMode: 1
+            maxValue: 3
+            floatMode: 0
           extraArithmetics1:
             list: []
             listFoldout: 0
@@ -70,6 +70,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 5
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

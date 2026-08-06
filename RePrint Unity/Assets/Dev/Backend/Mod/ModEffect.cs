@@ -23,6 +23,12 @@ public class ModEffect : Effect
     [SerializeField] private StatChange statChange;
     public StatChange StatChange { get => statChange; }
 
+    [SerializeField] private bool starterActions;
+    public bool StarterActions { get => starterActions; }
+
+    [SerializeField] private bool finisherActions;
+    public bool FinisherActions { get => finisherActions; }
+
     public override float GetAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
     {
         float amount = ValueInput1.GetValue();
@@ -40,7 +46,6 @@ public class ModEffect : Effect
             }
         }
 
-
         return amount;
     }
 
@@ -49,7 +54,8 @@ public class ModEffect : Effect
 
 public enum ModEffectType
 {
-    StackStatChange,
+    DoDamage,
+    StackDamageMultiplier,
     RetriggerAbility,
     // Heal,
 }

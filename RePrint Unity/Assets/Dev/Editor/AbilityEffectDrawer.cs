@@ -23,10 +23,12 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
                 AddProperty("valueInput");
                 AddProperty("extraArithmetics");
                 AddProperty("dontAutoCountHits");
+                AddProperty("dontAddCharacterToUniqueHitList");
                 break;
             case AbilityEffectType.CountHits:
                 AddProperty("hitAmount");
                 AddProperty("extraArithmetics");
+                AddProperty("dontAddCharacterToUniqueHitList");
                 break;
             default:
                 AddProperty("valueInput");

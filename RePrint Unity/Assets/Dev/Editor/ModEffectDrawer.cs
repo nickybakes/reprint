@@ -17,11 +17,16 @@ public class ModEffectDrawer : BetterPropertyDrawer
 
         switch (type)
         {
-            case ModEffectType.StackStatChange:
-                AddProperty("statChange");
+            case ModEffectType.DoDamage:
                 AddProperty("valueInput1");
                 AddProperty("extraArithmetics1");
                 AddProperty("applicationModes");
+                break;
+            case ModEffectType.StackDamageMultiplier:
+                AddProperty("starterActions");
+                AddProperty("finisherActions");
+                AddProperty("valueInput1");
+                AddProperty("extraArithmetics1");
                 break;
             case ModEffectType.RetriggerAbility:
                 SerializedProperty intValue1 = property.FindPropertyRelative("intValue1");

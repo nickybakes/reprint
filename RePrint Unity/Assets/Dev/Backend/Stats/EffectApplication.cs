@@ -29,6 +29,7 @@ public enum EffectApplicationMode
     RandomEnemies,
     NonTargetedEnemies,
     AllEnemies,
+    CurrentAffectedCharacter
 }
 
 public enum NonTargetedEnemyPriority

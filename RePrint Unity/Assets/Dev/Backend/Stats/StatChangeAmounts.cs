@@ -28,12 +28,12 @@ public class StatChangeAmounts
         {
             if (Changes.ContainsKey(character))
             {
-                Changes[character].AddAmount(stat, amount);
+                Changes[character].StackAmount(stat, amount);
             }
             else
             {
                 Changes.Add(character, new StatChanges());
-                Changes[character].AddAmount(stat, amount);
+                Changes[character].StackAmount(stat, amount);
             }
         }
     }
@@ -44,12 +44,12 @@ public class StatChangeAmounts
         {
             if (Changes.ContainsKey(character))
             {
-                Changes[character].AddAmount(stat, amounts[character]);
+                Changes[character].StackAmount(stat, amounts[character]);
             }
             else
             {
                 Changes.Add(character, new StatChanges());
-                Changes[character].AddAmount(stat, amounts[character]);
+                Changes[character].StackAmount(stat, amounts[character]);
             }
         }
     }
