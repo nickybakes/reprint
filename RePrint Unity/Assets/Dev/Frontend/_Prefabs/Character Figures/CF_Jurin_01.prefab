@@ -230,10 +230,34 @@ MonoBehaviour:
   travelTimeLength: 0.2
   sizeTransition: 0
   animator: {fileID: 2138700663768172064}
-  positionBone: {fileID: 7252588025192502253}
   attackPoint: {fileID: 0}
   glitchMaterials:
   - {fileID: 2100000, guid: 549ab241ec52a044286c37eeea1f4b2c, type: 2}
+  movementEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  doesGlitchEffect: 1
   glitchCooldown: 0.1
   glitchMinimumTime: 0
   glitchMultiplier: 2
@@ -241,8 +265,6 @@ MonoBehaviour:
   visualEffects:
   - visualEffect: {fileID: 3831124964475554927, guid: 002548c67568ba74fa288db5d7c5e062, type: 3}
     transform: {fileID: 8902164303691093865}
-  lerpDifferenceThreshold: -0.1
-  bigJumpFrameDelay: 1
 --- !u!1001 &2208843084630578379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5989,11 +6011,6 @@ MonoBehaviour:
 --- !u!4 &4895597209834373567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
-  m_PrefabInstance: {fileID: 4934290169188525652}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7252588025192502253 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2367838586318288313, guid: 312200d3bb5cef040bd279552f6572ae, type: 3}
   m_PrefabInstance: {fileID: 4934290169188525652}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8271978023156299172 stripped

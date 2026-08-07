@@ -66,13 +66,14 @@ public class AnimEventEditorWindow : EditorWindow
 
     private void ReloadWindow()
     {
-        functionNames = new List<string>() { "AnimEventFinishAbility", "AnimEventReturnToIdle", "AnimEventUpdateStats", "AnimEventCameraFocusEnemies", "AnimEventCameraFocusDefault", "AnimEventVFX", "" };
+        functionNames = new List<string>() { "AnimEventFinishAbility", "AnimEventReturnToIdle", "AnimEventUpdateStats", "AnimEventCameraFocusEnemies", "AnimEventCameraFocusDefault", "AnimEventVFX", "AnimEventMoveCharacter", "" };
 
-        displayNames = new List<string>() { "Finish Ability", "Return To Idle", "Update Stats", "Focus Camera on Enemies", "Focus Camera on Default", "Play VFX", "None" };
+        displayNames = new List<string>() { "Finish Ability", "Return To Idle", "Update Stats", "Focus Camera on Enemies", "Focus Camera on Default", "Play VFX", "Move Character", "None" };
 
         animEventParameters = new Dictionary<string, AnimEventParameters>
         {
-            { "AnimEventVFX", new AnimEventParameters(1000) }
+            { "AnimEventVFX", new AnimEventParameters(1000) },
+            { "AnimEventMoveCharacter", new AnimEventParameters(0010) }
         };
 
         scrollPosition = new Vector2();
@@ -277,6 +278,11 @@ class AnimEventParameters
     public AnimEventParameters(int code)
     {
         string codeString = code.ToString();
+
+        while (codeString.Length < 4)
+        {
+            codeString = "0" + codeString;
+        }
 
         intParam = codeString[0] == '1';
         floatParam = codeString[1] == '1';
