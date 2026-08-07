@@ -7,7 +7,7 @@ public class PlayerCharacter : Character
 
     public List<PlayerAbility> Abilities { get; private set; }
 
-    public PlayerCharacter(CharacterData data, ModData[] equippedMods, BattleManager _battleManager) : base(_battleManager)
+    public PlayerCharacter(CharacterData data, ModData[] equippedMods) : base()
     {
 
         Profile = data.Profile;

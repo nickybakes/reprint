@@ -11,9 +11,10 @@ public class EnemyCharacter : Character
 
     public EnemyAbility ChosenAbility { get => chosenAbility; }
 
-    public EnemyCharacter(EnemyData data, BattleManager _battleManager) : base(_battleManager)
+    public EnemyCharacter(EnemyData data, BattleManager _battleManager) : base()
     {
         Profile = data.Profile;
+        battleManager = _battleManager;
 
         Stats.HealthMax = (int)data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;

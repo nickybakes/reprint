@@ -46,13 +46,14 @@ public class BattleManager : MonoBehaviour
         pendingBattleChanges = new List<BattleStateChange>();
     }
 
-    public void SetupBattle(BattleData data)
+    public void SetupBattle(PlayerCharacter player, BattleData data)
     {
         turnHistory = new List<TurnResults>();
         TurnIndex = -1;
         TurnIndexInWave = -1;
         WaveIndex = -1;
-        Player = new PlayerCharacter(data.playerCharacterData, data.playerMods, this);
+        Player = player;
+        player.battleManager = this;
 
         EnemyTeam = new EnemyTeam();
 

@@ -32,9 +32,8 @@ public abstract class Character
         }
     }
 
-    public Character(BattleManager _battleManager)
+    public Character()
     {
-        battleManager = _battleManager;
         Stats = new CharacterStats(this);
         TurnStatsStorage = new CharacterStats(this);
     }

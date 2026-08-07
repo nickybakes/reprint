@@ -10,11 +10,16 @@ public class GameManager : MonoBehaviour
 
     private BattleManager battleManager;
 
+    [SerializeField] private CharacterData playerData;
+
+    [SerializeField] private ModData[] playerMods;
+
+    private PlayerCharacter player;
+
     /// <summary>
     /// Input whatever battle data you want and that will be the battle you play.
     /// </summary>
-    [SerializeField]
-    private BattleData battleData;
+    [SerializeField] private BattleData battleData;
 
     private void Awake()
     {
@@ -26,7 +31,13 @@ public class GameManager : MonoBehaviour
         {
             game = this;
             DontDestroyOnLoad(gameObject);
+            SetupGameSession();
         }
+    }
+
+    public void SetupGameSession()
+    {
+        player = new PlayerCharacter(playerData, playerMods);
     }
 
     public void GoToBattleScene()
@@ -37,7 +48,7 @@ public class GameManager : MonoBehaviour
     public void BattleSceneLoaded()
     {
         battleManager = FindAnyObjectByType<BattleManager>();
-        battleManager.SetupBattle(battleData);
+        battleManager.SetupBattle(player, battleData);
     }
 
     public BattleData GetBattleData()
