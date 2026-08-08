@@ -56,9 +56,9 @@ Transform:
   m_GameObject: {fileID: 4094791702570830170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -1.8, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1244128948979947251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6069,10 +6069,6 @@ PrefabInstance:
     - target: {fileID: 7410268204975745188, guid: 002548c67568ba74fa288db5d7c5e062, type: 3}
       propertyPath: m_Name
       value: VFX_Dash_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410268204975745188, guid: 002548c67568ba74fa288db5d7c5e062, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
