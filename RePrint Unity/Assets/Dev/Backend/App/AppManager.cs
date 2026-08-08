@@ -11,6 +11,7 @@ public enum SceneIndex
     AppInit = 0,
     GameSetup = 1,
     BattleTest = 2,
+    StoreTest = 3,
 }
 
 /// <summary>
