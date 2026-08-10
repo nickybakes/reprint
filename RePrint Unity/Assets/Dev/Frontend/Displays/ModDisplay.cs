@@ -1,8 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ModDisplay : FloatingDraggableDisplay
+public class ModDisplay : Display
 {
+
+    [SerializeField] private Image backgroundImage;
+
+    [SerializeField] private Image iconImage;
 
     /// <summary>
     /// Sets up the rect transform and travel data.
@@ -10,8 +15,6 @@ public class ModDisplay : FloatingDraggableDisplay
     void Awake()
     {
         SetupRectTransform();
-        SetupTravelingTransformData();
-        SetupDraggable();
     }
 
     void Start()

@@ -71,6 +71,11 @@ public class CharacterFigure : FloatingFigure
     {
         SetupTravelingTransformData();
         state = FigureState.Idle;
+
+        foreach (VisualEffectAndTransform effect in visualEffects)
+        {
+            effect.VisualEffect.gameObject.SetActive(false);
+        }
     }
 
     public void Setup(Character character, BattleView _battleView)

@@ -12,12 +12,12 @@ public class ModDisplayGroup : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < numToSpawn; i++)
-        {
-            FloatingDraggableDisplay spawned = Instantiate(prefab, spawnTransform);
-            spawned.gameObject.SetActive(true);
-            group.AddDraggableToGroup(spawned);
-        }
+        // for (int i = 0; i < numToSpawn; i++)
+        // {
+        //     FloatingDraggableDisplay spawned = Instantiate(prefab, spawnTransform);
+        //     spawned.gameObject.SetActive(true);
+        //     group.AddDraggableToGroup(spawned);
+        // }
 
         group.StartDragEvent.AddListener(StartDragMod);
         group.StopDragEvent.AddListener(StopDragMod);
