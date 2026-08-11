@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ca3690531821f44b1cb3ed24e991b9, type: 3}
+  m_Name: Rarity Profile
+  m_EditorClassIdentifier: Assembly-CSharp::RarityProfile
+  <CommonColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
+  <CommonString>k__BackingField: CO
+  <UncommonColor>k__BackingField: {r: 0, g: 0.8901961, b: 0.38039216, a: 1}
+  <UncommonString>k__BackingField: UN
+  <RareColor>k__BackingField: {r: 0, g: 0.6156863, b: 0.89411765, a: 1}
+  <RareString>k__BackingField: RA
+  <EtherealColor>k__BackingField: {r: 0.64705884, g: 0.31764707, b: 0.98039216, a: 1}
+  <EtherealString>k__BackingField: ETH
+  <MythicColor>k__BackingField: {r: 1, g: 0.8489028, b: 0, a: 1}
+  <MythicString>k__BackingField: MY

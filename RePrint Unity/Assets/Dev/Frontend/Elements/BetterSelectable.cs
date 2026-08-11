@@ -26,10 +26,14 @@ public class BetterSelectable :
     /// </summary>
     [SerializeField] protected UnityEvent<int> selectEvent;
 
+    public UnityEvent<int> SelectEvent { get => selectEvent; }
+
     /// <summary>
     /// The event invoke when this is deselected.
     /// </summary>
     [SerializeField] protected UnityEvent<int> deselectEvent;
+
+    public UnityEvent<int> DeselectEvent { get => deselectEvent; }
 
     /// <summary>
     /// Useable index value thats passed on the select and deselect event.

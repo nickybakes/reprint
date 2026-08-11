@@ -630,8 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModDisplayGroup
   group: {fileID: 2125734030}
   spawnTransform: {fileID: 4542622528868963793}
-  prefab: {fileID: 0}
-  numToSpawn: 5
+  prefab: {fileID: 8334460224831982558}
 --- !u!222 &326318670
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2555,13 +2554,14 @@ GameObject:
   m_Component:
   - component: {fileID: 941710903}
   - component: {fileID: 941710905}
+  - component: {fileID: 941710906}
   m_Layer: 5
   m_Name: ModTooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &941710903
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2590,6 +2590,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941710902}
   m_CullTransparentMesh: 1
+--- !u!114 &941710906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941710902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c3f6b6f4026bc245985b37d760735de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModTooltipDisplay
+  moveCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  travelTimeLength: 0.2
+  iconImage: {fileID: 0}
+  nameText: {fileID: 0}
+  rarityTag: {fileID: 0}
+  rarityText: {fileID: 0}
+  descriptionText: {fileID: 0}
 --- !u!1 &943432688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4252,7 +4294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -86.4, y: -57.44681}
+  m_AnchoredPosition: {x: -86.399994, y: -57.44681}
   m_SizeDelta: {x: 100, y: 49.949997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493647277
@@ -7087,6 +7129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b8b8ac3c152e646bab90693e8dfbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ModDisplay
+  tooltip: {fileID: 941710906}
   backgroundImage: {fileID: 5641636987794305076}
   iconImage: {fileID: 983883980}
 --- !u!114 &8334460224831982559
@@ -7181,6 +7224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003a7101dd3fc664c98f526f66fd3af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIView
+  <RarityProfile>k__BackingField: {fileID: 11400000, guid: fda1e815500ce1544b0318db54478f25, type: 2}
 --- !u!224 &8727431181862556836
 RectTransform:
   m_ObjectHideFlags: 0

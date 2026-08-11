@@ -7,20 +7,23 @@ public class ModDisplayGroup : MonoBehaviour
 
     [SerializeField] private Transform spawnTransform;
 
-    [SerializeField] private FloatingDraggableDisplay prefab;
-    [SerializeField] private int numToSpawn = 5;
+    [SerializeField] private ModDisplay prefab;
 
     void Start()
     {
-        // for (int i = 0; i < numToSpawn; i++)
-        // {
-        //     FloatingDraggableDisplay spawned = Instantiate(prefab, spawnTransform);
-        //     spawned.gameObject.SetActive(true);
-        //     group.AddDraggableToGroup(spawned);
-        // }
-
         group.StartDragEvent.AddListener(StartDragMod);
         group.StopDragEvent.AddListener(StopDragMod);
+    }
+
+    public void Setup(Character character)
+    {
+        foreach (Mod mod in character.Mods)
+        {
+            ModDisplay spawned = Instantiate(prefab, spawnTransform);
+            spawned.gameObject.SetActive(true);
+            group.AddDraggableToGroup(spawned.FloatingDraggableDisplay);
+            spawned.Setup(mod);
+        }
     }
 
     public void StartDragMod(int index, FloatingDraggableDisplay display)

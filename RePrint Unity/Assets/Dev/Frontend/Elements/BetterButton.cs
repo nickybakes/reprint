@@ -12,6 +12,8 @@ public class BetterButton : BetterSelectable, IPointerDownHandler, IPointerUpHan
     /// </summary>
     [SerializeField] protected UnityEvent submitEvent;
 
+    public UnityEvent SubmitEvent { get => submitEvent; }
+
     /// <summary>
     /// Cooldown between when this button can be submitted again.
     /// </summary>
