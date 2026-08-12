@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_KineticSurge_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Profile>k__BackingField: {fileID: 11400000, guid: 8aa90b6c017decd4f91a12c4ecc77faa, type: 2}
   <Name>k__BackingField: Kinetic Surge
   <Rarity>k__BackingField: 0
   <SortOrder>k__BackingField: 0

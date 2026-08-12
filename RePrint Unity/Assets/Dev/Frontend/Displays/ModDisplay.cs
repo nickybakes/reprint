@@ -37,8 +37,14 @@ public class ModDisplay : Display
     {
         mod = _mod;
 
+        Color color = UIView.view.RarityProfile.GetColor(_mod.Rarity);
+
+        backgroundImage.color = color;
+        iconImage.sprite = mod.Profile.Icon;
+
         if (tooltip)
         {
+            tooltip.transform.parent = transform.parent;
             tooltip.Setup(mod);
         }
     }

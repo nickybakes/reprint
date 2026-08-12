@@ -86,7 +86,7 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 1
           valueInput1:
             type: 0
             baseValue: 2
@@ -99,6 +99,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 2
           statChange: 3
+          starterActions: 1
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

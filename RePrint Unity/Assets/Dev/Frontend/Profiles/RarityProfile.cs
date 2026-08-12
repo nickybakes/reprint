@@ -22,4 +22,38 @@ public class RarityProfile : ScriptableObject
     [field: SerializeField] public string MythicString { get; private set; }
 
 
+
+    public Color GetColor(Rarity rarity)
+    {
+        switch (rarity)
+        {
+            case Rarity.Common:
+                return CommonColor;
+            case Rarity.Uncommon:
+                return UncommonColor;
+            case Rarity.Rare:
+                return RareColor;
+            case Rarity.Ethereal:
+                return EtherealColor;
+        }
+
+        return MythicColor;
+    }
+
+    public string GetString(Rarity rarity)
+    {
+        switch (rarity)
+        {
+            case Rarity.Common:
+                return CommonString;
+            case Rarity.Uncommon:
+                return UncommonString;
+            case Rarity.Rare:
+                return RareString;
+            case Rarity.Ethereal:
+                return EtherealString;
+        }
+
+        return MythicString;
+    }
 }

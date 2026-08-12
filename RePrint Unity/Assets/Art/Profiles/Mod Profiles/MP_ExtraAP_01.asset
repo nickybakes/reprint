@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MP_ExtraAP_01
   m_EditorClassIdentifier: Assembly-CSharp::ModProfile
   <Name>k__BackingField: Extra AP
-  <Description>k__BackingField: Gain some extra AP at thestart of your turn.
-  <Icon>k__BackingField: {fileID: 0}
+  <Description>k__BackingField: Gain some 2 AP at the start of your turn.
+  <Icon>k__BackingField: {fileID: 21300000, guid: a5f10cb2a2b3fcb45b06d5a94b47bb9b, type: 3}
   <Animation>k__BackingField: {fileID: 0}

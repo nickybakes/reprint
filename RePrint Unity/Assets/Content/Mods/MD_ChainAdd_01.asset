@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_ChainAdd_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 0}
+  <Profile>k__BackingField: {fileID: 11400000, guid: f43229d0b20c01247b2a77d0ed9f414d, type: 2}
   <Name>k__BackingField: Chain Add
+  <Rarity>k__BackingField: 0
+  <SortOrder>k__BackingField: 0
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
@@ -44,13 +46,14 @@ MonoBehaviour:
           characters:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           comparison1: 1
@@ -73,16 +76,17 @@ MonoBehaviour:
         - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 3
           valueInput1:
             type: 0
             baseValue: 2
@@ -95,6 +99,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 10
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

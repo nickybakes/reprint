@@ -32,6 +32,21 @@ public class ModEffectDrawer : BetterPropertyDrawer
                 SerializedProperty intValue1 = property.FindPropertyRelative("intValue1");
                 intValue1.intValue = AddIntSlider(intValue1.intValue, 0, 4, "Slot");
                 break;
+            case ModEffectType.GainChain:
+                AddProperty("valueInput1");
+                AddProperty("extraArithmetics1");
+                AddProperty("applicationModes");
+                break;
+            case ModEffectType.GainDodge:
+                AddProperty("valueInput1");
+                AddProperty("extraArithmetics1");
+                AddProperty("applicationModes");
+                break;
+            case ModEffectType.GainMaxAP:
+                AddProperty("valueInput1");
+                AddProperty("extraArithmetics1");
+                AddProperty("applicationModes");
+                break;
         }
 
         AddQuarterBlankLine();

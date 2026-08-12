@@ -96,8 +96,10 @@ public abstract class Character
             foreach (ModBehavior behavior in mod.Behaviors)
             {
                 gameValues.currentMod = mod;
-                passingBehaviors.Add(StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues));
-                numPassingBehaviors++;
+                bool pass = StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues);
+                passingBehaviors.Add(pass);
+                if (pass)
+                    numPassingBehaviors++;
             }
 
             if (numPassingBehaviors == 0)

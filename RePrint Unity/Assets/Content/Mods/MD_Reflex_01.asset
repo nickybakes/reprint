@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_Reflex_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
-  <Name>k__BackingField: Retaliate
+  <Profile>k__BackingField: {fileID: 11400000, guid: ca66c132dd413ea43b273104e665a14e, type: 2}
+  <Name>k__BackingField: Reflex
+  <Rarity>k__BackingField: 0
+  <SortOrder>k__BackingField: 0
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
@@ -44,13 +46,14 @@ MonoBehaviour:
           characters:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
           comparison1: 0
@@ -73,16 +76,17 @@ MonoBehaviour:
         - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 4
           valueInput1:
             type: 1
             baseValue: 2
@@ -95,19 +99,22 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 10
+          starterActions: 0
+          finisherActions: 0
         - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 3
           valueInput1:
             type: 0
             baseValue: 2
@@ -120,6 +127,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 8
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0

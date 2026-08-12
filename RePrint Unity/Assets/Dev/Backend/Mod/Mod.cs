@@ -5,8 +5,7 @@ public class Mod
 {
     public ModProfile Profile { get { return baseData.Profile; } }
 
-    public string Name { get { return baseData.Profile.Name; } }
-    public string Description { get { return baseData.Profile.Description; } }
+    public Rarity Rarity { get { return baseData.Rarity; } }
     public List<ModBehavior> Behaviors { get { return baseData.ModBehaviors.List; } }
     public string DebugName { get { return baseData.Name; } }
     public int SortOrder { get { return baseData.SortOrder; } }

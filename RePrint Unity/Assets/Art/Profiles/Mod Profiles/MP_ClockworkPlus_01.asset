@@ -15,5 +15,5 @@ MonoBehaviour:
   <Name>k__BackingField: Clockwork+
   <Description>k__BackingField: Gain 2 Chain whenever an action is Overclocked or
     Auto-Overclocked.
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 91431938de2ab5f43901e93275a3aa2f, type: 3}
   <Animation>k__BackingField: {fileID: 0}

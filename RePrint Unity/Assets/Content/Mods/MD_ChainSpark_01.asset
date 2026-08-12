@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_ChainSpark_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Profile>k__BackingField: {fileID: 11400000, guid: 7e400538ab10e314d986b71ad51ebb58, type: 2}
   <Name>k__BackingField: Chain Spark
+  <Rarity>k__BackingField: 0
+  <SortOrder>k__BackingField: 0
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
@@ -65,16 +67,17 @@ MonoBehaviour:
         - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 3
           valueInput1:
             type: 1
             baseValue: 2
@@ -87,6 +90,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 10
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

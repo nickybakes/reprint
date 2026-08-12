@@ -57,5 +57,8 @@ public enum ModEffectType
     DoDamage,
     StackDamageMultiplier,
     RetriggerAbility,
+    GainChain,
+    GainDodge,
+    GainMaxAP,
     // Heal,
 }

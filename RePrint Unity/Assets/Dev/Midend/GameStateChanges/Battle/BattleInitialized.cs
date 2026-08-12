@@ -22,6 +22,7 @@ public class BattleInitialized : BattleStateChange
         view.BattleStatsPanel.AddPlayerStatsPanel(playerCharacter);
         view.BattleStatsPanel.AddEnemyStatsPanels(enemyTeam);
         view.BattleStatsPanel.DisableAllTargetSelection();
+        view.ModDisplayGroup.Setup(playerCharacter);
         Debug.Log("Battle Initialized.");
     }
 }

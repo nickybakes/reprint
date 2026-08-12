@@ -47,16 +47,17 @@ MonoBehaviour:
         - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 3
           valueInput1:
             type: 0
             baseValue: 2
@@ -75,6 +76,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 10
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

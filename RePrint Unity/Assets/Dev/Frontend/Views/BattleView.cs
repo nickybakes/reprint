@@ -37,6 +37,7 @@ public class BattleView : MonoBehaviour
     [field: SerializeField] public AbilitySequenceGroup PlayerAbilitySequenceGroup { get; private set; }
 
     [field: SerializeField] public TextDisplay TurnDisplay { get; private set; }
+    [field: SerializeField] public ModDisplayGroup ModDisplayGroup { get; private set; }
 
 
     /// <summary>

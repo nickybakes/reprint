@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum StatType
 {
@@ -235,7 +236,22 @@ public class StatCalculation
     {
         foreach (ModEffect effect in effects)
         {
-            List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
+            if (effect.Type == ModEffectType.RetriggerAbility)
+            {
+                modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
+                continue;
+            }
+
+            List<Character> affectedCharacters = new List<Character>();
+
+            if (effect.Type == ModEffectType.StackDamageMultiplier)
+            {
+                affectedCharacters = GetAllEnemies(gameValues);
+            }
+            else
+            {
+                affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
+            }
 
             foreach (Character character in affectedCharacters)
             {
@@ -256,8 +272,17 @@ public class StatCalculation
                             modResult.statChangeAmounts.AddAmount(character, multiplier, StatChange.FinisherPhysicalDamageMultiplier);
                         }
                         break;
-                    case ModEffectType.RetriggerAbility:
-                        modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
+                    case ModEffectType.GainChain:
+                        float chainGain = effect.GetAmount(gameValues);
+                        modResult.statChangeAmounts.AddAmount(character, chainGain, StatChange.ChainGained);
+                        break;
+                    case ModEffectType.GainDodge:
+                        float dodgeGain = effect.GetAmount(gameValues);
+                        modResult.statChangeAmounts.AddAmount(character, dodgeGain, StatChange.DodgeGained);
+                        break;
+                    case ModEffectType.GainMaxAP:
+                        float maxAPGain = effect.GetAmount(gameValues);
+                        modResult.statChangeAmounts.AddAmount(character, maxAPGain, StatChange.APMaxIncrease);
                         break;
                 }
             }
@@ -337,13 +362,7 @@ public class StatCalculation
                     break;
 
                 case EffectApplicationMode.AllEnemies:
-                    foreach (Character member in gameValues.battleManager.EnemyTeam.Members)
-                    {
-                        if (member.IsAlive)
-                        {
-                            affectedCharacters.Add(member);
-                        }
-                    }
+                    affectedCharacters.AddRange(GetAllEnemies(gameValues));
                     break;
                 case EffectApplicationMode.CurrentAffectedCharacter:
                     if (currentAffectedCharacter != null)
@@ -351,6 +370,21 @@ public class StatCalculation
                         affectedCharacters.Add(currentAffectedCharacter);
                     }
                     break;
+            }
+        }
+
+        return affectedCharacters;
+    }
+
+    public static List<Character> GetAllEnemies(GameValues gameValues)
+    {
+        List<Character> affectedCharacters = new List<Character>();
+
+        foreach (Character member in gameValues.battleManager.EnemyTeam.Members)
+        {
+            if (member.IsAlive)
+            {
+                affectedCharacters.Add(member);
             }
         }
 

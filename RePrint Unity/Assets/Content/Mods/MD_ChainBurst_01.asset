@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_ChainBurst_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 0}
+  <Profile>k__BackingField: {fileID: 11400000, guid: c6b162997182476419fda5e1bc8237d1, type: 2}
   <Name>k__BackingField: Chain Burst
   <Rarity>k__BackingField: 0
   <SortOrder>k__BackingField: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 2
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

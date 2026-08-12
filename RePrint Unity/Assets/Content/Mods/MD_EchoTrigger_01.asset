@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_EchoTrigger_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Profile>k__BackingField: {fileID: 11400000, guid: bc27dc91033dcdd419127e77486d96fe, type: 2}
   <Name>k__BackingField: Echo Trigger
+  <Rarity>k__BackingField: 2
+  <SortOrder>k__BackingField: 0
   <ModBehaviors>k__BackingField:
     list:
     - conditions:
@@ -106,7 +108,7 @@ MonoBehaviour:
             list: []
             listFoldout: 0
             foldouts: 
-          type: 1
+          type: 2
           valueInput1:
             type: 0
             baseValue: 0
@@ -119,6 +121,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 0
+          starterActions: 0
+          finisherActions: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

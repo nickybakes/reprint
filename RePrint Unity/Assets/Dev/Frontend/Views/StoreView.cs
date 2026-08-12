@@ -21,8 +21,8 @@ public class StoreView : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject uiRaycastShield;
 
-    [SerializeField] private CharacterStatsPanel playerStatsPanel;
-
+    [field: SerializeField] public CharacterStatsPanel PlayerStatsPanel { get; private set; }
+    [field: SerializeField] public ModDisplayGroup ModDisplayGroup { get; private set; }
 
     /// <summary>
     /// A queue of game changes that the view manager should run through and display.
@@ -147,6 +147,7 @@ public class StoreView : MonoBehaviour
 
     public void UpdateStats(Character character)
     {
-        playerStatsPanel.UpdateStats(character.Stats);
+        PlayerStatsPanel.UpdateStats(character.Stats);
+        ModDisplayGroup.Setup(character);
     }
 }

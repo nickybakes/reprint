@@ -16,17 +16,33 @@ public class ModTooltipDisplay : TooltipDisplay
 
     public void Setup(Mod _mod)
     {
+        Color color = UIView.view.RarityProfile.GetColor(_mod.Rarity);
+        string rarityString = UIView.view.RarityProfile.GetString(_mod.Rarity);
 
+        iconImage.sprite = _mod.Profile.Icon;
+        nameText.text = _mod.Profile.Name;
+
+        iconImage.color = color;
+        nameText.color = color;
+        rarityTag.color = color;
+
+        rarityText.text = rarityString;
+        descriptionText.text = _mod.Profile.Description;
+
+        parentRectTransform = transform.parent.GetComponent<RectTransform>();
+        MoveToMousePosition();
     }
 
     void Awake()
     {
+        SetupRectTransform();
+        SetupTravelingTransformData();
+        MoveToMousePosition();
         gameObject.SetActive(false);
     }
 
     void Update()
     {
-        SetGoalTransform(UIView.view.MouseViewPosition, Quaternion.identity, Vector3.one);
-        UpdateTravel();
+        MoveToMousePosition();
     }
 }

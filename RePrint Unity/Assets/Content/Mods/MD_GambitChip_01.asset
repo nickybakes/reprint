@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_GambitChip_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Profile>k__BackingField: {fileID: 11400000, guid: 60fc6a2ac1e6754469e84914b5ef2ac1, type: 2}
   <Name>k__BackingField: Gambit Chip
   <Rarity>k__BackingField: 0
   <SortOrder>k__BackingField: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
+          type: 1
           valueInput1:
             type: 1
             baseValue: 1
@@ -50,6 +50,8 @@ MonoBehaviour:
           intValue1: 0
           mathType: 0
           statChange: 5
+          starterActions: 1
+          finisherActions: 1
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

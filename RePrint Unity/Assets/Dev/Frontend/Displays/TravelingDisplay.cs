@@ -194,7 +194,7 @@ public class TravelingDisplay : Display
     /// <returns>Whether this is currently traveling.</returns>
     public bool isTraveling()
     {
-        return currentTravelTime <= travelTimeLength;
+        return currentTravelTime <= travelTimeLength && travelTimeLength! != 0;
     }
 
     /// <summary>
