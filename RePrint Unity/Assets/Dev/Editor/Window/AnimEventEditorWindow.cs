@@ -57,6 +57,10 @@ public class AnimEventEditorWindow : EditorWindow
             bool answer = EditorUtility.DisplayDialog("Unapplied Changes", "Changes have not been applied yet. Would you like to apply changes?", "Apply Changes", "Revert Changes");
             if (answer)
             {
+                foreach (ModelImporterClipAnimation animation in animationClips)
+                {
+                    SortEventsByTime(animation, dataDict[animation]);
+                }
                 ApplyChanges();
             }
         }
