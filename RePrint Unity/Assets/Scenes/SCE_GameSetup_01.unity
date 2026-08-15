@@ -792,7 +792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenStoreButton
+      value: StartGameButton
       objectReference: {fileID: 0}
     - target: {fileID: 6434743621137318227, guid: c841f2d556be85843ba6ba115293bfbb, type: 3}
       propertyPath: submitEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
