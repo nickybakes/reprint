@@ -69,7 +69,11 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+<<<<<<< Updated upstream
       - time: 0.169
+=======
+      - time: 0
+>>>>>>> Stashed changes
         functionName: AnimEventVFX
         data: 
         objectReferenceParameter: {instanceID: 0}
