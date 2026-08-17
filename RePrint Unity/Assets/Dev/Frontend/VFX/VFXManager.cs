@@ -31,7 +31,7 @@ public class VFXManager : MonoBehaviour
         }
     }
 
-    public VisualFX PlayEffect(VisualFX effectToPlay, Transform spawnTransform)
+    public VisualFX PlayEffect(VisualFX effectToPlay, Transform spawnTransform, bool stayParented)
     {
         List<VisualFX> effects = cachedEffects[effectToPlay];
 
@@ -45,9 +45,21 @@ public class VFXManager : MonoBehaviour
         VisualFX effect = GetCachedEffectObject(effectToPlay, effects);
 
         effect.gameObject.SetActive(true);
-        effect.transform.position = spawnTransform.position;
-        effect.transform.rotation = spawnTransform.rotation;
-        effect.transform.localScale = spawnTransform.localScale;
+
+        if (stayParented)
+        {
+            spawnTransform.gameObject.SetActive(true);
+            effect.transform.SetParent(spawnTransform);
+            effect.transform.localPosition = Vector3.zero;
+            effect.transform.localRotation = Quaternion.identity;
+            effect.transform.localScale = Vector3.one;
+        }
+        else
+        {
+            effect.transform.position = spawnTransform.position;
+            effect.transform.rotation = spawnTransform.rotation;
+            effect.transform.localScale = spawnTransform.localScale;
+        }
 
         effect.Spawn();
 
@@ -74,7 +86,6 @@ public class VFXManager : MonoBehaviour
     private VisualFX CacheIndividualEffect(VisualFX effect, List<VisualFX> effects)
     {
         VisualFX effectObject = Instantiate(effect);
-        effectObject.gameObject.SetActive(false);
         effects.Add(effectObject);
         return effectObject;
     }

@@ -69,18 +69,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-<<<<<<< Updated upstream
-      - time: 0.169
-=======
-      - time: 0
->>>>>>> Stashed changes
+      - time: 0.003
         functionName: AnimEventVFX
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.19756098
+      - time: 0.197
         functionName: AnimEventUpdateStats
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -97,7 +93,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 87
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -123,7 +119,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    optimizeBones: 0
+    optimizeBones: 1
     generateMeshLods: 0
     meshLodGenerationFlags: 0
     maximumMeshLod: -1

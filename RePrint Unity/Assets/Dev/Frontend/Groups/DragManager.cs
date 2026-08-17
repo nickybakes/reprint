@@ -32,7 +32,6 @@ public class DragManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void StartDragging(List<FloatingDraggableDisplay> draggables)

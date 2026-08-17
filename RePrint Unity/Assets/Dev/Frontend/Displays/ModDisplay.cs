@@ -44,7 +44,7 @@ public class ModDisplay : Display
 
         if (tooltip)
         {
-            tooltip.transform.parent = transform.parent;
+            tooltip.transform.SetParent(transform.parent);
             tooltip.Setup(mod);
         }
     }

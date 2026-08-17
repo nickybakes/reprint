@@ -14,6 +14,8 @@ public class VisualEffectAndTransformDrawer : BetterPropertyDrawer
 
         AddProperty("transform");
 
+        AddProperty("stayParented");
+
         EditorGUI.EndProperty();
     }
 

@@ -8,8 +8,21 @@ public class VisualFX : MonoBehaviour
 
     private float currentTime;
 
+    private bool instantiated;
+
+    void Awake()
+    {
+        if (!instantiated)
+        {
+            instantiated = true;
+            gameObject.SetActive(false);
+        }
+    }
+
     public void Spawn()
     {
+        instantiated = true;
+        gameObject.SetActive(true);
         currentTime = 0;
     }
 
@@ -29,7 +42,9 @@ public class VisualEffectAndTransform
 {
     [SerializeField] private VisualFX visualEffect;
     [SerializeField] private Transform transform;
+    [SerializeField] private bool stayParented;
 
     public VisualFX VisualEffect { get => visualEffect; }
     public Transform Transform { get => transform; }
+    public bool StayParented { get => stayParented; }
 }
