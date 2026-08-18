@@ -32,6 +32,7 @@ public class StatPopupGroup : MonoBehaviour
         for (int i = 0; i < displayAmount; i++)
         {
             StatPopupDisplay display = Instantiate(prefab, transform);
+            display.gameObject.SetActive(true);
             display.Hide();
             displays.Add(display);
         }
