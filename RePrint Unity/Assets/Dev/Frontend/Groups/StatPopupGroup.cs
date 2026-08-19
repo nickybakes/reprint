@@ -15,6 +15,11 @@ public class StatPopupGroup : MonoBehaviour
 
     [SerializeField] private string dodgeString = "Dodge";
     [SerializeField] private string chainString = "Chain";
+    [SerializeField] private string maxAPString = "Max AP";
+
+    [Header("Use %a for the ability name")]
+    [SerializeField] private string retriggerFormat = "Retrigger: %a";
+
 
     private List<StatPopupDisplay> displays;
 
@@ -38,7 +43,54 @@ public class StatPopupGroup : MonoBehaviour
         }
     }
 
-    public void DisplayStat(string name, StatType statType, float amount)
+    public void DisplayModResults(List<ModResult> modResults, Character player)
+    {
+        foreach (ModResult modResult in modResults)
+        {
+            DisplayStatChangeAmounts(modResult.mod.Profile.Name, modResult.statChangeAmounts, player);
+        }
+    }
+
+    public void DisplayAbilityResults(Ability ability, StatChangeBreakdown statChangeBreakdown, Character player)
+    {
+        DisplayStatChangeAmounts(ability.Profile.Name, statChangeBreakdown.abilityStatChanges, player);
+    }
+
+    private void DisplayStatChangeAmounts(string name, StatChangeAmounts statChangeAmounts, Character character)
+    {
+        float chainValue = statChangeAmounts.GetAmount(character, StatChange.ChainGained);
+        if (chainValue != 0)
+        {
+            DisplayStat(name, StatType.Chain, chainValue);
+        }
+
+        float dodgeValue = statChangeAmounts.GetAmount(character, StatChange.DodgeGained);
+        if (dodgeValue != 0)
+        {
+            DisplayStat(name, StatType.Dodge, dodgeValue);
+        }
+
+        float maxAPValue = statChangeAmounts.GetAmount(character, StatChange.APMaxIncrease);
+        if (maxAPValue != 0)
+        {
+            DisplayStat(name, StatType.MaxAP, maxAPValue);
+        }
+    }
+
+    public void DisplayRetrigger(string name, AbilitySelection abilitySelection)
+    {
+        string finalString = retriggerFormat;
+        string abilityName = abilitySelection.Ability.Profile.Name;
+
+        while (finalString.Contains("%a"))
+        {
+            finalString = finalString.Replace("%a", abilityName);
+        }
+
+        Display(name, finalString);
+    }
+
+    public void DisplayStat(string name, StatType statType, float amount, bool isMultiplicative = false)
     {
         int sign = Math.Sign(amount);
         float absAmount = Mathf.Abs(amount);
@@ -54,6 +106,11 @@ public class StatPopupGroup : MonoBehaviour
         else if (sign > 0)
             signString = "+";
 
+        if (isMultiplicative)
+        {
+            signString = "x";
+        }
+
         while (finalString.Contains("%b"))
         {
             finalString = finalString.Replace("%b", signString);
@@ -68,6 +125,9 @@ public class StatPopupGroup : MonoBehaviour
                 break;
             case StatType.Chain:
                 statString = chainString;
+                break;
+            case StatType.MaxAP:
+                statString = maxAPString;
                 break;
         }
 

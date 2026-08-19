@@ -89,7 +89,7 @@ public class BattleManager : MonoBehaviour
         EnemyTeam.ResetForTurn();
         Player.ResetForTurn();
 
-        DoPlayerMods(GameEvent.PlayerTurnStart);
+        StatChangeBreakdown statChangeBreakdown = DoPlayerMods(GameEvent.PlayerTurnStart);
 
         EnemyTeam.SetTurnStats();
         Player.SetTurnStats();
@@ -107,11 +107,11 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        pendingBattleChanges.Add(new PlayerTurnStart(this, TurnIndex));
+        pendingBattleChanges.Add(new PlayerTurnStart(this, TurnIndex, statChangeBreakdown));
         SubmitChanges();
     }
 
-    public virtual void DoPlayerMods(GameEvent _gameEvent)
+    public virtual StatChangeBreakdown DoPlayerMods(GameEvent _gameEvent)
     {
         GameValues gameValues = new GameValues
         {
@@ -127,6 +127,7 @@ public class BattleManager : MonoBehaviour
 
         Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
         statChangeBreakdown.ApplyStatChanges(Player, EnemyTeam);
+        return statChangeBreakdown;
     }
 
     public virtual void PlayerSubmitAbility(Ability ability)

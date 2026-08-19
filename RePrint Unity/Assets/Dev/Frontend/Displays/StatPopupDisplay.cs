@@ -31,10 +31,10 @@ public class StatPopupDisplay : MonoBehaviour
         contentText.text = content;
         currentTime = 0;
         inOutro = false;
+        inIntro = true;
 
         if (introDelay > 0)
         {
-            inIntro = true;
             currentTime = -introDelay;
         }
     }

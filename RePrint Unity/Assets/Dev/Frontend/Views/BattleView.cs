@@ -38,6 +38,8 @@ public class BattleView : MonoBehaviour
 
     [field: SerializeField] public TextDisplay TurnDisplay { get; private set; }
     [field: SerializeField] public ModDisplayGroup ModDisplayGroup { get; private set; }
+    [field: SerializeField] public StatPopupGroup StatPopupGroupMods { get; private set; }
+    [field: SerializeField] public StatPopupGroup StatPopupGroupAbility { get; private set; }
 
 
     /// <summary>

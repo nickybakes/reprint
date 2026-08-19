@@ -5,12 +5,14 @@ public class PlayerTurnStart : BattleStateChange
 {
 
     private BattleManager battleManager;
+    private StatChangeBreakdown statChangeBreakdown;
 
     private int turnIndex;
 
-    public PlayerTurnStart(BattleManager _battleManager, int _turnIndex)
+    public PlayerTurnStart(BattleManager _battleManager, int _turnIndex, StatChangeBreakdown _statChangeBreakdown)
     {
         battleManager = _battleManager;
+        statChangeBreakdown = _statChangeBreakdown;
         turnIndex = _turnIndex;
     }
 
@@ -26,6 +28,7 @@ public class PlayerTurnStart : BattleStateChange
         view.PlayerAbilitySequenceGroup.Clear();
         view.PlayerAbilityDisplayGroup.ResetSequenceState(battleManager.Player.Stats);
         view.PlayerAbilityDisplayGroup.Show();
+        view.StatPopupGroupMods.DisplayModResults(statChangeBreakdown.modResults, battleManager.Player);
         view.EnablePlayerInteractions();
     }
 }

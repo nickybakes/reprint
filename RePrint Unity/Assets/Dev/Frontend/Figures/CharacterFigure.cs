@@ -103,7 +103,6 @@ public class CharacterFigure : FloatingFigure
         finishAbilityAnimationAction = _finishAbilityAnimationAction;
         returnToIdleAction = _returnToIdleAction;
         updateStatsAction = _updateStatsAction;
-        Debug.Log(Time.frameCount + " - " + trigger.TriggerName);
         animator.SetTrigger(trigger.TriggerName);
     }
 

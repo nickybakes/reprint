@@ -20,6 +20,26 @@ MonoBehaviour:
     list:
     - conditions:
         list:
+        - type: 0
+          gameEvent: 1
+          characterStat: 0
+          characters:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          comparison1: 0
+          valueInput1:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          indexType: 0
+          abilityType: 0
+          intValue1: 0
+          comboCountType: 0
+          turnIndexType: 0
+          turnStat: 0
+          turnCountType: 1
         - type: 7
           gameEvent: 0
           characterStat: 0
@@ -41,7 +61,7 @@ MonoBehaviour:
           turnStat: 0
           turnCountType: 1
         listFoldout: 1
-        foldouts: 01
+        foldouts: 0101
       effects:
         list:
         - applicationModes:

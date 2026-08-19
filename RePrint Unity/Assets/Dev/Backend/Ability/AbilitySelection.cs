@@ -12,6 +12,7 @@ public class AbilitySelection
 
     public bool TargetIsSet { get; private set; }
     public bool IsRetrigger { get; private set; }
+    public Mod ModThatRetriggered { get; private set; }
 
     public AbilitySelection(Ability _ability)
     {
@@ -20,13 +21,14 @@ public class AbilitySelection
         TargetIsSet = false;
     }
 
-    public AbilitySelection(AbilitySelection source, bool isRetrigger)
+    public AbilitySelection(AbilitySelection source, bool isRetrigger, Mod modThatRetriggered)
     {
         Ability = source.Ability;
         Overclock = source.Overclock;
         Target = source.Target;
         TargetIsSet = source.TargetIsSet;
         IsRetrigger = isRetrigger;
+        ModThatRetriggered = modThatRetriggered;
     }
 
     public void SetAbility(Ability _ability)

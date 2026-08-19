@@ -90,6 +90,8 @@ public class PlayerDoAbilitySequence : BattleStateChange
     {
         battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.PlayerStats);
         battleView.BattleStatsPanel.UpdateAllEnemyStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats);
+        battleView.StatPopupGroupMods.DisplayModResults(statChangeBreakdowns[currentAbilityIndex].modResults, player);
+        battleView.StatPopupGroupAbility.DisplayAbilityResults(abilitySelections[currentAbilityIndex].Ability, statChangeBreakdowns[currentAbilityIndex], player);
 
         foreach (Character enemy in statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats.Keys)
         {
@@ -102,6 +104,10 @@ public class PlayerDoAbilitySequence : BattleStateChange
     {
         AnimationTrigger animation = abilitySelections[currentAbilityIndex].Ability.Profile.Animation;
         CharacterFigure targretFigure = battleView.EnemyFigureGroup.GetFigure(abilitySelections[currentAbilityIndex].Target);
+        if (abilitySelections[currentAbilityIndex].IsRetrigger)
+        {
+            battleView.StatPopupGroupMods.DisplayRetrigger(abilitySelections[currentAbilityIndex].ModThatRetriggered.Profile.Name, abilitySelections[currentAbilityIndex]);
+        }
 
         if (abilitySelections[currentAbilityIndex].Target == player)
         {

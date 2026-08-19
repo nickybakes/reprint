@@ -6,6 +6,7 @@ public enum StatType
     PhysicalDamage,
     Dodge,
     Chain,
+    MaxAP,
 }
 
 public class StatCalculation
@@ -74,7 +75,7 @@ public class StatCalculation
             {
                 foreach (AbilitySelection abilityRetrigger in modResult.retriggerAbilities)
                 {
-                    AbilitySelection newAbilitySelection = new AbilitySelection(abilityRetrigger, true);
+                    AbilitySelection newAbilitySelection = new AbilitySelection(abilityRetrigger, true, modResult.mod);
                     int index = sequence.IndexOf(abilityRetrigger);
                     sequence.Insert(index + 1, newAbilitySelection);
                 }
