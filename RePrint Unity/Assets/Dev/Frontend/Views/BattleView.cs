@@ -40,7 +40,7 @@ public class BattleView : MonoBehaviour
     [field: SerializeField] public ModDisplayGroup ModDisplayGroup { get; private set; }
     [field: SerializeField] public StatPopupGroup StatPopupGroupMods { get; private set; }
     [field: SerializeField] public StatPopupGroup StatPopupGroupAbility { get; private set; }
-
+    [field: SerializeField] public FollowFigureDisplay FollowPlayerCharacterFigure { get; private set; }
 
     /// <summary>
     /// A queue of game changes that the view manager should run through and display.

@@ -6,6 +6,8 @@ public class StatPopupGroup : MonoBehaviour
 {
     [SerializeField] private StatPopupDisplay prefab;
     [SerializeField] private int displayAmount = 3;
+    [SerializeField] private bool nonParentedMode;
+    [SerializeField] private Transform gamePanel;
     [SerializeField] private float introDelay = .25f;
     [SerializeField] private float lifetime = 2;
     [SerializeField] private float outroLength = .5f;
@@ -159,6 +161,8 @@ public class StatPopupGroup : MonoBehaviour
         else
         {
             displays[displayIndex].Display(name, content, currentIntroDelay);
+            NonParentModePositioning(displayIndex);
+
             currentIntroDelay += introDelay;
         }
     }
@@ -174,6 +178,7 @@ public class StatPopupGroup : MonoBehaviour
                     if (queue.Count > 0)
                     {
                         displays[i].Display(queue[0].Item1, queue[0].Item2, currentIntroDelay);
+                        NonParentModePositioning(i);
                         currentIntroDelay += introDelay;
                         queue.RemoveAt(0);
                     }
@@ -182,5 +187,32 @@ public class StatPopupGroup : MonoBehaviour
         }
 
         currentIntroDelay = Mathf.Max(0, currentIntroDelay - Time.deltaTime);
+    }
+
+    void NonParentModePositioning(int displayIndex)
+    {
+        if (nonParentedMode)
+        {
+            displays[displayIndex].transform.SetParent(transform);
+            displays[displayIndex].transform.localPosition = Vector3.zero;
+            displays[displayIndex].transform.localRotation = Quaternion.identity;
+            displays[displayIndex].transform.localScale = Vector3.one;
+            displays[displayIndex].transform.SetParent(gamePanel);
+
+            Vector2 currentAnchoredPosition = displays[displayIndex].GetRect().anchoredPosition;
+
+            for (int i = 0; i < displays.Count; i++)
+            {
+                if (displays[i].IsShowing && i != displayIndex)
+                {
+                    if (Vector2.Distance(displays[i].GetRect().anchoredPosition, displays[displayIndex].GetRect().anchoredPosition) <= displays[displayIndex].GetRect().rect.height)
+                    {
+                        currentAnchoredPosition.y += displays[displayIndex].GetRect().rect.height;
+                    }
+                }
+            }
+
+            displays[displayIndex].GetRect().anchoredPosition = currentAnchoredPosition;
+        }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class StatPopupDisplay : MonoBehaviour
+public class StatPopupDisplay : Display
 {
 
     [SerializeField] private TextMeshProUGUI nameText;
@@ -17,6 +17,15 @@ public class StatPopupDisplay : MonoBehaviour
     private bool inIntro;
 
     private bool inOutro;
+
+    /// <summary>
+    /// Set up rect transform data.
+    /// </summary>
+    void Awake()
+    {
+        SetupRectTransform();
+    }
+
 
     public void Hide()
     {

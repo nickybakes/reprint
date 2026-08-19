@@ -840,6 +840,7 @@ MonoBehaviour:
   intentDisplayGroup: {fileID: 0}
   targetButton: {fileID: 6006917627685613414}
   AbilityStatsGroup: {fileID: 7044971456715263832}
+  <StatPopupGroupAbility>k__BackingField: {fileID: 0}
 --- !u!225 &3253909183027446872
 CanvasGroup:
   m_ObjectHideFlags: 0

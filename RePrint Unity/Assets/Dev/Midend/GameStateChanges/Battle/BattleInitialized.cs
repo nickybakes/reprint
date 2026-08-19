@@ -18,6 +18,7 @@ public class BattleInitialized : BattleStateChange
         // Tell the View to spawn in the character visuals/UI elements
         view.PlayerAbilityDisplayGroup.AddAbilities(playerCharacter.Abilities, controller);
         view.PlayerFigureGroup.AddCharacter(playerCharacter, view, controller);
+        view.FollowPlayerCharacterFigure.SetFigure(view.PlayerFigureGroup.GetFigure(playerCharacter));
         view.EnemyFigureGroup.AddCharacters(enemyTeam.Members, view, controller);
         view.BattleStatsPanel.AddPlayerStatsPanel(playerCharacter);
         view.BattleStatsPanel.AddEnemyStatsPanels(enemyTeam);

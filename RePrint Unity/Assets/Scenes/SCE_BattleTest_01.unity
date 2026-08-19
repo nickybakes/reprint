@@ -173,7 +173,6 @@ GameObject:
   m_Component:
   - component: {fileID: 193745950}
   - component: {fileID: 193745952}
-  - component: {fileID: 193745951}
   m_Layer: 5
   m_Name: Stat Popup Group Ability
   m_TagString: Untagged
@@ -188,44 +187,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193745949}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4542622528868963793}
+  m_Father: {fileID: 595074701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -39, y: 154}
+  m_AnchoredPosition: {x: 214, y: 234}
   m_SizeDelta: {x: 332.896, y: 254.39}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &193745951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193745949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 6
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 1
 --- !u!114 &193745952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,11 +211,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4426611f8755c9743ac9c045ec615682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatPopupGroup
-  prefab: {fileID: 9212550543853642121, guid: b7b7c793caf92c24ca1fbe89eb9b4eb4, type: 3}
-  displayAmount: 2
-  introDelay: 0.25
-  lifetime: 1.5
-  outroLength: 0.5
+  prefab: {fileID: 478687404486709941, guid: b7b7c793caf92c24ca1fbe89eb9b4eb4, type: 3}
+  displayAmount: 8
+  nonParentedMode: 1
+  gamePanel: {fileID: 4542622528868963793}
+  introDelay: 0
+  lifetime: 1
+  outroLength: 0.2
   valueFormat: '%c: %b%a'
   dodgeString: Dodge
   chainString: Chain
@@ -1323,6 +1298,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &595074700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595074701}
+  - component: {fileID: 595074702}
+  m_Layer: 5
+  m_Name: Follow Player Character Figure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &595074701
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595074700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 193745950}
+  m_Father: {fileID: 4542622528868963793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -435, y: -118}
+  m_SizeDelta: {x: 332.896, y: 254.39001}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &595074702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595074700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfd15e218b139f42b43bbc2256016f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowFigureDisplay
+  offset: {x: 0, y: 0}
 --- !u!1 &595200138
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,9 +3545,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StatPopupGroup
   prefab: {fileID: 9212550543853642121, guid: debff4aa3c5f9f14d96b471149b0814a, type: 3}
   displayAmount: 5
+  nonParentedMode: 0
+  gamePanel: {fileID: 0}
   introDelay: 0.25
   lifetime: 2
-  outroLength: 0.5
+  outroLength: 0.2
   valueFormat: '%c: %b%a'
   dodgeString: Dodge
   chainString: Chain
@@ -4329,6 +4356,7 @@ MonoBehaviour:
   <ModDisplayGroup>k__BackingField: {fileID: 326318669}
   <StatPopupGroupMods>k__BackingField: {fileID: 1510132857}
   <StatPopupGroupAbility>k__BackingField: {fileID: 193745952}
+  <FollowPlayerCharacterFigure>k__BackingField: {fileID: 595074702}
 --- !u!4 &1874190060
 Transform:
   m_ObjectHideFlags: 0
@@ -4962,7 +4990,7 @@ RectTransform:
   - {fileID: 1364223750}
   - {fileID: 1499232762}
   - {fileID: 1510132855}
-  - {fileID: 193745950}
+  - {fileID: 595074701}
   m_Father: {fileID: 8637161791665177191}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
