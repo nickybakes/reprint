@@ -40,6 +40,11 @@ public class CharacterAnimator : MonoBehaviour
         figure.AnimEventMoveCharacter(parseStringToArray(stringCode));
     }
 
+    public void AnimEventGlitchEffect(string stringCode)
+    {
+        figure.AnimEventGlitchEffect(parseStringToArray(stringCode));
+    }
+
     private float[] parseStringToArray(string stringCode)
     {
         string[] stringArray = stringCode.Split(',');

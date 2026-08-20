@@ -15,13 +15,11 @@ public class CharacterFigure : FloatingFigure
     [SerializeField] protected Transform attackPoint;
     [SerializeField] protected List<Material> glitchMaterials;
 
-    [SerializeField] private AnimationCurve movementEase;
-
     [SerializeField] protected bool doesGlitchEffect;
-    [SerializeField] protected float glitchCooldown = .5f;
-    [SerializeField] protected float glitchMinimumTime = .15f;
-    [SerializeField] protected float glitchMultiplier = 2;
-    [SerializeField] protected float glitchSpeedThreshold = .001f;
+    // [SerializeField] protected float glitchCooldown = .5f;
+    // [SerializeField] protected float glitchMinimumTime = .15f;
+    // [SerializeField] protected float glitchMultiplier = 2;
+    // [SerializeField] protected float glitchSpeedThreshold = .001f;
     [SerializeField] protected List<VisualEffectAndTransform> visualEffects;
 
     private BattleView battleView;
@@ -48,6 +46,9 @@ public class CharacterFigure : FloatingFigure
 
     private float timeStoodStill;
 
+    private LerpDetails positionLerpDetails;
+    private LerpDetails glitchLerpDetails;
+
     // private float lerpValue;
     // private float previousLerpValue;
 
@@ -55,13 +56,6 @@ public class CharacterFigure : FloatingFigure
     // [SerializeField] protected int bigJumpFrameDelay = 1;
 
     // private int bigJumpFrames = 0;
-
-    private float currentPositionLerp;
-    private float startPositionLerp;
-    private float goalPositionLerp;
-    private float currentTransitionTime;
-    private float transitionTime;
-
 
 
     /// <summary>
@@ -71,6 +65,8 @@ public class CharacterFigure : FloatingFigure
     {
         SetupTravelingTransformData();
         state = FigureState.Idle;
+        positionLerpDetails = new LerpDetails();
+        glitchLerpDetails = new LerpDetails();
     }
 
     public void Setup(Character character, BattleView _battleView)
@@ -169,90 +165,52 @@ public class CharacterFigure : FloatingFigure
 
     public void AnimEventMoveCharacter(float[] floatArray)
     {
-        startPositionLerp = currentPositionLerp;
-        goalPositionLerp = floatArray[0];
-        transitionTime = floatArray[1];
-        currentTransitionTime = 0;
+        positionLerpDetails.TransitionTo(floatArray[0], floatArray[1]);
+    }
 
-        if (transitionTime == 0)
-        {
-            currentPositionLerp = goalPositionLerp;
-            currentTransitionTime = 1;
-            transitionTime = 1;
-        }
+    public void AnimEventGlitchEffect(float[] floatArray)
+    {
+        glitchLerpDetails.TransitionTo(floatArray[0], floatArray[1]);
     }
 
     void Update()
     {
         UpdateTravel();
 
-        currentTransitionTime += Time.deltaTime;
-
-        float transitionLerp = Mathf.Clamp(currentTransitionTime / transitionTime, 0, 1);
-        transitionLerp = movementEase.Evaluate(transitionLerp);
-
-        currentPositionLerp = Mathf.Lerp(startPositionLerp, goalPositionLerp, transitionLerp);
+        positionLerpDetails.Update();
 
         MoveToTarget();
 
         if (doesGlitchEffect)
         {
+            glitchLerpDetails.Update();
             SetGlitchEffect();
         }
-
-        // if (positionBone)
-        // {
-        //     float newLerpValue = Math.Abs(positionBone.localPosition.x * 100);
-        //     if (newLerpValue - previousLerpValue < lerpDifferenceThreshold)
-        //     {
-        //         bigJumpFrames = 0;
-        //         // Big Jump detected
-        //         Debug.Log(Time.frameCount + " - Difference: " + (newLerpValue - previousLerpValue));
-        //     }
-
-        //     if (bigJumpFrames >= bigJumpFrameDelay)
-        //     {
-        //         lerpValue = newLerpValue;
-        //     }
-        //     else
-        //     {
-        //         bigJumpFrames += 1;
-        //     }
-
-        //     MoveToTarget();
-        //     SetGlitchEffect();
-
-        //     previousLerpValue = newLerpValue;
-        // }
     }
 
     protected void MoveToTarget()
     {
         idlePosition = GetGoalPosition();
-        transform.position = Vector3.LerpUnclamped(idlePosition, targetAttackPosition, currentPositionLerp);
+        transform.position = Vector3.LerpUnclamped(idlePosition, targetAttackPosition, positionLerpDetails.CurrentLerp);
 
-        float speed = Vector3.Distance(previousPosition, transform.position) / Time.deltaTime;
+        // float speed = Vector3.Distance(previousPosition, transform.position) / Time.deltaTime;
 
-        if (speed < glitchSpeedThreshold)
-        {
-            timeStoodStill += Time.deltaTime;
-        }
-        else
-        {
-            timeStoodStill = -glitchMinimumTime;
-        }
-        previousPosition = transform.position;
+        // if (speed < glitchSpeedThreshold)
+        // {
+        //     timeStoodStill += Time.deltaTime;
+        // }
+        // else
+        // {
+        //     timeStoodStill = -glitchMinimumTime;
+        // }
+        // previousPosition = transform.position;
     }
 
     protected void SetGlitchEffect()
     {
-        float glitchLerp = glitchCooldown - timeStoodStill;
-
-        glitchLerp = Math.Clamp(glitchLerp * (1f / glitchCooldown) * glitchMultiplier, 0, 1);
-
         foreach (Material material in glitchMaterials)
         {
-            material.SetFloat("_Glitch_Effect", glitchLerp);
+            material.SetFloat("_Glitch_Effect", glitchLerpDetails.CurrentLerp);
         }
     }
 }

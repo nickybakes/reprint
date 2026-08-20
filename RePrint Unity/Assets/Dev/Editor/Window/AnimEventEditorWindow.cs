@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -11,9 +12,8 @@ public class AnimEventEditorWindow : EditorWindow
 
     private static List<string> displayNames;
 
-    private static Dictionary<string, AnimEventParameters> animEventParameters;
+    private static Dictionary<string, AnimEventParameterType> animEventParameters;
 
-    private AnimEventParameters noParameters = new AnimEventParameters();
 
 
     private bool changesNotBeenApplied;
@@ -70,14 +70,15 @@ public class AnimEventEditorWindow : EditorWindow
 
     private void ReloadWindow()
     {
-        functionNames = new List<string>() { "AnimEventFinishAbility", "AnimEventReturnToIdle", "AnimEventUpdateStats", "AnimEventCameraFocusEnemies", "AnimEventCameraFocusDefault", "AnimEventVFX", "AnimEventMoveCharacter", "" };
+        functionNames = new List<string>() { "AnimEventFinishAbility", "AnimEventReturnToIdle", "AnimEventUpdateStats", "AnimEventCameraFocusEnemies", "AnimEventCameraFocusDefault", "AnimEventVFX", "AnimEventMoveCharacter", "AnimEventGlitchEffect", "" };
 
-        displayNames = new List<string>() { "Finish Ability", "Return To Idle", "Update Stats", "Focus Camera on Enemies", "Focus Camera on Default", "Play VFX", "Move Character", "None" };
+        displayNames = new List<string>() { "Finish Ability", "Return To Idle", "Update Stats", "Focus Camera on Enemies", "Focus Camera on Default", "Play VFX", "Move Character", "Glitch Effect", "None" };
 
-        animEventParameters = new Dictionary<string, AnimEventParameters>
+        animEventParameters = new Dictionary<string, AnimEventParameterType>
         {
-            { "AnimEventVFX", new AnimEventParameters(1000) },
-            { "AnimEventMoveCharacter", new AnimEventParameters(0010) }
+            { "AnimEventVFX", AnimEventParameterType.Integer },
+            { "AnimEventMoveCharacter", AnimEventParameterType.AmountAndTransitionTime },
+            { "AnimEventGlitchEffect", AnimEventParameterType.AmountAndTransitionTime },
         };
 
         scrollPosition = new Vector2();
@@ -131,12 +132,22 @@ public class AnimEventEditorWindow : EditorWindow
                 for (int i = 0; i < events.Length; i++)
                 {
                     AnimationEvent animEvent = events[i];
-                    AnimEventParameters parameters = noParameters;
+
+                    AnimEventParameterType parameterType = AnimEventParameterType.None;
+
                     if (animEventParameters.ContainsKey(animEvent.functionName))
-                        parameters = animEventParameters[animEvent.functionName];
+                    {
+                        parameterType = animEventParameters[animEvent.functionName];
+                    }
 
                     Rect rect = GUILayoutUtility.GetLastRect();
-                    float height = (parameters.GetNumLines() + 2.8f) * EditorGUIUtility.singleLineHeight;
+                    float height = 2.8f * EditorGUIUtility.singleLineHeight;
+
+                    if (parameterType != AnimEventParameterType.None)
+                    {
+                        height += EditorGUIUtility.singleLineHeight;
+                    }
+
                     rect.height = height;
                     EditorGUI.DrawRect(rect, i % 2 == 0 ? midBGColor : darkBGColor);
 
@@ -166,18 +177,29 @@ public class AnimEventEditorWindow : EditorWindow
 
                     animEvent.time = EditorGUILayout.Slider("Time", animEvent.time, 0f, 1f);
 
-                    EditorGUILayout.BeginHorizontal();
-                    if (parameters.intParam)
-                        animEvent.intParameter = EditorGUILayout.IntField("Int", animEvent.intParameter);
-                    if (parameters.floatParam)
-                        animEvent.floatParameter = EditorGUILayout.FloatField("Float", animEvent.floatParameter);
-                    EditorGUILayout.EndHorizontal();
-                    EditorGUILayout.BeginHorizontal();
-                    if (parameters.stringParam)
-                        animEvent.stringParameter = EditorGUILayout.TextField("String", animEvent.stringParameter);
-                    if (parameters.objectParam)
-                        animEvent.objectReferenceParameter = (GameObject)EditorGUILayout.ObjectField("Object", animEvent.objectReferenceParameter, typeof(GameObject), false);
-                    EditorGUILayout.EndHorizontal();
+                    if (parameterType != AnimEventParameterType.None)
+                    {
+                        EditorGUILayout.BeginHorizontal();
+                        switch (parameterType)
+                        {
+                            case AnimEventParameterType.Integer:
+                                animEvent.intParameter = EditorGUILayout.IntField("Int", animEvent.intParameter);
+                                break;
+                            case AnimEventParameterType.Float:
+                                animEvent.floatParameter = EditorGUILayout.FloatField("Float", animEvent.floatParameter);
+                                break;
+                            case AnimEventParameterType.String:
+                                animEvent.stringParameter = EditorGUILayout.TextField("String", animEvent.stringParameter);
+                                break;
+                            case AnimEventParameterType.Object:
+                                animEvent.objectReferenceParameter = (GameObject)EditorGUILayout.ObjectField("Object", animEvent.objectReferenceParameter, typeof(GameObject), false);
+                                break;
+                            case AnimEventParameterType.AmountAndTransitionTime:
+                                animEvent.stringParameter = FloatArrayFields(animEvent.stringParameter, new string[] { "Amount", "Transition Time" });
+                                break;
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
 
                     EditorGUILayout.Separator();
                 }
@@ -257,6 +279,65 @@ public class AnimEventEditorWindow : EditorWindow
         }
         dataDict[animation] = sortedEvents.ToArray();
     }
+
+    private string FloatArrayFields(string currentStringCode, string[] options)
+    {
+        EditorGUIUtility.labelWidth = 100;
+        float[] floatArray = ParseStringToArray(currentStringCode, 2);
+        for (int i = 0; i < options.Length; i++)
+        {
+            floatArray[i] = EditorGUILayout.FloatField(options[i], floatArray[i]);
+        }
+        EditorGUIUtility.labelWidth = 50;
+        return ParseArrayToString(floatArray);
+    }
+
+    private float[] ParseStringToArray(string stringCode, int minLength)
+    {
+        if (stringCode == "")
+        {
+            return new float[minLength];
+        }
+        string[] stringArray = stringCode.Split(',');
+        float[] floatArray = new float[Math.Max(stringArray.Length, minLength)];
+        for (int i = 0; i < floatArray.Length; i++)
+        {
+            if (i > stringArray.Length)
+            {
+                floatArray[i] = 0;
+            }
+            else
+            {
+                floatArray[i] = float.Parse(stringArray[i]);
+            }
+        }
+        return floatArray;
+    }
+
+    private string ParseArrayToString(float[] floatArray)
+    {
+        string stringCode = "";
+        for (int i = 0; i < floatArray.Length; i++)
+        {
+            stringCode += floatArray[i];
+            if (i < floatArray.Length - 1)
+            {
+                stringCode += ",";
+            }
+        }
+        return stringCode;
+    }
+
+}
+
+enum AnimEventParameterType
+{
+    None,
+    Integer,
+    Float,
+    String,
+    Object,
+    AmountAndTransitionTime
 }
 
 class AnimEventParameters
