@@ -55,18 +55,18 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
-        functionName: AnimEventMoveCharacter
-        data: 1,0
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 1
-        intParameter: 0
-        messageOptions: 0
-      - time: 1
+      - time: 0.877
         functionName: AnimEventGlitchEffect
         data: 1,0
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.885
+        functionName: AnimEventMoveCharacter
+        data: 1,0
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 1
         intParameter: 0
         messageOptions: 0
       transformMask: []
