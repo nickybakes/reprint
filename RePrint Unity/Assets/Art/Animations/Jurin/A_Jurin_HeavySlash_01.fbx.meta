@@ -62,9 +62,23 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0
+        functionName: AnimEventGlitchEffect
+        data: 0,0.25
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.20305836
         functionName: AnimEventUpdateStats
         data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9
+        functionName: AnimEventGlitchEffect
+        data: 1,0
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
