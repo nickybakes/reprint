@@ -8,7 +8,7 @@ public class UIView : MonoBehaviour
     public static RectTransform CanvasRect { get; private set; }
     public static Canvas Canvas { get; private set; }
 
-    [field: SerializeField] public RarityProfile RarityProfile { get; private set; }
+    [field: SerializeField] public RarityDirectory RarityDirectory { get; private set; }
 
     private Vector3 mouseScreenPosition;
     private Vector3 mouseViewPosition;

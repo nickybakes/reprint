@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4ca3690531821f44b1cb3ed24e991b9, type: 3}
-  m_Name: Rarity Profile
+  m_Name: Rarity Directory
   m_EditorClassIdentifier: Assembly-CSharp::RarityProfile
   <CommonColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}
   <CommonString>k__BackingField: CO

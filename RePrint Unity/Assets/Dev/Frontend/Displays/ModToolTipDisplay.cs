@@ -16,8 +16,8 @@ public class ModTooltipDisplay : TooltipDisplay
 
     public void Setup(Mod _mod)
     {
-        Color color = UIView.view.RarityProfile.GetColor(_mod.Rarity);
-        string rarityString = UIView.view.RarityProfile.GetString(_mod.Rarity);
+        Color color = UIView.view.RarityDirectory.GetColor(_mod.Rarity);
+        string rarityString = UIView.view.RarityDirectory.GetString(_mod.Rarity);
 
         iconImage.sprite = _mod.Profile.Icon;
         nameText.text = _mod.Profile.Name;

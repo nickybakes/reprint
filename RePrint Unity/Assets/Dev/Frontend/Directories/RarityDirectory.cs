@@ -2,8 +2,8 @@
 
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RarityProfile", menuName = "Scriptable Objects/Rarity Profile")]
-public class RarityProfile : ScriptableObject
+[CreateAssetMenu(fileName = "RarityDirectory", menuName = "Scriptable Objects/Rarity Directory")]
+public class RarityDirectory : ScriptableObject
 {
 
     [field: SerializeField] public Color CommonColor { get; private set; } = Color.white;

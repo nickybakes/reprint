@@ -5434,7 +5434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003a7101dd3fc664c98f526f66fd3af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIView
-  <RarityProfile>k__BackingField: {fileID: 11400000, guid: fda1e815500ce1544b0318db54478f25, type: 2}
+  <RarityDirectory>k__BackingField: {fileID: 11400000, guid: fda1e815500ce1544b0318db54478f25, type: 2}
 --- !u!114 &8876460293919416377 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8920712000016210306, guid: 8f5562d8017e84b4199eb832552360ca, type: 3}

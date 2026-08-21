@@ -37,7 +37,7 @@ public class ModDisplay : Display
     {
         mod = _mod;
 
-        Color color = UIView.view.RarityProfile.GetColor(_mod.Rarity);
+        Color color = UIView.view.RarityDirectory.GetColor(_mod.Rarity);
 
         backgroundImage.color = color;
         iconImage.sprite = mod.Profile.Icon;
