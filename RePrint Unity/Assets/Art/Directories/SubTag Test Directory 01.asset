@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809042ff769ef5844bed0a5e0cdaec12, type: 3}
+  m_Name: SubTag Test Directory 01
+  m_EditorClassIdentifier: Assembly-CSharp::SubTagDirectory
+  <Colors>k__BackingField:
+  - <Tag>k__BackingField: cyan
+    <Color>k__BackingField: {r: 0, g: 1, b: 0.94843197, a: 1}
+  - <Tag>k__BackingField: red
+    <Color>k__BackingField: {r: 1, g: 0.009791803, b: 0, a: 1}
+  - <Tag>k__BackingField: green
+    <Color>k__BackingField: {r: 0, g: 0.6132076, b: 0.043812655, a: 1}
+  <Sprites>k__BackingField: []
+  <SubTags>k__BackingField:
+  - <Tag>k__BackingField: combo
+    <Parameters>k__BackingField: a
+    <Replacement>k__BackingField: <red>Combo</color> <gamer>
+    <SubDescription>k__BackingField: <cyan>Combo %a</color>. Performing %a or more
+      Starter Actions in a single turn.
+    <MaxLines>k__BackingField: 5
+  - <Tag>k__BackingField: gamer
+    <Parameters>k__BackingField: 
+    <Replacement>k__BackingField: Gaming
+    <SubDescription>k__BackingField: Skibidi toilet
+    <MaxLines>k__BackingField: 5
