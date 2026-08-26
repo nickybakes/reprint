@@ -10,6 +10,47 @@ public class SubTagDirectory : ScriptableObject
     [field: SerializeField] public List<SubTagSprite> Sprites { get; private set; }
 
     [field: SerializeField] public List<SubTag> SubTags { get; private set; }
+
+
+    public SubTagResult GetSubTagResults(string promptString)
+    {
+        SubTagResult results = new SubTagResult();
+
+
+        return results;
+    }
+
+    private SubTagString FindNextTag(string promptString)
+    {
+
+        int openingIndex = promptString.IndexOf('<');
+
+        if (openingIndex != -1)
+        {
+            string subString = promptString.Substring(openingIndex);
+            int closingIndex = subString.IndexOf('>');
+            if (closingIndex != -1)
+            {
+
+            }
+        }
+
+        return null;
+    }
+}
+
+public class SubTagString
+{
+    public string tag;
+    public int index;
+    public int length;
+    public string[] parameters;
+}
+
+public class SubTagResult
+{
+    public string promptReplaceString;
+    public List<string> subDescriptions = new List<string>();
 }
 
 [Serializable]
