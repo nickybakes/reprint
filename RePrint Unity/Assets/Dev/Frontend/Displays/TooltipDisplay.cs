@@ -18,6 +18,12 @@ public class TooltipDisplay : TravelingDisplay
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        AwakeTooltip();
+    }
+
+    protected void AwakeTooltip()
+    {
+        transform.SetParent(UIView.view.TooltipParent);
         SetupRectTransform();
         SetupTravelingTransformData();
         MoveToMousePosition();

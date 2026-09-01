@@ -21,12 +21,12 @@ MonoBehaviour:
   <SubTags>k__BackingField:
   - <Tag>k__BackingField: combo
     <Parameters>k__BackingField: a
-    <Replacement>k__BackingField: <cyan>Combo</color>
+    <Replacement>k__BackingField: <cyan>Combo %a</color>
     <SubDescription>k__BackingField: <cyan>Combo %a</color>. Performing %a or more
       Starter Actions in a single turn.
-    <MaxLines>k__BackingField: 5
   - <Tag>k__BackingField: test
     <Parameters>k__BackingField: 
     <Replacement>k__BackingField: <green>Test</color>
-    <SubDescription>k__BackingField: <green>Test</color>. Test Description
-    <MaxLines>k__BackingField: 5
+    <SubDescription>k__BackingField: <green>Test</color>. Test Description Test DescriptionTest
+      DescriptionTest DescriptionTest DescriptionTest DescriptionTest DescriptionTest
+      DescriptionTest Desdawdawd wdawdwad awda

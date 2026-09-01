@@ -10,7 +10,6 @@ public class ModTooltipDisplay : TooltipDisplay
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image rarityTag;
     [SerializeField] private TextMeshProUGUI rarityText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
 
     [SerializeField] private SubDescriptionGroup subDescriptionGroup;
 
@@ -30,8 +29,7 @@ public class ModTooltipDisplay : TooltipDisplay
 
         SubTagResult subTagResult = UIView.view.SubTagDirectory.GetAllSubTagResults(_mod.Profile.Description);
 
-        descriptionText.text = subTagResult.replaceString;
-        subDescriptionGroup.DisplayDescriptions(subTagResult.subDescriptions);
+        subDescriptionGroup.DisplayDescriptions(subTagResult.replaceString, subTagResult.subDescriptions);
 
         parentRectTransform = transform.parent.GetComponent<RectTransform>();
         MoveToMousePosition();
@@ -39,10 +37,7 @@ public class ModTooltipDisplay : TooltipDisplay
 
     void Awake()
     {
-        SetupRectTransform();
-        SetupTravelingTransformData();
-        MoveToMousePosition();
-        gameObject.SetActive(false);
+        AwakeTooltip();
     }
 
     void Update()

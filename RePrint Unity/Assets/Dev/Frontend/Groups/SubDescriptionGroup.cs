@@ -4,58 +4,64 @@ using UnityEngine;
 
 public class SubDescriptionGroup : MonoBehaviour
 {
-
-    [SerializeField] private TextMeshProUGUI prefab;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI subDescriptionPrefab;
     [SerializeField] private RectTransform backgroundElement;
 
-    [SerializeField] private float lineHeight;
     [SerializeField] private float spacing;
     [SerializeField] private float bottomMargin;
 
-    private List<TextMeshProUGUI> texts;
+    private List<TextMeshProUGUI> allDescriptionTexts;
 
-    public void DisplayDescriptions(List<string> descriptions)
+    private float baseBackgroundHeight;
+
+    public void DisplayDescriptions(string mainDescription, List<string> descriptions)
     {
-        texts = new List<TextMeshProUGUI>();
+        allDescriptionTexts = new List<TextMeshProUGUI>();
+
+        descriptionText.transform.SetParent(transform);
+        allDescriptionTexts.Add(descriptionText);
+        descriptionText.text = mainDescription;
+        descriptionText.gameObject.SetActive(true);
 
         for (int i = 0; i < descriptions.Count; i++)
         {
-            TextMeshProUGUI newText = Instantiate(prefab, transform);
-            texts.Add(newText);
+            TextMeshProUGUI newText = Instantiate(subDescriptionPrefab, transform);
+            allDescriptionTexts.Add(newText);
             newText.text = descriptions[i];
             newText.gameObject.SetActive(true);
         }
 
-        Resize();
+        baseBackgroundHeight = backgroundElement.sizeDelta.y;
     }
 
     private void Resize()
     {
         float totalHeight = 0;
 
-        for (int i = 0; i < texts.Count; i++)
+        for (int i = 0; i < allDescriptionTexts.Count; i++)
         {
-            Vector2 sizeDelta = texts[i].rectTransform.sizeDelta;
-            sizeDelta.y = texts[i].textInfo.lineCount * lineHeight;
-            if (i != texts.Count - 1)
+            Vector2 sizeDelta = allDescriptionTexts[i].rectTransform.sizeDelta;
+            sizeDelta.y = allDescriptionTexts[i].preferredHeight;
+            if (i != allDescriptionTexts.Count - 1)
             {
                 sizeDelta.y += spacing;
             }
-            texts[i].rectTransform.sizeDelta = sizeDelta;
+            allDescriptionTexts[i].rectTransform.sizeDelta = sizeDelta;
 
             totalHeight += sizeDelta.y;
         }
 
-        if (texts.Count > 0)
+        if (allDescriptionTexts.Count > 0)
         {
-            Vector2 backgroundSizeDelta = backgroundElement.sizeDelta;
-            backgroundSizeDelta.y += totalHeight + bottomMargin;
-            backgroundElement.sizeDelta = backgroundSizeDelta;
+            float calculatedBackgroundHeight = baseBackgroundHeight + totalHeight + bottomMargin;
+            backgroundElement.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, -((baseBackgroundHeight * .5f) + totalHeight + bottomMargin), calculatedBackgroundHeight);
         }
     }
 
     void OnEnable()
     {
+        Resize();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

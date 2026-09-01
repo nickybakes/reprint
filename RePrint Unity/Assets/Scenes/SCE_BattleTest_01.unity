@@ -1965,7 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2660737152356515, guid: ecd29f23700449144a28d82893b84249, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -212.66464
+      value: -212.66461
       objectReference: {fileID: 0}
     - target: {fileID: 2660737152356515, guid: ecd29f23700449144a28d82893b84249, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3143,6 +3143,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1013569760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1317556229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1317556230}
+  - component: {fileID: 1317556231}
+  m_Layer: 5
+  m_Name: Tool Tip Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1317556230
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317556229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8637161791665177191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1317556231
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317556229}
+  m_CullTransparentMesh: 1
 --- !u!1 &1364223749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5415,6 +5459,7 @@ RectTransform:
   - {fileID: 1751208050}
   - {fileID: 4542622528868963793}
   - {fileID: 1474173672}
+  - {fileID: 1317556230}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5436,6 +5481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIView
   <RarityDirectory>k__BackingField: {fileID: 11400000, guid: fda1e815500ce1544b0318db54478f25, type: 2}
   <SubTagDirectory>k__BackingField: {fileID: 11400000, guid: 32294fd515cd24d419b26832d6957990, type: 2}
+  <TooltipParent>k__BackingField: {fileID: 1317556230}
 --- !u!114 &8876460293919416377 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8920712000016210306, guid: 8f5562d8017e84b4199eb832552360ca, type: 3}
