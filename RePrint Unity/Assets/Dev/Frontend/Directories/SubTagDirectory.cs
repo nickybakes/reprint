@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,10 +13,31 @@ public class SubTagDirectory : ScriptableObject
 
     [field: SerializeField] public List<SubTag> SubTags { get; private set; }
 
-
-    public SubTagResult GetSubTagResults(string promptString)
+    public SubTagResult GetAllSubTagResults(string promptString)
     {
         SubTagResult results = new SubTagResult();
+
+        List<string> descriptions = new List<string>();
+        List<int> descriptionIndices = new List<int>();
+
+        results.replaceString = ReplaceSubTagsRecursive(promptString, descriptions, descriptionIndices, new Dictionary<string, string>());
+        results.subDescriptions = descriptions;
+
+        return results;
+    }
+
+
+    private string ReplaceSubTagsRecursive(string promptString, List<string> descriptions, List<int> descriptionIndices, Dictionary<string, string> promptStringParameters)
+    {
+        string[] promptStringKeys = promptStringParameters.Keys.ToArray();
+        for (int i = 0; i < promptStringKeys.Length; i++)
+        {
+            string paramaterCode = "%" + promptStringKeys[i];
+            while (promptString.Contains(paramaterCode))
+            {
+                promptString = promptString.Replace(paramaterCode, promptStringParameters[promptStringKeys[i]]);
+            }
+        }
 
         int currentIndex = 0;
         while (currentIndex < promptString.Length)
@@ -31,21 +53,36 @@ public class SubTagDirectory : ScriptableObject
                 int subtagIndex = GetSubTagDirectoryIndex(nextTag.tag);
                 if (subtagIndex != -1)
                 {
-                    SubTagResult replacementResult = GetSubTagResults(SubTags[subtagIndex].Replacement);
+                    string replacement = SubTags[subtagIndex].Replacement;
 
-                    // for (int i = 0; i < SubTags[subtagIndex].Parameters.Length; i++)
-                    // {
-                    //     string paramaterCode = "%" + SubTags[subtagIndex].Parameters[i];
-                    //     while (replacementResult.promptReplaceString.Contains(paramaterCode))
-                    //     {
-                    //         replacementResult.promptReplaceString = replacementResult.promptReplaceString.Replace(paramaterCode, nextTag.parameters[i]);
-                    //     }
-                    // }
+                    string[] parameterKeys = SubTags[subtagIndex].Parameters.Split(',');
+                    Dictionary<string, string> nextTagParameters = new Dictionary<string, string>();
+                    for (int i = 0; i < Math.Min(parameterKeys.Length, nextTag.parameters.Length); i++)
+                    {
+                        nextTagParameters.Add(parameterKeys[i], nextTag.parameters[i]);
+                    }
+
+                    for (int i = 0; i < parameterKeys.Length; i++)
+                    {
+                        string paramaterCode = "%" + parameterKeys[i];
+                        while (replacement.Contains(paramaterCode))
+                        {
+                            replacement = replacement.Replace(paramaterCode, nextTagParameters[parameterKeys[i]]);
+                        }
+                    }
+
+                    if (SubTags[subtagIndex].SubDescription != "" && !descriptionIndices.Contains(subtagIndex))
+                    {
+                        descriptionIndices.Add(subtagIndex);
+                        descriptions.Add(ReplaceSubTagsRecursive(SubTags[subtagIndex].SubDescription, descriptions, descriptionIndices, nextTagParameters));
+                    }
+
+                    string replacementResult = ReplaceSubTagsRecursive(replacement, descriptions, descriptionIndices, promptStringParameters);
 
                     promptString = promptString.Remove(nextTag.index, nextTag.length + 1);
-                    promptString = promptString.Insert(nextTag.index, replacementResult.promptReplaceString);
+                    promptString = promptString.Insert(nextTag.index, replacementResult);
 
-                    currentIndex = nextTag.index + replacementResult.promptReplaceString.Length;
+                    currentIndex = nextTag.index + replacementResult.Length;
                     continue;
                 }
                 else
@@ -79,8 +116,7 @@ public class SubTagDirectory : ScriptableObject
             currentIndex = nextTag.index + nextTag.length;
         }
 
-        results.promptReplaceString = promptString;
-        return results;
+        return promptString;
     }
 
     private SubTagString FindNextTag(string promptString, int startingIndex)
@@ -106,12 +142,12 @@ public class SubTagDirectory : ScriptableObject
                 if (openingParamIndex != -1)
                 {
                     string parameterString = keyword.Substring(openingParamIndex);
-                    int closingParamIndex = keyword.IndexOf(')');
+                    int closingParamIndex = parameterString.IndexOf(')');
                     if (closingParamIndex != -1)
                     {
                         parameterString = parameterString.Substring(1, closingParamIndex - 1);
                         subTagString.parameters = parameterString.Split(',');
-                        subTagString.tag = keyword.Substring(1, openingParamIndex);
+                        subTagString.tag = keyword.Substring(0, openingParamIndex);
                     }
                 }
 
@@ -170,8 +206,8 @@ public class SubTagString
 
 public class SubTagResult
 {
-    public string promptReplaceString;
-    public List<SubTagResult> subDescriptions = new List<SubTagResult>();
+    public string replaceString;
+    public List<string> subDescriptions = new List<string>();
 }
 
 [Serializable]
@@ -181,7 +217,6 @@ public class SubTag
     [field: SerializeField] public string Parameters { get; private set; }
     [field: SerializeField] public string Replacement { get; private set; }
     [field: SerializeField, TextArea] public string SubDescription { get; private set; }
-    [field: SerializeField, Range(0, 5)] public int MaxLines { get; private set; } = 5;
 }
 
 [Serializable]

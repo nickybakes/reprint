@@ -607,7 +607,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: d6e74b8a3a5254745b337b6b06f795fe, type: 2}
   playerMods:
   - {fileID: 11400000, guid: 72caa5b875f9565469a21c38c0785200, type: 2}
-  - {fileID: 11400000, guid: 49d8f35f68d3e0b4a834453b230a391b, type: 2}
+  - {fileID: 11400000, guid: 6633ae82a9b49f04ea755f0f5484daa1, type: 2}
   - {fileID: 11400000, guid: 9f2ffec6524682e43bde19cf2713d648, type: 2}
   - {fileID: 11400000, guid: 21358cac31e8c7944aaf4d29a27c1315, type: 2}
   - {fileID: 11400000, guid: e6b1f5b5d9173504ca58ffd4a35111d3, type: 2}

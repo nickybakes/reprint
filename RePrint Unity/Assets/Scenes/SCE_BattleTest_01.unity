@@ -5435,6 +5435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIView
   <RarityDirectory>k__BackingField: {fileID: 11400000, guid: fda1e815500ce1544b0318db54478f25, type: 2}
+  <SubTagDirectory>k__BackingField: {fileID: 11400000, guid: 32294fd515cd24d419b26832d6957990, type: 2}
 --- !u!114 &8876460293919416377 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8920712000016210306, guid: 8f5562d8017e84b4199eb832552360ca, type: 3}

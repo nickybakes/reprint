@@ -23,12 +23,17 @@ MonoBehaviour:
   <SubTags>k__BackingField:
   - <Tag>k__BackingField: combo
     <Parameters>k__BackingField: a
-    <Replacement>k__BackingField: <red>Combo</color> <gamer>
+    <Replacement>k__BackingField: <red>Combo %a</color>
     <SubDescription>k__BackingField: <cyan>Combo %a</color>. Performing %a or more
-      Starter Actions in a single turn.
+      Starter Actions in a single turn.<gamer(123)> <nodesc>
     <MaxLines>k__BackingField: 5
   - <Tag>k__BackingField: gamer
-    <Parameters>k__BackingField: 
+    <Parameters>k__BackingField: a
     <Replacement>k__BackingField: Gaming
-    <SubDescription>k__BackingField: Skibidi toilet
+    <SubDescription>k__BackingField: 'Skibidi %a toilet '
+    <MaxLines>k__BackingField: 5
+  - <Tag>k__BackingField: nodesc
+    <Parameters>k__BackingField: 
+    <Replacement>k__BackingField: No Desc
+    <SubDescription>k__BackingField: 
     <MaxLines>k__BackingField: 5

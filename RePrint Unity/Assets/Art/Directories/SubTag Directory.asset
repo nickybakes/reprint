@@ -15,6 +15,8 @@ MonoBehaviour:
   <Colors>k__BackingField:
   - <Tag>k__BackingField: cyan
     <Color>k__BackingField: {r: 0, g: 1, b: 0.94843197, a: 1}
+  - <Tag>k__BackingField: green
+    <Color>k__BackingField: {r: 0.10853689, g: 0.77735853, b: 0.24029668, a: 1}
   <Sprites>k__BackingField: []
   <SubTags>k__BackingField:
   - <Tag>k__BackingField: combo
@@ -22,4 +24,9 @@ MonoBehaviour:
     <Replacement>k__BackingField: <cyan>Combo</color>
     <SubDescription>k__BackingField: <cyan>Combo %a</color>. Performing %a or more
       Starter Actions in a single turn.
+    <MaxLines>k__BackingField: 5
+  - <Tag>k__BackingField: test
+    <Parameters>k__BackingField: 
+    <Replacement>k__BackingField: <green>Test</color>
+    <SubDescription>k__BackingField: <green>Test</color>. Test Description
     <MaxLines>k__BackingField: 5

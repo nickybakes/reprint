@@ -12,7 +12,7 @@ public class ModTooltipDisplay : TooltipDisplay
     [SerializeField] private TextMeshProUGUI rarityText;
     [SerializeField] private TextMeshProUGUI descriptionText;
 
-
+    [SerializeField] private SubDescriptionGroup subDescriptionGroup;
 
     public void Setup(Mod _mod)
     {
@@ -27,7 +27,11 @@ public class ModTooltipDisplay : TooltipDisplay
         rarityTag.color = color;
 
         rarityText.text = rarityString;
-        descriptionText.text = _mod.Profile.Description;
+
+        SubTagResult subTagResult = UIView.view.SubTagDirectory.GetAllSubTagResults(_mod.Profile.Description);
+
+        descriptionText.text = subTagResult.replaceString;
+        subDescriptionGroup.DisplayDescriptions(subTagResult.subDescriptions);
 
         parentRectTransform = transform.parent.GetComponent<RectTransform>();
         MoveToMousePosition();

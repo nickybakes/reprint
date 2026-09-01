@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MP_ComboStarter_01
   m_EditorClassIdentifier: Assembly-CSharp::ModProfile
   <Name>k__BackingField: Combo Starter
-  <Description>k__BackingField: "When you perform a Combo 2, Starter Actions deal
-    \xD71.5 Physical damage."
+  <Description>k__BackingField: "When you perform a <combo(2)>, Starter Actions deal
+    \xD71.5 Physical damage. <test>"
   <Icon>k__BackingField: {fileID: 21300000, guid: 50f65df1ea470ce4ab0d17e2ecffe16a, type: 3}
   <Animation>k__BackingField: {fileID: 0}

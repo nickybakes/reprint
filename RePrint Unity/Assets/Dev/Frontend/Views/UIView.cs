@@ -9,6 +9,7 @@ public class UIView : MonoBehaviour
     public static Canvas Canvas { get; private set; }
 
     [field: SerializeField] public RarityDirectory RarityDirectory { get; private set; }
+    [field: SerializeField] public SubTagDirectory SubTagDirectory { get; private set; }
 
     private Vector3 mouseScreenPosition;
     private Vector3 mouseViewPosition;

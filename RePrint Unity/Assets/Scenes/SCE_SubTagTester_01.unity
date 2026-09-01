@@ -610,7 +610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SubTagTester
   directory: {fileID: 11400000, guid: c691a6f248b073245b6a2687100c240d, type: 2}
   strings:
-  - <green>test</color> <combo>
+  - <green>test</color> <combo(2)>
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
