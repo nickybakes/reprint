@@ -47,6 +47,10 @@ public class ModEffectDrawer : BetterPropertyDrawer
                 AddProperty("extraArithmetics1");
                 AddProperty("applicationModes");
                 break;
+            case ModEffectType.StackCritChance:
+                AddProperty("valueInput1");
+                AddProperty("extraArithmetics1");
+                break;
         }
 
         AddQuarterBlankLine();

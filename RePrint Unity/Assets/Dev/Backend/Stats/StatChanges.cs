@@ -59,4 +59,6 @@ public enum StatChange
     TempChainGained,
     APMaxIncrease,
     APMaxDecrease,
+    CritChanceIncrease,
+    CritChanceDecrease,
 }

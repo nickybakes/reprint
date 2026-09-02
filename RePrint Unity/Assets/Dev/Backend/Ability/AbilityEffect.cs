@@ -11,6 +11,12 @@ public class AbilityEffect : Effect
     [SerializeField] private ValueInput valueInput;
     public ValueInput ValueInput { get => valueInput; }
 
+    [SerializeField] private ValueInput instances;
+    public ValueInput Instances { get => instances; }
+
+    [SerializeField] private BetterEditorList<Arithmetic> instancesArithmetics;
+    public List<Arithmetic> InstancesArithmetics { get => instancesArithmetics.List; }
+
     [SerializeField] private BetterEditorList<Arithmetic> extraArithmetics;
     public List<Arithmetic> ExtraArithmetics { get => extraArithmetics.List; }
 
@@ -42,6 +48,23 @@ public class AbilityEffect : Effect
         }
 
         return amount;
+    }
+
+    public int GetInstanceAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)
+    {
+        float amount = Instances.GetValue();
+
+        if (getMinimum)
+            amount = Instances.GetMinValue();
+        else if (getMaximum)
+            amount = Instances.GetMaxValue();
+
+        foreach (Arithmetic arithmetic in InstancesArithmetics)
+        {
+            amount = arithmetic.CalculateSolution(amount, gameValues.GetIntGameValue(arithmetic.GameValueType));
+        }
+
+        return (int)amount;
     }
 
     public int GetHitAmount(GameValues gameValues, bool getMinimum = false, bool getMaximum = false)

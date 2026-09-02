@@ -60,5 +60,6 @@ public enum ModEffectType
     GainChain,
     GainDodge,
     GainMaxAP,
+    StackCritChance,
     // Heal,
 }

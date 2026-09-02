@@ -68,6 +68,21 @@ MonoBehaviour:
             baseValue: 4
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list:
+            - mathType: 2
+              gameValueType: 0
+              invertEquation: 0
+              clamp: 0
+              minClamp: 0
+              maxClamp: 0
+            listFoldout: 1
+            foldouts: 01
           extraArithmetics:
             list:
             - mathType: 2
@@ -88,6 +103,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         - applicationModes:
             list:
             - applicationMode: 0
@@ -107,6 +123,15 @@ MonoBehaviour:
             baseValue: 1
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -127,6 +152,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
@@ -159,6 +185,21 @@ MonoBehaviour:
             baseValue: 5
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list:
+            - mathType: 2
+              gameValueType: 0
+              invertEquation: 0
+              clamp: 0
+              minClamp: 0
+              maxClamp: 0
+            listFoldout: 1
+            foldouts: 01
           extraArithmetics:
             list:
             - mathType: 2
@@ -179,6 +220,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         - applicationModes:
             list:
             - applicationMode: 0
@@ -198,6 +240,15 @@ MonoBehaviour:
             baseValue: 1
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -218,8 +269,9 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
-        foldouts: 0001
+        foldouts: 0101
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -250,6 +302,15 @@ MonoBehaviour:
             baseValue: 7
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -270,6 +331,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         - applicationModes:
             list:
             - applicationMode: 0
@@ -289,6 +351,15 @@ MonoBehaviour:
             baseValue: 1
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -309,6 +380,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0
@@ -341,6 +413,15 @@ MonoBehaviour:
             baseValue: 10
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -361,6 +442,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         - applicationModes:
             list:
             - applicationMode: 0
@@ -380,6 +462,15 @@ MonoBehaviour:
             baseValue: 1
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -400,6 +491,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 0001
       breakOutIfConditionsAreTrue: 0
@@ -432,6 +524,15 @@ MonoBehaviour:
             baseValue: 13
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -452,6 +553,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         - applicationModes:
             list:
             - applicationMode: 0
@@ -471,6 +573,15 @@ MonoBehaviour:
             baseValue: 1
             maxValue: 0
             floatMode: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -491,6 +602,7 @@ MonoBehaviour:
             baseValue: 0
             maxValue: 0
             floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 0101
       breakOutIfConditionsAreTrue: 0

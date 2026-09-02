@@ -25,8 +25,8 @@ public class ArithmeticDrawer : BetterPropertyDrawer
         {
             StartSameLine(3);
             AddLabel("Min, Max");
-            AddIntProperty("minClamp");
-            AddIntProperty("maxClamp");
+            AddFloatProperty("minClamp");
+            AddFloatProperty("maxClamp");
         }
 
         EditorGUI.EndProperty();

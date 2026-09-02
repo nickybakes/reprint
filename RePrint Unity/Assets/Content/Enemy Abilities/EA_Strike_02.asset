@@ -24,26 +24,49 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 0
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 2
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          type: 0
           valueInput:
             type: 0
             baseValue: 4
             maxValue: 5
+            floatMode: 0
+          instances:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list: []
             listFoldout: 0
             foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

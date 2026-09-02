@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StatChangeBreakdown
 {
@@ -7,11 +8,14 @@ public class StatChangeBreakdown
 
     public List<ModResult> modResults;
 
+    public Character activator;
+
     public StatChangeResults statsBefore;
     public StatChangeResults statsAfter;
 
-    public StatChangeBreakdown(StatChangeAmounts _abilityStatChanges, List<ModResult> _modResults)
+    public StatChangeBreakdown(StatChangeAmounts _abilityStatChanges, List<ModResult> _modResults, Character _activator)
     {
+        activator = _activator;
         abilityStatChanges = _abilityStatChanges;
         modResults = _modResults;
     }
@@ -38,17 +42,16 @@ public class StatChangeBreakdown
     private void ApplyStatChanges(Character character)
     {
         int totalStarterPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.StarterPhysicalDamageTaken);
-        float totalStarterPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.StarterPhysicalDamageMultiplier);
+        float totalStarterPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(activator, StatChange.StarterPhysicalDamageMultiplier);
         character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier);
 
         int totalFinisherPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.FinisherPhysicalDamageTaken);
-        float totalFinisherPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.FinisherPhysicalDamageMultiplier);
+        float totalFinisherPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(activator, StatChange.FinisherPhysicalDamageMultiplier);
         character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier);
 
         int totalKineticDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.KineticDamageTaken);
-        float totalKineticDamageMultiplier = GetTotalStatChangeMultiplicative(character, StatChange.KineticDamageMultiplier);
+        float totalKineticDamageMultiplier = GetTotalStatChangeMultiplicative(activator, StatChange.KineticDamageMultiplier);
         character.ApplyPhysicalDamage(totalKineticDamageTaken, totalKineticDamageMultiplier);
-
 
         int totalDodgeGained = (int)GetTotalStatChangeAdditive(character, StatChange.DodgeGained);
         totalDodgeGained -= (int)GetTotalStatChangeAdditive(character, StatChange.DodgeTaken);
@@ -77,11 +80,11 @@ public class StatChangeBreakdown
         float total = 0;
 
         if (abilityStatChanges != null)
-            total += abilityStatChanges.GetAmount(character, stat);
+            total += abilityStatChanges.GetTotalAmount(character, stat);
 
         foreach (ModResult modResult in modResults)
         {
-            total += modResult.statChangeAmounts.GetAmount(character, stat);
+            total += modResult.statChangeAmounts.GetTotalAmount(character, stat);
         }
 
         return total;
@@ -93,14 +96,14 @@ public class StatChangeBreakdown
 
         if (abilityStatChanges != null && abilityStatChanges.Changes.ContainsKey(character))
         {
-            total *= abilityStatChanges.GetAmount(character, stat);
+            total *= abilityStatChanges.GetTotalAmount(character, stat);
         }
 
         foreach (ModResult modResult in modResults)
         {
             if (modResult.statChangeAmounts.Changes.ContainsKey(character))
             {
-                total *= modResult.statChangeAmounts.GetAmount(character, stat);
+                total *= modResult.statChangeAmounts.GetTotalAmount(character, stat);
             }
         }
 
@@ -113,14 +116,14 @@ public class StatChangeBreakdown
 
         if (abilityStatChanges != null && abilityStatChanges.Changes.ContainsKey(character))
         {
-            total *= topValue - abilityStatChanges.GetAmount(character, stat);
+            total *= topValue - abilityStatChanges.GetTotalAmount(character, stat);
         }
 
         foreach (ModResult modResult in modResults)
         {
             if (modResult.statChangeAmounts.Changes.ContainsKey(character))
             {
-                total *= topValue - modResult.statChangeAmounts.GetAmount(character, stat);
+                total *= topValue - modResult.statChangeAmounts.GetTotalAmount(character, stat);
             }
         }
 

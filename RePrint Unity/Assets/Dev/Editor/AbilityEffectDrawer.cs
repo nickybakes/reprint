@@ -20,6 +20,8 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
         switch (type)
         {
             case AbilityEffectType.DoDamage:
+                AddProperty("instances");
+                AddProperty("instancesArithmetics");
                 AddProperty("valueInput");
                 AddProperty("extraArithmetics");
                 AddProperty("dontAutoCountHits");

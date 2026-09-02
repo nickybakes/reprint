@@ -110,7 +110,7 @@ public abstract class Character
             List<ModEffect> effects = mod.GetModEffects(passingBehaviors);
 
             ModResult modResult = new ModResult(mod, gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
-            StatCalculation.CalculateModEffects(gameValues, mod, effects, modResult);
+            StatCalculation.CalculateModEffects(gameValues, mod, effects, modResult, this);
             statChangeBreakdown.modResults.Add(modResult);
         }
 

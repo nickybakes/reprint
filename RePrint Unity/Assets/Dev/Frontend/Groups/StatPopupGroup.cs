@@ -60,19 +60,19 @@ public class StatPopupGroup : MonoBehaviour
 
     private void DisplayStatChangeAmounts(string name, StatChangeAmounts statChangeAmounts, Character character)
     {
-        float chainValue = statChangeAmounts.GetAmount(character, StatChange.ChainGained);
+        float chainValue = statChangeAmounts.GetTotalAmount(character, StatChange.ChainGained);
         if (chainValue != 0)
         {
             DisplayStat(name, StatType.Chain, chainValue);
         }
 
-        float dodgeValue = statChangeAmounts.GetAmount(character, StatChange.DodgeGained);
+        float dodgeValue = statChangeAmounts.GetTotalAmount(character, StatChange.DodgeGained);
         if (dodgeValue != 0)
         {
             DisplayStat(name, StatType.Dodge, dodgeValue);
         }
 
-        float maxAPValue = statChangeAmounts.GetAmount(character, StatChange.APMaxIncrease);
+        float maxAPValue = statChangeAmounts.GetTotalAmount(character, StatChange.APMaxIncrease);
         if (maxAPValue != 0)
         {
             DisplayStat(name, StatType.MaxAP, maxAPValue);

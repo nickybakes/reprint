@@ -123,7 +123,7 @@ public class BattleManager : MonoBehaviour
         };
 
         List<ModResult> modResults = new List<ModResult>();
-        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults);
+        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults, Player);
 
         Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
         statChangeBreakdown.ApplyStatChanges(Player, EnemyTeam);

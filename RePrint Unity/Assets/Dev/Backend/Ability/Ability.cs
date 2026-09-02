@@ -88,15 +88,15 @@ public abstract class Ability
                 switch (type)
                 {
                     case StatType.PhysicalDamage:
-                        currentValue += (int)statChangeAmounts.GetAmount(placeholderTarget, StatChange.StarterPhysicalDamageTaken);
-                        currentValue += (int)statChangeAmounts.GetAmount(placeholderTarget, StatChange.FinisherPhysicalDamageTaken);
+                        currentValue += (int)statChangeAmounts.GetTotalAmount(placeholderTarget, StatChange.StarterPhysicalDamageTaken);
+                        currentValue += (int)statChangeAmounts.GetTotalAmount(placeholderTarget, StatChange.FinisherPhysicalDamageTaken);
                         break;
                     case StatType.Dodge:
-                        currentValue += (int)statChangeAmounts.GetAmount(activator, StatChange.DodgeGained);
+                        currentValue += (int)statChangeAmounts.GetTotalAmount(activator, StatChange.DodgeGained);
                         break;
                     case StatType.Chain:
-                        currentValue += (int)statChangeAmounts.GetAmount(activator, StatChange.ChainGained);
-                        currentValue -= (int)statChangeAmounts.GetAmount(activator, StatChange.ChainSpent);
+                        currentValue += (int)statChangeAmounts.GetTotalAmount(activator, StatChange.ChainGained);
+                        currentValue -= (int)statChangeAmounts.GetTotalAmount(activator, StatChange.ChainSpent);
                         break;
                 }
                 if (getMinimum)

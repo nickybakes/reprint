@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class StatChangeAmounts
 {
     public Dictionary<Character, StatChanges> Changes { get; private set; }
+    public List<Dictionary<Character, StatChanges>> InstancesOfChanges { get; private set; }
 
     public List<Character> uniqueEnemiesHit;
 
@@ -19,6 +20,10 @@ public class StatChangeAmounts
         player = _player;
         enemyTeam = _enemyTeam;
         Changes = new Dictionary<Character, StatChanges>();
+        InstancesOfChanges = new List<Dictionary<Character, StatChanges>>
+        {
+            new Dictionary<Character, StatChanges>()
+        };
         uniqueEnemiesHit = new List<Character>();
     }
 
@@ -35,26 +40,58 @@ public class StatChangeAmounts
                 Changes.Add(character, new StatChanges());
                 Changes[character].StackAmount(stat, amount);
             }
-        }
-    }
 
-    public void AddAmounts(Dictionary<Character, float> amounts, StatChange stat)
-    {
-        foreach (Character character in amounts.Keys)
-        {
-            if (Changes.ContainsKey(character))
+            Dictionary<Character, StatChanges> currentInstance = InstancesOfChanges[GetInstanceCount() - 1];
+
+            if (currentInstance.ContainsKey(character))
             {
-                Changes[character].StackAmount(stat, amounts[character]);
+                currentInstance[character].StackAmount(stat, amount);
             }
             else
             {
-                Changes.Add(character, new StatChanges());
-                Changes[character].StackAmount(stat, amounts[character]);
+                currentInstance.Add(character, new StatChanges());
+                currentInstance[character].StackAmount(stat, amount);
             }
         }
     }
 
-    public float GetAmount(Character character, StatChange stat)
+    public void StartNewInstance()
+    {
+        InstancesOfChanges.Add(new Dictionary<Character, StatChanges>());
+    }
+
+    // public void AddAmounts(Dictionary<Character, float> amounts, StatChange stat)
+    // {
+    //     foreach (Character character in amounts.Keys)
+    //     {
+    //         if (Changes.ContainsKey(character))
+    //         {
+    //             Changes[character].StackAmount(stat, amounts[character]);
+    //         }
+    //         else
+    //         {
+    //             Changes.Add(character, new StatChanges());
+    //             Changes[character].StackAmount(stat, amounts[character]);
+    //         }
+    //     }
+    // }
+
+    public int GetInstanceCount()
+    {
+        return InstancesOfChanges.Count;
+    }
+
+    public float GetInstanceAmount(int instanceIndex, Character character, StatChange stat)
+    {
+        if (InstancesOfChanges[instanceIndex].ContainsKey(character))
+        {
+            return InstancesOfChanges[instanceIndex][character].GetAmount(stat);
+        }
+
+        return 0;
+    }
+
+    public float GetTotalAmount(Character character, StatChange stat)
     {
         if (Changes.ContainsKey(character))
         {

@@ -20,18 +20,26 @@ public class ValueInput
 
     public float GetValue()
     {
-        float returnValue = baseValue;
         if (type == ValueType.Range)
         {
-            returnValue = Random.Range(baseValue, maxValue + 1);
+            if (floatMode)
+            {
+                return Random.Range(baseValue, maxValue);
+            }
+            else
+            {
+                return Random.Range((int)baseValue, (int)maxValue + 1);
+            }
         }
 
-        if (!floatMode)
+        if (floatMode)
         {
-            returnValue = (int)returnValue;
+            return baseValue;
         }
-
-        return returnValue;
+        else
+        {
+            return (int)baseValue;
+        }
     }
 
     public float GetMinValue()

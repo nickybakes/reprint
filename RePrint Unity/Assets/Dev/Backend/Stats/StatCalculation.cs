@@ -68,7 +68,7 @@ public class StatCalculation
             gameValues.abilityType = abilitySelection.Ability.Type;
 
             List<ModResult> modResults = new List<ModResult>();
-            StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults);
+            StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(null, modResults, gameValues.activator);
             gameValues.battleManager.Player.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
 
             foreach (ModResult modResult in modResults)
@@ -143,7 +143,7 @@ public class StatCalculation
         StatChangeAmounts abilityStatChanges = new StatChangeAmounts(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
         CalculateAbilityEffects(gameValues, effects, abilityStatChanges);
         List<ModResult> modResults = new List<ModResult>();
-        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults);
+        StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults, gameValues.activator);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
         gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
@@ -174,66 +174,80 @@ public class StatCalculation
         {
             List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes, currentAffectedCharacter);
 
+            int instances = 1;
+            if (effect.Type == AbilityEffectType.DoDamage)
+            {
+                instances = effect.GetInstanceAmount(gameValues, getMinimum, getMaximum);
+            }
+
             foreach (Character character in affectedCharacters)
             {
-                switch (effect.Type)
+                for (int i = 0; i < instances; i++)
                 {
-                    case AbilityEffectType.DoDamage:
-                        float damage = effect.GetAmount(gameValues, getMinimum, getMaximum);
-                        if (gameValues.abilityType == AbilityType.Finisher)
-                        {
-                            statChanges.AddAmount(character, damage, StatChange.FinisherPhysicalDamageTaken);
-                        }
-                        else
-                        {
-                            statChanges.AddAmount(character, damage, StatChange.StarterPhysicalDamageTaken);
-                        }
-                        if (!effect.DontAutoCountHits)
-                        {
-                            gameValues.activator.CurrentHitsInAbility++;
-                            gameValues.activator.CurrentHitsInTurn++;
-                        }
-                        if (!effect.DontAddCharacterToUniqueHitList)
-                        {
-                            gameValues.activator.AddUniqueHitCharacter(character);
-                        }
-                        break;
-                    case AbilityEffectType.GainDodge:
-                        float dodge = effect.GetAmount(gameValues, getMinimum, getMaximum);
-                        if (gameValues.activator == gameValues.battleManager.Player && gameValues.target != null)
-                        {
-                            statChanges.AddAmount(gameValues.target, dodge, StatChange.TurnPriorityGained);
-                        }
-                        statChanges.AddAmount(character, dodge, StatChange.DodgeGained);
-                        break;
-                    case AbilityEffectType.GainChain:
-                        float chainGain = effect.GetAmount(gameValues, getMinimum, getMaximum);
-                        statChanges.AddAmount(character, chainGain, StatChange.ChainGained);
-                        break;
-                    case AbilityEffectType.SpendChain:
-                        float chainSpent = effect.GetAmount(gameValues, getMinimum, getMaximum);
-                        statChanges.AddAmount(character, chainSpent, StatChange.ChainSpent);
-                        break;
-                    case AbilityEffectType.CountHits:
-                        int hitCountAmount = effect.GetHitAmount(gameValues, getMinimum, getMaximum);
-                        gameValues.activator.CurrentHitsInAbility += hitCountAmount;
-                        gameValues.activator.CurrentHitsInTurn += hitCountAmount;
-                        if (!effect.DontAddCharacterToUniqueHitList)
-                        {
-                            gameValues.activator.AddUniqueHitCharacter(character);
-                        }
-                        break;
-                }
+                    if (i != 0)
+                    {
+                        statChanges.StartNewInstance();
+                    }
 
-                if (effect.ExtraEffects != null && effect.ExtraEffects.Count > 0)
-                {
-                    CalculateAbilityEffects(gameValues, effect.ExtraEffects, statChanges, character, getMinimum, getMaximum);
+                    switch (effect.Type)
+                    {
+                        case AbilityEffectType.DoDamage:
+                            float damage = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                            if (gameValues.abilityType == AbilityType.Finisher)
+                            {
+                                statChanges.AddAmount(character, damage, StatChange.FinisherPhysicalDamageTaken);
+                            }
+                            else
+                            {
+                                statChanges.AddAmount(character, damage, StatChange.StarterPhysicalDamageTaken);
+                            }
+                            if (!effect.DontAutoCountHits)
+                            {
+                                gameValues.activator.CurrentHitsInAbility++;
+                                gameValues.activator.CurrentHitsInTurn++;
+                            }
+                            if (!effect.DontAddCharacterToUniqueHitList)
+                            {
+                                gameValues.activator.AddUniqueHitCharacter(character);
+                            }
+                            break;
+                        case AbilityEffectType.GainDodge:
+                            float dodge = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                            if (gameValues.activator == gameValues.battleManager.Player && gameValues.target != null)
+                            {
+                                statChanges.AddAmount(gameValues.target, dodge, StatChange.TurnPriorityGained);
+                            }
+                            statChanges.AddAmount(character, dodge, StatChange.DodgeGained);
+                            break;
+                        case AbilityEffectType.GainChain:
+                            float chainGain = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                            statChanges.AddAmount(character, chainGain, StatChange.ChainGained);
+                            break;
+                        case AbilityEffectType.SpendChain:
+                            float chainSpent = effect.GetAmount(gameValues, getMinimum, getMaximum);
+                            statChanges.AddAmount(character, chainSpent, StatChange.ChainSpent);
+                            break;
+                        case AbilityEffectType.CountHits:
+                            int hitCountAmount = effect.GetHitAmount(gameValues, getMinimum, getMaximum);
+                            gameValues.activator.CurrentHitsInAbility += hitCountAmount;
+                            gameValues.activator.CurrentHitsInTurn += hitCountAmount;
+                            if (!effect.DontAddCharacterToUniqueHitList)
+                            {
+                                gameValues.activator.AddUniqueHitCharacter(character);
+                            }
+                            break;
+                    }
+
+                    if (effect.ExtraEffects != null && effect.ExtraEffects.Count > 0)
+                    {
+                        CalculateAbilityEffects(gameValues, effect.ExtraEffects, statChanges, character, getMinimum, getMaximum);
+                    }
                 }
             }
         }
     }
 
-    public static void CalculateModEffects(GameValues gameValues, Mod mod, List<ModEffect> effects, ModResult modResult)
+    public static void CalculateModEffects(GameValues gameValues, Mod mod, List<ModEffect> effects, ModResult modResult, Character modOwner)
     {
         foreach (ModEffect effect in effects)
         {
@@ -245,9 +259,9 @@ public class StatCalculation
 
             List<Character> affectedCharacters = new List<Character>();
 
-            if (effect.Type == ModEffectType.StackDamageMultiplier)
+            if (effect.Type == ModEffectType.StackDamageMultiplier || effect.Type == ModEffectType.StackCritChance)
             {
-                affectedCharacters = GetAllEnemies(gameValues);
+                affectedCharacters.Add(modOwner);
             }
             else
             {
