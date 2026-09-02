@@ -7,9 +7,11 @@ public class CharacterData : ScriptableObject
 
     public ValueInput maxHealth;
 
+
     public PlayerAbilityData[] abilities;
 
     [Header("Player Specific")]
     public ValueInput abilityPointsMax;
+    public ValueInput critDamageMultiplier;
 
 }
