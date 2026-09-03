@@ -11,6 +11,9 @@ public class GameCondition
     [SerializeField] private GameEvent gameEvent;
     public GameEvent GameEvent { get => gameEvent; }
 
+    [SerializeField] private bool onlyOnOneInstance;
+    public bool OnlyOnOneInstance { get => onlyOnOneInstance; }
+
     [SerializeField] private CharacterStat characterStat;
     public CharacterStat CharacterStat { get => characterStat; }
 
@@ -106,7 +109,7 @@ public enum GameEvent
     OnCheckAbilitySequence,
     OnCheckAbilitySequenceWithRetriggers,
     OnThisCharacterHits,
-    // OnThisCharacterGetsHit
+    OnThisCharacterGetsHit
 }
 
 public enum IndexType

@@ -25,6 +25,7 @@ public class GameValues
     public BattleManager battleManager;
     public StatChangeBreakdown currentStatChangeBreakdown;
     public Mod currentMod;
+    public bool onLastInstance;
 
     public int GetIntGameValue(GameValueType valueType)
     {

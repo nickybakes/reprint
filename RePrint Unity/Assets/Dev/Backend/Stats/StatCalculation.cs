@@ -146,21 +146,35 @@ public class StatCalculation
         StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults, gameValues.activator);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
-        gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-
-        gameValues.gameEvent = GameEvent.OnThisCharacterHits;
-
-        for (int i = 0; i < gameValues.activator.CurrentHitsInAbility; i++)
+        for (int i = 0; i < abilityStatChanges.GetInstanceCount(); i++)
         {
+            gameValues.gameEvent = GameEvent.OnThisCharacterUsesAbility;
+            gameValues.onLastInstance = i == abilityStatChanges.GetInstanceCount() - 1;
             gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+            int hitAmount = (int)abilityStatChanges.GetTotalAmount(gameValues.activator, StatChange.HitAmountIncrease, i);
+            for (int j = 0; j < hitAmount; j++)
+            {
+                gameValues.gameEvent = GameEvent.OnThisCharacterHits;
+                gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+            }
         }
 
-
         // Calculate Mod Stat Changes for victims
-        gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;
         foreach (Character character in nonActivatorCharacters)
         {
-            character.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+            for (int i = 0; i < abilityStatChanges.GetInstanceCount(); i++)
+            {
+                gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;
+
+                gameValues.onLastInstance = i == abilityStatChanges.GetInstanceCount() - 1;
+                character.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+                int hitAmount = (int)abilityStatChanges.GetTotalAmount(gameValues.activator, StatChange.HitAmountIncrease, i);
+                for (int j = 0; j < hitAmount; j++)
+                {
+                    gameValues.gameEvent = GameEvent.OnThisCharacterGetsHit;
+                    gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+                }
+            }
         }
 
         statChangeBreakdown.ApplyStatChanges(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
@@ -172,23 +186,17 @@ public class StatCalculation
     {
         foreach (AbilityEffect effect in effects)
         {
-            List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes, currentAffectedCharacter);
+            int occurences = effect.GetOcurrences(gameValues, getMinimum, getMaximum);
 
-            int instances = 1;
-            if (effect.Type == AbilityEffectType.DoDamage)
+            for (int i = 0; i < occurences; i++)
             {
-                instances = effect.GetInstanceAmount(gameValues, getMinimum, getMaximum);
-            }
+                if (effect.NewInstancePerOccurrence)
+                    statChanges.StartNewInstance();
 
-            foreach (Character character in affectedCharacters)
-            {
-                for (int i = 0; i < instances; i++)
+                List<Character> affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes, currentAffectedCharacter);
+
+                foreach (Character character in affectedCharacters)
                 {
-                    if (i != 0)
-                    {
-                        statChanges.StartNewInstance();
-                    }
-
                     switch (effect.Type)
                     {
                         case AbilityEffectType.DoDamage:
@@ -203,6 +211,7 @@ public class StatCalculation
                             }
                             if (!effect.DontAutoCountHits)
                             {
+                                statChanges.AddAmount(gameValues.activator, 1, StatChange.HitAmountIncrease);
                                 gameValues.activator.CurrentHitsInAbility++;
                                 gameValues.activator.CurrentHitsInTurn++;
                             }
@@ -229,6 +238,7 @@ public class StatCalculation
                             break;
                         case AbilityEffectType.CountHits:
                             int hitCountAmount = effect.GetHitAmount(gameValues, getMinimum, getMaximum);
+                            statChanges.AddAmount(gameValues.activator, hitCountAmount, StatChange.HitAmountIncrease);
                             gameValues.activator.CurrentHitsInAbility += hitCountAmount;
                             gameValues.activator.CurrentHitsInTurn += hitCountAmount;
                             if (!effect.DontAddCharacterToUniqueHitList)
@@ -251,54 +261,59 @@ public class StatCalculation
     {
         foreach (ModEffect effect in effects)
         {
-            if (effect.Type == ModEffectType.RetriggerAbility)
-            {
-                modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
-                continue;
-            }
+            int occurences = effect.GetOcurrences(gameValues);
 
-            List<Character> affectedCharacters = new List<Character>();
-
-            if (effect.Type == ModEffectType.StackDamageMultiplier || effect.Type == ModEffectType.StackCritChance)
+            for (int i = 0; i < occurences; i++)
             {
-                affectedCharacters.Add(modOwner);
-            }
-            else
-            {
-                affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
-            }
-
-            foreach (Character character in affectedCharacters)
-            {
-                switch (effect.Type)
+                if (effect.Type == ModEffectType.RetriggerAbility)
                 {
-                    case ModEffectType.DoDamage:
-                        float damage = effect.GetAmount(gameValues);
-                        modResult.statChangeAmounts.AddAmount(character, damage, StatChange.KineticDamageTaken);
-                        break;
-                    case ModEffectType.StackDamageMultiplier:
-                        float multiplier = effect.GetAmount(gameValues);
-                        if (effect.StarterActions)
-                        {
-                            modResult.statChangeAmounts.AddAmount(character, multiplier, StatChange.StarterPhysicalDamageMultiplier);
-                        }
-                        if (effect.FinisherActions)
-                        {
-                            modResult.statChangeAmounts.AddAmount(character, multiplier, StatChange.FinisherPhysicalDamageMultiplier);
-                        }
-                        break;
-                    case ModEffectType.GainChain:
-                        float chainGain = effect.GetAmount(gameValues);
-                        modResult.statChangeAmounts.AddAmount(character, chainGain, StatChange.ChainGained);
-                        break;
-                    case ModEffectType.GainDodge:
-                        float dodgeGain = effect.GetAmount(gameValues);
-                        modResult.statChangeAmounts.AddAmount(character, dodgeGain, StatChange.DodgeGained);
-                        break;
-                    case ModEffectType.GainMaxAP:
-                        float maxAPGain = effect.GetAmount(gameValues);
-                        modResult.statChangeAmounts.AddAmount(character, maxAPGain, StatChange.APMaxIncrease);
-                        break;
+                    modResult.retriggerAbilities.Add(mod.internalAbilitySelectionStorage[effect.IntValue1]);
+                    continue;
+                }
+
+                List<Character> affectedCharacters = new List<Character>();
+
+                if (effect.Type == ModEffectType.StackDamageMultiplier || effect.Type == ModEffectType.StackCritChance)
+                {
+                    affectedCharacters.Add(modOwner);
+                }
+                else
+                {
+                    affectedCharacters = GetAffectedCharacters(gameValues, effect.ApplicationModes);
+                }
+
+                foreach (Character character in affectedCharacters)
+                {
+                    switch (effect.Type)
+                    {
+                        case ModEffectType.DoDamage:
+                            float damage = effect.GetAmount(gameValues);
+                            modResult.statChangeAmounts.AddAmount(character, damage, StatChange.KineticDamageTaken);
+                            break;
+                        case ModEffectType.StackDamageMultiplier:
+                            float multiplier = effect.GetAmount(gameValues);
+                            if (effect.StarterActions)
+                            {
+                                modResult.statChangeAmounts.AddAmount(character, multiplier, StatChange.StarterPhysicalDamageMultiplier);
+                            }
+                            if (effect.FinisherActions)
+                            {
+                                modResult.statChangeAmounts.AddAmount(character, multiplier, StatChange.FinisherPhysicalDamageMultiplier);
+                            }
+                            break;
+                        case ModEffectType.GainChain:
+                            float chainGain = effect.GetAmount(gameValues);
+                            modResult.statChangeAmounts.AddAmount(character, chainGain, StatChange.ChainGained);
+                            break;
+                        case ModEffectType.GainDodge:
+                            float dodgeGain = effect.GetAmount(gameValues);
+                            modResult.statChangeAmounts.AddAmount(character, dodgeGain, StatChange.DodgeGained);
+                            break;
+                        case ModEffectType.GainMaxAP:
+                            float maxAPGain = effect.GetAmount(gameValues);
+                            modResult.statChangeAmounts.AddAmount(character, maxAPGain, StatChange.APMaxIncrease);
+                            break;
+                    }
                 }
             }
         }
@@ -416,6 +431,12 @@ public class StatCalculation
                 case GameConditionType.OnGameEvent:
                     if (condition.GameEvent != gameValues.gameEvent)
                         return false;
+
+                    if (condition.GameEvent == GameEvent.OnThisCharacterUsesAbility || condition.GameEvent == GameEvent.OnOtherCharacterUsesAbility)
+                    {
+                        if (condition.OnlyOnOneInstance && gameValues.onLastInstance != true)
+                            return false;
+                    }
                     break;
                 case GameConditionType.CharacterStat:
                     List<Character> characters = GetAffectedCharacters(gameValues, condition.Characters);

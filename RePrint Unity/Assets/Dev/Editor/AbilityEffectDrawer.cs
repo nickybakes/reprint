@@ -11,6 +11,11 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
         AddQuarterBlankLine();
 
+        AddProperty("occurrences");
+        AddProperty("occurrencesArithmetics");
+        AddProperty("newInstancePerOccurrence");
+        // AddProperty("affectTotal");
+        // AddProperty("affectCurrentInstance");
         AddProperty("applicationModes");
 
         SerializedProperty typeProperty = AddProperty("type", "Ability Effect Type");
@@ -20,8 +25,6 @@ public class AbilityEffectDrawer : BetterPropertyDrawer
         switch (type)
         {
             case AbilityEffectType.DoDamage:
-                AddProperty("instances");
-                AddProperty("instancesArithmetics");
                 AddProperty("valueInput");
                 AddProperty("extraArithmetics");
                 AddProperty("dontAutoCountHits");

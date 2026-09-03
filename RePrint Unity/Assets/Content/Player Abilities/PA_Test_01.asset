@@ -21,46 +21,26 @@ MonoBehaviour:
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 0
-    numberOfHits:
-      type: 0
-      baseValue: 0
-      maxValue: 0
   <AbilityRulesOverclock1>k__BackingField:
     apCost: 0
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 0
-    numberOfHits:
-      type: 0
-      baseValue: 0
-      maxValue: 0
   <AbilityRulesOverclock2>k__BackingField:
     apCost: 0
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 0
-    numberOfHits:
-      type: 0
-      baseValue: 0
-      maxValue: 0
   <AbilityRulesOverclock3>k__BackingField:
     apCost: 0
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 0
-    numberOfHits:
-      type: 0
-      baseValue: 0
-      maxValue: 0
   <AbilityRulesOverclock4>k__BackingField:
     apCost: 0
     targetAllEnemies: 0
     canTargetPlayer: 0
     canTargetEnemies: 0
-    numberOfHits:
-      type: 0
-      baseValue: 0
-      maxValue: 0
   <AbilityOverclock0Behaviors>k__BackingField:
     list:
     - conditions:
@@ -68,7 +48,44 @@ MonoBehaviour:
         listFoldout: 0
         foldouts: 
       effects:
-        list: []
+        list:
+        - applicationModes:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          occurrences:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 0
+          valueInput:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          newInstancePerOccurrence: 0
+          affectTotal: 0
+          affectCurrentInstance: 0
+          extraArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 
       breakOutIfConditionsAreTrue: 0

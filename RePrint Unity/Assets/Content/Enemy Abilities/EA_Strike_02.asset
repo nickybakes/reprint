@@ -37,21 +37,24 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 0
           valueInput:
             type: 0
             baseValue: 4
             maxValue: 5
             floatMode: 0
-          instances:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          instancesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+          newInstancePerOccurrence: 0
+          affectTotal: 0
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0

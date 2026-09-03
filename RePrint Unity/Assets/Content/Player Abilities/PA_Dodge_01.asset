@@ -21,46 +21,26 @@ MonoBehaviour:
     targetAllEnemies: 0
     canTargetPlayer: 1
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock1>k__BackingField:
     apCost: 2
     targetAllEnemies: 0
     canTargetPlayer: 1
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock2>k__BackingField:
     apCost: 3
     targetAllEnemies: 0
     canTargetPlayer: 1
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock3>k__BackingField:
     apCost: 4
     targetAllEnemies: 0
     canTargetPlayer: 1
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityRulesOverclock4>k__BackingField:
     apCost: 5
     targetAllEnemies: 0
     canTargetPlayer: 1
     canTargetEnemies: 1
-    numberOfHits:
-      type: 0
-      baseValue: 1
-      maxValue: 0
   <AbilityOverclock0Behaviors>k__BackingField:
     list:
     - conditions:
@@ -69,26 +49,52 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 1
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 1
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 1
           valueInput:
             type: 1
             baseValue: 3
             maxValue: 5
+            floatMode: 0
+          newInstancePerOccurrence: 0
+          affectTotal: 1
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 1
             foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0
@@ -102,26 +108,52 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 1
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 1
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 1
           valueInput:
             type: 1
             baseValue: 5
             maxValue: 8
+            floatMode: 0
+          newInstancePerOccurrence: 0
+          affectTotal: 1
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
             foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0
@@ -135,26 +167,52 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 1
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 1
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 1
           valueInput:
             type: 1
             baseValue: 8
             maxValue: 11
+            floatMode: 0
+          newInstancePerOccurrence: 0
+          affectTotal: 1
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
             foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0
@@ -168,26 +226,52 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 1
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 1
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 1
           valueInput:
             type: 1
             baseValue: 13
             maxValue: 17
+            floatMode: 0
+          newInstancePerOccurrence: 0
+          affectTotal: 1
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
             foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0
@@ -201,26 +285,52 @@ MonoBehaviour:
         foldouts: 
       effects:
         list:
-        - type: 1
-          applicationModes:
+        - applicationModes:
             list:
             - applicationMode: 0
-              numberOfNonTargetedEnemies:
+              numberOfEnemies:
                 type: 0
                 baseValue: 0
                 maxValue: 0
+                floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 1
+              canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          type: 1
           valueInput:
             type: 1
             baseValue: 22
             maxValue: 25
+            floatMode: 0
+          newInstancePerOccurrence: 0
+          affectTotal: 1
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
             foldouts: 
+          extraEffects:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          dontAutoCountHits: 0
+          hitAmount:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
         foldouts: 01
       breakOutIfConditionsAreTrue: 0

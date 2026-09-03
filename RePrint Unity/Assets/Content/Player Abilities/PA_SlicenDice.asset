@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01e5c8f455a6e24db66681cb15032f7, type: 3}
-  m_Name: PA_RiftCut_01
+  m_Name: PA_SlicenDice
   m_EditorClassIdentifier: Assembly-CSharp::CharacterActionData
   <Profile>k__BackingField: {fileID: 11400000, guid: bfc8fc1cd3525034aa68a423cafee862, type: 2}
   <Name>k__BackingField: Rift Cut
@@ -51,23 +51,29 @@ MonoBehaviour:
         list:
         - applicationModes:
             list:
-            - applicationMode: 1
+            - applicationMode: 3
               numberOfEnemies:
                 type: 0
-                baseValue: 0
+                baseValue: 1
                 maxValue: 0
                 floatMode: 0
               nonTargetedEnemyPriority: 0
               addValueToTargetPriority: 0
-              canRepeatEnemies: 0
+              canRepeatEnemies: 1
             listFoldout: 1
             foldouts: 01
-          occurrences:
+          type: 0
+          valueInput:
+            type: 0
+            baseValue: 4
+            maxValue: 0
+            floatMode: 0
+          instances:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          occurrencesArithmetics:
+          instancesArithmetics:
             list:
             - mathType: 2
               gameValueType: 0
@@ -77,19 +83,16 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
-          valueInput:
-            type: 0
-            baseValue: 4
-            maxValue: 0
-            floatMode: 0
-          newInstancePerOccurrence: 1
-          affectTotal: 0
-          affectCurrentInstance: 0
           extraArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+            list:
+            - mathType: 2
+              gameValueType: 0
+              invertEquation: 0
+              clamp: 0
+              minClamp: 0
+              maxClamp: 0
+            listFoldout: 1
+            foldouts: 01
           extraEffects:
             list: []
             listFoldout: 0
@@ -114,24 +117,21 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          occurrencesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
           type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          newInstancePerOccurrence: 0
-          affectTotal: 0
-          affectCurrentInstance: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -179,12 +179,18 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
+          type: 0
+          valueInput:
+            type: 0
+            baseValue: 5
+            maxValue: 0
+            floatMode: 0
+          instances:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          occurrencesArithmetics:
+          instancesArithmetics:
             list:
             - mathType: 2
               gameValueType: 0
@@ -194,19 +200,16 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
-          valueInput:
-            type: 0
-            baseValue: 5
-            maxValue: 0
-            floatMode: 0
-          newInstancePerOccurrence: 1
-          affectTotal: 0
-          affectCurrentInstance: 0
           extraArithmetics:
-            list: []
+            list:
+            - mathType: 2
+              gameValueType: 0
+              invertEquation: 0
+              clamp: 0
+              minClamp: 0
+              maxClamp: 0
             listFoldout: 1
-            foldouts: 
+            foldouts: 01
           extraEffects:
             list: []
             listFoldout: 0
@@ -231,24 +234,21 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          occurrencesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
           type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          newInstancePerOccurrence: 0
-          affectTotal: 0
-          affectCurrentInstance: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -296,12 +296,22 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
+          type: 0
+          valueInput:
             type: 0
-            baseValue: 1
+            baseValue: 7
             maxValue: 0
             floatMode: 0
-          occurrencesArithmetics:
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          extraArithmetics:
             list:
             - mathType: 2
               gameValueType: 0
@@ -311,19 +321,6 @@ MonoBehaviour:
               maxClamp: 0
             listFoldout: 1
             foldouts: 01
-          type: 0
-          valueInput:
-            type: 0
-            baseValue: 7
-            maxValue: 0
-            floatMode: 0
-          newInstancePerOccurrence: 1
-          affectTotal: 0
-          affectCurrentInstance: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 1
-            foldouts: 
           extraEffects:
             list: []
             listFoldout: 0
@@ -348,24 +345,21 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          occurrencesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
           type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          newInstancePerOccurrence: 0
-          affectTotal: 0
-          affectCurrentInstance: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -413,12 +407,22 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
+          type: 0
+          valueInput:
             type: 0
-            baseValue: 1
+            baseValue: 10
             maxValue: 0
             floatMode: 0
-          occurrencesArithmetics:
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          extraArithmetics:
             list:
             - mathType: 2
               gameValueType: 0
@@ -426,20 +430,7 @@ MonoBehaviour:
               clamp: 0
               minClamp: 0
               maxClamp: 0
-            listFoldout: 1
-            foldouts: 01
-          type: 0
-          valueInput:
-            type: 0
-            baseValue: 10
-            maxValue: 0
-            floatMode: 0
-          newInstancePerOccurrence: 1
-          affectTotal: 0
-          affectCurrentInstance: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 1
+            listFoldout: 0
             foldouts: 
           extraEffects:
             list: []
@@ -465,24 +456,21 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          occurrencesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
           type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          newInstancePerOccurrence: 0
-          affectTotal: 0
-          affectCurrentInstance: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2
@@ -505,7 +493,7 @@ MonoBehaviour:
             floatMode: 0
           dontAddCharacterToUniqueHitList: 0
         listFoldout: 1
-        foldouts: 0101
+        foldouts: 0001
       breakOutIfConditionsAreTrue: 0
     listFoldout: 1
     foldouts: 01
@@ -530,12 +518,22 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
+          type: 0
+          valueInput:
             type: 0
-            baseValue: 1
+            baseValue: 13
             maxValue: 0
             floatMode: 0
-          occurrencesArithmetics:
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
+          extraArithmetics:
             list:
             - mathType: 2
               gameValueType: 0
@@ -543,21 +541,8 @@ MonoBehaviour:
               clamp: 0
               minClamp: 0
               maxClamp: 0
-            listFoldout: 1
+            listFoldout: 0
             foldouts: 01
-          type: 0
-          valueInput:
-            type: 0
-            baseValue: 13
-            maxValue: 0
-            floatMode: 0
-          newInstancePerOccurrence: 1
-          affectTotal: 0
-          affectCurrentInstance: 0
-          extraArithmetics:
-            list: []
-            listFoldout: 1
-            foldouts: 
           extraEffects:
             list: []
             listFoldout: 0
@@ -582,24 +567,21 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
-          occurrences:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          occurrencesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
           type: 5
           valueInput:
             type: 0
             baseValue: 1
             maxValue: 0
             floatMode: 0
-          newInstancePerOccurrence: 0
-          affectTotal: 0
-          affectCurrentInstance: 0
+          instances:
+            type: 0
+            baseValue: 0
+            maxValue: 0
+            floatMode: 0
+          instancesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           extraArithmetics:
             list:
             - mathType: 2

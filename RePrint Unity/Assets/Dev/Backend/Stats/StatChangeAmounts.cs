@@ -20,10 +20,7 @@ public class StatChangeAmounts
         player = _player;
         enemyTeam = _enemyTeam;
         Changes = new Dictionary<Character, StatChanges>();
-        InstancesOfChanges = new List<Dictionary<Character, StatChanges>>
-        {
-            new Dictionary<Character, StatChanges>()
-        };
+        InstancesOfChanges = new List<Dictionary<Character, StatChanges>>();
         uniqueEnemiesHit = new List<Character>();
     }
 
@@ -39,6 +36,11 @@ public class StatChangeAmounts
             {
                 Changes.Add(character, new StatChanges());
                 Changes[character].StackAmount(stat, amount);
+            }
+
+            if (GetInstanceCount() == 0)
+            {
+                StartNewInstance();
             }
 
             Dictionary<Character, StatChanges> currentInstance = InstancesOfChanges[GetInstanceCount() - 1];
@@ -81,21 +83,23 @@ public class StatChangeAmounts
         return InstancesOfChanges.Count;
     }
 
-    public float GetInstanceAmount(int instanceIndex, Character character, StatChange stat)
+    public Dictionary<Character, StatChanges> GetInstanceOfChanges(int index)
     {
-        if (InstancesOfChanges[instanceIndex].ContainsKey(character))
-        {
-            return InstancesOfChanges[instanceIndex][character].GetAmount(stat);
-        }
-
-        return 0;
+        return InstancesOfChanges[index];
     }
 
-    public float GetTotalAmount(Character character, StatChange stat)
+    public float GetTotalAmount(Character character, StatChange stat, int instanceIndex = -1)
     {
-        if (Changes.ContainsKey(character))
+        if (instanceIndex == -1)
         {
-            return Changes[character].GetAmount(stat);
+            if (Changes.ContainsKey(character))
+            {
+                return Changes[character].GetAmount(stat);
+            }
+        }
+        else if (instanceIndex < GetInstanceCount() && InstancesOfChanges[instanceIndex].ContainsKey(character))
+        {
+            return InstancesOfChanges[instanceIndex][character].GetAmount(stat);
         }
 
         return 0;

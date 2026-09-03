@@ -61,4 +61,5 @@ public enum StatChange
     APMaxDecrease,
     CritChanceIncrease,
     CritChanceDecrease,
+    HitAmountIncrease,
 }

@@ -62,21 +62,24 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 0
           valueInput:
             type: 0
             baseValue: 6
             maxValue: 0
             floatMode: 0
-          instances:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          instancesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+          newInstancePerOccurrence: 1
+          affectTotal: 0
+          affectCurrentInstance: 1
           extraArithmetics:
             list: []
             listFoldout: 0
@@ -96,21 +99,24 @@ MonoBehaviour:
                   canRepeatEnemies: 0
                 listFoldout: 1
                 foldouts: 01
+              occurrences:
+                type: 0
+                baseValue: 1
+                maxValue: 0
+                floatMode: 0
+              occurrencesArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
               type: 2
               valueInput:
                 type: 0
                 baseValue: 1
                 maxValue: 0
                 floatMode: 0
-              instances:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              instancesArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
+              newInstancePerOccurrence: 0
+              affectTotal: 0
+              affectCurrentInstance: 0
               extraArithmetics:
                 list: []
                 listFoldout: 0
@@ -161,21 +167,24 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 0
           valueInput:
             type: 0
             baseValue: 8
             maxValue: 0
             floatMode: 0
-          instances:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          instancesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+          newInstancePerOccurrence: 1
+          affectTotal: 0
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 1
@@ -195,21 +204,24 @@ MonoBehaviour:
                   canRepeatEnemies: 0
                 listFoldout: 1
                 foldouts: 01
+              occurrences:
+                type: 0
+                baseValue: 1
+                maxValue: 0
+                floatMode: 0
+              occurrencesArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
               type: 2
               valueInput:
                 type: 0
                 baseValue: 2
                 maxValue: 0
                 floatMode: 0
-              instances:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              instancesArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
+              newInstancePerOccurrence: 0
+              affectTotal: 0
+              affectCurrentInstance: 0
               extraArithmetics:
                 list: []
                 listFoldout: 0
@@ -260,21 +272,24 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 0
           valueInput:
             type: 0
             baseValue: 12
             maxValue: 0
             floatMode: 0
-          instances:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          instancesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+          newInstancePerOccurrence: 1
+          affectTotal: 0
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
@@ -294,21 +309,24 @@ MonoBehaviour:
                   canRepeatEnemies: 0
                 listFoldout: 1
                 foldouts: 01
+              occurrences:
+                type: 0
+                baseValue: 1
+                maxValue: 0
+                floatMode: 0
+              occurrencesArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
               type: 2
               valueInput:
                 type: 0
                 baseValue: 3
                 maxValue: 0
                 floatMode: 0
-              instances:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              instancesArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
+              newInstancePerOccurrence: 0
+              affectTotal: 0
+              affectCurrentInstance: 0
               extraArithmetics:
                 list: []
                 listFoldout: 0
@@ -359,21 +377,24 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 0
           valueInput:
             type: 0
             baseValue: 16
             maxValue: 0
             floatMode: 0
-          instances:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          instancesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+          newInstancePerOccurrence: 1
+          affectTotal: 0
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
@@ -393,21 +414,24 @@ MonoBehaviour:
                   canRepeatEnemies: 0
                 listFoldout: 1
                 foldouts: 01
+              occurrences:
+                type: 0
+                baseValue: 1
+                maxValue: 0
+                floatMode: 0
+              occurrencesArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
               type: 2
               valueInput:
                 type: 0
                 baseValue: 4
                 maxValue: 0
                 floatMode: 0
-              instances:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              instancesArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
+              newInstancePerOccurrence: 0
+              affectTotal: 0
+              affectCurrentInstance: 0
               extraArithmetics:
                 list: []
                 listFoldout: 0
@@ -458,21 +482,24 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 0
           valueInput:
             type: 0
             baseValue: 25
             maxValue: 0
             floatMode: 0
-          instances:
-            type: 0
-            baseValue: 1
-            maxValue: 0
-            floatMode: 0
-          instancesArithmetics:
-            list: []
-            listFoldout: 0
-            foldouts: 
+          newInstancePerOccurrence: 1
+          affectTotal: 0
+          affectCurrentInstance: 0
           extraArithmetics:
             list: []
             listFoldout: 0
@@ -492,21 +519,24 @@ MonoBehaviour:
                   canRepeatEnemies: 0
                 listFoldout: 1
                 foldouts: 01
+              occurrences:
+                type: 0
+                baseValue: 1
+                maxValue: 0
+                floatMode: 0
+              occurrencesArithmetics:
+                list: []
+                listFoldout: 0
+                foldouts: 
               type: 2
               valueInput:
                 type: 0
                 baseValue: 6
                 maxValue: 0
                 floatMode: 0
-              instances:
-                type: 0
-                baseValue: 0
-                maxValue: 0
-                floatMode: 0
-              instancesArithmetics:
-                list: []
-                listFoldout: 0
-                foldouts: 
+              newInstancePerOccurrence: 0
+              affectTotal: 0
+              affectCurrentInstance: 0
               extraArithmetics:
                 list: []
                 listFoldout: 0

@@ -21,12 +21,15 @@ public class GameConditionDrawer : BetterPropertyDrawer
                 SerializedProperty eventProperty = AddProperty("gameEvent");
                 GameEvent gameEvent = (GameEvent)eventProperty.enumValueIndex;
 
-                // switch (gameEvent)
-                // {
-                //     case GameEvent.OnCharacterUsesAbility:
-
-                //         break;
-                // }
+                switch (gameEvent)
+                {
+                    case GameEvent.OnThisCharacterUsesAbility:
+                        AddProperty("onlyOnOneInstance");
+                        break;
+                    case GameEvent.OnOtherCharacterUsesAbility:
+                        AddProperty("onlyOnOneInstance");
+                        break;
+                }
                 break;
             case GameConditionType.CharacterStat:
                 AddProperty("characterStat", "Stat");

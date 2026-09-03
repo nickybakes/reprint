@@ -22,6 +22,7 @@ MonoBehaviour:
         list:
         - type: 0
           gameEvent: 0
+          onlyOnOneInstance: 0
           characterStat: 0
           characters:
             list: []
@@ -42,6 +43,7 @@ MonoBehaviour:
           turnCountType: 0
         - type: 1
           gameEvent: 2
+          onlyOnOneInstance: 0
           characterStat: 1
           characters:
             list:
@@ -86,6 +88,15 @@ MonoBehaviour:
               canRepeatEnemies: 0
             listFoldout: 1
             foldouts: 01
+          occurrences:
+            type: 0
+            baseValue: 1
+            maxValue: 0
+            floatMode: 0
+          occurrencesArithmetics:
+            list: []
+            listFoldout: 0
+            foldouts: 
           type: 4
           valueInput1:
             type: 1

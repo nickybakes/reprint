@@ -13,6 +13,9 @@ public class ModEffectDrawer : BetterPropertyDrawer
         SerializedProperty typeProperty = AddProperty("type");
         ModEffectType type = (ModEffectType)typeProperty.enumValueIndex;
 
+        AddProperty("occurrences");
+        AddProperty("occurrencesArithmetics");
+
         AddQuarterBlankLine();
 
         switch (type)

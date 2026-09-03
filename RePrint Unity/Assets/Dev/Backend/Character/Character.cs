@@ -50,7 +50,7 @@ public abstract class Character
 
     public abstract void ResetForTurn();
 
-    public void ApplyPhysicalDamage(int damage, float damageMultiplier)
+    public void ApplyPhysicalDamage(int damage, float damageMultiplier, bool isCrit)
     {
         int totalDamage = (int)(damage * damageMultiplier);
 
@@ -63,6 +63,15 @@ public abstract class Character
         {
             Stats.Health -= totalDamage;
             Stats.Chain = 0;
+
+            if (isCrit)
+            {
+                Stats.CriticalDamageTaken += totalDamage;
+            }
+            else
+            {
+                Stats.PhysicalDamageTaken += totalDamage;
+            }
         }
     }
 
@@ -110,6 +119,7 @@ public abstract class Character
             List<ModEffect> effects = mod.GetModEffects(passingBehaviors);
 
             ModResult modResult = new ModResult(mod, gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
+            modResult.statChangeAmounts.StartNewInstance();
             StatCalculation.CalculateModEffects(gameValues, mod, effects, modResult, this);
             statChangeBreakdown.modResults.Add(modResult);
         }
