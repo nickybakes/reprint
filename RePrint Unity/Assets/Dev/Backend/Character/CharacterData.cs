@@ -13,5 +13,6 @@ public class CharacterData : ScriptableObject
     [Header("Player Specific")]
     public ValueInput abilityPointsMax;
     public ValueInput critDamageMultiplier;
+    public ValueInput baseCritChance;
 
 }

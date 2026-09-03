@@ -12,6 +12,9 @@ public class PlayerCharacter : Character
 
         Profile = data.Profile;
 
+        CritDamageMultiplier = data.critDamageMultiplier.GetValue();
+        BaseCritChance = data.baseCritChance.GetValue();
+
         Stats.HealthMax = (int)data.maxHealth.GetValue();
         Stats.Health = Stats.HealthMax;
 

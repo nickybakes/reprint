@@ -9,6 +9,10 @@ public abstract class Character
     public CharacterStats Stats { get; protected set; }
     public CharacterStats TurnStatsStorage { get; protected set; }
 
+    public float CritDamageMultiplier { get; protected set; }
+    public float BaseCritChance { get; protected set; }
+
+
     public int CurrentHitsInAbility { get; set; }
     public int CurrentHitsInTurn { get; set; }
 
@@ -50,9 +54,14 @@ public abstract class Character
 
     public abstract void ResetForTurn();
 
-    public void ApplyPhysicalDamage(int damage, float damageMultiplier, bool isCrit)
+    public void ApplyPhysicalDamage(int damage, float damageMultiplier, float critMultiplier, bool isCrit)
     {
         int totalDamage = (int)(damage * damageMultiplier);
+
+        if (isCrit)
+        {
+            totalDamage = (int)(damage * damageMultiplier * critMultiplier);
+        }
 
         // Use dodge first
         int tempDamage = totalDamage;

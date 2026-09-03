@@ -313,6 +313,10 @@ public class StatCalculation
                             float maxAPGain = effect.GetAmount(gameValues);
                             modResult.statChangeAmounts.AddAmount(character, maxAPGain, StatChange.APMaxIncrease);
                             break;
+                        case ModEffectType.StackCritChance:
+                            float critChance = effect.GetAmount(gameValues);
+                            modResult.statChangeAmounts.AddAmount(character, critChance, StatChange.CritChanceIncrease);
+                            break;
                     }
                 }
             }

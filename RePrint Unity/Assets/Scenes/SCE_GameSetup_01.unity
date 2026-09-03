@@ -609,6 +609,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 21358cac31e8c7944aaf4d29a27c1315, type: 2}
   - {fileID: 11400000, guid: 72caa5b875f9565469a21c38c0785200, type: 2}
   - {fileID: 11400000, guid: 5ba59622f8d48ad419891d46bdb1d1f8, type: 2}
+  - {fileID: 11400000, guid: 86ed9bafc578e094082a3575e7d8ddbb, type: 2}
   battleData: {fileID: 11400000, guid: ca0ee7bbac3bfb049b73cf38559d05d2, type: 2}
 --- !u!4 &384422483
 Transform:

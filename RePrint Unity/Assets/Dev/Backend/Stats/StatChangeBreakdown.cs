@@ -60,15 +60,21 @@ public class StatChangeBreakdown
         float totalStarterPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(activator, StatChange.StarterPhysicalDamageMultiplier, instanceIndex);
         float totalFinisherPhysicalDamageMultiplier = GetTotalStatChangeMultiplicative(activator, StatChange.FinisherPhysicalDamageMultiplier, instanceIndex);
 
+        float critChance = activator.BaseCritChance + GetTotalStatChangeAdditive(activator, StatChange.CritChanceIncrease, instanceIndex) - GetTotalStatChangeAdditive(activator, StatChange.CritChanceDecrease, instanceIndex);
+
+        bool isCrit = UnityEngine.Random.Range(0f, 100f) < critChance;
+
+        float critMultiplier = activator.CritDamageMultiplier;
+
         int totalStarterPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.StarterPhysicalDamageTaken, instanceIndex);
-        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier, false);
+        character.ApplyPhysicalDamage(totalStarterPhysicalDamageTaken, totalStarterPhysicalDamageMultiplier, critMultiplier, isCrit);
 
         int totalFinisherPhysicalDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.FinisherPhysicalDamageTaken, instanceIndex);
-        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier, false);
+        character.ApplyPhysicalDamage(totalFinisherPhysicalDamageTaken, totalFinisherPhysicalDamageMultiplier, critMultiplier, isCrit);
 
         int totalKineticDamageTaken = (int)GetTotalStatChangeAdditive(character, StatChange.KineticDamageTaken, instanceIndex);
         float totalKineticDamageMultiplier = GetTotalStatChangeMultiplicative(activator, StatChange.KineticDamageMultiplier, instanceIndex);
-        character.ApplyPhysicalDamage(totalKineticDamageTaken, totalKineticDamageMultiplier, false);
+        character.ApplyPhysicalDamage(totalKineticDamageTaken, totalKineticDamageMultiplier, critMultiplier, false);
 
         int totalDodgeGained = (int)GetTotalStatChangeAdditive(character, StatChange.DodgeGained, instanceIndex);
         totalDodgeGained -= (int)GetTotalStatChangeAdditive(character, StatChange.DodgeTaken, instanceIndex);
