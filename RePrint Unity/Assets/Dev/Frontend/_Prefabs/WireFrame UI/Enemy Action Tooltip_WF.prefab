@@ -1222,8 +1222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Trigger Effect: Discharge'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5912c07848076714da4f6ee80406a77b, type: 2}
-  m_sharedMaterial: {fileID: -8515738825837215416, guid: 5912c07848076714da4f6ee80406a77b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 69125ad11f6132a40b2dbc75b07f865b, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 75b5c33d16a3e904998d1ebb584b3e99, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
