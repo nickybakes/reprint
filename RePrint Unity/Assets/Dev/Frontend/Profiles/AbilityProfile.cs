@@ -11,4 +11,7 @@ public class AbilityProfile : ScriptableObject
 
     [field: SerializeField] public AnimationTrigger Animation { get; private set; }
 
+    [field: SerializeField] public bool Multihit { get; private set; }
+    [field: SerializeField] public AnimationCurve Hitrate { get; private set; }
+
 }

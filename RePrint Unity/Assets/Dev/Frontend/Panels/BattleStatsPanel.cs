@@ -88,4 +88,20 @@ public class BattleStatsPanel : Panel
             panel.DisableTargetSelection();
         }
     }
+
+    public void HideAllEnemyPanels()
+    {
+        foreach (Character enemy in EnemyStatPanels.Keys)
+        {
+            EnemyStatPanels[enemy].Hide();
+        }
+    }
+
+    public void ShowAllEnemyPanels()
+    {
+        foreach (Character enemy in EnemyStatPanels.Keys)
+        {
+            EnemyStatPanels[enemy].Show();
+        }
+    }
 }

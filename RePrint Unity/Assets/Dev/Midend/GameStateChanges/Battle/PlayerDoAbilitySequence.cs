@@ -43,6 +43,7 @@ public class PlayerDoAbilitySequence : BattleStateChange
         playerFigure = view.PlayerFigureGroup.GetFigure(player);
 
         view.BattleStatsPanel.PlayerStatPanel.Hide();
+        view.BattleStatsPanel.HideAllEnemyPanels();
     }
 
     public override void Update(BattleView view, BattleController controller)

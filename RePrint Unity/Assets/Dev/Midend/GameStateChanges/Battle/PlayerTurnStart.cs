@@ -28,6 +28,7 @@ public class PlayerTurnStart : BattleStateChange
         view.PlayerAbilitySequenceGroup.Clear();
         view.PlayerAbilityDisplayGroup.ResetSequenceState(battleManager.Player.Stats);
         view.PlayerAbilityDisplayGroup.Show();
+        view.BattleStatsPanel.ShowAllEnemyPanels();
         view.StatPopupGroupMods.DisplayModResults(statChangeBreakdown.modResults, battleManager.Player);
         view.EnablePlayerInteractions();
     }
