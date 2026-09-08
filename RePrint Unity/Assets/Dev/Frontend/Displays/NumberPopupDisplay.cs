@@ -2,19 +2,13 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public enum NumberPopupType
-{
-    PhysicalDamage,
-    CritDamage,
-}
-
 public class NumberPopupDisplay : Display
 {
 
-    [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI contentText;
     [SerializeField] private Animator animator;
 
+    public float CurrentTime { get => currentTime; }
 
     public bool IsShowing { get; private set; }
 
@@ -39,10 +33,9 @@ public class NumberPopupDisplay : Display
     }
 
 
-    public void Display(string name, string content, float introDelay = 0)
+    public void Display(string content, float introDelay = 0)
     {
         IsShowing = true;
-        nameText.text = name;
         contentText.text = content;
         currentTime = 0;
         inOutro = false;
