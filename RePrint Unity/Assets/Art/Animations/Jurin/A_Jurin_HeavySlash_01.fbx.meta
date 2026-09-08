@@ -17,7 +17,10 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: Event AnimEventGlitchEffect has a time (0.660000) outside
+      the clip's valid range (0.000000..0.533333). It will never be firedEvent AnimEventFinishAbility
+      has a time (0.733333) outside the clip's valid range (0.000000..0.533333).
+      It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -34,7 +37,7 @@ ModelImporter:
       name: HeavySlash
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 52
+      firstFrame: 50
       lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
