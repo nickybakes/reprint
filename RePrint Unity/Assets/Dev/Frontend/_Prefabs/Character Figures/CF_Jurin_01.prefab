@@ -484,6 +484,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2499172986142470817, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 2499172986142470817, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3372545067208933473, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: m_Name
       value: VFX_Smoke_Step_Start_03_White
@@ -527,6 +535,14 @@ PrefabInstance:
     - target: {fileID: 4017355056083422867, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527826612455631534, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527826612455631534, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6473410625983403716, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.gravitySource
@@ -597,16 +613,20 @@ PrefabInstance:
       value: -4.63
       objectReference: {fileID: 0}
     - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.72156864
+      objectReference: {fileID: 0}
+    - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.745283
+      value: 0.8632076
       objectReference: {fileID: 0}
     - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.745283
+      value: 0.8632076
       objectReference: {fileID: 0}
     - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.745283
+      value: 0.8632076
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
