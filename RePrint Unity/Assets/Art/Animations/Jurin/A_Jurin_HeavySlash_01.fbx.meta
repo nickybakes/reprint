@@ -79,6 +79,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.149
+        functionName: AnimEventVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 3
+        messageOptions: 0
       - time: 0.173
         functionName: AnimEventVFX
         data: 
