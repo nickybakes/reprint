@@ -17,9 +17,9 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: Event AnimEventGlitchEffect has a time (0.660000) outside
-      the clip's valid range (0.000000..0.533333). It will never be firedEvent AnimEventFinishAbility
-      has a time (0.733333) outside the clip's valid range (0.000000..0.533333).
+    animationImportWarnings: Event AnimEventGlitchEffect has a time (0.720000) outside
+      the clip's valid range (0.000000..0.600000). It will never be firedEvent AnimEventFinishAbility
+      has a time (0.800000) outside the clip's valid range (0.000000..0.600000).
       It will never be fired
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
@@ -71,6 +71,20 @@ ModelImporter:
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
+        messageOptions: 0
+      - time: 0.1
+        functionName: AnimEventVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.173
+        functionName: AnimEventVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 2
         messageOptions: 0
       - time: 0.20305836
         functionName: AnimEventUpdateStats
