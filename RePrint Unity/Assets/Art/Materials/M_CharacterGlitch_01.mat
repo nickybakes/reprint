@@ -73,7 +73,7 @@ Material:
     - _Distort_Bias: -0.026
     - _Distort_Bias_Base: 0.8
     - _Emission: 0.77
-    - _Glitch_Effect: 0
+    - _Glitch_Effect: 0.28431112
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rim_Light_Multiply: 1.31

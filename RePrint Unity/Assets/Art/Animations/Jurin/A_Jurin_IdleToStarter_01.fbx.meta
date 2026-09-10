@@ -17,8 +17,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: Event AnimEventMoveCharacter has a time (0.366667) outside
-      the clip's valid range (0.000000..0.300000). It will never be fired
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -35,8 +34,8 @@ ModelImporter:
       name: IdleToStarter
       takeName: Take 001
       internalID: 1827226128182048838
-      firstFrame: 75
-      lastFrame: 84
+      firstFrame: 77
+      lastFrame: 92
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,6 +55,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.1
+        functionName: AnimEventVFX
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 4
+        messageOptions: 0
       - time: 0.8
         functionName: AnimEventGlitchEffect
         data: 1,0
