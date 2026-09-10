@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8778944313846405019
 Transform:
   m_ObjectHideFlags: 0
@@ -232,35 +232,7 @@ MonoBehaviour:
   animator: {fileID: 4683171507905296832}
   attackPoint: {fileID: 2062367951404116811}
   glitchMaterials: []
-  movementEase:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   doesGlitchEffect: 0
-  glitchCooldown: 1
-  glitchMinimumTime: 0.15
-  glitchMultiplier: 2
-  glitchSpeedThreshold: 0.001
   visualEffects: []
 --- !u!1001 &3092896435620739710
 PrefabInstance:
