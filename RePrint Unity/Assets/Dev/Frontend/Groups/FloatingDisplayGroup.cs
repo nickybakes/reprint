@@ -67,7 +67,7 @@ public class FloatingDisplayGroup : Display
     /// <summary>
     /// The number of displays in this group.
     /// </summary>
-    public int numDisplaysInGroup;
+    [HideInInspector] public int numDisplaysInGroup;
 
     public float BigSizeRatio
     {
