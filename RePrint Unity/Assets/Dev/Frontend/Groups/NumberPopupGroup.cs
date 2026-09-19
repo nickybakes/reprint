@@ -10,13 +10,6 @@ public enum NumberPopupType
 
 public class NumberPopupGroup : MonoBehaviour
 {
-    [SerializeField] private NumberPopupDisplay physicalDamagePrefab;
-    [SerializeField] private NumberPopupDisplay critDamagePrefab;
-
-    [SerializeField] private Transform physicalDamagePosition;
-    [SerializeField] private Transform critDamagePosition;
-
-
     [SerializeField] private NumberPopupDisplay prefab;
     [SerializeField] private int displayAmount = 3;
     [SerializeField] private Transform gamePanel;
@@ -25,8 +18,7 @@ public class NumberPopupGroup : MonoBehaviour
     [SerializeField] private float outroLength = .5f;
 
     [Header("Use %a for the value and %b for the plus/minus sign")]
-    [SerializeField] private string physicalDamageFormat = "%b%a";
-    [SerializeField] private string critDamageFormat = "%b%a!";
+    [SerializeField] private string valueFormat = "%b%a";
 
     private List<NumberPopupDisplay> displays;
 
@@ -47,18 +39,11 @@ public class NumberPopupGroup : MonoBehaviour
         }
     }
 
-    public void DisplayNumber(NumberPopupType type, float amount, bool isMultiplicative = false)
+    public void DisplayNumber(float amount, bool isMultiplicative = false)
     {
         int sign = Math.Sign(amount);
         float absAmount = Mathf.Abs(amount);
-        string finalString = physicalDamageFormat;
-
-        switch (type)
-        {
-            case NumberPopupType.CritDamage:
-                finalString = critDamageFormat;
-                break;
-        }
+        string finalString = valueFormat;
 
         while (finalString.Contains("%a"))
         {

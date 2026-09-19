@@ -63,7 +63,7 @@ Animator:
   m_GameObject: {fileID: 96376723846066790}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80c89814b6429dc468ec6918dc3f69af, type: 2}
+  m_Controller: {fileID: 9100000, guid: 015e7cc1e2d9f0444af667428aea99b8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -87,6 +87,61 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 1
+--- !u!1 &1283945554625436864
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1568138267156892682}
+  - component: {fileID: 1023274928695666746}
+  m_Layer: 5
+  m_Name: Number Popup Group - Crit Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1568138267156892682
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283945554625436864}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2206101166330181754}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 59.200024, y: 181.99998}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1023274928695666746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283945554625436864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533a3571153c063489a173e3017eab79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NumberPopupGroup
+  prefab: {fileID: 9057268731053873980}
+  displayAmount: 1
+  gamePanel: {fileID: 1568138267156892682}
+  introDelay: 0
+  lifetime: 0.7
+  outroLength: 0
+  valueFormat: '%b%a!'
 --- !u!1 &1695440399234959269
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +182,7 @@ RectTransform:
   - {fileID: 8765153721946986729}
   - {fileID: 5393009041622372900}
   - {fileID: 4425867809524502156}
+  - {fileID: 1568138267156892682}
   - {fileID: 2050523819563931755}
   - {fileID: 737400251919399612}
   m_Father: {fileID: 0}
@@ -164,6 +220,8 @@ MonoBehaviour:
   intentDisplayGroup: {fileID: 1307616316983841521}
   targetButton: {fileID: 2422015551692095317}
   AbilityStatsGroup: {fileID: 0}
+  physicalDamageNumberPopupGroup: {fileID: 3996184148694253507}
+  critDamageNumberPopupGroup: {fileID: 1023274928695666746}
 --- !u!225 &444182399750841689
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -209,12 +267,12 @@ GameObject:
   - component: {fileID: 4425867809524502156}
   - component: {fileID: 3996184148694253507}
   m_Layer: 5
-  m_Name: Number Popup Group
+  m_Name: Number Popup Group - Physical Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4425867809524502156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -231,7 +289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.8, y: 155.6}
+  m_AnchoredPosition: {x: -44, y: 182}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3996184148694253507
@@ -246,18 +304,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533a3571153c063489a173e3017eab79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NumberPopupGroup
-  physicalDamagePrefab: {fileID: 1063200743817546253}
-  critDamagePrefab: {fileID: 9057268731053873980}
-  physicalDamagePosition: {fileID: 0}
-  critDamagePosition: {fileID: 0}
-  prefab: {fileID: 0}
-  displayAmount: 3
-  gamePanel: {fileID: 0}
+  prefab: {fileID: 1063200743817546253}
+  displayAmount: 1
+  gamePanel: {fileID: 4425867809524502156}
   introDelay: 0
-  lifetime: 1
-  outroLength: 0.25
-  physicalDamageFormat: '%b%a'
-  critDamageFormat: '%b%a!'
+  lifetime: 0.7
+  outroLength: 0
+  valueFormat: '%b%a'
 --- !u!1 &1920809206152582344
 GameObject:
   m_ObjectHideFlags: 0

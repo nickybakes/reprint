@@ -7,6 +7,8 @@ public class CharacterBattlePanel : CharacterStatsPanel
     [SerializeField] private BetterButton targetButton;
 
     [SerializeField] private Display AbilityStatsGroup;
+    [SerializeField] private NumberPopupGroup physicalDamageNumberPopupGroup;
+    [SerializeField] private NumberPopupGroup critDamageNumberPopupGroup;
 
     protected CharacterFigure figure;
     protected BattleView view;
@@ -36,6 +38,13 @@ public class CharacterBattlePanel : CharacterStatsPanel
         UpdateStats(_character.Stats);
     }
 
+    public void UpdateStatsWithDifference(CharacterStats statsBefore, CharacterStats statsAfter)
+    {
+        UpdateStats(statsAfter);
+        ShowPhysicalDamageTaken(statsBefore.PhysicalDamageTaken, statsAfter.PhysicalDamageTaken);
+        ShowCritDamageTaken(statsBefore.CriticalDamageTaken, statsAfter.CriticalDamageTaken);
+    }
+
     public void EnableTargetSelection()
     {
         targetButton.Show();
@@ -56,6 +65,24 @@ public class CharacterBattlePanel : CharacterStatsPanel
         if (intentDisplayGroup)
         {
             intentDisplayGroup.Refresh(ability, character);
+        }
+    }
+
+    public void ShowPhysicalDamageTaken(int before, int after)
+    {
+        int value = after - before;
+        if (physicalDamageNumberPopupGroup && value != 0)
+        {
+            physicalDamageNumberPopupGroup.DisplayNumber(value);
+        }
+    }
+
+    public void ShowCritDamageTaken(int before, int after)
+    {
+        int value = after - before;
+        if (critDamageNumberPopupGroup && value != 0)
+        {
+            critDamageNumberPopupGroup.DisplayNumber(value);
         }
     }
 

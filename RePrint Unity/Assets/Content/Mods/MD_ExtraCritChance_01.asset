@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c977485ecee53478867bcd15f09920, type: 3}
   m_Name: MD_ExtraCritChance_01
   m_EditorClassIdentifier: Assembly-CSharp::ModData
-  <Profile>k__BackingField: {fileID: 11400000, guid: fc1e5989c625e8e4d966c4a44d5e523f, type: 2}
+  <Profile>k__BackingField: {fileID: 11400000, guid: b7baa30ae9e77f54db33e920361d07f7, type: 2}
   <Name>k__BackingField: Extra AP
   <Rarity>k__BackingField: 4
   <SortOrder>k__BackingField: 0

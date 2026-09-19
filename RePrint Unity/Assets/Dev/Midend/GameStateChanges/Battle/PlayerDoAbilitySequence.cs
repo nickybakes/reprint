@@ -89,8 +89,8 @@ public class PlayerDoAbilitySequence : BattleStateChange
 
     public void UpdateStats()
     {
-        battleView.BattleStatsPanel.PlayerStatPanel.UpdateStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.PlayerStats);
-        battleView.BattleStatsPanel.UpdateAllEnemyStats(statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats);
+        battleView.BattleStatsPanel.PlayerStatPanel.UpdateStatsWithDifference(statChangeBreakdowns[currentAbilityIndex].statsBefore.PlayerStats, statChangeBreakdowns[currentAbilityIndex].statsAfter.PlayerStats);
+        battleView.BattleStatsPanel.UpdateAllEnemyStatsWithDifference(statChangeBreakdowns[currentAbilityIndex].statsAfter.EnemyStats, statChangeBreakdowns[currentAbilityIndex].statsBefore.EnemyStats);
         battleView.StatPopupGroupMods.DisplayModResults(statChangeBreakdowns[currentAbilityIndex].modResults, player);
         battleView.StatPopupGroupAbility.DisplayAbilityResults(abilitySelections[currentAbilityIndex].Ability, statChangeBreakdowns[currentAbilityIndex], player);
 

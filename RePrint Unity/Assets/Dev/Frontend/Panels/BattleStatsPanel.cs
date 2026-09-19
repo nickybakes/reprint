@@ -48,6 +48,17 @@ public class BattleStatsPanel : Panel
         }
     }
 
+    public void UpdateAllEnemyStatsWithDifference(Dictionary<Character, CharacterStats> statsBefore, Dictionary<Character, CharacterStats> statsAfter)
+    {
+        foreach (Character enemy in statsBefore.Keys)
+        {
+            if (EnemyStatPanels.ContainsKey(enemy))
+            {
+                EnemyStatPanels[enemy].UpdateStatsWithDifference(statsBefore[enemy], statsAfter[enemy]);
+            }
+        }
+    }
+
     public void UpdateAllEnemyStats(Team enemyTeam)
     {
         foreach (Character enemy in enemyTeam.Members)

@@ -8,7 +8,7 @@ public class StatDisplay : Display
 
     [SerializeField] private TextDisplay textDisplay;
 
-    [SerializeField] private DifferenceDisplayPool differenceDisplayPool;
+    // [SerializeField] private DifferenceDisplayPool differenceDisplayPool;
 
     [SerializeField] private string singleValueFormat = "%a";
 
@@ -35,8 +35,6 @@ public class StatDisplay : Display
         }
 
         textDisplay.SetText(finalString);
-
-        DisplayDifference(value);
     }
 
     public void DisplayFraction(float numerator, float denominator)
@@ -57,20 +55,18 @@ public class StatDisplay : Display
         }
 
         textDisplay.SetText(finalString);
-
-        DisplayDifference(numerator);
     }
 
-    public void DisplayDifference(float value)
-    {
-        if (valueNotSet && currentValue != value)
-        {
-            if (differenceDisplayPool)
-            {
-                differenceDisplayPool.AddText((int)currentValue, (int)value);
-            }
-        }
-        currentValue = value;
-        valueNotSet = true;
-    }
+    // public void DisplayDifference(float value)
+    // {
+    //     if (valueNotSet && currentValue != value)
+    //     {
+    //         if (differenceDisplayPool)
+    //         {
+    //             differenceDisplayPool.AddText((int)currentValue, (int)value);
+    //         }
+    //     }
+    //     currentValue = value;
+    //     valueNotSet = true;
+    // }
 }
