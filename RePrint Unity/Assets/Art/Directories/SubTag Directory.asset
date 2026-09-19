@@ -17,6 +17,10 @@ MonoBehaviour:
     <Color>k__BackingField: {r: 0, g: 1, b: 0.94843197, a: 1}
   - <Tag>k__BackingField: green
     <Color>k__BackingField: {r: 0.10853689, g: 0.77735853, b: 0.24029668, a: 1}
+  - <Tag>k__BackingField: red
+    <Color>k__BackingField: {r: 0.9150943, g: 0.2028385, b: 0.15107687, a: 1}
+  - <Tag>k__BackingField: yellow
+    <Color>k__BackingField: {r: 0.9528302, g: 0.8677623, b: 0.05842829, a: 1}
   <Sprites>k__BackingField: []
   <SubTags>k__BackingField:
   - <Tag>k__BackingField: combo
@@ -30,3 +34,11 @@ MonoBehaviour:
     <SubDescription>k__BackingField: <green>Test</color>. Test Description Test DescriptionTest
       DescriptionTest DescriptionTest DescriptionTest DescriptionTest DescriptionTest
       DescriptionTest Desdawdawd wdawdwad awda
+  - <Tag>k__BackingField: test2
+    <Parameters>k__BackingField: 
+    <Replacement>k__BackingField: <red>Test 2</color>
+    <SubDescription>k__BackingField: <red>Test 2</color> This is a <test> and a <test3>
+  - <Tag>k__BackingField: test3
+    <Parameters>k__BackingField: 
+    <Replacement>k__BackingField: <yellow>Test 3</color>
+    <SubDescription>k__BackingField: <yellow>Test 3</color> whoa whoa

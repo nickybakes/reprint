@@ -17,17 +17,25 @@ public class SubTagDirectory : ScriptableObject
     {
         SubTagResult results = new SubTagResult();
 
-        List<string> descriptions = new List<string>();
+        Dictionary<int, string> descriptions = new Dictionary<int, string>();
         List<int> descriptionIndices = new List<int>();
 
         results.replaceString = ReplaceSubTagsRecursive(promptString, descriptions, descriptionIndices, new Dictionary<string, string>());
-        results.subDescriptions = descriptions;
+
+        List<string> finalOrderedDescriptions = new List<string>();
+
+        for (int i = 0; i < descriptionIndices.Count; i++)
+        {
+            finalOrderedDescriptions.Add(descriptions[descriptionIndices[i]]);
+        }
+
+        results.subDescriptions = finalOrderedDescriptions;
 
         return results;
     }
 
 
-    private string ReplaceSubTagsRecursive(string promptString, List<string> descriptions, List<int> descriptionIndices, Dictionary<string, string> promptStringParameters)
+    private string ReplaceSubTagsRecursive(string promptString, Dictionary<int, string> descriptions, List<int> descriptionIndices, Dictionary<string, string> promptStringParameters)
     {
         string[] promptStringKeys = promptStringParameters.Keys.ToArray();
         for (int i = 0; i < promptStringKeys.Length; i++)
@@ -74,7 +82,7 @@ public class SubTagDirectory : ScriptableObject
                     if (SubTags[subtagIndex].SubDescription != "" && !descriptionIndices.Contains(subtagIndex))
                     {
                         descriptionIndices.Add(subtagIndex);
-                        descriptions.Add(ReplaceSubTagsRecursive(SubTags[subtagIndex].SubDescription, descriptions, descriptionIndices, nextTagParameters));
+                        descriptions.Add(subtagIndex, ReplaceSubTagsRecursive(SubTags[subtagIndex].SubDescription, descriptions, descriptionIndices, nextTagParameters));
                     }
 
                     string replacementResult = ReplaceSubTagsRecursive(replacement, descriptions, descriptionIndices, promptStringParameters);
