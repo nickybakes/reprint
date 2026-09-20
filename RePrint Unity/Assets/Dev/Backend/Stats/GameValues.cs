@@ -26,6 +26,7 @@ public class GameValues
     public StatChangeBreakdown currentStatChangeBreakdown;
     public Mod currentMod;
     public bool onLastInstance;
+    public int currentInstance;
 
     public int GetIntGameValue(GameValueType valueType)
     {

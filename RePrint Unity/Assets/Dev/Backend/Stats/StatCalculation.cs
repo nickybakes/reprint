@@ -146,35 +146,15 @@ public class StatCalculation
         StatChangeBreakdown statChangeBreakdown = new StatChangeBreakdown(abilityStatChanges, modResults, gameValues.activator);
 
         gameValues.currentStatChangeBreakdown = statChangeBreakdown;
-        for (int i = 0; i < abilityStatChanges.GetInstanceCount(); i++)
-        {
-            gameValues.gameEvent = GameEvent.OnThisCharacterUsesAbility;
-            gameValues.onLastInstance = i == abilityStatChanges.GetInstanceCount() - 1;
-            gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-            int hitAmount = (int)abilityStatChanges.GetTotalAmount(gameValues.activator, StatChange.HitAmountIncrease, i);
-            for (int j = 0; j < hitAmount; j++)
-            {
-                gameValues.gameEvent = GameEvent.OnThisCharacterHits;
-                gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-            }
-        }
+        gameValues.gameEvent = GameEvent.OnThisCharacterUsesAbility;
+        gameValues.activator.CalculateStatChangesFromModsFromAbilities(gameValues, statChangeBreakdown, abilityStatChanges, true);
 
         // Calculate Mod Stat Changes for victims
         foreach (Character character in nonActivatorCharacters)
         {
-            for (int i = 0; i < abilityStatChanges.GetInstanceCount(); i++)
-            {
-                gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;
-
-                gameValues.onLastInstance = i == abilityStatChanges.GetInstanceCount() - 1;
-                character.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-                int hitAmount = (int)abilityStatChanges.GetTotalAmount(gameValues.activator, StatChange.HitAmountIncrease, i);
-                for (int j = 0; j < hitAmount; j++)
-                {
-                    gameValues.gameEvent = GameEvent.OnThisCharacterGetsHit;
-                    gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
-                }
-            }
+            gameValues.currentStatChangeBreakdown = statChangeBreakdown;
+            gameValues.gameEvent = GameEvent.OnOtherCharacterUsesAbility;
+            character.CalculateStatChangesFromModsFromAbilities(gameValues, statChangeBreakdown, abilityStatChanges, false);
         }
 
         statChangeBreakdown.ApplyStatChanges(gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
@@ -186,9 +166,9 @@ public class StatCalculation
     {
         foreach (AbilityEffect effect in effects)
         {
-            int occurences = effect.GetOcurrences(gameValues, getMinimum, getMaximum);
+            int occurrences = effect.GetOcurrences(gameValues, getMinimum, getMaximum);
 
-            for (int i = 0; i < occurences; i++)
+            for (int i = 0; i < occurrences; i++)
             {
                 if (effect.NewInstancePerOccurrence)
                     statChanges.StartNewInstance();
@@ -261,9 +241,9 @@ public class StatCalculation
     {
         foreach (ModEffect effect in effects)
         {
-            int occurences = effect.GetOcurrences(gameValues);
+            int occurrences = effect.GetOcurrences(gameValues);
 
-            for (int i = 0; i < occurences; i++)
+            for (int i = 0; i < occurrences; i++)
             {
                 if (effect.Type == ModEffectType.RetriggerAbility)
                 {

@@ -33,7 +33,13 @@ public class StatChangeBreakdown
 
         instanceCount = 0;
         if (abilityStatChanges != null)
+        {
             instanceCount = abilityStatChanges.GetInstanceCount();
+        }
+        else if (modResults != null)
+        {
+            instanceCount = 1;
+        }
 
         for (int i = 0; i < instanceCount; i++)
         {
@@ -117,34 +123,36 @@ public class StatChangeBreakdown
 
         if (abilityStatChanges != null && abilityStatChanges.Changes.ContainsKey(character))
         {
-            total *= abilityStatChanges.GetTotalAmount(character, stat, instanceIndex);
+            total *= abilityStatChanges.GetTotalAmount(character, stat, instanceIndex, 1);
         }
 
         foreach (ModResult modResult in modResults)
         {
             if (modResult.statChangeAmounts.Changes.ContainsKey(character))
             {
-                total *= modResult.statChangeAmounts.GetTotalAmount(character, stat, instanceIndex);
+                total *= modResult.statChangeAmounts.GetTotalAmount(character, stat, instanceIndex, 1);
             }
         }
 
         return total;
     }
 
+
+    // TODO: Not sure if this entirely works tbh lol
     public float GetTotalStatChangeEscalating(Character character, StatChange stat, int instanceIndex, bool subtractFromBase = false, float startingValue = 1, float baseValue = 0, float topValue = 1)
     {
         float total = startingValue;
 
         if (abilityStatChanges != null && abilityStatChanges.Changes.ContainsKey(character))
         {
-            total *= topValue - abilityStatChanges.GetTotalAmount(character, stat, instanceIndex);
+            total *= topValue - abilityStatChanges.GetTotalAmount(character, stat, instanceIndex, 1);
         }
 
         foreach (ModResult modResult in modResults)
         {
             if (modResult.statChangeAmounts.Changes.ContainsKey(character))
             {
-                total *= topValue - modResult.statChangeAmounts.GetTotalAmount(character, stat, instanceIndex);
+                total *= topValue - modResult.statChangeAmounts.GetTotalAmount(character, stat, instanceIndex, 1);
             }
         }
 

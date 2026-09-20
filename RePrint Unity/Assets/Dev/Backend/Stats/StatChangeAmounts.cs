@@ -62,22 +62,6 @@ public class StatChangeAmounts
         InstancesOfChanges.Add(new Dictionary<Character, StatChanges>());
     }
 
-    // public void AddAmounts(Dictionary<Character, float> amounts, StatChange stat)
-    // {
-    //     foreach (Character character in amounts.Keys)
-    //     {
-    //         if (Changes.ContainsKey(character))
-    //         {
-    //             Changes[character].StackAmount(stat, amounts[character]);
-    //         }
-    //         else
-    //         {
-    //             Changes.Add(character, new StatChanges());
-    //             Changes[character].StackAmount(stat, amounts[character]);
-    //         }
-    //     }
-    // }
-
     public int GetInstanceCount()
     {
         return InstancesOfChanges.Count;
@@ -88,7 +72,7 @@ public class StatChangeAmounts
         return InstancesOfChanges[index];
     }
 
-    public float GetTotalAmount(Character character, StatChange stat, int instanceIndex = -1)
+    public float GetTotalAmount(Character character, StatChange stat, int instanceIndex = -1, float defaultValue = 0)
     {
         if (instanceIndex == -1)
         {
@@ -102,6 +86,6 @@ public class StatChangeAmounts
             return InstancesOfChanges[instanceIndex][character].GetAmount(stat);
         }
 
-        return 0;
+        return defaultValue;
     }
 }

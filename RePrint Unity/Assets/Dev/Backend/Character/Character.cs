@@ -106,33 +106,67 @@ public abstract class Character
         for (int i = 0; i < sortedMods.Count; i++)
         {
             Mod mod = sortedMods[i];
-
-            int numPassingBehaviors = 0;
-
-            List<bool> passingBehaviors = new List<bool>();
-
-            foreach (ModBehavior behavior in mod.Behaviors)
-            {
-                gameValues.currentMod = mod;
-                bool pass = StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues);
-                passingBehaviors.Add(pass);
-                if (pass)
-                    numPassingBehaviors++;
-            }
-
-            if (numPassingBehaviors == 0)
-            {
-                continue;
-            }
-
-            List<ModEffect> effects = mod.GetModEffects(passingBehaviors);
-
             ModResult modResult = new ModResult(mod, gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
             modResult.statChangeAmounts.StartNewInstance();
-            StatCalculation.CalculateModEffects(gameValues, mod, effects, modResult, this);
+            CalculateStatChangesFromMod(gameValues, modResult);
             statChangeBreakdown.modResults.Add(modResult);
         }
+    }
 
+    public void CalculateStatChangesFromModsFromAbilities(GameValues gameValues, StatChangeBreakdown statChangeBreakdown, StatChangeAmounts abilityStatChanges, bool thisCharacterUsesbility)
+    {
+        List<Mod> sortedMods = GetSortedMods();
+
+        for (int i = 0; i < sortedMods.Count; i++)
+        {
+            Mod mod = sortedMods[i];
+
+            ModResult modResult = new ModResult(mod, gameValues.battleManager.Player, gameValues.battleManager.EnemyTeam);
+
+            for (int j = 0; j < abilityStatChanges.GetInstanceCount(); j++)
+            {
+                modResult.statChangeAmounts.StartNewInstance();
+                gameValues.gameEvent = thisCharacterUsesbility ? GameEvent.OnThisCharacterUsesAbility : GameEvent.OnThisCharacterUsesAbility;
+                gameValues.currentMod = mod;
+                gameValues.currentInstance = j;
+                gameValues.onLastInstance = j == abilityStatChanges.GetInstanceCount() - 1;
+
+                CalculateStatChangesFromMod(gameValues, modResult);
+
+                int hitAmount = (int)abilityStatChanges.GetTotalAmount(gameValues.activator, StatChange.HitAmountIncrease, i);
+                for (int k = 0; k < hitAmount; k++)
+                {
+                    gameValues.gameEvent = thisCharacterUsesbility ? GameEvent.OnThisCharacterHits : GameEvent.OnThisCharacterGetsHit;
+                    gameValues.activator.CalculateStatChangesFromMods(gameValues, statChangeBreakdown);
+                }
+            }
+
+            statChangeBreakdown.modResults.Add(modResult);
+        }
+    }
+
+    private void CalculateStatChangesFromMod(GameValues gameValues, ModResult modResult)
+    {
+        int numPassingBehaviors = 0;
+
+        List<bool> passingBehaviors = new List<bool>();
+
+        foreach (ModBehavior behavior in modResult.mod.Behaviors)
+        {
+            gameValues.currentMod = modResult.mod;
+            bool pass = StatCalculation.DoGameConditionsPass(behavior.Conditions, gameValues);
+            passingBehaviors.Add(pass);
+            if (pass)
+                numPassingBehaviors++;
+        }
+
+        if (numPassingBehaviors == 0)
+        {
+            return;
+        }
+
+        List<ModEffect> effects = modResult.mod.GetModEffects(passingBehaviors);
+        StatCalculation.CalculateModEffects(gameValues, modResult.mod, effects, modResult, this);
     }
 
     public List<Mod> GetSortedMods()
