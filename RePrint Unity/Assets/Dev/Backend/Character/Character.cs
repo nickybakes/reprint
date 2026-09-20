@@ -126,7 +126,7 @@ public abstract class Character
             for (int j = 0; j < abilityStatChanges.GetInstanceCount(); j++)
             {
                 modResult.statChangeAmounts.StartNewInstance();
-                gameValues.gameEvent = thisCharacterUsesbility ? GameEvent.OnThisCharacterUsesAbility : GameEvent.OnThisCharacterUsesAbility;
+                gameValues.gameEvent = thisCharacterUsesbility ? GameEvent.OnThisCharacterUsesAbility : GameEvent.OnOtherCharacterUsesAbility;
                 gameValues.currentMod = mod;
                 gameValues.currentInstance = j;
                 gameValues.onLastInstance = j == abilityStatChanges.GetInstanceCount() - 1;
