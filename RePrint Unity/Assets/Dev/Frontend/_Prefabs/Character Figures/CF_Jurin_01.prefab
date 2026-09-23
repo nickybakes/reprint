@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8902164303691093865}
   m_Layer: 0
-  m_Name: TR_Dash
+  m_Name: TR_Dash_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,6 +623,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.63
       objectReference: {fileID: 0}
+    - target: {fileID: 8805308964593793676, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_Name
+      value: TR_Dash_02
+      objectReference: {fileID: 0}
     - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
@@ -823,6 +827,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.63
       objectReference: {fileID: 0}
+    - target: {fileID: 8805308964593793676, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_Name
+      value: TR_Dash_04
+      objectReference: {fileID: 0}
     - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 1
@@ -1016,6 +1024,10 @@ PrefabInstance:
     - target: {fileID: 8363398864125909400, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805308964593793676, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
+      propertyPath: m_Name
+      value: TR_Dash_03
       objectReference: {fileID: 0}
     - target: {fileID: 8851875266955554879, guid: 0d4bd58d8c34b1743906363feccc03d4, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -7075,6 +7087,10 @@ PrefabInstance:
     - target: {fileID: 6736412063141291783, guid: 914d4b04fcaff7c4c8ed80076126891b, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384910941540222456, guid: 914d4b04fcaff7c4c8ed80076126891b, type: 3}
+      propertyPath: m_Name
+      value: TR_Hit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
