@@ -12,7 +12,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleCurves: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
@@ -35,7 +35,7 @@ ModelImporter:
       takeName: Jurin_idleCycle
       internalID: 5594689582149064553
       firstFrame: 1
-      lastFrame: 75
+      lastFrame: 76
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -58,7 +58,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 169
+      additiveReferencePoseFrame: 76
     isReadable: 0
   meshes:
     lODScreenPercentages: []
